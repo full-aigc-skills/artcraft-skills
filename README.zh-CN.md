@@ -116,3 +116,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 依赖候选 dev.21 固定 VectorCraft 技能 dev.7 和运行时自带示例字体。单技能冷启动原生混合创建、修订与打包验证通过（2 项，56.437 秒）；当前候选的固定宿主安装验收仍为 NOT_RUN。[证据](docs/evidence/vector-font-mixed-first-use.json)。
 
 已发布技能 dev.21／插件 dev.23 固定宿主发现 58 个技能通过；实际安装的单技能使用默认 Python 3.14.3 冷启动完成原生混合验收（2 项，54.673 秒），全部安装摘要不变。[证据](docs/evidence/codex-release25-vector-font-mixed-20261006.json)。
+
+候选技能 dev.22 修复普通和中文宣传模板的默认矢量文字字体，明确使用随运行时提供的 Source Sans 3。旧普通模板升级依赖后 Logo 节点失败；修正后两个单技能公开冷启动流程分别通过（各 2 项，52.807／52.964 秒）。新固定发布版安装复验仍为 NOT_RUN。[证据](docs/evidence/default-campaign-font-first-use.json)。
