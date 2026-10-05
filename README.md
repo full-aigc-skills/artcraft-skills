@@ -30,7 +30,7 @@ Projects retain installation receipts, frozen plans, SQLite ledger, result recei
 
 ## Verification and remaining work
 
-All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's full 58-test regression also passes. `review_ready` denotes technical readiness. Native source-project revision bindings, provider invoice settlement, final creative review, crash adoption, final packaging and host release remain unfinished.
+All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's full 58-test regression also passes. `review_ready` denotes technical readiness. Provider invoice settlement, final creative review, crash adoption, final packaging and host release remain unfinished.
 
 Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin).
 
@@ -39,3 +39,5 @@ Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugin
 Development version `0.1.0-dev.1` adds atomic shared budget admission and independent bundle versions. See [budget architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Budget-Architecture.md). Version 0 default online first use and controlled Codex installation passed; version 1 evidence is recorded separately.
 
 Version 1 online evidence: [first use and bounded Logo rework](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v1.json), [Codex installed entry](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/codex-installation-v1.json). Both generated two revisions, preserved old project hashes/audio, deduplicated replay and rejected a third revision at the configured cap.
+
+Development version `0.1.0-dev.2` adds public native source revision bindings. Four actual domain source revisions and 59 serialized runtime tests pass; parallel EffectCraft native tests remain intermittent. [Architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Runtime-Architecture.md).

@@ -1,19 +1,19 @@
 {
   "schema": "artcraft-distribution/v1",
-  "version": "0.1.0-dev.1",
+  "version": "0.1.0-dev.2",
   "bundles": {
     "artcraft-runtime": {
-      "version": "0.1.0-dev.1",
-      "filename": "artcraft-runtime-0.1.0-dev.1.zip",
-      "url": "https://github.com/full-aigc-plugins/artcraft-plugin/releases/download/v0.1.0-dev.1/artcraft-runtime-0.1.0-dev.1.zip",
-      "sha256": "3c3a3865c5f133a23fdec2da44d2f51c153df43bf277139b080e2a8e0902da2a",
-      "bytes": 26164,
+      "version": "0.1.0-dev.2",
+      "filename": "artcraft-runtime-0.1.0-dev.2.zip",
+      "url": "https://github.com/full-aigc-plugins/artcraft-plugin/releases/download/v0.1.0-dev.2/artcraft-runtime-0.1.0-dev.2.zip",
+      "sha256": "b195d87cb312a4037d7f88dbf87dc73d97673a5c59fbbcf2ec445f2fa5e93081",
+      "bytes": 27268,
       "files": {
         "LICENSE": "f51b5b32a3b7c3df50ef7153f4dd46233221574f07384d2cf99c6fae08c59f03",
-        "package.json": "b6a4ab66e22821a42092f4ee1de0cfdcc97aa0c439977fcd199dfa2bccc9d6fa",
+        "package.json": "2972e9945224d30fa743197f613f0e956ab532d3d9ca5094a98bbe68927d70ab",
         "schemas/craft-artifact-v1.json": "c3385db540db71fccfdb049f79f05a9adba55ec008958579eab6fac46dd6ea5d",
         "schemas/craft-task-v1.json": "4a153b1c9ec898807016dfb05ff81fcf5c7cffdb6777b6ab226e56aa2bcdf7ad",
-        "src/adapters/public_skill.ts": "c9ea22efca4b469a8e5ddee778fb3760ecc12e8392ca2dc76054ed0f87a3c614",
+        "src/adapters/public_skill.ts": "647656f71478ac32cefa5a803e9e51c6adca8eb16b44b07612e5cf4aae6634ea",
         "src/cli.ts": "962cda9eab35d7e580685dd2370dfd96b4990583bbf986ece11148756f377bdb",
         "src/harness/budget.ts": "a8a41bc4d4f7dad1103ac674cd71ef3d18449ab6206fc414c9287b45634ebf79",
         "src/harness/local_runner.ts": "836a55059ff56ac629a951a19ed90a7b29c693f8ea8cc35d3b0dce7e810ff346",
