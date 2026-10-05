@@ -59,3 +59,22 @@ Default online dev.6 first use passes in 52.278 seconds from a single copied ski
 Development dev.7 installs domain dev.2 and verifies hash-bound exchange reports. Native/output/inspection identity, derivative-only delivery and unknown fidelity are checked; reports survive project packaging. Full cross-editor fidelity acceptance remains open.
 
 Default online dev.7 first-use acceptance passes in 53.106 seconds with one copied skill and an empty runtime, no archive overrides. Four native deliveries include hash-bound exchange reports; source revision, original-attempt recovery and moved-package verification pass. [Evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v7.json).
+
+## CLI and task skill suite
+
+[ArtCraft Skill Suite Architecture](docs/ArtCraft-Skill-Suite-Architecture.md)
+
+| Skill | Purpose |
+| :--- | :--- |
+| `artcraft-use` | use |
+| `artcraft-cli` | cli |
+| `artcraft-cli-setup` | cli setup |
+| `artcraft-cli-plan` | cli plan |
+| `artcraft-cli-execute` | cli execute |
+| `artcraft-cli-assets` | cli assets |
+| `artcraft-cli-revise` | cli revise |
+| `artcraft-cli-recover` | cli recover |
+| `artcraft-cli-deliver` | cli deliver |
+| `artcraft-cli-review` | cli review |
+
+`npx skills add full-aigc-skills/artcraft-skills --skill <skill-name>`

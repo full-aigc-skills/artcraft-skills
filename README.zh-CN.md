@@ -59,3 +59,22 @@ dev.6 默认在线首次使用从单独复制的技能与空运行时开始、�
 开发版本 dev.7 安装四领域 dev.2 并核验摘要绑定交换报告，检查原生/导出/重开记录身份、派生物边界与未知保真；报告随项目打包。完整跨编辑器保真验收仍待完成。
 
 dev.7 默认在线首次使用从一个复制技能与空运行时开始、无离线覆盖，53.106 秒通过。四个原生交付含摘要绑定交换报告，源工程修订、原任务恢复和移动包核验通过。[证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v7.json)。
+
+## CLI 与场景技能体系
+
+[ArtCraft Skill Suite Architecture](docs/ArtCraft-Skill-Suite-Architecture.zh_CN.md)
+
+| 技能 | 用途 |
+| :--- | :--- |
+| `artcraft-use` | 组合多个本工具能力并保留可编辑原生交付 |
+| `artcraft-cli` | 查询实际命令参数和能力，调用公开 CLI、MCP 与诊断 |
+| `artcraft-cli-setup` | 首次安装、摘要校验、版本检查与缺失运行时排障 |
+| `artcraft-cli-plan` | 拆解品牌图形、海报、片头与宣传片的工具、DAG 和交付约束 |
+| `artcraft-cli-execute` | 执行已有 ArtCraft 计划，核对输入版本与并发写入 |
+| `artcraft-cli-assets` | 登记素材摘要、来源与子工程依赖，核对受影响产物 |
+| `artcraft-cli-revise` | 替换 Logo 或指定资产，修改原生子工程并更新下游 |
+| `artcraft-cli-recover` | 检查任务状态、取消原任务并在调度器退出后恢复 |
+| `artcraft-cli-deliver` | 收集原生子工程、素材、计划和证据，移动包后核验 |
+| `artcraft-cli-review` | 检查混合交付的技术证据和视觉文案音频一致性 |
+
+`npx skills add full-aigc-skills/artcraft-skills --skill <skill-name>`

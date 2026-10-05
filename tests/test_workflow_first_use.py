@@ -12,7 +12,7 @@ import wave
 import struct
 import math
 
-SOURCE = Path(__file__).resolve().parents[1]/'skills/artcraft-use'
+SOURCE = Path(os.environ['CRAFT_INSTALLED_SKILL_ROOT']).resolve() if os.environ.get('CRAFT_INSTALLED_SKILL_ROOT') else Path(__file__).resolve().parents[1]/'skills/artcraft-use'
 
 @unittest.skipUnless(os.environ.get('CRAFT_LIVE_TEST') == '1' and os.environ.get('CRAFT_NODE_ARCHIVE') and os.environ.get('CRAFT_BUNDLE_DIRECTORY'), 'requires real pinned distribution archives')
 class FirstWorkflowTests(unittest.TestCase):

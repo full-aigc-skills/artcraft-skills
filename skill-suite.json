@@ -1,0 +1,114 @@
+{
+  "schema": "craft-skill-suite/v1",
+  "pluginId": "artcraft",
+  "version": "0.1.0-dev.8",
+  "source": {
+    "repository": "https://github.com/storytold/artcraft",
+    "commit": "3210977fb114cff7179aff2f480bf279572d5942",
+    "analysis": "CodeGraph CLI/engine or Tauri scene/task flow; current installed runtime checked separately"
+  },
+  "skills": [
+    {
+      "name": "artcraft-use",
+      "title": "完整任务路由",
+      "description": "组合多个本工具能力并保留可编辑原生交付",
+      "kind": "router",
+      "commandCount": 0,
+      "commandPrefixes": []
+    },
+    {
+      "name": "artcraft-cli",
+      "title": "CLI 公共操作",
+      "description": "查询实际命令参数和能力，调用公开 CLI、MCP 与诊断",
+      "kind": "cli",
+      "commandCount": 0,
+      "commandPrefixes": []
+    },
+    {
+      "name": "artcraft-cli-setup",
+      "title": "CLI 安装诊断",
+      "description": "首次安装、摘要校验、版本检查与缺失运行时排障",
+      "kind": "setup",
+      "commandCount": 0,
+      "commandPrefixes": []
+    },
+    {
+      "name": "artcraft-cli-plan",
+      "title": "混合项目规划",
+      "description": "拆解品牌图形、海报、片头与宣传片的工具、DAG 和交付约束",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "run"
+      ]
+    },
+    {
+      "name": "artcraft-cli-execute",
+      "title": "依赖调度执行",
+      "description": "执行已有 ArtCraft 计划，核对输入版本与并发写入",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "run",
+        "status"
+      ]
+    },
+    {
+      "name": "artcraft-cli-assets",
+      "title": "素材版本与血缘",
+      "description": "登记素材摘要、来源与子工程依赖，核对受影响产物",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "status"
+      ]
+    },
+    {
+      "name": "artcraft-cli-revise",
+      "title": "局部返工",
+      "description": "替换 Logo 或指定资产，修改原生子工程并更新下游",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "run",
+        "status"
+      ]
+    },
+    {
+      "name": "artcraft-cli-recover",
+      "title": "取消与恢复",
+      "description": "检查任务状态、取消原任务并在调度器退出后恢复",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "status",
+        "cancel",
+        "run"
+      ]
+    },
+    {
+      "name": "artcraft-cli-deliver",
+      "title": "交付打包",
+      "description": "收集原生子工程、素材、计划和证据，移动包后核验",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "package",
+        "verify-package"
+      ]
+    },
+    {
+      "name": "artcraft-cli-review",
+      "title": "技术核验与创作审阅",
+      "description": "检查混合交付的技术证据和视觉文案音频一致性",
+      "kind": "scenario",
+      "commandCount": 0,
+      "commandPrefixes": [
+        "status",
+        "verify-package"
+      ]
+    }
+  ],
+  "resourceSource": "artcraft-use",
+  "runtimeVersion": "0.1.0-dev.7"
+}
