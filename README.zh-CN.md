@@ -98,3 +98,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 按需安装最终默认在线回归：36 项中 35 项通过、1 项 Node 离线制品测试未运行（297.920 秒）；运行源码摘要与开始时一致。[证据](docs/evidence/selected-domain-first-use.json)。
 
 技能源 dev.16 补齐十个技能的首次使用指引：先用 --runtime-only 安装编排运行时，workflow.py 再按任务图安装领域；修正可选 Video Factory 验证仍被写成未接入的旧描述。运行脚本与 dev.15 在线回归完全相同；新增指引门禁及既有守卫 6 项通过、1 项已验证原生用例未在此静态运行中重复。
+
+技能源 dev.17 为每个可独立安装的技能增加 `review.py record/verify`：绑定当前验包与资产版本，复制具名观察为可移动的包外审阅记录，分别记录工程、技术、创作和人工接受。账本不提升状态，缺项保持 pending。6 个单元测试和 1 个单技能默认公开下载首次使用测试通过；测试观察仅证明记录合同，不证明创作验收。[架构](docs/ArtCraft-Review-Records-Architecture.zh_CN.md)、[指南](skills/artcraft-use/references/review.md)。编排运行时仍为 dev.16。
