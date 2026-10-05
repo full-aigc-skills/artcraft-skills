@@ -51,3 +51,5 @@ Development version `0.1.0-dev.4` pins all four domain skills at dev.1, fixing C
 Development version `0.1.0-dev.5` adds public package/verify entrypoints retaining native projects, media, previews, exports, registered inputs and task records. All four native projects reopen/export after relocation and deletion of originals; technical readiness is not creative approval.
 
 [Version 5 default online first use and public package/move/verify evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v5.json). The working project retains SQLite for local continuation; the portable package contains frozen plans/task records rather than an active ledger.
+
+Development version `0.1.0-dev.6` moves native supervision into a detached worker. Re-running the same frozen workflow adopts persisted stop evidence, verifies the same attempt and keeps budget allocation unchanged. Scheduler SIGKILL and real EffectCraft render recovery pass on macOS arm64; worker death or an unknown submission window retains ownership and never replays side effects.
