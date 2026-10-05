@@ -37,16 +37,17 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise'
    shutil.copytree(Path(os.environ.get('CRAFT_INSTALLED_BRAND_MIXED_SKILL_ROOT',ROOT/'skills/artcraft-cli-revise')),skill,ignore=shutil.ignore_patterns('__pycache__'))
    runtime=root/'fresh runtime';project=root/'project';voice=root/'voice.wav'
+   workflow_python=Path(os.environ.get('CRAFT_WORKFLOW_PYTHON',sys.executable)).resolve(strict=True)
    with wave.open(str(voice),'wb') as stream:
     stream.setnchannels(1);stream.setsampwidth(2);stream.setframerate(48000);stream.writeframes(struct.pack('<h',7000)*48000)
    voice_sha=hashlib.sha256(voice.read_bytes()).hexdigest()
    plan=json.loads((skill/'examples/brand-token-campaign.json').read_text())
    def run(value):
     path=root/(value['revision']+'.json');path.write_text(json.dumps(value))
-    result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(project),'--runtime-home',str(runtime),'--authorization','brand-token-mixed-first-use','--asset','voice='+str(voice)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
+    result=subprocess.run([str(workflow_python),'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(project),'--runtime-home',str(runtime),'--authorization','brand-token-mixed-first-use','--asset','voice='+str(voice)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
     self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
    first=run(plan);self.assertEqual(first['state'],'review_ready')
-   install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.6')
+   install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(Path(install['pythonExecutable']).resolve(),workflow_python);self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.6')
    originals={name:{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(node['root']).iterdir() if p.is_file()} for name,node in first['nodes'].items()}
    revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
    logo['expectedRevision']=artifact['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':prior['root'],'artifact':artifact}]
@@ -63,8 +64,8 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
     with Image.open(Path(first['nodes'][name]['root'])/filename) as before,Image.open(Path(second['nodes'][name]['root'])/filename) as after:self.assertIsNotNone(ImageChops.difference(before.convert('RGB'),after.convert('RGB')).getbbox(),name)
    self.assertEqual(hashlib.sha256(voice.read_bytes()).hexdigest(),voice_sha)
    repeat=run(revised);self.assertEqual(second['budget'],repeat['budget']);self.assertEqual({n:x['taskId'] for n,x in second['nodes'].items()},{n:x['taskId'] for n,x in repeat['nodes'].items()})
-   package=root/'delivery';result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/package.py'),'create','--project',str(project),'--workflow',second['runKey'],'--authorization','brand-token-mixed-first-use','--output',str(package),'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
+   package=root/'delivery';result=subprocess.run([str(workflow_python),'-I','-B',str(skill/'scripts/package.py'),'create','--project',str(project),'--workflow',second['runKey'],'--authorization','brand-token-mixed-first-use','--output',str(package),'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
    self.assertEqual(result.returncode,0,result.stdout+result.stderr);packed=json.loads(result.stdout)
-   result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/package.py'),'verify','--package',str(package),'--sha',packed['sha256'],'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
+   result=subprocess.run([str(workflow_python),'-I','-B',str(skill/'scripts/package.py'),'verify','--package',str(package),'--sha',packed['sha256'],'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
    self.assertEqual(result.returncode,0,result.stdout+result.stderr);self.assertEqual(len(json.loads(result.stdout)['children']),5)
    self.assertFalse(any(skill.rglob('*.pyc')))
