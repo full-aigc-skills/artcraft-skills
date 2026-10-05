@@ -122,3 +122,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 已发布技能 dev.22／插件 dev.24 的全部 58 个技能固定宿主发现通过。实际安装单技能冷启动普通源工程返工（2 项，57.177 秒）和中文交付／字幕修订（2 项，57.973 秒）均通过，全部安装摘要不变。此前候选 NOT_RUN 描述发布前检查点。[证据](docs/evidence/codex-release26-default-campaign-20261006.json)。
 
 技能候选 dev.23 修复冻结修订冲突时先覆盖安装回执的问题：先核对绑定，再发布项目安装身份。独立技能公开冷启动、重复执行、运行时登记冲突及移动交付包验证通过（3 项，92.662 秒）；新固定插件安装复验仍为 NOT_RUN。[架构](docs/ArtCraft-Frozen-Revision-Metadata-Architecture.zh_CN.md)、[证据](docs/evidence/frozen-revision-metadata-first-use.json)。
+
+已发布插件 dev.25／技能 dev.23 的实际安装单技能原生冷启动、重放和冲突元数据保全通过（3 项，90.697 秒）；宿主发现及执行后摘要核验覆盖全部 58 技能。[证据](docs/evidence/codex-release27-binding-metadata-20261006.json)。
