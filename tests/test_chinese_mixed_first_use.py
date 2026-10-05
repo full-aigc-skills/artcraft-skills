@@ -32,7 +32,8 @@ class ChineseMixedFirstUseTests(unittest.TestCase):
         from PIL import Image,ImageChops
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise'
-            shutil.copytree(ROOT/'skills/artcraft-cli-revise',skill,ignore=shutil.ignore_patterns('__pycache__'))
+            installed=os.environ.get('CRAFT_INSTALLED_CN_MIXED_SKILL_ROOT')
+            shutil.copytree(Path(installed) if installed else ROOT/'skills/artcraft-cli-revise',skill,ignore=shutil.ignore_patterns('__pycache__'))
             runtime=root/'runtime';project=root/'project';voice=root/'voice.wav';speech=root/'speech.aiff'
             subprocess.run(['/usr/bin/say','-v',os.environ['CRAFT_CN_VOICE'],'-o',str(speech),'新品上市，轻松剪辑。'],check=True)
             subprocess.run(['ffmpeg','-v','error','-i',str(speech),'-af','apad','-t','3','-ar','48000','-ac','1','-c:a','pcm_s16le',str(voice)],check=True)

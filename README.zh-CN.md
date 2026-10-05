@@ -102,3 +102,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 技能源 dev.17 为每个可独立安装的技能增加 `review.py record/verify`：绑定当前验包与资产版本，复制具名观察为可移动的包外审阅记录，分别记录工程、技术、创作和人工接受。账本不提升状态，缺项保持 pending。6 个单元测试和 1 个单技能默认公开下载首次使用测试通过；测试观察仅证明记录合同，不证明创作验收。[架构](docs/ArtCraft-Review-Records-Architecture.zh_CN.md)、[指南](skills/artcraft-use/references/review.md)。编排运行时仍为 dev.16。
 
 技能套件 dev.18 增加独立返工脚本，支持冻结策略、已核验的当前交付包与审阅、明确的原生补丁。它更新受影响子工程、复用无关任务并保留原交付。真实首次使用测试通过轮次、停滞、预算停止与进程中断恢复。[架构](docs/ArtCraft-Revision-Cycle-Architecture.zh_CN.md)。反馈 fixture 不代表创作验收；模型生成补丁和完整宿主验收仍未完成。
+
+当前固定发行版混合审阅：插件 dev.20、技能源 dev.18 的实际安装内容通过两项中文原生首次使用／返工测试。当前助手查看四个真实输出，保存摘要绑定的模型观察并重新核验。仅改字幕的 v2 测试刻意保留原配音、改变文字，因此文案与配音一致性为 FAIL；工程／技术 PASS 不代表创作验收。人工接受仍为 NOT_RUN。[证据](docs/evidence/installed-mixed-observation.json)。本次 QA 未创建新原生发行版或新模型会话。
