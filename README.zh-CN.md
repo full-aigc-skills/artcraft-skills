@@ -30,7 +30,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时完整 58 项回归通过。`review_ready` 是技术就绪状态。原生源工程局部修订绑定、付费账单核销、创作最终评审、故障接管、最终打包和宿主发布仍待完成。
+14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时串行完整 59 项回归通过。`review_ready` 是技术就绪状态。付费账单核销、创作最终评审、故障接管、最终打包和宿主发布仍待完成。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
@@ -41,3 +41,5 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 版本 1 在线证据：[首次使用与有界 Logo 返工](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v1.json)、[Codex 安装入口](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/codex-installation-v1.json)。两个修订均交付原生工程，旧工程摘要和音频不变，重跑去重，第三个修订因轮次上限被拒绝。
 
 开发版本 `0.1.0-dev.3` 接通公开原生源工程修订；四领域真实修订和 59 项串行运行时测试通过，并行 EffectCraft 测试偶发失败仍待解决。[架构](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Runtime-Architecture.zh_CN.md)。
+
+[版本 3 默认在线首次安装及原生 Logo 修订证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v3.json)。使用 dev.3；dev.2 因运行时自报版本不匹配被安装器拒绝，已注明不可使用。
