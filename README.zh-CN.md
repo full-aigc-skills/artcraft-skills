@@ -30,7 +30,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时串行完整 59 项回归通过。`review_ready` 是技术就绪状态。付费账单核销、创作最终评审、故障接管、最终打包和宿主发布仍待完成。
+14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时串行完整 59 项回归通过。`review_ready` 是技术就绪状态。付费账单核销、创作最终评审、故障接管、最终创作交付审核和宿主发布仍待完成。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
@@ -47,3 +47,5 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 开发版本 `0.1.0-dev.4` 固定四领域技能源 dev.1：修复 CLI 安装/复用的非阻塞锁竞争，改为有界等待。此前并行失败已稳定复现并消除；16 个 EffectCraft 并行样本与 59 项并行原生回归通过。
 
 [版本 4 默认在线首次使用证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v4.json)：四个新技能发布包和运行时通过默认公开地址下载、摘要校验与原生项目修订。
+
+开发版本 `0.1.0-dev.5` 增加公开项目打包/移动验包入口，保留原生工程、素材、预览、导出、登记输入和任务记录。实际删除原目录后，四领域原生工程重开与导出通过；技术待审状态不提升为创作验收。

@@ -57,4 +57,16 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(bad.returncode,1);self.assertIn('workflow_revision_conflict',bad.stdout)
             self.assertEqual(hashlib.sha256(voice.read_bytes()).hexdigest(),first['nodes']['film']['outputs'][0]['sourceRefs'][1]['sha256'])
 
+            # 单技能首次使用后的公开打包入口，不依赖全局 Node 或仓库脚本。
+            package=root/'delivery-package'
+            pack_args=[sys.executable,'-I','-B',str(skill/'scripts/package.py'),'create','--project',str(project),'--workflow',first['runKey'],'--output',str(package),'--authorization','isolated-first-use','--runtime-home',str(runtime),'--node-archive',os.environ['CRAFT_NODE_ARCHIVE'],'--bundle-dir',os.environ['CRAFT_BUNDLE_DIRECTORY']]
+            packed_run=subprocess.run(pack_args,capture_output=True,text=True,env=environment,timeout=120)
+            self.assertEqual(packed_run.returncode,0,packed_run.stdout+packed_run.stderr)
+            packed=json.loads(packed_run.stdout);self.assertEqual(len(packed['children']),4)
+            moved=root/'moved-package';package.rename(moved)
+            verify_args=[sys.executable,'-I','-B',str(skill/'scripts/package.py'),'verify','--package',str(moved),'--sha',packed['sha256'],'--runtime-home',str(runtime),'--node-archive',os.environ['CRAFT_NODE_ARCHIVE'],'--bundle-dir',os.environ['CRAFT_BUNDLE_DIRECTORY']]
+            verified_run=subprocess.run(verify_args,capture_output=True,text=True,env=environment,timeout=120)
+            self.assertEqual(verified_run.returncode,0,verified_run.stdout+verified_run.stderr)
+            self.assertEqual(len(json.loads(verified_run.stdout)['children']),4)
+
 if __name__ == '__main__':unittest.main()
