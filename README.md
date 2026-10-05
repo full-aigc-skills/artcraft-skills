@@ -45,3 +45,5 @@ Development version `0.1.0-dev.3` adds public native source revision bindings. F
 [Version 3 default online first use and native Logo revision evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v3.json). Use dev.3; dev.2 is marked unusable because its installer rejected a runtime self-version mismatch.
 
 Development version `0.1.0-dev.4` pins all four domain skills at dev.1, fixing CLI install/reuse lock contention with bounded waiting. The prior parallel failure was reproduced and eliminated: 16 concurrent EffectCraft samples and 59 parallel native regression tests pass.
+
+[Version 4 default online first-use evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v4.json): the four new skill bundles and runtime pass public downloads, digest verification and native project revision.

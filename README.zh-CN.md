@@ -45,3 +45,5 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 [版本 3 默认在线首次安装及原生 Logo 修订证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v3.json)。使用 dev.3；dev.2 因运行时自报版本不匹配被安装器拒绝，已注明不可使用。
 
 开发版本 `0.1.0-dev.4` 固定四领域技能源 dev.1：修复 CLI 安装/复用的非阻塞锁竞争，改为有界等待。此前并行失败已稳定复现并消除；16 个 EffectCraft 并行样本与 59 项并行原生回归通过。
+
+[版本 4 默认在线首次使用证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v4.json)：四个新技能发布包和运行时通过默认公开地址下载、摘要校验与原生项目修订。
