@@ -40,4 +40,4 @@ Development version `0.1.0-dev.1` adds atomic shared budget admission and indepe
 
 Version 1 online evidence: [first use and bounded Logo rework](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v1.json), [Codex installed entry](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/codex-installation-v1.json). Both generated two revisions, preserved old project hashes/audio, deduplicated replay and rejected a third revision at the configured cap.
 
-Development version `0.1.0-dev.2` adds public native source revision bindings. Four actual domain source revisions and 59 serialized runtime tests pass; parallel EffectCraft native tests remain intermittent. [Architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Runtime-Architecture.md).
+Development version `0.1.0-dev.3` adds public native source revision bindings. Four actual domain source revisions and 59 serialized runtime tests pass; parallel EffectCraft native tests remain intermittent. [Architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Runtime-Architecture.md).
