@@ -30,7 +30,7 @@ Projects retain installation receipts, frozen plans, SQLite ledger, result recei
 
 ## Verification and remaining work
 
-All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's serialized 59-test regression also passes. `review_ready` denotes technical readiness. Provider invoice settlement, final creative review, crash adoption, final creative delivery approval and host release remain unfinished.
+All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's parallel 66-test regression also passes. `review_ready` denotes technical readiness. Provider invoice settlement, final creative review, crash adoption, final creative delivery approval and host release remain unfinished.
 
 Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin).
 
@@ -49,3 +49,5 @@ Development version `0.1.0-dev.4` pins all four domain skills at dev.1, fixing C
 [Version 4 default online first-use evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v4.json): the four new skill bundles and runtime pass public downloads, digest verification and native project revision.
 
 Development version `0.1.0-dev.5` adds public package/verify entrypoints retaining native projects, media, previews, exports, registered inputs and task records. All four native projects reopen/export after relocation and deletion of originals; technical readiness is not creative approval.
+
+[Version 5 default online first use and public package/move/verify evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v5.json). The working project retains SQLite for local continuation; the portable package contains frozen plans/task records rather than an active ledger.
