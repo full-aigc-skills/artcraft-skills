@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-06",
+  "sourceRef": "v0.1.0-dev.12",
+  "runtimeVersion": "0.1.0-dev.13",
+  "runtimeArchiveSha256": "51bf346daf9edb0e721ff9ddd01a69d3b3ab4fe635d410652204e824bebcb4fb",
+  "phase": "candidate-local-artcraft-zip-with-public-node-and-domain-cli-downloads",
+  "candidateFirstUse": {
+    "passed": 2,
+    "skipped": 0,
+    "seconds": 43.635,
+    "skill": "artcraft-use",
+    "runtimeHome": "empty",
+    "PATH": "/usr/bin:/bin",
+    "bundleOverride": true,
+    "checks": [
+      "Four native projects and public Video Factory report",
+      "External input hash matches actual FilmCraft output",
+      "Required provenance gate remains NOT_RUN",
+      "All five nodes deduplicate replay",
+      "Report retained in project delivery package",
+      "Missing registration rejects before installing or editing"
+    ]
+  },
+  "publicOnlineFirstUse": "NOT_RUN until runtime asset publication",
+  "externalTool": {
+    "plugin": "video-factory",
+    "supportedVersion": "0.4.0",
+    "installation": "explicit existing public plugin root; no global plugin or media-tool installation",
+    "sourceCommit": "cdb226d158d85eb02ce4c296f541e4ba0b201027"
+  },
+  "testFile": "tests/test_video_factory_first_use.py",
+  "testFileSha256": "f7e3d3a2f24c8832ce4b651fbca9704fc9aa4042df5d8648a7ee15c47e1fe8b0",
+  "unverified": [
+    "Video Factory rendering or creative approval",
+    "Jianying and Image Factory adapters",
+    "Host model dispatch",
+    "Other platforms"
+  ]
+}

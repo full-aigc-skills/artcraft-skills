@@ -43,7 +43,7 @@ class LiveSkillSuiteTests(unittest.TestCase):
     def run(*args):
      result=subprocess.run([sys.executable,'-I','-B',str(isolated/'scripts/cli.py'),'--runtime-home',str(runtime),'--',*args],capture_output=True,text=True,timeout=600)
      self.assertEqual(result.returncode,0,result.stdout+result.stderr);return result.stdout
-    version=run('--version');self.assertIn('0.1.0-dev.7' if domain=='artcraft' else '0.2.0',version)
+    version=run('--version');self.assertIn(suite['runtimeVersion'] if domain=='artcraft' else '0.2.0',version)
     if domain=='artcraft':
      self.assertIn('verify-package',run('--help'))
     else:
