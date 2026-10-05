@@ -2,7 +2,7 @@
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four official CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
-This is a development build. Version 0 passed default online downloads and controlled Codex installation/discovery; version 1 passes locked-bundle first use and adds shared budget admission. Release-specific online evidence is maintained in the plugin repository.
+This is a development build. Version 0 passed default online downloads and controlled Codex installation/discovery; version 1 also passes default online first use and installed-skill execution with shared budget admission. Release-specific online evidence is maintained in the plugin repository.
 
 ## First use
 
@@ -37,3 +37,5 @@ Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugin
 [中文](README.zh-CN.md)
 
 Development version `0.1.0-dev.1` adds atomic shared budget admission and independent bundle versions. See [budget architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Budget-Architecture.md). Version 0 default online first use and controlled Codex installation passed; version 1 evidence is recorded separately.
+
+Version 1 online evidence: [first use and bounded Logo rework](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v1.json), [Codex installed entry](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/codex-installation-v1.json). Both generated two revisions, preserved old project hashes/audio, deduplicated replay and rejected a third revision at the configured cap.
