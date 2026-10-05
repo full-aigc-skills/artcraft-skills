@@ -80,3 +80,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 `npx skills add full-aigc-skills/artcraft-skills --skill <skill-name>`
 
 命令统一使用 `SKILL_DIR`，其值为宿主实际加载的 `SKILL.md` 所在绝对目录。支持用户级、项目级 `.agents/skills` 及插件内部或缓存目录；CLI 运行时另外安装到用户数据目录。每个技能单独复制到三种含空格的布局后，文档中的脚本入口均可运行 `--help`。[路径验证](docs/evidence/installed-skill-paths.json)。既有宿主缓存需更新后才会收到修正文档。
+
+技能源 dev.10 固定 PhotoCraft/VectorCraft dev.5，新增无离线制品覆盖的默认公开下载工作流验收。单独复制 ArtCraft 技能后安装 Node 与四个原生 CLI，交付四份原生工程，复用相同任务、拒绝非法计划修订，并完成交付打包/移动/验包。回归 20 项通过、1 项 Node 专用离线制品测试跳过；在线混合流程实际安装了 Node。[证据](docs/evidence/online-domain-upgrade.json)。运行时保持 dev.7；创作与完整宿主/模型验收仍未完成。
