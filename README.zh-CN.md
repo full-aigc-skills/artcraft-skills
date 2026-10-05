@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-`artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个官方 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
+`artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
 当前为开发版。版本 0 与版本 1 的默认在线安装和受控 Codex 技能执行均已通过；版本 1 增加共享预算和有界 Logo 返工。桌面 GUI、其他宿主、完整创作与正式市场验收仍未完成。
 
@@ -90,3 +90,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 制品发布后的默认在线回归：172.375 秒，24 项通过、1 项 Node 专用离线制品测试跳过；未传入本地运行时、Node 或原生制品覆盖。隔离技能执行五节点，将报告绑定到真实成片摘要，复用任务身份并验证五份子交付打包。[在线证据](docs/evidence/video-factory-online.json)。运行时 dev.13 和技能源标签 dev.12 保持不可变；宿主/模型及创作验收仍未完成。
 
 技能套件 dev.13 固定 EffectCraft 技能 dev.6，编排运行时保持 dev.13。单独安装返工技能后默认公开下载依赖，修改原生蒙版顶点，仅更新片头/成片并复用 Logo/海报；保留原文件摘要、透明度关键帧、音轨和字幕，RGBA 边界及四子交付验包通过。完整默认在线回归 25 项通过、1 项 Node 专用离线测试跳过；当前原生集成 83 项通过。[架构](docs/ArtCraft-Mask-Revision-Architecture.zh_CN.md)、[证据](docs/evidence/mask-revision-first-use.json)。宿主/模型与创作验收仍未完成。
+
+技能套件 dev.14 固定编排运行时 dev.16 和 FilmCraft dev.5（维护版 CLI 0.2.0-craft.1），支持完整 Git 发布 ZIP 与原工程媒体保留绑定。单返工技能默认在线冷启动完成四工程、中文配音及字幕烧录，字幕修订仅更新 FilmCraft，保留旧文件、音轨及三个任务身份；2 项测试通过，成片 72 帧，四子交付验包通过。[架构](docs/ArtCraft-Chinese-Mixed-Architecture.zh_CN.md)、[证据](docs/evidence/chinese-mixed-first-use.json)。完整创作、GUI 与模型调度验收仍待完成。

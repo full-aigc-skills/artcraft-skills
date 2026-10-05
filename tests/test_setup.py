@@ -28,6 +28,25 @@ class BundleTests(unittest.TestCase):
         hashes = {'LICENSE': hashlib.sha256(b'fixture license').hexdigest(), 'src/cli.ts': hashlib.sha256(b'fixture runtime').hexdigest()}
         return archive, {'filename': archive.name, 'url': 'https://github.com/full-aigc-plugins/artcraft-plugin/releases/download/v0.1.0-dev.0/bundle.zip', 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(), 'bytes': archive.stat().st_size, 'files': hashes}
 
+    def test_git_archive_declared_directory_entries_are_supported(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);archive,lock=self.bundle(root)
+            with zipfile.ZipFile(archive,'a') as zip:zip.writestr('src/',b'')
+            lock.update(archiveFormat='git-archive-zip',sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),bytes=archive.stat().st_size)
+            installed=setup.install_bundle(lock,root/'installed',archive)
+            self.assertEqual((installed/'src/cli.ts').read_text(),'fixture runtime')
+
+    def test_directory_entries_need_explicit_format_and_declared_ancestor(self):
+        for entry,format in [('src/',None),('unlisted/','git-archive-zip'),('../outside/','git-archive-zip')]:
+            with self.subTest(entry=entry,format=format),tempfile.TemporaryDirectory() as temporary:
+                root=Path(temporary);archive,lock=self.bundle(root)
+                with zipfile.ZipFile(archive,'a') as zip:zip.writestr(entry,b'')
+                lock.update(sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),bytes=archive.stat().st_size)
+                if format:lock['archiveFormat']=format
+                with self.assertRaisesRegex(ValueError,'bundle_path_invalid'):
+                    setup.install_bundle(lock,root/'installed',archive)
+                self.assertFalse((root/'installed').exists())
+
     def test_install_and_reuse_locked_files(self):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);archive,lock=self.bundle(root)
