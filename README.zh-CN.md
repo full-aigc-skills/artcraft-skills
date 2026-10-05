@@ -82,3 +82,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 命令统一使用 `SKILL_DIR`，其值为宿主实际加载的 `SKILL.md` 所在绝对目录。支持用户级、项目级 `.agents/skills` 及插件内部或缓存目录；CLI 运行时另外安装到用户数据目录。每个技能单独复制到三种含空格的布局后，文档中的脚本入口均可运行 `--help`。[路径验证](docs/evidence/installed-skill-paths.json)。既有宿主缓存需更新后才会收到修正文档。
 
 技能源 dev.10 固定 PhotoCraft/VectorCraft dev.5，新增无离线制品覆盖的默认公开下载工作流验收。单独复制 ArtCraft 技能后安装 Node 与四个原生 CLI，交付四份原生工程，复用相同任务、拒绝非法计划修订，并完成交付打包/移动/验包。回归 20 项通过、1 项 Node 专用离线制品测试跳过；在线混合流程实际安装了 Node。[证据](docs/evidence/online-domain-upgrade.json)。运行时保持 dev.7；创作与完整宿主/模型验收仍未完成。
+
+技能套件 dev.11 修正过期工作流与恢复说明，补充单场景技能隔离验收：仅安装 artcraft-cli-revise，在空运行时中默认公开下载全部依赖；登记旧原生工程后修改 Logo 和受影响产物，复用无关节点，保留旧工程摘要、动画、音轨、字幕以及重复调用的任务与预算身份。随后逐次仅保留 assets/deliver/review/recover 技能目录，查询账本、打包、移动验包并幂等取消已停止任务。这不证明 worker 崩溃恢复或创作质量通过。[证据](docs/evidence/task-skill-first-use.json)。运行时和领域制品保持此前已验证的固定版本。
