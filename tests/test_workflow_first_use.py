@@ -77,6 +77,12 @@ class FirstWorkflowTests(unittest.TestCase):
             cli=[setup['nodeExecutable'],setup['entryPoint'],'status','--database',str(project/'tasks.sqlite')]
             status=json.loads(subprocess.run(cli,check=True,capture_output=True,text=True,env=environment,timeout=30).stdout)
             self.assertEqual(len(status['tasks']),4);self.assertFalse(status['leases'])
+            # 切换缓存位置会改变可信登记绑定；拒绝后不能发布新项目安装身份。
+            prior_files={str(p.relative_to(project)):hashlib.sha256(p.read_bytes()).hexdigest() for p in project.rglob('*') if p.is_file()}
+            relocated_args=list(args);relocated_args[relocated_args.index('--runtime-home')+1]=str(root/'different-runtime')
+            rejected=subprocess.run(relocated_args,capture_output=True,text=True,env=environment,timeout=240)
+            self.assertEqual(rejected.returncode,1);self.assertIn('workflow_revision_conflict',rejected.stdout)
+            self.assertEqual({str(p.relative_to(project)):hashlib.sha256(p.read_bytes()).hexdigest() for p in project.rglob('*') if p.is_file()},prior_files)
             changed=json.loads((skill/'examples/brand-campaign.json').read_text());changed['nodes'][0]['payload']['plan']['document']['name']='Changed without new revision'
             changed_file=root/'changed.json';changed_file.write_text(json.dumps(changed))
             bad_args=list(args);bad_args[4]=str(changed_file)
