@@ -57,3 +57,5 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 dev.6 默认在线首次使用从单独复制的技能与空运行时开始、无离线覆盖，52.278 秒通过。验收实际杀死安装后的调度器，并通过同一公开 workflow 入口恢复原 attempt，预算不重复占用；源工程修订、项目打包移动验证同时通过。证据：[在线验收](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v6.json)。
 
 开发版本 dev.7 安装四领域 dev.2 并核验摘要绑定交换报告，检查原生/导出/重开记录身份、派生物边界与未知保真；报告随项目打包。完整跨编辑器保真验收仍待完成。
+
+dev.7 默认在线首次使用从一个复制技能与空运行时开始、无离线覆盖，53.106 秒通过。四个原生交付含摘要绑定交换报告，源工程修订、原任务恢复和移动包核验通过。[证据](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/online-first-use-v7.json)。
