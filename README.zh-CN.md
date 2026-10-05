@@ -92,3 +92,7 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 技能套件 dev.13 固定 EffectCraft 技能 dev.6，编排运行时保持 dev.13。单独安装返工技能后默认公开下载依赖，修改原生蒙版顶点，仅更新片头/成片并复用 Logo/海报；保留原文件摘要、透明度关键帧、音轨和字幕，RGBA 边界及四子交付验包通过。完整默认在线回归 25 项通过、1 项 Node 专用离线测试跳过；当前原生集成 83 项通过。[架构](docs/ArtCraft-Mask-Revision-Architecture.zh_CN.md)、[证据](docs/evidence/mask-revision-first-use.json)。宿主/模型与创作验收仍未完成。
 
 技能套件 dev.14 固定编排运行时 dev.16 和 FilmCraft dev.5（维护版 CLI 0.2.0-craft.1），支持完整 Git 发布 ZIP 与原工程媒体保留绑定。单返工技能默认在线冷启动完成四工程、中文配音及字幕烧录，字幕修订仅更新 FilmCraft，保留旧文件、音轨及三个任务身份；2 项测试通过，成片 72 帧，四子交付验包通过。[架构](docs/ArtCraft-Chinese-Mixed-Architecture.zh_CN.md)、[证据](docs/evidence/chinese-mixed-first-use.json)。完整创作、GUI 与模型调度验收仍待完成。
+
+技能套件 dev.15 保持编排运行时 dev.16，按任务图选择依赖：仅 Logo 时只安装 VectorCraft；新增海报时增量安装 PhotoCraft；未登记执行器在下载前失败。手动 bootstrap 完整安装默认保持兼容，可用 --plugin 或 --runtime-only 缩小安装范围。[按需安装架构](docs/ArtCraft-Selected-Setup-Architecture.zh_CN.md)。当前发布状态和测试范围以对应证据为准。
+
+按需安装最终默认在线回归：36 项中 35 项通过、1 项 Node 离线制品测试未运行（297.920 秒）；运行源码摘要与开始时一致。[证据](docs/evidence/selected-domain-first-use.json)。
