@@ -2,7 +2,7 @@
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four official CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
-This is a development build. Tests use local locked release bundles and actually install the four CLIs from their official sources. Online distribution of the project's bundles and plugin-host installation remain unverified.
+This is a development build. Version 0 passed default online downloads and controlled Codex installation/discovery; version 1 passes locked-bundle first use and adds shared budget admission. Release-specific online evidence is maintained in the plugin repository.
 
 ## First use
 
@@ -30,8 +30,10 @@ Projects retain installation receipts, frozen plans, SQLite ledger, result recei
 
 ## Verification and remaining work
 
-All 12 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's full 48-test regression also passes. `review_ready` denotes technical readiness. Native source-project revision bindings, shared budgets, final creative review, crash adoption, final packaging and host release remain unfinished.
+All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's full 58-test regression also passes. `review_ready` denotes technical readiness. Native source-project revision bindings, provider invoice settlement, final creative review, crash adoption, final packaging and host release remain unfinished.
 
 Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin).
 
 [中文](README.zh-CN.md)
+
+Development version `0.1.0-dev.1` adds atomic shared budget admission and independent bundle versions. See [budget architecture](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Budget-Architecture.md). Version 0 default online first use and controlled Codex installation passed; version 1 evidence is recorded separately.

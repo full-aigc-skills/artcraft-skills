@@ -1,0 +1,48 @@
+{
+  "observedAt": "2026-10-05T12:14:54.872619+00:00",
+  "version": "0.1.0-dev.1",
+  "platform": "darwin-arm64",
+  "result": "passed",
+  "setupRegression": {
+    "passed": 14,
+    "durationSeconds": 41.532
+  },
+  "identityFirstUse": {
+    "passed": 1,
+    "durationSeconds": 30.753,
+    "checks": [
+      "single copied skill/no global Node",
+      "four original domain bundle versions retained",
+      "runtime version matches ArtCraft release",
+      "one shared zero-cost budget exposed",
+      "native projects and replay/conflict checks"
+    ]
+  },
+  "bundleVersionRedPhase": {
+    "newTests": 2,
+    "failed": 2,
+    "reason": "per-bundle version resolver absent"
+  },
+  "sourceHashes": {
+    "skills/artcraft-use/examples/brand-campaign.json": "54694f952ddfa0dc44b3a9106011120a3f3d15afb55ef8e529e6f27194a681a6",
+    "skills/artcraft-use/scripts/bootstrap.py": "72a431488a53562c007e0c807d92c72b37b688a44b5c5ffd43d2948160369bb9",
+    "skills/artcraft-use/scripts/distribution.lock.json": "740480319adfc3d23b8dcdc51fcd28c623946f9ffd9013521915310fb1e63351",
+    "skills/artcraft-use/scripts/node.lock.json": "5d47b1f8b5a1738686f3033981444489eafeb99854d2102254be0375ae4462b8",
+    "skills/artcraft-use/scripts/setup.py": "91fe4b0526368ad313ee9dd92ac3cf10f7d672a7e103785226e064e124d5976f",
+    "skills/artcraft-use/scripts/workflow.py": "3d0731f80559fa694ebc7c2f712adf5dfdbf4e409dd209ad35262fa9e82456fc",
+    "tests/test_bootstrap.py": "86b5c9f2d768a6726d16ee5d191e918799ec867482d7762730ba93d100100375",
+    "tests/test_first_use.py": "9bc7536e9252f374f32db65f10bc7285936cb2ccac94020a960582213df1bdc5",
+    "tests/test_setup.py": "525eb1850846d81502537d8bd5fa6ed30e22ab5ddd45ec419ab26e651a1f36e6",
+    "tests/test_workflow.py": "f87ba7a8d6d8dbcf4fbcf1dd5efb8b4d834f632068514ca72c8ac8ece17d7632",
+    "tests/test_workflow_first_use.py": "a7847eb6037c5cc48c3238ab84afe3fa6c80de2b9d4b23ea87e8b68a95dd19ca"
+  },
+  "onlineOwnBundleDownload": "not yet verified for development version 1",
+  "excludedEvidence": [
+    "paid provider billing",
+    "native source revision adapter",
+    "full creative acceptance",
+    "crash adoption",
+    "final delivery packaging",
+    "production release"
+  ]
+}

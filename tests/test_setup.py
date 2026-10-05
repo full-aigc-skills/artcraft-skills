@@ -11,6 +11,15 @@ spec = importlib.util.spec_from_file_location('setup', SCRIPT)
 setup = importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
 
 class BundleTests(unittest.TestCase):
+    def test_domain_bundle_keeps_its_own_version_when_artcraft_advances(self):
+        self.assertEqual(setup.bundle_version({'version': '0.1.0-dev.1'}, {'version': '0.1.0-dev.0'}), '0.1.0-dev.0')
+        self.assertEqual(setup.bundle_version({'version': '0.1.0-dev.0'}, {}), '0.1.0-dev.0')
+
+    def test_invalid_explicit_bundle_version_is_not_replaced_with_parent_version(self):
+        for version in ('latest', '', None, 42):
+            with self.assertRaisesRegex(ValueError, 'bundle_version_invalid'):
+                setup.bundle_version({'version': '0.1.0-dev.1'}, {'version': version})
+
     def bundle(self, root, unsafe=False):
         archive = root/'bundle.zip'
         with zipfile.ZipFile(archive, 'w') as zip:

@@ -30,8 +30,10 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-12 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时完整 48 项回归通过。`review_ready` 是技术就绪状态。原生源工程局部修订绑定、共享预算、创作最终评审、故障接管、最终打包和宿主发布仍待完成。
+14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时完整 58 项回归通过。`review_ready` 是技术就绪状态。原生源工程局部修订绑定、付费账单核销、创作最终评审、故障接管、最终打包和宿主发布仍待完成。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
 [English](README.md)
+
+开发版本 `0.1.0-dev.1` 增加原子共享预算准入和独立包版本。参见[预算架构](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/ArtCraft-Budget-Architecture.zh_CN.md)。版本 0 的默认在线首次使用及受控 Codex 安装已通过；版本 1 的证据单独记录。

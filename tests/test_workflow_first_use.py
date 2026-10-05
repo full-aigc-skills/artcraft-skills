@@ -36,6 +36,10 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertTrue(Path(setup['nodeExecutable']).is_relative_to(runtime))
             self.assertTrue(Path(setup['entryPoint']).is_relative_to(runtime))
             self.assertEqual(set(setup['skills']),{'filmcraft','effectcraft','photocraft','vectorcraft'})
+            distribution=json.loads((skill/'scripts/distribution.lock.json').read_text())
+            self.assertEqual(setup['version'],distribution['version'])
+            for name,value in setup['skills'].items():self.assertEqual(value['runtimeIdentity']['pluginVersion'],distribution['bundles'][name+'-skills'].get('version',distribution['version']))
+            self.assertEqual(first['budget']['allocated'],{'minorUnits':0,'externalCalls':0,'revisions':0})
             for value in setup['skills'].values():
                 self.assertTrue(Path(value['executable']).is_relative_to(runtime))
                 self.assertTrue(Path(value['skillRoot']).is_relative_to(runtime))
