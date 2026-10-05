@@ -86,3 +86,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 技能套件 dev.11 修正过期工作流与恢复说明，补充单场景技能隔离验收：仅安装 artcraft-cli-revise，在空运行时中默认公开下载全部依赖；登记旧原生工程后修改 Logo 和受影响产物，复用无关节点，保留旧工程摘要、动画、音轨、字幕以及重复调用的任务与预算身份。随后逐次仅保留 assets/deliver/review/recover 技能目录，查询账本、打包、移动验包并幂等取消已停止任务。这不证明 worker 崩溃恢复或创作质量通过。[证据](docs/evidence/task-skill-first-use.json)。运行时和领域制品保持此前已验证的固定版本。
 
 技能套件 dev.12 固定运行时 dev.13，加入可选 Video Factory 0.4.0 公开验证节点。选用的外部插件及 FFmpeg/ffprobe 须已安装并按实际路径登记；ArtCraft 自动安装自身固定依赖。候选隔离首次使用以本地锁定 ArtCraft ZIP、公开 Node/领域 CLI 下载通过，保留来源 NOT_RUN 和真实报告打包。默认公开运行时下载在制品发布后单独验证，不能用候选证据替代。[候选证据](docs/evidence/video-factory-candidate.json)。此适配不提供旧插件渲染、剪映转换或创作验收。
+
+制品发布后的默认在线回归：172.375 秒，24 项通过、1 项 Node 专用离线制品测试跳过；未传入本地运行时、Node 或原生制品覆盖。隔离技能执行五节点，将报告绑定到真实成片摘要，复用任务身份并验证五份子交付打包。[在线证据](docs/evidence/video-factory-online.json)。运行时 dev.13 和技能源标签 dev.12 保持不可变；宿主/模型及创作验收仍未完成。
