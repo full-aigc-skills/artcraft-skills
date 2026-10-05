@@ -1,0 +1,70 @@
+"""单 ArtCraft 技能首次安装后，品牌 token 更新传播到真实混合产物。"""
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import struct
+import subprocess
+import sys
+import tempfile
+import unittest
+import wave
+ROOT=Path(__file__).resolve().parents[1]
+
+class BrandTokenMixedContractTests(unittest.TestCase):
+ def test_each_single_skill_contains_bound_native_brand_example(self):
+  for directory in sorted((ROOT/'skills').iterdir()):
+   if not (directory/'SKILL.md').is_file():continue
+   plan=json.loads((directory/'examples/brand-token-campaign.json').read_text())
+   nodes={node['id']:node for node in plan['nodes']}
+   self.assertEqual(set(nodes),{'logo','poster','intro','film','badge'})
+   self.assertEqual(nodes['badge']['dependsOn'],[])
+   self.assertEqual(nodes['poster']['dependsOn'],['logo'])
+   self.assertEqual(nodes['intro']['dependsOn'],['logo'])
+   self.assertEqual(nodes['film']['dependsOn'],['intro'])
+   self.assertTrue(any(op['command']=='swatch.new' and op.get('as')=='primary' for op in nodes['logo']['payload']['plan']['operations']))
+   lock=json.loads((directory/'scripts/distribution.lock.json').read_text())
+   bundle=lock['bundles']['vectorcraft-skills']
+   self.assertEqual(bundle['version'],'0.1.0-dev.6')
+   self.assertIn('skills/vectorcraft-use/examples/brand-token-assets.json',bundle['files'])
+
+@unittest.skipUnless(os.environ.get('CRAFT_BRAND_MIXED_FIRST_USE')=='1','requires online native runtimes and Pillow')
+class BrandTokenMixedFirstUseTests(unittest.TestCase):
+ def test_native_token_revision_rebuilds_consumers_and_reuses_unrelated_node(self):
+  from PIL import Image,ImageChops
+  with tempfile.TemporaryDirectory() as temporary:
+   root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise'
+   shutil.copytree(Path(os.environ.get('CRAFT_INSTALLED_BRAND_MIXED_SKILL_ROOT',ROOT/'skills/artcraft-cli-revise')),skill,ignore=shutil.ignore_patterns('__pycache__'))
+   runtime=root/'fresh runtime';project=root/'project';voice=root/'voice.wav'
+   with wave.open(str(voice),'wb') as stream:
+    stream.setnchannels(1);stream.setsampwidth(2);stream.setframerate(48000);stream.writeframes(struct.pack('<h',7000)*48000)
+   voice_sha=hashlib.sha256(voice.read_bytes()).hexdigest()
+   plan=json.loads((skill/'examples/brand-token-campaign.json').read_text())
+   def run(value):
+    path=root/(value['revision']+'.json');path.write_text(json.dumps(value))
+    result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(project),'--runtime-home',str(runtime),'--authorization','brand-token-mixed-first-use','--asset','voice='+str(voice)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
+    self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
+   first=run(plan);self.assertEqual(first['state'],'review_ready')
+   install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.6')
+   originals={name:{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(node['root']).iterdir() if p.is_file()} for name,node in first['nodes'].items()}
+   revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
+   logo['expectedRevision']=artifact['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':prior['root'],'artifact':artifact}]
+   logo['payload']['sourceProject']={'assetId':artifact['assetId']};logo['payload']['plan']={'operations':[{'command':'swatch.edit','params':{'name':{'$ref':'primary.name'},'color':'#175cce'}}]}
+   second=run(revised);self.assertEqual(second['state'],'review_ready')
+   for name in ('logo','poster','intro','film'):
+    self.assertNotEqual(first['nodes'][name]['taskId'],second['nodes'][name]['taskId'])
+    self.assertNotEqual(first['nodes'][name]['outputs'][0]['sha256'],second['nodes'][name]['outputs'][0]['sha256'])
+   self.assertEqual(first['nodes']['badge']['taskId'],second['nodes']['badge']['taskId'])
+   for name,node in first['nodes'].items():
+    for filename,sha in originals[name].items():self.assertEqual(hashlib.sha256((Path(node['root'])/filename).read_bytes()).hexdigest(),sha)
+   old=Path(first['nodes']['logo']['root']);new=Path(second['nodes']['logo']['root']);self.assertEqual((old/'artboard-2.png').read_bytes(),(new/'artboard-2.png').read_bytes())
+   for name,filename in [('poster','design.png'),('intro','frame-0001.png'),('film','frame-0000.png')]:
+    with Image.open(Path(first['nodes'][name]['root'])/filename) as before,Image.open(Path(second['nodes'][name]['root'])/filename) as after:self.assertIsNotNone(ImageChops.difference(before.convert('RGB'),after.convert('RGB')).getbbox(),name)
+   self.assertEqual(hashlib.sha256(voice.read_bytes()).hexdigest(),voice_sha)
+   repeat=run(revised);self.assertEqual(second['budget'],repeat['budget']);self.assertEqual({n:x['taskId'] for n,x in second['nodes'].items()},{n:x['taskId'] for n,x in repeat['nodes'].items()})
+   package=root/'delivery';result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/package.py'),'create','--project',str(project),'--workflow',second['runKey'],'--authorization','brand-token-mixed-first-use','--output',str(package),'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
+   self.assertEqual(result.returncode,0,result.stdout+result.stderr);packed=json.loads(result.stdout)
+   result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/package.py'),'verify','--package',str(package),'--sha',packed['sha256'],'--runtime-home',str(runtime)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=180)
+   self.assertEqual(result.returncode,0,result.stdout+result.stderr);self.assertEqual(len(json.loads(result.stdout)['children']),5)
+   self.assertFalse(any(skill.rglob('*.pyc')))
