@@ -1,0 +1,10 @@
+{
+  "name": "artcraft-skills",
+  "version": "0.1.0-dev.0",
+  "description": "Artcraft independent skills with pinned first-use installation; development release.",
+  "author": {
+    "name": "Full AIGC Skills"
+  },
+  "repository": "https://github.com/full-aigc-skills/artcraft-skills",
+  "license": "Apache-2.0"
+}
