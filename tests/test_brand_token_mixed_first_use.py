@@ -26,8 +26,12 @@ class BrandTokenMixedContractTests(unittest.TestCase):
    self.assertTrue(any(op['command']=='swatch.new' and op.get('as')=='primary' for op in nodes['logo']['payload']['plan']['operations']))
    lock=json.loads((directory/'scripts/distribution.lock.json').read_text())
    bundle=lock['bundles']['vectorcraft-skills']
-   self.assertEqual(bundle['version'],'0.1.0-dev.6')
+   self.assertEqual(bundle['version'],'0.1.0-dev.7')
    self.assertIn('skills/vectorcraft-use/examples/brand-token-assets.json',bundle['files'])
+   self.assertIn('skills/vectorcraft-cli-text/references/chinese-text.md',bundle['files'])
+   for node_id in ('logo','badge'):
+    for operation in nodes[node_id]['payload']['plan']['operations']:
+     if operation['command']=='text.create':self.assertEqual(operation['params']['font'],'Source Sans 3')
 
 @unittest.skipUnless(os.environ.get('CRAFT_BRAND_MIXED_FIRST_USE')=='1','requires online native runtimes and Pillow')
 class BrandTokenMixedFirstUseTests(unittest.TestCase):
@@ -47,7 +51,7 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
     result=subprocess.run([str(workflow_python),'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(project),'--runtime-home',str(runtime),'--authorization','brand-token-mixed-first-use','--asset','voice='+str(voice)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
     self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
    first=run(plan);self.assertEqual(first['state'],'review_ready')
-   install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(Path(install['pythonExecutable']).resolve(),workflow_python);self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.6')
+   install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(Path(install['pythonExecutable']).resolve(),workflow_python);self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.7')
    originals={name:{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(node['root']).iterdir() if p.is_file()} for name,node in first['nodes'].items()}
    revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
    logo['expectedRevision']=artifact['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':prior['root'],'artifact':artifact}]
