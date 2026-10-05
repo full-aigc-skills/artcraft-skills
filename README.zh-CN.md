@@ -88,3 +88,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 技能套件 dev.12 固定运行时 dev.13，加入可选 Video Factory 0.4.0 公开验证节点。选用的外部插件及 FFmpeg/ffprobe 须已安装并按实际路径登记；ArtCraft 自动安装自身固定依赖。候选隔离首次使用以本地锁定 ArtCraft ZIP、公开 Node/领域 CLI 下载通过，保留来源 NOT_RUN 和真实报告打包。默认公开运行时下载在制品发布后单独验证，不能用候选证据替代。[候选证据](docs/evidence/video-factory-candidate.json)。此适配不提供旧插件渲染、剪映转换或创作验收。
 
 制品发布后的默认在线回归：172.375 秒，24 项通过、1 项 Node 专用离线制品测试跳过；未传入本地运行时、Node 或原生制品覆盖。隔离技能执行五节点，将报告绑定到真实成片摘要，复用任务身份并验证五份子交付打包。[在线证据](docs/evidence/video-factory-online.json)。运行时 dev.13 和技能源标签 dev.12 保持不可变；宿主/模型及创作验收仍未完成。
+
+技能套件 dev.13 固定 EffectCraft 技能 dev.6，编排运行时保持 dev.13。单独安装返工技能后默认公开下载依赖，修改原生蒙版顶点，仅更新片头/成片并复用 Logo/海报；保留原文件摘要、透明度关键帧、音轨和字幕，RGBA 边界及四子交付验包通过。完整默认在线回归 25 项通过、1 项 Node 专用离线测试跳过；当前原生集成 83 项通过。[架构](docs/ArtCraft-Mask-Revision-Architecture.zh_CN.md)、[证据](docs/evidence/mask-revision-first-use.json)。宿主/模型与创作验收仍未完成。
