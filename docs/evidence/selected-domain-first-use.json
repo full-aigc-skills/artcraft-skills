@@ -1,7 +1,7 @@
 {
   "schema": "craft-selected-domain-first-use/v1",
   "date": "2026-10-06",
-  "sourceVersion": "0.1.0-dev.15",
+  "sourceVersion": "0.1.0-dev.16",
   "runtimeVersion": "0.1.0-dev.16",
   "status": "bounded-native-first-use-passed",
   "targeted": {
@@ -28,13 +28,13 @@
     "domain bootstrap failures retain declared error in setup_failed result"
   ],
   "sourceFingerprints": {
-    "tests/test_selected_setup.py": "c636851bf0d349316e216e99d4ea1a9d4bc3a6b92e888ed33dde1a1a63195258",
+    "tests/test_selected_setup.py": "502f7ff410039fde6902de2e5e7d6701ab8c46e7c5b62fe1b2e95522b7581442",
     "skills/artcraft-use/scripts/bootstrap.py": "5d2892aa19e09f0c8a2c1938b1cf42f7eadc09d3ce0e6fbda63988bac5f5a842",
     "skills/artcraft-use/scripts/setup.py": "ed5b02f34edd94dd29420d89195f0f59942f7f074c2fcc4c04caf9643db904af",
     "skills/artcraft-use/scripts/workflow.py": "2e2b3b151b1a4a5ca32ff006ea4364f48234324797eac930aae93198612b02f4",
     "skills/artcraft-use/scripts/package.py": "378555b07e3b0710396c501ec9e8504b1fda02cd97441c72af23c425ebfb0f0f",
     "skills/artcraft-use/scripts/cli.py": "adc32453aca15399ee2e0ad402e0af51be7dc9197225d0ec080de89e567e2afb",
-    "skill-suite.json": "95e3aabdbc655fd8e06d5e19d6943670caa5acec17402a12d7ef3a958060f513"
+    "skill-suite.json": "8a55680b597842cd1eb60fa06199ba5d1a3bb117099db0cbc6c07ecb64e8e9bb"
   },
   "unverified": [
     "model dispatch",
@@ -81,6 +81,17 @@
       "CRAFT_SELECTED_FIRST_USE": "1",
       "CRAFT_LIVE_SUITE": "1",
       "CRAFT_VIDEO_FIRST_USE": "1"
-    }
+    },
+    "testedSourceVersion": "0.1.0-dev.15"
+  },
+  "instructionCorrection": {
+    "testedSourceVersion": "0.1.0-dev.16",
+    "sourceScriptsUnchangedFromOnlineRegression": true,
+    "tests": 7,
+    "passed": 6,
+    "skipped": 1,
+    "failed": 0,
+    "scope": "all ten SKILL.md first-use bootstrap commands select runtime-only; no stale Video Factory unsupported claim; selected setup guard regression",
+    "liveTestSkipReason": "native live case already passed in unchanged-script online regression"
   }
 }

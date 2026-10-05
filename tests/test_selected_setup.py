@@ -38,6 +38,15 @@ class SelectedSetupTests(unittest.TestCase):
                 self.assertEqual(set(receipt['bundleHashes']),set(installed))
                 self.assertEqual(set(receipt['skills']),set(expected))
 
+    def test_skill_first_use_instructions_do_not_preinstall_unused_domains(self):
+        suite=json.loads((ROOT/'skill-suite.json').read_text())
+        for entry in suite['skills']:
+            text=(ROOT/'skills'/entry['name']/'SKILL.md').read_text()
+            commands=[line for line in text.splitlines() if line.startswith('python3 ') and '$SKILL_DIR/scripts/bootstrap.py' in line]
+            self.assertTrue(commands,entry['name'])
+            self.assertTrue(all('--runtime-only' in line for line in commands),entry['name'])
+            self.assertNotIn('Video Factory 的适配尚未接入',text)
+
     def test_domain_failure_preserves_bootstrap_error(self):
         lock=json.loads(SCRIPT.with_name('distribution.lock.json').read_text())
         def bundle(entry,target,archive):

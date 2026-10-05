@@ -2,7 +2,7 @@
 
 ## Boundaries and authority
 
-Independent skill suite dev.15 selects executors through its Python setup and planning entry points. Orchestration runtime remains dev.16; domain source versions and archive hashes are unchanged. Existing OpenSpec AC-DM-002 and its SELECT scenario govern the behavior. Logo-only work must not install every domain or silently substitute a native format for an unavailable executor.
+Independent skill suite dev.16 selects executors through its Python setup and planning entry points. Orchestration runtime remains dev.16; domain source versions and archive hashes are unchanged. Existing OpenSpec AC-DM-002 and its SELECT scenario govern the behavior. Logo-only work must not install every domain or silently substitute a native format for an unavailable executor.
 
 ## Selection and installation
 
