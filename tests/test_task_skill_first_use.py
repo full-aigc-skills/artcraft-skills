@@ -11,11 +11,12 @@ import unittest
 import wave
 
 ROOT = Path(__file__).resolve().parents[1]
+SKILLS = Path(os.environ.get('CRAFT_INSTALLED_TASK_SKILLS_ROOT', ROOT/'skills'))
 
 
 class TaskContractTests(unittest.TestCase):
     def test_current_contracts_do_not_instruct_agents_to_ignore_implemented_features(self):
-        for skill in (ROOT / 'skills').iterdir():
+        for skill in SKILLS.iterdir():
             if not skill.is_dir():
                 continue
             text = (skill / 'references/workflow.md').read_text()
@@ -31,7 +32,7 @@ class TaskSkillFirstUseTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             skill = root / '.agents/skills/artcraft-cli-revise'
-            shutil.copytree(ROOT / 'skills/artcraft-cli-revise', skill,
+            shutil.copytree(SKILLS / 'artcraft-cli-revise', skill,
                             ignore=shutil.ignore_patterns('__pycache__'))
             runtime = root / 'runtime'; project = root / 'project'
             voice = root / 'voice.wav'
@@ -127,7 +128,7 @@ class TaskSkillFirstUseTests(unittest.TestCase):
                 self.assertFalse(any(skill.rglob('*.pyc')))
                 shutil.rmtree(skill)
                 skill = root / '.agents/skills' / name
-                shutil.copytree(ROOT / 'skills' / name, skill,
+                shutil.copytree(SKILLS / name, skill,
                                 ignore=shutil.ignore_patterns('__pycache__'))
                 self.assertEqual([p.name for p in skill.parent.iterdir()], [name])
 
