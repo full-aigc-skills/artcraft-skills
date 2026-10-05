@@ -2,7 +2,7 @@
 
 ## 1. Authority and versions
 
-OpenSpec AC-SK-003-BRAND and task 3.17 govern this addition. Source release candidate dev.20 pins VectorCraft skills dev.6. The ArtCraft orchestration runtime remains dev.16 and VectorCraft native CLI remains 0.2.0. Public scripts and payload schemas remain compatible. The upstream desktop application is research material, not this runtime's command authority.
+OpenSpec AC-SK-003-BRAND and task 3.17 govern this addition. Published skill source dev.20 pins VectorCraft skills dev.6. The ArtCraft orchestration runtime remains dev.16 and VectorCraft native CLI remains 0.2.0. Public scripts and payload schemas remain compatible. The upstream desktop application is research material, not this runtime's command authority.
 
 ## 2. Installation and execution
 
@@ -28,7 +28,7 @@ Consumers in this example are generated from their prior plans. Preserving addit
 
 The old locked skill bundle fails the native logo step and blocks its consumers while the independent badge succeeds. With dev.6, a single copied ArtCraft revise skill and fresh public runtime cache pass in 48.357 seconds. Checks bind installed VectorCraft version, changed four outputs and decoded poster/intro/film pixels, byte-identical independent logo icon, all prior files, original audio, repeat task identity/budget and five verified packaged child projects.
 
-Default regression: 57 tests, 46 pass and 11 native/offline gated skips, 5.550 seconds. Bounded cold native testing is separate from this regression. Publication and fixed-release installed-host acceptance remain pending. Evidence: docs/evidence/brand-token-mixed-first-use.json.
+Default regression: 57 tests, 46 pass and 11 native/offline gated skips, 5.550 seconds. Bounded cold native testing is separate from this regression. Skill source dev.20 is published. Plugin dev.22 is published. Fixed-release host discovery passes for all 58 skills; a separate installed-skill cold native run passes both tests in 54.471 seconds. All installed hashes remain unchanged, and all five distribution archives reproduce the pinned bytes. Evidence: docs/evidence/brand-token-mixed-first-use.json.
 
 ## 5. Boundaries
 

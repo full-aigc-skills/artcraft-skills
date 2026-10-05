@@ -107,4 +107,4 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 
 技能源 dev.19 在停止回执保留未解决失败快照，问题所属包／审阅与最佳包分别绑定。旧日志返回 NOT_RUN，不能把空数组当作无问题。十项单元测试及一项独立技能默认在线原生首次使用测试通过。[证据](docs/evidence/revision-unresolved-first-use.json)。运行时保持 dev.16，完整创作与宿主验收仍独立记录。
 
-单技能在线冷启动品牌色混合工作流验证通过：图形、海报、片头、成片更新，独立图标任务复用，旧交付保留。VectorCraft 技能固定 dev.6，ArtCraft 运行时保持 dev.16。此新增功能尚未发布，宿主复验待完成。[架构](docs/ArtCraft-Brand-Token-Mixed-Architecture.zh_CN.md)、[证据](docs/evidence/brand-token-mixed-first-use.json)。
+单技能在线冷启动品牌色混合工作流验证通过：图形、海报、片头、成片更新，独立图标任务复用，旧交付保留。VectorCraft 技能固定 dev.6，ArtCraft 运行时保持 dev.16。技能源 dev.20 已发布，插件 dev.22 已发布；58 个技能的固定发行版宿主发现通过，安装后单技能在线冷启动混合验证通过（54.471 秒）。实际 npx 独立安装与模型派发仍待验证。[架构](docs/ArtCraft-Brand-Token-Mixed-Architecture.zh_CN.md)、[证据](docs/evidence/brand-token-mixed-first-use.json)。
