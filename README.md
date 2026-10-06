@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Fixed download-recovery acceptance passed: ten exact immutable source51 skills independently cold-installed all domains; actual installed75 cold mixed/revision/recovery/package checks, 58 post-run identities and fixed-tag CI passed. [Evidence](docs/evidence/codex-art75-download-recovery-first-use-20261007.json). OpenSpec4.8 closes; orchestration protocol faults under4.7, Skills CLI and full V1 remain open.
+
 Skills dev.51 add at most three read-only Node/domain archive download attempts, discarding partial files and retaining pinned digests. [Design](docs/ArtCraft-Download-Recovery-Architecture.md), [candidate regression](docs/evidence/download-recovery-candidate-20261007.json). All-ten cold installation and fixed-host acceptance remain open. Dev.50 retains its tag only: stale metadata means it has no Release and is not a plugin snapshot.
 
 Candidate distribution dev.73 pins the four complete-command/protocol-repair domain sources. Public cold mixed creation, dependent revisions, recovery, moved delivery and 24 downloaded-domain fault cases passed. [Candidate evidence](docs/evidence/art-domain-distribution-candidate-20261007.json). New immutable source/plugin installed-host checks and ten full skill installations remain separately tracked.

@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+下载恢复固定发行验收通过：十项技能源均与dev.51逐文件一致，各自空运行时公开安装全部领域；dev.75实际安装副本冷混合／返工／恢复／打包、58项安装摘要与固定标签CI通过。[证据](docs/evidence/codex-art75-download-recovery-first-use-20261007.json)。本次关闭OpenSpec4.8；4.7编排协议故障、独立Skills CLI和完整V1仍开放。
+
 技能源dev.51补充Node与领域技能制品的最多三次只读下载恢复；半包清理及固定摘要仍强制校验。[方案](docs/ArtCraft-Download-Recovery-Architecture.zh_CN.md)，[候选回归](docs/evidence/download-recovery-candidate-20261007.json)。全部十技能冷安装与固定宿主验收保持开放。dev.50仅保留标签，因元数据未更新不发布、不用于插件快照。
 
 领域分发候选已升级至dev.73：四领域固定完整命令／协议修复技能源，公开冷安装混合创作、依赖返工、恢复、移动包和24个领域故障案例通过。[候选证据](docs/evidence/art-domain-distribution-candidate-20261007.json)。新技能源／插件固定安装与十技能完整安装验收另行跟踪。
