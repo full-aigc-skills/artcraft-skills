@@ -1,3 +1,5 @@
+技能源 dev.58 同步 Python Brief 与 runtime83 的实际原生输出核验；固定公开工作流首次使用复验待执行。
+
 原生命令网关技能源 dev.57／runtime dev.83 固定 Film19 与 Effect／Photo／Vector18。固定安装复验待执行；源码候选证据保持独立。
 
 完整网关DAG源候选实测通过：四领域联动、五子工程及独立图标复用、源工程返工、移动包重开、预算拒绝、损坏恢复、真实取消及六类unknown保全。固定发行和安装副本复验待完成；6.51仍开放。 [Evidence](docs/evidence/native-gateway-joint-candidate-20261007.json).

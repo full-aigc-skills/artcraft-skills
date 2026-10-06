@@ -1,3 +1,5 @@
+Source dev.58 aligns Python Brief preflight with runtime83 native output checks; fixed public-workflow first-use retest pending.
+
 Published native gateway source dev.57 / runtime dev.83 pins Film19 and Effect/Photo/Vector18. Fixed installed retest pending; source candidate proof remains separately scoped.
 
 Full native-gateway DAG source candidate passes mixed delivery, five-child packaging/icon reuse, native revisions, moved reopening, budget rejection, corruption recovery, live cancellation and six unknown-response faults. Immutable installed-release retesting remains pending;6.51 stays open. [Evidence](docs/evidence/native-gateway-joint-candidate-20261007.json).
