@@ -184,3 +184,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 必需源音轨失败传递已通过本地候选真实混合测试：保留诊断、阻断后续任务且不重复执行；正常音轨与增益返工同样通过。后续固定公开发行复验记录如下。[方案与候选证据](docs/ArtCraft-Required-Audio-Architecture.zh_CN.md)。
 
 固定 ArtCraft dev.49 在 Codex 0.153.4 首次使用复验通过：58 技能、零加载错误；安装后的混合缺源音轨失败与正常增益返工，以及十项 Art 技能逐项空运行时启动。全部安装摘要保留。[发行绑定证据](docs/evidence/codex-release49-required-audio-mixed-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
+
+技能源 dev.37 锁定不可变 Vector dev.9／原生 craft.2，保留 runtime dev.48。五节点公开冷启动品牌返工通过，包含无关 SVG／PNG／PDF 保全、任务选择性复用、重复预算及子工程验包；固定新插件首次使用仍待完成。[架构](docs/ArtCraft-Vector-PDF-Identity-Architecture.zh_CN.md)。
