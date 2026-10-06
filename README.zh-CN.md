@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装首用验收进行中，下方历史证据仍按原版本解读。
+当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装门禁4.9已通过，完整V1仍开放，下方历史证据仍按原版本解读。
 
 固定插件 dev.77／技能源 dev.52／运行时 dev.76 已通过实际安装首用：Codex 发现五插件58项技能、零加载错误；十个 Art 技能分别从空运行时公开安装全部四领域（累计461.66秒）；1080p／24 fps／五秒混合创作、Logo 返工、坏帧恢复及五子工程移动包通过（215.727秒）；四领域公开工作流24个保存后响应故障均停止且不重放。全部58项安装身份、四领域完整源包、原生CLI和Node摘要保全，四项固定提交CI通过。测试检查器曾产生一个字节码缓存，清理后重新核验固定身份并补跑第十项。仅关闭OpenSpec4.7分发升级子门禁；全量2639命令／GUI／修订、通用Skills CLI、模型和完整V1仍开放。测试代理捕获工程不证明产品保留失败暂存工程。[版本绑定证据](docs/evidence/codex-art77-domain-distribution-first-use-20261007.json)。
 固定领域客户端首用复验：Film 插件 dev.16／技能源 dev.15，Effect／Photo／Vector 插件 dev.15／技能源 dev.14。隔离 Codex 发现58项零错误；实际安装副本24类保存后故障、四个健康公开工作流和已发布 Art 引擎＋安装后 Vector 客户端六类故障通过，全部58项安装摘要保全。Art dev.75 内置旧领域分发包尚需升级，全量命令／GUI／模型验收仍开放。[版本绑定证据](docs/evidence/codex-public-workflow-session-first-use-20261007.json)。
@@ -248,3 +248,6 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 领域原暂存保全由 Film18／源16、Effect／Photo／Vector17／源15提供；Art77仍下载旧客户端，Art 集成由 OpenSpec4.9 保持开放。[集成设计](docs/ArtCraft-Failed-Stage-Integration-Architecture.zh_CN.md)。
 
 固定安装场景矩阵通过37个原生场景及6个合同检查，零跳过。Photo测试已从安装后的技能锁读取维护版原生版本，CLI与安装技能未修改。 [Evidence](docs/evidence/codex-failed-stage-first-use-20261007.json).
+
+
+固定 Art 插件 dev.79／技能源 dev.53／运行时 dev.78 的有界安装验收通过：五插件58技能零加载错误；24项原生保存后故障均保留并重新打开产品原工程、阻断下游且不重放；四领域恢复模块缺失／摘要错误在写入前拒绝。十项 Art 技能分别从空运行时公开安装 Node＋Art＋四领域（451.537秒）；1080p／24 fps／五秒混合创作、Logo 返工、坏帧恢复及五子工程移动包通过（209.714秒）。58项安装身份保全，五包固定标签重建、两个公开 Art 源ZIP和四项精确插件提交CI通过。仅关闭 OpenSpec4.9；全量2639命令上下文／产物／GUI／修订、通用Skills CLI、模型与完整V1仍开放。[版本绑定证据](docs/evidence/codex-art79-failed-stage-first-use-20261007.json)。
