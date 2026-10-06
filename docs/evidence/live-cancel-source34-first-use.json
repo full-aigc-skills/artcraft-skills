@@ -1,0 +1,41 @@
+{
+  "schema": "craft-installed-live-cancel-first-use/v1",
+  "result": "passed",
+  "skillSha256": "9245d0e313151789dd3a91dceb4554803bb24adf02783ff8b69d955360fab3c6",
+  "planSha256": "a8207564df52f8aef511a7cb93acb653f9eccf79eec0bea0731e876eee7c7d1d",
+  "runtimeMode": "single installed recover skill; empty runtime; default public installation",
+  "nativeRenderObservedBeforeCancel": true,
+  "requestedVideo": {
+    "width": 1280,
+    "height": 720,
+    "frameRate": 24,
+    "durationSeconds": 30
+  },
+  "nativeSpawnCount": 1,
+  "terminationSignal": "SIGTERM",
+  "eventOrder": [
+    "native spawned",
+    "native close and group stopped",
+    "task cancelled"
+  ],
+  "leaseReleasedAfterStop": true,
+  "publishedOutcomeCount": 0,
+  "sameAttempt": true,
+  "budgetPreserved": true,
+  "repeatedWorkflowDoesNotReplay": true,
+  "installedSkillBytesPreserved": true,
+  "unverified": [
+    "deadline expiry",
+    "worker crash",
+    "GUI/model dispatch",
+    "creative acceptance"
+  ],
+  "sourceCandidateVersion": "0.1.0-dev.34",
+  "runtimeVersion": "0.1.0-dev.45",
+  "runtimeArchiveSha256": "1e0cbcb4f67ef028f96c2f0c35263a636f4dce874b9e511775bdea6f2b8cd38b",
+  "liveTests": {
+    "passed": 1,
+    "seconds": 22.897
+  },
+  "scope": "independent source candidate copied alone; public runtime 45 first use; fixed plugin installation pending"
+}

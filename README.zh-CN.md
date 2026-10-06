@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 dev.33 固定运行时 dev.41、FilmCraft 技能 dev.6；公开冷启动 3 项通过，默认回归 66 项通过、13 项可选跳过。完整创作接受仍待完成。 固定插件 dev.43 安装复验：混合 3 项、中文 2 项通过，五套技能的 58 项 CLI 调用通过。
+当前技能源 dev.34 固定运行时 dev.45，包含原生运行中取消的存在性观察修复。固定公开首次使用复验待完成；既有混合／中文证据保持原发行范围。完整创作／模型／GUI 验收仍开放。
 
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
@@ -174,3 +174,5 @@ ArtCraft 技能源 dev.33 固定 FilmCraft 技能 dev.6，保留运行时 dev.41
 安装后的恢复技能从空运行目录首次使用，真实调度器 SIGKILL 后独立 worker 留下停止证据；公开工作流重开同一原生 attempt，不重放、不增加预算，视频确认 96 帧。[崩溃接管验收](docs/ArtCraft-Scheduler-Crash-Acceptance.zh_CN.md)。worker 崩溃、模型及创作验收仍需独立证据。
 
 dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程组存在性 EPERM 使监督器停止观察，可能保持 `cancel_requested`。源码修复已通过真实原生取消及回归，但新固定运行时／技能／插件发布与公开首次使用复验仍待完成。[修复与证据](docs/ArtCraft-Live-Cancel-Architecture.zh_CN.md)。
+
+技能源 dev.34 通过原生运行中取消的空运行目录首次使用（1 项，22.897 秒），使用公开运行时 dev.45。停止后释放的事件顺序、原 attempt、一次启动、预算保留及未发布产物均通过；重复已取消工作流不重放。固定插件安装证据仍待完成。[源码证据](docs/evidence/live-cancel-source34-first-use.json)。

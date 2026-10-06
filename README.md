@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.33 pins runtime dev.41 and FilmCraft skills dev.6. Cold first use: 3 passed; default regression: 66 passed, 13 optional skips. Complete creative acceptance remains pending. Fixed plugin dev.43 installed repetition: 3 mixed and 2 Chinese cases passed; all 58 suite CLI calls passed.
+Current source dev.34 pins runtime dev.45 with the live-cancellation observation repair. Fixed public first-use verification is pending; prior mixed and Chinese proofs retain their original release scope. Full creative/model/GUI acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -174,3 +174,5 @@ Every skill independently passes empty-runtime first use: **58/58** (411.720 s).
 Installed recover-skill cold first use survives a scheduler SIGKILL: the independent worker records stop evidence, the public workflow reopens the same native attempt without replay or extra budget, and 96 decoded video frames validate the output. [Crash acceptance](docs/ArtCraft-Scheduler-Crash-Acceptance.md). Worker-crash/model/creative acceptance remains separate.
 
 Known dev.44 first-use cancellation issue: a live native render may remain `cancel_requested` after close because a transient group existence EPERM aborts observation. The source repair passes real native cancellation and regression tests; immutable runtime/skill/plugin publication and public first-use retesting remain pending. [Fix and evidence](docs/ArtCraft-Live-Cancel-Architecture.md).
+
+Source dev.34 cold first use passes live native cancellation (one test, 22.897 s) using publicly released runtime dev.45. Stop-before-release event ordering, original-attempt identity, one spawn, budget preservation and no published outcome pass; repeated cancelled workflow does not replay. Fixed plugin installation proof remains pending. [Source evidence](docs/evidence/live-cancel-source34-first-use.json).
