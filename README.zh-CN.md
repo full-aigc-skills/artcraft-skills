@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 v0.1.0-dev.31 保留运行时 v0.1.0-dev.36，锁定 PhotoCraft skills v0.1.0-dev.8。默认测试 66 项通过、13 项可选跳过；在线冷安装混合回归 3 项通过，包含四源返工、尺寸记录打包迁移与篡改拒绝。固定宿主复验通过；完整创作验收尚未完成。
+当前技能源 v0.1.0-dev.32 锁定运行时 v0.1.0-dev.41 和 PhotoCraft skills v0.1.0-dev.8。默认测试 66 项通过、13 项可选跳过；在线冷安装 3 项通过，覆盖变体缓存陈旧拒绝、记录恢复后不重放及四域源返工。固定宿主复验与完整创作验收仍待完成。
 
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
@@ -160,3 +160,5 @@ ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、�
 [Photo variant integration / 尺寸变体集成](docs/ArtCraft-Photo-Variant-Integration-Architecture.md) · [中文](docs/ArtCraft-Photo-Variant-Integration-Architecture.zh_CN.md) · [Evidence](docs/evidence/photo-variant-integration.json).
 
 Fixed-release proof / 固定发行验收：[dev.40 Photo variant mixed first use](docs/evidence/codex-release40-photo-variant-first-use-20261006.json). Five fixed plugins / 58 skills, cold mixed workflow, selective Logo rework, moved geometry package and tamper rejection; technical evidence only.
+
+[Variant reuse gate](docs/ArtCraft-Photo-Variant-Gate-Architecture.md) · [中文](docs/ArtCraft-Photo-Variant-Gate-Architecture.zh_CN.md) · [Evidence](docs/evidence/photo-variant-gate-native.json).
