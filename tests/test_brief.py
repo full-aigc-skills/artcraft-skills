@@ -9,6 +9,31 @@ ROOT=Path(__file__).resolve().parents[1]
 SCRIPT=ROOT/'skills/artcraft-use/scripts/brief.py'
 
 class BriefTests(unittest.TestCase):
+    def test_film_duration_uses_timeline_ticks_not_document_claim(self):
+        m=self.module();value,plan=self.fixture();item=value['deliverables'][0];item['nativeFormat']='.fcproj';item['durationSeconds']=1
+        node=plan['nodes'][0];node['pluginId']='filmcraft';domain=node['payload']['plan']
+        domain['operations']=[{'command':'timeline.place','params':{'time':'0','duration':'254016000000','insert':False}}]
+        self.assertEqual(m.assess(value,plan,'user','scope')['state'],'ready')
+        domain['document']['duration']=1;domain['operations'][0]['params']['duration']='508032000000'
+        self.assertIn('duration_mismatch',m.assess(value,plan,'user','scope')['blocked'][0]['reasons'])
+    def test_film_duration_counts_all_tracks_and_refuses_uncertain_edits(self):
+        m=self.module();value,plan=self.fixture();value['deliverables'][0].update(nativeFormat='.fcproj',durationSeconds=1)
+        node=plan['nodes'][0];node['pluginId']='filmcraft';domain=node['payload']['plan']
+        base={'command':'timeline.place','params':{'time':'0','duration':'254016000000','insert':False}}
+        domain['operations']=[base,{'command':'timeline.place','params':{'time':'0','duration':'508032000000','insert':False,'track':'A1'}}]
+        self.assertIn('duration_mismatch',m.assess(value,plan,'user','scope')['blocked'][0]['reasons'])
+        for changed in [dict(base,params={'time':'0','duration':'254016000000','insert':True}),dict(base,params={'time':'0','duration':254016000000,'insert':False}),{'command':'timeline.trim','params':{'delta':'1'}}]:
+            domain['operations']=[changed]
+            self.assertIn('duration_inspection_required',m.assess(value,plan,'user','scope')['blocked'][0]['reasons'])
+    def test_film_duration_keeps_large_tick_precision_and_rational_seconds(self):
+        m=self.module();value,plan=self.fixture();value['deliverables'][0].update(nativeFormat='.fcproj',durationSeconds=86400)
+        node=plan['nodes'][0];node['pluginId']='filmcraft';domain=node['payload']['plan']
+        domain['operations']=[{'command':'timeline.place','params':{'time':'0','duration':str(86400*254016000000),'insert':False}}]
+        self.assertEqual(m.assess(value,plan,'user','scope')['state'],'ready')
+        domain['operations'][0]['params']['duration']=str(86400*254016000000+2)
+        self.assertIn('duration_mismatch',m.assess(value,plan,'user','scope')['blocked'][0]['reasons'])
+        value['deliverables'][0]['durationSeconds']=1/3;domain['operations'][0]['params'].update(time='0',duration='84672000000')
+        self.assertEqual(m.assess(value,plan,'user','scope')['state'],'ready')
     def module(self):
         spec=importlib.util.spec_from_file_location('brief',SCRIPT);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
     def fixture(self):

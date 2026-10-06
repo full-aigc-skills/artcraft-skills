@@ -144,3 +144,7 @@ Fixed PhotoCraft plugin dev.8 / skills dev.7 and ArtCraft plugin dev.31 / skills
 Source candidate dev.28 pins fixed runtime dev.32 for bounded failure diagnostics. Single-skill fresh online PhotoCraft integration passed (21.660s), including reported protection failure, public status, unchanged attempt on repeat, legal revision and moved package. Installed-plugin proof remains pending. [Evidence](docs/evidence/native-failure-diagnostics.json).
 
 Fixed ArtCraft plugin dev.33 / skills dev.28 / runtime dev.32 pass installed-native failure/status/repeat testing (1 test, 26.233s) and four-domain online first-use regression (3 tests, 95.701s). All 58 installed skill hashes remain unchanged. Scoped task 5.12 is verified; full implementation and creative acceptance remain incomplete. [Proof](docs/evidence/codex-release33-diagnostics-native-20261006.json).
+
+Source candidate dev.29 pins runtime dev.34 and includes a one-second Film Brief requirement in the first-use campaign. The runtime checks the saved native timeline and actual exported probe before publishing readiness or reusing outputs. Cold online and installed-plugin proof are pending; source-project Brief inspection and full creative acceptance remain open.
+
+Source candidate dev.29 cold online first use passed: 3 tests in 93.401 seconds. The saved Film project is exactly one second; export, native inspection and project hashes are bound. Fixed installed-plugin proof remains pending.

@@ -65,6 +65,18 @@ class FirstWorkflowTests(unittest.TestCase):
             for id, suffix in [('logo','vectorcraft'),('poster','pcraft'),('intro','ecproj'),('film','fcproj')]:
                 node=first['nodes'][id];self.assertEqual(node['status'],'review_ready')
                 self.assertTrue((Path(node['root'])/('project.'+suffix)).is_file())
+            # 保存后时长必须来自实际重开工程和成片记录，且与交付清单摘要绑定。
+            film_root=Path(first['nodes']['film']['root'])
+            film_manifest=json.loads((film_root/'manifest.json').read_text())
+            film_native=json.loads((film_root/'native.json').read_text())
+            film_probe=json.loads((film_root/'export-probe.json').read_text())
+            self.assertEqual(next(item for item in brief['deliverables'] if item['id']=='film')['durationSeconds'],1)
+            self.assertEqual(film_native['sequence']['duration'],'254016000000')
+            rate=film_native['sequence']['settings']['frame_rate']
+            self.assertEqual(film_probe['video']['frame_rate'],rate)
+            self.assertLessEqual(abs(int(film_probe['duration'])-254016000000),254016000000*rate['den']//rate['num'])
+            for name in ['project.fcproj','film.mp4','native.json','export-probe.json']:
+                self.assertEqual(hashlib.sha256((film_root/name).read_bytes()).hexdigest(),film_manifest['files'][name])
             setup=json.loads((project/'installation-receipt.json').read_text())
             self.assertTrue(Path(setup['nodeExecutable']).is_relative_to(runtime))
             self.assertTrue(Path(setup['entryPoint']).is_relative_to(runtime))
@@ -112,7 +124,7 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(json.loads((moved/'workflow-plan-portable.json').read_text())['projectBrief'],brief)
             if os.environ.get('CRAFT_WORKFLOW_EVIDENCE_FILE'):
                 artifacts={id:[{'assetId':a['assetId'],'sha256':a['sha256'],'bytes':a['bytes'],'mediaType':a['mediaType'],'nativeProjectRef':a['nativeProjectRef']} for a in value['outputs']] for id,value in first['nodes'].items()}
-                proof={'schema':'craft-installed-mixed-first-use/v1','python':sys.version.split()[0],'runtimeVersion':setup['version'],'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'checks':['four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
+                proof={'schema':'craft-installed-mixed-first-use/v1','python':sys.version.split()[0],'runtimeVersion':setup['version'],'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'checks':['hash-bound native and export Film duration','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
                 with Path(os.environ['CRAFT_WORKFLOW_EVIDENCE_FILE']).open('x') as output:json.dump(proof,output,ensure_ascii=False,indent=2);output.write('\n')
 
 if __name__ == '__main__':unittest.main()
