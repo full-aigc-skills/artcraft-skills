@@ -48,7 +48,8 @@ class ChineseMixedFirstUseTests(unittest.TestCase):
             self.assertEqual(first['state'],'review_ready')
             setup=json.loads((project/'installation-receipt.json').read_text())
             self.assertEqual(setup['skills']['filmcraft']['runtimeIdentity']['cliVersion'],'0.2.0-craft.1')
-            self.assertEqual(setup['skills']['filmcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.5')
+            distribution=json.loads((skill/'scripts/distribution.lock.json').read_text())
+            self.assertEqual(setup['skills']['filmcraft']['runtimeIdentity']['pluginVersion'],distribution['bundles']['filmcraft-skills']['version'])
             for name,suffix in [('logo','vectorcraft'),('poster','pcraft'),('intro','ecproj'),('film','fcproj')]:
                 self.assertTrue((Path(first['nodes'][name]['root'])/('project.'+suffix)).is_file())
             filmroot=Path(first['nodes']['film']['root'])
@@ -57,6 +58,7 @@ class ChineseMixedFirstUseTests(unittest.TestCase):
             for second in ('1','2.5'):
                 data=subprocess.check_output(['ffmpeg','-v','error','-ss',second,'-i',str(filmroot/'film.mp4'),'-frames:v','1','-f','image2pipe','-vcodec','png','-'])
                 with Image.open(io.BytesIO(data)) as frame:images.append(frame.convert('RGB').copy())
+            self.assertGreater(sum(1 for red,green,blue in images[0].crop((0,0,640,280)).getdata() if blue>100 and blue>red+60),1000,'initial movie must contain the actual blue brand Logo, not only valid metadata')
             # H.264 量化可在静止图形区产生低幅像素差；只检查显著字幕变化。
             significant=ImageChops.difference(*images).point(lambda value:255 if value>16 else 0)
             box=significant.getbbox();self.assertIsNotNone(box);self.assertGreater(box[1],180)
@@ -79,6 +81,11 @@ class ChineseMixedFirstUseTests(unittest.TestCase):
             newroot=Path(second['nodes']['film']['root'])
             self.assertIn('品牌焕新，精彩呈现。',(newroot/'captions.srt').read_text())
             self.assertEqual(json.loads((filmroot/'native.json').read_text())['sequence']['audio'],json.loads((newroot/'native.json').read_text())['sequence']['audio'])
+            # 字幕修订必须保留同一时刻的实际画面，轨道 JSON 一致不能替代像素验收。
+            revised_frame=subprocess.check_output(['ffmpeg','-v','error','-ss','1','-i',str(newroot/'film.mp4'),'-frames:v','1','-f','image2pipe','-vcodec','png','-'])
+            with Image.open(io.BytesIO(revised_frame)) as frame:
+                visual_difference=ImageChops.difference(images[0].crop((0,0,640,280)),frame.convert('RGB').crop((0,0,640,280)))
+                self.assertIsNone(visual_difference.point(lambda value:255 if value>16 else 0).getbbox(),'caption-only revision must preserve the original Logo/video pixels')
             with Image.open(filmroot/'frame-0000.png') as old,Image.open(newroot/'frame-0000.png') as new:
                 self.assertIsNotNone(ImageChops.difference(old.convert('RGB'),new.convert('RGB')).getbbox(),'distinct Chinese captions must not render as identical missing glyphs')
             for name,node in first['nodes'].items():

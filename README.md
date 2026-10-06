@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.33 pins runtime dev.41 and FilmCraft skills dev.6. Cold first use: 3 passed; default regression: 66 passed, 13 optional skips. Complete creative acceptance remains pending.
+Current source dev.33 pins runtime dev.41 and FilmCraft skills dev.6. Cold first use: 3 passed; default regression: 66 passed, 13 optional skips. Complete creative acceptance remains pending. Fixed plugin dev.43 installed repetition: 3 mixed and 2 Chinese cases passed; all 58 suite CLI calls passed.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -165,4 +165,6 @@ Fixed-release proof / 固定发行验收：[dev.40 Photo variant mixed first use
 
 [Fixed dev.42 variant reuse gate / 尺寸变体复用固定验收](docs/evidence/codex-release42-variant-gate-first-use-20261006.json).
 
-ArtCraft source dev.33 pins FilmCraft skills dev.6 while retaining runtime dev.41. Cold public first use passed 3/3, including invalid native receipt refusal, whole-project preservation, restored task-ID reuse, four native source revisions and moved-package checks. Default regression: 66 passed, 13 optional skips. [Architecture](docs/ArtCraft-Film-Receipt-Integration-Architecture.md), [source evidence](docs/evidence/film-receipt-integration-native.json). Fixed plugin host proof remains pending.
+ArtCraft source dev.33 pins FilmCraft skills dev.6 while retaining runtime dev.41. Cold public first use passed 3/3, including invalid native receipt refusal, whole-project preservation, restored task-ID reuse, four native source revisions and moved-package checks. Default regression: 66 passed, 13 optional skips. [Architecture](docs/ArtCraft-Film-Receipt-Integration-Architecture.md), [source evidence](docs/evidence/film-receipt-integration-native.json). Fixed plugin dev.43 host proof is recorded below; complete creative acceptance remains pending.
+
+[Fixed installed first-use evidence](docs/evidence/codex-release43-film-receipt-first-use-20261006.json). Immutable release tags are preserved; QA changes only strengthen version and exported-pixel assertions.

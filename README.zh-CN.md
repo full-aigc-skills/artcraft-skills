@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 dev.33 固定运行时 dev.41、FilmCraft 技能 dev.6；公开冷启动 3 项通过，默认回归 66 项通过、13 项可选跳过。完整创作接受仍待完成。
+当前技能源 dev.33 固定运行时 dev.41、FilmCraft 技能 dev.6；公开冷启动 3 项通过，默认回归 66 项通过、13 项可选跳过。完整创作接受仍待完成。 固定插件 dev.43 安装复验：混合 3 项、中文 2 项通过，五套技能的 58 项 CLI 调用通过。
 
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
@@ -165,4 +165,6 @@ Fixed-release proof / 固定发行验收：[dev.40 Photo variant mixed first use
 
 [Fixed dev.42 variant reuse gate / 尺寸变体复用固定验收](docs/evidence/codex-release42-variant-gate-first-use-20261006.json).
 
-ArtCraft 技能源 dev.33 固定 FilmCraft 技能 dev.6，保留运行时 dev.41。公开冷启动 3/3 通过，覆盖原生回执异常拒绝、全部项目文件保留、恢复后复用原任务 ID、四种源工程修订和移动包验证。默认回归 66 项通过、13 项可选跳过。[架构](docs/ArtCraft-Film-Receipt-Integration-Architecture.zh_CN.md)、[源码证据](docs/evidence/film-receipt-integration-native.json)。固定插件宿主证据仍待完成。
+ArtCraft 技能源 dev.33 固定 FilmCraft 技能 dev.6，保留运行时 dev.41。公开冷启动 3/3 通过，覆盖原生回执异常拒绝、全部项目文件保留、恢复后复用原任务 ID、四种源工程修订和移动包验证。默认回归 66 项通过、13 项可选跳过。[架构](docs/ArtCraft-Film-Receipt-Integration-Architecture.zh_CN.md)、[源码证据](docs/evidence/film-receipt-integration-native.json)。固定插件 dev.43 宿主证据见下方；完整创作验收仍待完成。
+
+[固定安装首次使用证据](docs/evidence/codex-release43-film-receipt-first-use-20261006.json)。保留不可变发行标签；QA 修改仅加强版本绑定与实际导出像素断言。
