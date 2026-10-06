@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+当前技能源 `0.1.0-dev.43` 固定不可变运行时 `0.1.0-dev.62`，保留 SVG 外部依赖的已知领域错误；Vector 技能源 dev.10、Photo 技能源 dev.9 继续锁定。新版源码混合验收与完整插件安装复验分别记录；完整首版仍开放。
+
 历史固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 
 技能源 dev.41 固定 JPEG 运行时 dev.58，安装后宿主复验通过；历史候选证据保留 dev.56 范围。
@@ -210,3 +212,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源 dev.42 默认回归 98 项：75 通过、23 项开关跳过。公开四工具首用 3 项通过，包含真实原生混合创建／修订／恢复／打包（104.465 秒）。固定插件宿主复验单独执行。[证据](docs/evidence/source42-four-domain-candidate-20261006.json)。
 
 固定已安装矩阵 Film9／Effect8／Photo10／Vector11／Art61 通过登记 PNG／JPEG 的 Vector→Photo 替换复用（1 项）、四领域原生首用／恢复／打包（3 项），以及更新的 Photo／Art 全部 22 技能独立空缓存 CLI 检查（190.051 秒）；58 个安装技能摘要保持不变。SVG 混合输入、动态透明序列与完整创作验收仍开放。[证据](docs/evidence/codex-release61-vector-photo-first-use-20261006.json)。
+
+技能源 dev.43 单独复制、默认公开冷安装的 PNG／JPEG 与 SVG 混合首用两项通过（55.457 秒），覆盖外部 SVG 明确拒绝、非目标像素保持、PSD 独立解码、选择性返工、重复任务复用和迁移打包。[源码候选证据](docs/evidence/svg-mixed-source43-candidate-20261006.json)。固定完整插件安装复验仍待完成。

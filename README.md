@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Source `0.1.0-dev.43` pins immutable runtime `0.1.0-dev.62` for closed SVG dependency diagnostics; Vector source dev.10 and Photo source dev.9 remain fixed. New source mixed acceptance and full-plugin installed repetition are recorded separately; full V1 remains open.
+
 Historical fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
 
 Source dev.41 pins JPEG runtime dev.58; fixed installed-host JPEG verification passes. Historical candidate evidence keeps its dev.56 scope.
@@ -210,3 +212,5 @@ Source dev.42 also binds Photo skills dev.9 to fix image-only font preconditions
 Source dev.42 default regression: 98 total / 75 passed / 23 gated skips. Public four-domain first use: 3 passed, including real native mixed create/revision/recovery/package checks (104.465s). Fixed plugin host repetition remains separate. [Evidence](docs/evidence/source42-four-domain-candidate-20261006.json).
 
 Fixed installed matrix Film9 / Effect8 / Photo10 / Vector11 / Art61 passes registered PNG/JPEG Vector→Photo replacement/reuse (1 test), four-domain native first use/recovery/package (3 tests), and all 22 updated Photo/Art single-skill cold CLI starts (190.051s). All 58 installed skill hashes are preserved. SVG mixed input, dynamic transparent sequence and full creative acceptance remain open. [Proof](docs/evidence/codex-release61-vector-photo-first-use-20261006.json).
+
+Source dev.43 copied-alone public cold PNG/JPEG and SVG mixed first use passes two native tests (55.457s), including exact external SVG rejection, unchanged non-target pixels, independent PSD decoding, selective revision, repeated-task reuse and moved packaging. [Source candidate evidence](docs/evidence/svg-mixed-source43-candidate-20261006.json). Fixed full-plugin installation remains pending.
