@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source v0.1.0-dev.32 pins runtime v0.1.0-dev.41 and PhotoCraft skills v0.1.0-dev.8. Default: 66 passed, 13 optional skips. Cold online first use: 3 passed, including stale cached variant refusal, restoration without replay and four native source revisions. Fixed host repetition and full creative acceptance remain pending.
+Current source v0.1.0-dev.32 pins runtime v0.1.0-dev.41 and PhotoCraft skills v0.1.0-dev.8. Default: 66 passed, 13 optional skips. Cold online first use: 3 passed, including stale cached variant refusal, restoration without replay and four native source revisions. Fixed host repetition passed; full creative acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -162,3 +162,5 @@ Local candidate update: source Brief checks now cover Photo/Effect/Vector with s
 Fixed-release proof / 固定发行验收：[dev.40 Photo variant mixed first use](docs/evidence/codex-release40-photo-variant-first-use-20261006.json). Five fixed plugins / 58 skills, cold mixed workflow, selective Logo rework, moved geometry package and tamper rejection; technical evidence only.
 
 [Variant reuse gate](docs/ArtCraft-Photo-Variant-Gate-Architecture.md) · [中文](docs/ArtCraft-Photo-Variant-Gate-Architecture.zh_CN.md) · [Evidence](docs/evidence/photo-variant-gate-native.json).
+
+[Fixed dev.42 variant reuse gate / 尺寸变体复用固定验收](docs/evidence/codex-release42-variant-gate-first-use-20261006.json).
