@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.35 / plugin dev.47 / runtime dev.45 pin FilmCraft source dev.7. Fixed public installation and selective static audio gain first-use verification pass; all 58 installed skill hashes are preserved. Earlier evidence retains its original release scope; full V1/model/GUI/creative acceptance remains open.
+Current source dev.36 targets plugin dev.49 with runtime dev.48 and FilmCraft source dev.8. Candidate native mixed failure and positive gain checks pass; public fixed-host revalidation of this release is pending. Earlier evidence retains its original release scope; full V1/model/GUI/creative acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
