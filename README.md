@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.39 pins runtime dev.54. PCM WAV first-use registration and bounded artifact verification pass candidate native delivery; fixed new plugin installation remains pending. Earlier published dev.38 / plugin dev.53 evidence retains its own scope. Full V1/model/GUI/creative acceptance remains open.
+Current source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -194,3 +194,5 @@ All 22 updated skills pass individual public cold first use (159.811s): each is 
 Fixed dev.53 first use: 58 discovered / zero errors, ten independent Art cold starts (110.577s), installed native failure/corrected mixed delivery (56.202s), five reproducible locked bundles and 58 unchanged installed skill hashes. [Evidence](docs/evidence/codex-release53-effect-mapping-first-use-20261006.json). Generic Skills CLI, full creative V1, model/GUI and production remain open.
 
 [PCM WAV architecture](docs/ArtCraft-PCM-WAV-Architecture.md).
+
+Fixed dev.55 PCM WAV first use passes: 58 skills / zero errors; five-child native delivery and moved package (53.972s); ten independent Art cold starts (111.799s); all 58 installed skill hashes preserved. [Evidence](docs/evidence/codex-release55-pcm-wav-first-use-20261006.json). This does not close generic Skills CLI, complete V1, model/GUI or creative acceptance.
