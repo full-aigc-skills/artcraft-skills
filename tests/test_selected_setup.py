@@ -37,6 +37,11 @@ class SelectedSetupTests(unittest.TestCase):
                 self.assertEqual(set(installed),{'artcraft-runtime',*[n+'-skills' for n in expected]})
                 self.assertEqual(set(receipt['bundleHashes']),set(installed))
                 self.assertEqual(set(receipt['skills']),set(expected))
+                for name in expected:
+                    domain=receipt['skills'][name]
+                    digest=domain['capabilitySnapshot']['scriptHashes']['preserved_stage.py']
+                    self.assertEqual(digest,setup.sha(Path(domain['skillRoot'])/'scripts/preserved_stage.py'))
+                    self.assertIn({'path':str(Path(domain['skillRoot'])/'scripts/preserved_stage.py'),'sha256':digest},domain['files'])
 
     def test_skill_first_use_instructions_do_not_preinstall_unused_domains(self):
         suite=json.loads((ROOT/'skill-suite.json').read_text())
