@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Source dev.40 pins PNG runtime dev.56 for content registration, bounded verification and native PNG staging. Fixed installed-host acceptance is pending; historical candidate evidence is not substituted for release verification.
+Source dev.40 pins PNG runtime dev.56 for content registration, bounded verification and native PNG staging. Fixed installed-host PNG acceptance passes; historical candidate evidence is not substituted for release verification.
 
 Historical source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
 
@@ -198,3 +198,5 @@ Fixed dev.53 first use: 58 discovered / zero errors, ten independent Art cold st
 [PCM WAV architecture](docs/ArtCraft-PCM-WAV-Architecture.md).
 
 Fixed dev.55 PCM WAV first use passes: 58 skills / zero errors; five-child native delivery and moved package (53.972s); ten independent Art cold starts (111.799s); all 58 installed skill hashes preserved. [Evidence](docs/evidence/codex-release55-pcm-wav-first-use-20261006.json). This does not close generic Skills CLI, complete V1, model/GUI or creative acceptance.
+
+Fixed dev.57 PNG first use: five plugins / 58 discovered skills / zero loading errors; installed copied-alone PNG input, byte-identical native staging and moved Photo package pass; PCM five-child delivery also passes. Ten independent Art cold installations pass in 132.642s, and all 58 installed skill digests are preserved. [Version-bound evidence](docs/evidence/codex-release57-png-first-use-20261006.json). Model/GUI, generic Skills CLI, complete V1 and creative acceptance remain open.

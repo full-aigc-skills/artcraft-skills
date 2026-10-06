@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-技能源 dev.40 固定 PNG 运行时 dev.56，接通内容登记、有限资源核验及原样 PNG 暂存。固定安装后的宿主验收待执行，历史候选证据不替代发行复验。
+技能源 dev.40 固定 PNG 运行时 dev.56，接通内容登记、有限资源核验及原样 PNG 暂存。固定安装后的 PNG 宿主验收通过，历史候选证据不替代发行复验。
 
 历史技能源 dev.39／插件 dev.55／runtime dev.54 已通过固定安装后的 PCM WAV 冷启动原生交付与迁移打包；十项 Art 独立冷启动及原安装 58 项技能摘要核对通过。完整首版／模型／GUI／创作及通用 Skills CLI 验收仍开放。
 
@@ -198,3 +198,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 [PCM WAV 架构](docs/ArtCraft-PCM-WAV-Architecture.zh_CN.md)。
 
 固定 dev.55 PCM WAV 首次使用通过：58 技能／零错误；五子工程原生交付及迁移验包（53.972 秒）；十项 Art 独立冷启动（111.799 秒）；原安装 58 技能摘要保全。[证据](docs/evidence/codex-release55-pcm-wav-first-use-20261006.json)。不关闭通用 Skills CLI、完整首版、模型／GUI 或创作验收。
+
+固定 dev.57 PNG 首次使用：五插件／58 项技能发现／零加载错误；安装副本的单独 PNG 输入、原样暂存及 Photo 迁移验包通过；PCM 五子工程交付亦通过。十项 Art 独立冷安装用时 132.642 秒，全部 58 项安装技能摘要保全。[版本绑定证据](docs/evidence/codex-release57-png-first-use-20261006.json)。模型／GUI、通用 Skills CLI、完整首版与创作验收仍开放。
