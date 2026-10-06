@@ -1,6 +1,6 @@
 {
   "schema": "artcraft-mapping-propagation-repair/v1",
-  "status": "candidate-native-passed-public-and-installed-pending",
+  "status": "fixed-public-installed-scoped-acceptance-passed",
   "oldPublicFailure": {
     "schema": "artcraft-mapping-propagation-failure/v1",
     "diagnostics": {
@@ -233,5 +233,6 @@
     "passed": 1,
     "seconds": 37.798,
     "targetRuntimePassed": 28
-  }
+  },
+  "installedEvidence": "codex-release53-effect-mapping-first-use-20261006.json"
 }
