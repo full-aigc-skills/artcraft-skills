@@ -148,3 +148,5 @@ Fixed ArtCraft plugin dev.33 / skills dev.28 / runtime dev.32 pass installed-nat
 Source candidate dev.29 pins runtime dev.34 and includes a one-second Film Brief requirement in the first-use campaign. The runtime checks the saved native timeline and actual exported probe before publishing readiness or reusing outputs. Cold online and installed-plugin proof are pending; source-project Brief inspection and full creative acceptance remain open.
 
 Source candidate dev.29 cold online first use passed: 3 tests in 93.401 seconds. The saved Film project is exactly one second; export, native inspection and project hashes are bound. Fixed installed-plugin proof remains pending.
+
+Fixed ArtCraft plugin dev.35 / skills dev.29 / runtime dev.34 pass actual installed-skill online first use (3 tests, 94.638s), including the hash-bound one-second native Film duration and exported probe. All 58 installed skill hashes remain unchanged. Source-project Brief inspection and full implementation/creative acceptance remain open. [Evidence](docs/evidence/codex-release35-film-duration-native-20261006.json)。
