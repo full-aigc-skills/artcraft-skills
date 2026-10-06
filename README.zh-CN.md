@@ -238,3 +238,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源 dev.48 固定 runtime dev.71、Film dev.11、Effect dev.10，保留 Photo／Vector dev.10。HD 分段交接已进入固定分发锁，实际安装版验收仍待完成。
 
 固定公开技能源 HD 混合冷启动已通过；安装版仍待完成。[架构与证据](docs/ArtCraft-HD-First-Use-Architecture.zh_CN.md)。
+
+公开工作流回复检查已同步领域技能源候选，并通过有界原生／Art 协议验证。新的固定领域和 Art 分发包仍待发行与实际安装验收。[候选架构](docs/ArtCraft-Public-Workflow-Protocol-Architecture.zh_CN.md) · [证据](docs/evidence/public-workflow-session-candidate-20261007.json)。

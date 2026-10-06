@@ -238,3 +238,5 @@ Fixed smart mixed acceptance (2026-10-06): Art plugin dev.70 / source dev.47 / r
 Skill source dev.48 pins runtime dev.71, Film dev.11 and Effect dev.10 while retaining Photo/Vector dev.10. HD segmented handoff is now in the fixed distribution lock; actual installed acceptance remains pending.
 
 Fixed public-source HD mixed cold first use passes; installed-host acceptance remains pending. [Architecture and evidence](docs/ArtCraft-HD-First-Use-Architecture.md).
+
+Public-workflow reply validation is synchronized in the domain source candidates and has bounded native/Art protocol evidence. Fixed updated domain and Art distributions are still pending. [Candidate architecture](docs/ArtCraft-Public-Workflow-Protocol-Architecture.md) · [Evidence](docs/evidence/public-workflow-session-candidate-20261007.json).
