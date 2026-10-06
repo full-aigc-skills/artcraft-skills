@@ -242,3 +242,7 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 固定公开技能源 HD 混合冷启动已通过；安装版仍待完成。[架构与证据](docs/ArtCraft-HD-First-Use-Architecture.zh_CN.md)。
 
 公开工作流回复检查已同步领域技能源候选，并通过有界原生／Art 协议验证。新的固定领域和 Art 分发包仍待发行与实际安装验收。[候选架构](docs/ArtCraft-Public-Workflow-Protocol-Architecture.zh_CN.md) · [证据](docs/evidence/public-workflow-session-candidate-20261007.json)。
+
+领域原暂存保全由 Film18／源16、Effect／Photo／Vector17／源15提供；Art77仍下载旧客户端，Art 集成由 OpenSpec4.9 保持开放。[集成设计](docs/ArtCraft-Failed-Stage-Integration-Architecture.zh_CN.md)。
+
+固定安装场景矩阵通过37个原生场景及6个合同检查，零跳过。Photo测试已从安装后的技能锁读取维护版原生版本，CLI与安装技能未修改。 [Evidence](docs/evidence/codex-failed-stage-first-use-20261007.json).

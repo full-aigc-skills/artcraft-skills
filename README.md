@@ -242,3 +242,7 @@ Skill source dev.48 pins runtime dev.71, Film dev.11 and Effect dev.10 while ret
 Fixed public-source HD mixed cold first use passes; installed-host acceptance remains pending. [Architecture and evidence](docs/ArtCraft-HD-First-Use-Architecture.md).
 
 Public-workflow reply validation is synchronized in the domain source candidates and has bounded native/Art protocol evidence. Fixed updated domain and Art distributions are still pending. [Candidate architecture](docs/ArtCraft-Public-Workflow-Protocol-Architecture.md) · [Evidence](docs/evidence/public-workflow-session-candidate-20261007.json).
+
+Domain original-stage preservation is available in Film18/source16 and Effect/Photo/Vector17/source15; Art77 retains older downloaded clients. Art integration stays open under OpenSpec4.9. [Integration design](docs/ArtCraft-Failed-Stage-Integration-Architecture.md).
+
+Fixed installed scene matrix passes37 native scenarios and6 contract checks with zero skips. The Photo fixture now resolves the maintained native version from the installed skill lock; the CLI and installed skills are unchanged. [Evidence](docs/evidence/codex-failed-stage-first-use-20261007.json).
