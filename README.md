@@ -140,3 +140,5 @@ Fixed PhotoCraft plugin dev.7 / skills dev.6 and ArtCraft plugin dev.30 / skills
 Source candidate dev.27 pins PhotoCraft skills dev.7 to support protected public retouch workflows. Runtime remains dev.28. Installed-plugin proof is pending; the overall goal remains incomplete.
 
 Fixed PhotoCraft plugin dev.8 / skills dev.7 and ArtCraft plugin dev.31 / skills dev.27 pass installed native retouch/handoff testing (13.260s and 23.264s). All 58 installed skill hashes remain unchanged. Only scoped retouch tasks are complete; the full goal remains incomplete. [Proof](docs/evidence/codex-release31-retouch-native-20261006.json).
+
+Source candidate dev.28 pins fixed runtime dev.32 for bounded failure diagnostics. Single-skill fresh online PhotoCraft integration passed (21.660s), including reported protection failure, public status, unchanged attempt on repeat, legal revision and moved package. Installed-plugin proof remains pending. [Evidence](docs/evidence/native-failure-diagnostics.json).
