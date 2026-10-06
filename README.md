@@ -1,5 +1,6 @@
 # ArtCraft independent skills
 
+Independent source candidate dev.52: distribution dev.76 pins Film source dev.15 and the other domains dev.14. Ten-skill cold install, mixed creation and protocol-fault acceptance are in progress.
 Fixed domain-client first use: Film plugin dev.16 / source dev.15; Effect/Photo/Vector plugin dev.15 / source dev.14. Codex discovers 58 skills without errors. Actual installed copies pass 24 post-save faults and four healthy public workflows; the published Art engine with the installed Vector client passes six faults. All58 installed identities remain unchanged. Art dev.75 still bundles earlier domain sources; exhaustive command/GUI/model acceptance remains open. [Version-bound evidence](docs/evidence/codex-public-workflow-session-first-use-20261007.json).
 Fixed download-recovery acceptance passed: ten exact immutable source51 skills independently cold-installed all domains; actual installed75 cold mixed/revision/recovery/package checks, 58 post-run identities and fixed-tag CI passed. [Evidence](docs/evidence/codex-art75-download-recovery-first-use-20261007.json). OpenSpec4.8 closes; orchestration protocol faults under4.7, Skills CLI and full V1 remain open.
 
