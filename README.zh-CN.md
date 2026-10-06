@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
+历史固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 
 技能源 dev.41 固定 JPEG 运行时 dev.58，安装后宿主复验通过；历史候选证据保留 dev.56 范围。
 
@@ -202,3 +202,9 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 固定 dev.55 PCM WAV 首次使用通过：58 技能／零错误；五子工程原生交付及迁移验包（53.972 秒）；十项 Art 独立冷启动（111.799 秒）；原安装 58 技能摘要保全。[证据](docs/evidence/codex-release55-pcm-wav-first-use-20261006.json)。不关闭通用 Skills CLI、完整首版、模型／GUI 或创作验收。
 
 固定 dev.57 PNG 首次使用：五插件／58 项技能发现／零加载错误；安装副本的单独 PNG 输入、原样暂存及 Photo 迁移验包通过；PCM 五子工程交付亦通过。十项 Art 独立冷安装用时 132.642 秒，全部 58 项安装技能摘要保全。[版本绑定证据](docs/evidence/codex-release57-png-first-use-20261006.json)。模型／GUI、通用 Skills CLI、完整首版与创作验收仍开放。
+
+技能源 dev.42 固定已发布 Art runtime dev.60 与不可变 Vector 源 dev.10，登记 PNG／JPEG 可进入受管理的 Vector 工作流。单独复制公开 revise 技能测试覆盖 Vector 到 Photo、源素材替换、选择性复用与移动验包；新完整插件安装验收单独进行。[架构](docs/ArtCraft-Vector-Assets-Architecture.zh_CN.md)。
+
+技能源 dev.42 同时固定 Photo 技能源 dev.9，修复纯图片字体前置条件。公开冷启动 Vector／Photo 创建、替换、选择性复用与移动包验收通过；新版完整插件实际安装仍待复验。[证据](docs/evidence/vector-assets-public-candidate-20261006.json)。
+
+技能源 dev.42 默认回归 98 项：75 通过、23 项开关跳过。公开四工具首用 3 项通过，包含真实原生混合创建／修订／恢复／打包（104.465 秒）。固定插件宿主复验单独执行。[证据](docs/evidence/source42-four-domain-candidate-20261006.json)。

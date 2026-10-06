@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
+Historical fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
 
 Source dev.41 pins JPEG runtime dev.58; fixed installed-host JPEG verification passes. Historical candidate evidence keeps its dev.56 scope.
 
@@ -202,3 +202,9 @@ Fixed dev.53 first use: 58 discovered / zero errors, ten independent Art cold st
 Fixed dev.55 PCM WAV first use passes: 58 skills / zero errors; five-child native delivery and moved package (53.972s); ten independent Art cold starts (111.799s); all 58 installed skill hashes preserved. [Evidence](docs/evidence/codex-release55-pcm-wav-first-use-20261006.json). This does not close generic Skills CLI, complete V1, model/GUI or creative acceptance.
 
 Fixed dev.57 PNG first use: five plugins / 58 discovered skills / zero loading errors; installed copied-alone PNG input, byte-identical native staging and moved Photo package pass; PCM five-child delivery also passes. Ten independent Art cold installations pass in 132.642s, and all 58 installed skill digests are preserved. [Version-bound evidence](docs/evidence/codex-release57-png-first-use-20261006.json). Model/GUI, generic Skills CLI, complete V1 and creative acceptance remain open.
+
+Source dev.42 pins published Art runtime dev.60 and immutable Vector source dev.10. Registered PNG/JPEG input can now reach the managed Vector workflow; a copied-alone public revise-skill test covers Vector to Photo, source replacement, selective reuse and moved-package verification. New full-plugin installed acceptance is a separate step. [Architecture](docs/ArtCraft-Vector-Assets-Architecture.md).
+
+Source dev.42 also binds Photo skills dev.9 to fix image-only font preconditions. Public cold Vector/Photo create, replacement, selective reuse and moved-package acceptance passed; actual new full-plugin install remains pending. [Evidence](docs/evidence/vector-assets-public-candidate-20261006.json).
+
+Source dev.42 default regression: 98 total / 75 passed / 23 gated skips. Public four-domain first use: 3 passed, including real native mixed create/revision/recovery/package checks (104.465s). Fixed plugin host repetition remains separate. [Evidence](docs/evidence/source42-four-domain-candidate-20261006.json).
