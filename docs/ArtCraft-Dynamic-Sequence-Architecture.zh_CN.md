@@ -35,3 +35,5 @@ Effect 导出 `rgba-sequence/sequence.json`，MIME 为 `application/vnd.craft.im
 ## 证据与剩余工作
 
 源码首次使用测试仅复制一个技能到 `.agents/skills`，从空运行时开始，清除离线包覆盖并使用默认公开下载；回执绑定技能文件、分发锁与实际领域版本。固定插件验收必须从新版不可变安装 Art 插件重复，并核对全部 58 个安装技能摘要；源码副本证据不能关闭此门禁。完整首版、通用 Skills CLI、模型派发、GUI、创作批准仍开放。Art 不适配剪映。
+
+固定 dev.65 安装验收见 [版本证据](evidence/codex-release65-dynamic-first-use-20261006.json)：动态四领域 Logo 替换／恢复与移动包、普通原生工程返工、58 项独立 CLI 冷启动及安装摘要保全均有实际记录；默认用户数据目录包含锁定四领域 CLI 与 Art runtime。完整首版和创作门禁未关闭。

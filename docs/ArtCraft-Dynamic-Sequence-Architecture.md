@@ -35,3 +35,5 @@ For a damaged intermediate frame, the public workflow returns a nonzero exit and
 ## Evidence and remaining work
 
 The source first-use test copies exactly one skill into `.agents/skills`, starts with an empty runtime, removes offline archive overrides and uses default public downloads. Its receipt binds copied skill files, distribution lock and actual domain versions. Fixed-plugin acceptance must repeat from a newly installed immutable Art plugin and check all 58 installed skill hashes; copied source evidence does not close that gate. Full V1, generic Skills CLI, model dispatch, GUI and creative approval remain open. Art does not adapt Jianying.
+
+[Fixed dev.65 evidence](evidence/codex-release65-dynamic-first-use-20261006.json) binds installed dynamic four-domain Logo replacement/recovery and moved packaging, ordinary native source revisions, all 58 cold CLI starts and retained installation hashes. Default user-data storage now contains all four pinned native CLIs and Art runtime. Full V1 and creative gates remain open.
