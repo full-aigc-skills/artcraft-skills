@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+Art原生首用恢复候选固定Film18／Effect、Photo、Vector17，复用runtime78。此前Art80冷安装在领域CLI下载遇到SSL EOF失败，保留失败证据；新固定安装验收仍开放。
+
 当前独立技能源 dev.54 复用不可变runtime dev.78，固定 Film17 与 Effect／Photo／Vector16 的完整命令内层JSON修复。新固定安装验收进行中；旧证据保持其原版本。
 
 当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装门禁4.9已通过，完整V1仍开放，下方历史证据仍按原版本解读。
