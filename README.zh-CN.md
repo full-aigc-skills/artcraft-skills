@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-技能源 `0.1.0-dev.46` 固定不可变 Art runtime `0.1.0-dev.68` 与 Film 技能源 dev.10，支持类型化 LUT／运动交接；Effect dev.9、Photo dev.9、Vector dev.10 保持固定。候选原生联调通过，新的固定 Art 安装验收待执行；完整首版仍开放。
+技能源 `0.1.0-dev.46` 固定不可变 Art runtime `0.1.0-dev.68` 与 Film 技能源 dev.10，支持类型化 LUT／运动交接；Effect dev.9、Photo dev.9、Vector dev.10 保持固定。候选原生联调通过，新的固定 Art LUT／运动安装验收通过；完整首版仍开放。
 
 历史固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 
@@ -224,3 +224,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源 dev.45 锁定 Art 运行时 dev.66 与 Effect 技能源 dev.9，接入整份效果／蒙版计划预检；Art 只持久化闭合诊断码与摘要，阻断依赖任务。其余领域包保留原固定版本。候选源码检查与不可变发行安装验收分别记录。
 
 固定 Art 插件 dev.67／技能源 dev.45／runtime dev.66，接入 Effect 技能源 dev.9：Codex 0.153.4 安装五个固定插件，发现全部 58 技能，加载错误为零。安装后单技能 Effect 拒绝／查询／重复执行／纠正修订验收通过（55.362 秒）；动态四领域 Logo 返工、坏帧恢复及移动五子工程打包通过（63.257 秒）。58 项独立 CLI 冷启动全部通过（422.907 秒），全部安装摘要保全；公开运行时／技能源附件、五包固定重建及默认用户目录安装已核验。[版本证据](docs/evidence/codex-release67-preflight-mixed-first-use-20261006.json)。只关闭 OpenSpec 6.40；通用 Skills CLI 安装及完整首版／模型／GUI／创作／生产验收仍开放。
+
+固定 Art 插件 dev.69／技能源 dev.46／runtime dev.68 安装后的公开 LUT／运动返工与失败恢复通过（37.836 秒）；十项 Art 独立冷启动通过（111.456 秒），58 安装技能摘要保全，公开附件和五包重建通过。[证据](docs/evidence/codex-artcraft69-lut-motion-first-use-20261006.json)。完整首版仍开放。

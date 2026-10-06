@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Source `0.1.0-dev.46` pins immutable Art runtime `0.1.0-dev.68` and Film source dev.10 for typed LUT/motion handoff. Effect dev.9, Photo dev.9 and Vector dev.10 stay pinned. Candidate native integration passes; new fixed installed Art acceptance remains pending. Full V1 remains open.
+Source `0.1.0-dev.46` pins immutable Art runtime `0.1.0-dev.68` and Film source dev.10 for typed LUT/motion handoff. Effect dev.9, Photo dev.9 and Vector dev.10 stay pinned. Candidate native integration passes; new fixed installed Art LUT/motion acceptance passes. Full V1 remains open.
 
 Historical fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
 
@@ -224,3 +224,5 @@ Fixed Art dev.65 / source dev.44 / runtime dev.64: five plugins and 58 skills di
 Source dev.45 pins Art runtime dev.66 and Effect source dev.9. Six effect/mask commands use whole-plan preflight, while Art persists only closed diagnostic codes/digests and blocks dependent work. Remaining domain bundles retain their exact fixed versions. Candidate source tests and immutable installed acceptance are recorded separately.
 
 Fixed Art plugin dev.67 / source dev.45 / runtime dev.66, with Effect source dev.9: Codex 0.153.4 installs five pinned plugins and discovers all 58 skills without loading errors. Installed copied-alone Effect rejection/query/repeat/corrected-revision acceptance passes (55.362s); dynamic four-domain Logo rework, frame corruption recovery and moved five-child packaging passes (63.257s). All 58 independent cold CLI starts pass (422.907s), all installed hashes remain intact; public runtime/source archives, five reproducible bundles and default-user bootstrap are verified. [Version-bound evidence](docs/evidence/codex-release67-preflight-mixed-first-use-20261006.json). This closes only OpenSpec 6.40; generic Skills CLI installation and full V1/model/GUI/creative/production acceptance remain open.
+
+Fixed Art plugin dev.69 / source dev.46 / runtime dev.68 installed public LUT/motion revision and failure recovery passed (37.836 s). Ten Art independent cold starts passed (111.456 s), all 58 installed skill hashes remained unchanged; public archives and five fixed bundles were verified. [Evidence](docs/evidence/codex-artcraft69-lut-motion-first-use-20261006.json). Full V1 remains open.
