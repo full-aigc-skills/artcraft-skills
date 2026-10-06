@@ -1,5 +1,6 @@
 # ArtCraft 独立技能
 
+固定领域客户端首用复验：Film 插件 dev.16／技能源 dev.15，Effect／Photo／Vector 插件 dev.15／技能源 dev.14。隔离 Codex 发现58项零错误；实际安装副本24类保存后故障、四个健康公开工作流和已发布 Art 引擎＋安装后 Vector 客户端六类故障通过，全部58项安装摘要保全。Art dev.75 内置旧领域分发包尚需升级，全量命令／GUI／模型验收仍开放。[版本绑定证据](docs/evidence/codex-public-workflow-session-first-use-20261007.json)。
 下载恢复固定发行验收通过：十项技能源均与dev.51逐文件一致，各自空运行时公开安装全部领域；dev.75实际安装副本冷混合／返工／恢复／打包、58项安装摘要与固定标签CI通过。[证据](docs/evidence/codex-art75-download-recovery-first-use-20261007.json)。本次关闭OpenSpec4.8；4.7编排协议故障、独立Skills CLI和完整V1仍开放。
 
 技能源dev.51补充Node与领域技能制品的最多三次只读下载恢复；半包清理及固定摘要仍强制校验。[方案](docs/ArtCraft-Download-Recovery-Architecture.zh_CN.md)，[候选回归](docs/evidence/download-recovery-candidate-20261007.json)。全部十技能冷安装与固定宿主验收保持开放。dev.50仅保留标签，因元数据未更新不发布、不用于插件快照。
