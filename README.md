@@ -1,4 +1,8 @@
+Current skill source: `0.1.0-dev.56`; runtime: `0.1.0-dev.78`. Complete domain command component candidate passes native revision samples; new fixed installed-component gate 6.50 and DAG gate 6.51 remain open.
+
 # ArtCraft independent skills
+
+Complete domain command component candidate adds2639 offline queries, actual MCP schemas and selected-domain public handoff. Four-domain cold native creation/reopen/revision and target/control pixels pass; fixed installed6.50 and full DAG native delivery6.51 remain open. [Evidence](docs/evidence/art-complete-domain-component-candidate-20261007.json).
 
 Fixed native first-use and complete-command recovery acceptance passed:58 standalone cold installations, ten Art all-domain cold installations, four partial-download SSL EOF recoveries,72 post-save faults, four healthy command revisions and mixed HD revision/recovery/moved delivery. Installed identities remain unchanged. Only domain2.10/8.11 and Art4.10 close; exhaustive2639-command, GUI, model, generic Skills CLI and fullV1 gates remain open. [Version-bound evidence](docs/evidence/codex-native-download-first-use-20261007.json).
 

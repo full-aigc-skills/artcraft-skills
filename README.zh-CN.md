@@ -1,4 +1,8 @@
+Current skill source: `0.1.0-dev.56`; runtime: `0.1.0-dev.78`. Complete domain command component candidate passes native revision samples; new fixed installed-component gate 6.50 and DAG gate 6.51 remain open.
+
 # ArtCraft 独立技能
+
+Art完整领域命令组件候选已支持2639条离线查询、实际MCP schema及只安装选定领域的公开交接。四域冷安装创建／重开／返工与目标／对照像素通过；固定安装6.50及DAG原生交付6.51仍开放。 [Evidence](docs/evidence/art-complete-domain-component-candidate-20261007.json).
 
 固定原生首次安装与完整命令恢复验收通过：新版五插件58技能逐项独立冷安装，十个Art技能分别安装四领域；四个原生下载半包SSL EOF恢复、72个原生保存后故障、四个健康命令返工及混合HD返工／恢复／移动包通过，全部安装摘要保全。仅关闭领域2.10／8.11与Art4.10；2639条命令逐项、GUI、模型、通用Skills CLI及完整V1仍开放。 [版本及证据](docs/evidence/codex-native-download-first-use-20261007.json).
 
