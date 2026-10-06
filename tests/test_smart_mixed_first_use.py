@@ -39,9 +39,9 @@ class SmartMixedFirstUseTests(unittest.TestCase):
     self.assertEqual(result.returncode,expected,result.stdout+result.stderr);return json.loads(result.stdout)
    first=run(plan);self.assertEqual(first['state'],'review_ready')
    installation=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(set(installation['skills']),{'filmcraft','effectcraft','photocraft','vectorcraft'})
-   self.assertEqual(installation['version'],'0.1.0-dev.68')
-   self.assertEqual(installation['skills']['filmcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.10');self.assertEqual(installation['skills']['effectcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.9')
-   self.assertEqual(installation['skills']['photocraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.10')
+   distribution=json.loads((skill/'scripts/distribution.lock.json').read_text())
+   self.assertEqual(installation['version'],distribution['bundles']['artcraft-runtime']['version'])
+   for domain,item in installation['skills'].items():self.assertEqual(item['runtimeIdentity']['pluginVersion'],distribution['bundles'][domain+'-skills']['version'])
    poster_root=Path(first['nodes']['poster']['root']);poster_manifest=json.loads((poster_root/'manifest.json').read_text());poster_native=json.loads((poster_root/'native.json').read_text());smart_id=poster_manifest['bindings']['logo']['layer']
    smart=lambda native:next(layer for layer in native['layers'] if layer['id']==smart_id)
    self.assertEqual(smart(poster_native)['smartSourceKind'],'embedded');self.assertTrue(smart(poster_native)['hasMask'])
