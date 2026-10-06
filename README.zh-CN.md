@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+当前技能源 v0.1.0-dev.30 绑定 runtime v0.1.0-dev.36，由插件 v0.1.0-dev.38 引用。默认测试 66 项通过、13 项可选跳过；固定安装技能的在线首次使用 3 项通过、无跳过，95.289 秒，包含四源返工和三领域尺寸修改。完整创作／模型／GUI／生产验收仍开放。[证据](docs/evidence/codex-release38-native-brief-first-use-20261006.json)。
+
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
 当前为开发版。版本 0 与版本 1 的默认在线安装和受控 Codex 技能执行均已通过；版本 1 增加共享预算和有界 Logo 返工。桌面 GUI、其他宿主、完整创作与正式市场验收仍未完成。
@@ -30,7 +32,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-14 项技能/安装测试通过，含完整隔离首次安装和四原生工程交付；ArtCraft 运行时并行完整 66 项回归通过。`review_ready` 是技术就绪状态。付费账单核销、创作最终评审、故障接管、最终创作交付审核和宿主发布仍待完成。
+当前默认技能源测试 79 项：66 通过、13 可选跳过；运行时默认回归 128 项：123 通过、5 可选跳过。固定安装技能的在线首次使用 3 项通过、0 跳过，包含四种原生源工程返工与三类尺寸修改。`review_ready` 是技术就绪状态。付费账单核销、创作最终评审、故障接管、最终创作交付审核和宿主发布仍待完成。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 

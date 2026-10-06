@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Current source v0.1.0-dev.30 pins runtime v0.1.0-dev.36 and is vendored by plugin v0.1.0-dev.38. Default tests: 66 passed, 13 optional skipped. Fixed installed-skill cold online acceptance: 3 passed, no skips, 95.289 seconds, including four source revisions and three geometry changes. Full creative/model/GUI/production acceptance remains open. [Evidence](docs/evidence/codex-release38-native-brief-first-use-20261006.json).
+
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
 This is a development build. Version 0 passed default online downloads and controlled Codex installation/discovery; version 1 also passes default online first use and installed-skill execution with shared budget admission. Release-specific online evidence is maintained in the plugin repository.
@@ -30,7 +32,7 @@ Projects retain installation receipts, frozen plans, SQLite ledger, result recei
 
 ## Verification and remaining work
 
-All 14 skill/installer tests pass, including complete isolated first use and four native project deliveries. The runtime's parallel 66-test regression also passes. `review_ready` denotes technical readiness. Provider invoice settlement, final creative review, crash adoption, final creative delivery approval and host release remain unfinished.
+Current default source tests: 79 total, 66 passed and 13 optional skipped. Runtime default regression: 128 total, 123 passed and 5 optional skipped. Fixed installed-skill cold online use: 3 passed, no skips, including four native source revisions and three geometry changes. `review_ready` denotes technical readiness. Provider invoice settlement, final creative review, crash adoption, final creative delivery approval and host release remain unfinished.
 
 Specification authority: [ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin).
 
