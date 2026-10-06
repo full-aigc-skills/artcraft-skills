@@ -44,7 +44,7 @@ class EffectMappingMixedFirstUse(unittest.TestCase):
    failed=workflow(plan,False);self.assertEqual(failed['state'],'failed');node=failed['nodes']['intro'];self.assertEqual(node['status'],'failed');self.assertEqual(node['outputs'],[])
    diag=node['failure']['diagnostics']
    if os.environ.get('CRAFT_MAPPING_MIXED_FAILURE_EVIDENCE'):
-    with Path(os.environ['CRAFT_MAPPING_MIXED_FAILURE_EVIDENCE']).open('x') as stream:json.dump({'schema':'artcraft-mapping-propagation-failure/v1','diagnostics':diag,'state':failed['state'],'introFailed':node['status']=='failed','filmBlocked':failed['nodes']['film']['status']=='blocked','scope':'single copied source skill; public runtime dev.48 and fixed Effect dev.7 native rejection'},stream,indent=2)
+    with Path(os.environ['CRAFT_MAPPING_MIXED_FAILURE_EVIDENCE']).open('x') as stream:json.dump({'schema':'artcraft-mapping-propagation-failure/v1','diagnostics':diag,'state':failed['state'],'introFailed':node['status']=='failed','filmBlocked':failed['nodes']['film']['status']=='blocked','scope':'single copied source skill; locked public Art runtime and fixed Effect plan preflight'},stream,indent=2)
    self.assertEqual(diag['domainCode'],'unsupported_mapping');self.assertEqual(diag['source'],'stdout');self.assertTrue(diag['stdout']['complete']);self.assertNotIn('private_parameter_field',json.dumps(diag))
    self.assertEqual(failed['nodes']['film']['status'],'blocked');self.assertFalse(failed['nodes']['film'].get('taskId'))
    originals={name:hashes(Path(failed['nodes'][name]['root'])) for name in ('logo','poster','badge')}
@@ -58,7 +58,7 @@ class EffectMappingMixedFirstUse(unittest.TestCase):
     self.assertEqual(good['nodes'][name]['taskId'],failed['nodes'][name]['taskId']);self.assertEqual(hashes(Path(good['nodes'][name]['root'])),before)
    package=root/'package';packed=run('package.py',['create','--project',project,'--workflow',good['runKey'],'--authorization','mapping-mixed-first-use','--output',package]);self.assertEqual(packed.returncode,0,packed.stdout+packed.stderr);receipt=json.loads(packed.stdout)
    checked=run('package.py',['verify','--package',package,'--sha',receipt['sha256']]);self.assertEqual(checked.returncode,0,checked.stdout+checked.stderr);self.assertEqual(len(json.loads(checked.stdout)['children']),5)
-   installation=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(installation['skills']['effectcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.7')
+   installation=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(installation['skills']['effectcraft']['runtimeIdentity']['pluginVersion'],'0.1.0-dev.9')
    self.assertEqual(hashes(skill),skill_before);self.assertFalse(list(skill.rglob('*.pyc')));self.assertEqual(hashlib.sha256(voice.read_bytes()).hexdigest(),voice_sha)
    if os.environ.get('CRAFT_MAPPING_MIXED_EVIDENCE'):
     proof={'schema':'artcraft-effect-mapping-mixed-first-use/v1','result':'passed','runtimeVersion':installation['version'],'effectRuntimeIdentity':installation['skills']['effectcraft']['runtimeIdentity'],'diagnostics':diag,'failedTaskId':node['taskId'],'failedAttemptId':status['attemptId'],'correctedTaskId':good['nodes']['intro']['taskId'],'reusedNodes':['logo','poster','badge'],'downstreamBlockedBeforeCorrection':True,'repeatAttemptDiagnosticsAndBudgetPreserved':True,'priorFilesVoiceAndSkillPreserved':True,'packageChildren':5,'runtimeMode':'explicit local bundles' if os.environ.get('CRAFT_MAPPING_BUNDLE_DIR') else 'default public download'}
