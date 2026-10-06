@@ -186,3 +186,7 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 固定 ArtCraft dev.49 在 Codex 0.153.4 首次使用复验通过：58 技能、零加载错误；安装后的混合缺源音轨失败与正常增益返工，以及十项 Art 技能逐项空运行时启动。全部安装摘要保留。[发行绑定证据](docs/evidence/codex-release49-required-audio-mixed-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 
 技能源 dev.37 锁定不可变 Vector dev.9／原生 craft.2，保留 runtime dev.48。五节点公开冷启动品牌返工通过，包含无关 SVG／PNG／PDF 保全、任务选择性复用、重复预算及子工程验包；固定新插件首次使用仍待完成。[架构](docs/ArtCraft-Vector-PDF-Identity-Architecture.zh_CN.md)。
+
+固定 ArtCraft dev.50／VectorCraft dev.10 的 Codex 0.153.4 隔离首次使用通过：五插件 58 技能发现、零加载错误；单导出技能空运行时跨秒原生验收 1 项通过（8.108 秒），混合品牌返工 2 项通过（51.409 秒），全部安装摘要保留。[发行绑定证据](docs/evidence/codex-release50-vector10-stable-export-first-use-20261006.json)。通用 Skills CLI 安装、模型／GUI、完整领域与创作验收仍开放。
+
+本次更新的 22 个技能逐项公开冷启动全部通过（159.811 秒）：每项只复制自身目录到 .agents/skills，独立空运行时完成版本与命令合同检查，目录摘要和全部宿主安装摘要保留。该证据不代表通用 Skills CLI 安装或全部创作场景。
