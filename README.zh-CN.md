@@ -132,3 +132,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、安装前评估和按节点需求指纹。单技能在线冷安装测试通过（3 项，98.048 秒），插件同步及实际安装宿主验证尚待完成。[架构](docs/ArtCraft-Versioned-Brief-Architecture.zh_CN.md)。
 
 已发布插件 dev.29／技能 dev.25／运行时 dev.28 的实际安装 Brief 在线首次使用复验通过（3 项，89.841 秒），五插件 58 个技能发现通过且执行后摘要不变。整体实现仍未完成。[证据](docs/evidence/codex-release29-brief-native-20261006.json)。
+
+源候选 dev.26 锁定 PhotoCraft 技能 dev.6，支持受保护的局部源工程修改。独立在线 Photo-only 创建／拒绝／修订／移动验包通过（1 项，19.902 秒），固定插件验收尚待完成。运行时仍为 dev.28。[架构](docs/ArtCraft-Photo-Protection-Architecture.zh_CN.md)。
