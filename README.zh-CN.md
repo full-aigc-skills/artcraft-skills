@@ -136,3 +136,5 @@ ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、�
 源候选 dev.26 锁定 PhotoCraft 技能 dev.6，支持受保护的局部源工程修改。独立在线 Photo-only 创建／拒绝／修订／移动验包通过（1 项，19.902 秒），固定插件验收尚待完成。运行时仍为 dev.28。[架构](docs/ArtCraft-Photo-Protection-Architecture.zh_CN.md)。
 
 固定 PhotoCraft 插件 dev.7／技能 dev.6 与 ArtCraft 插件 dev.30／技能 dev.26 的实际安装原生保护／交接复验通过；五插件全部 58 个技能摘要不变。只完成对应保护任务，整体实现和创作接受仍未完成。[证据](docs/evidence/codex-release30-protected-native-20261006.json)。
+
+源码候选 dev.27 固定 PhotoCraft 技能源 dev.7，支持带保护检查的公开修图工作流；运行时仍为 dev.28。安装后插件复验尚待完成，整体目标未完成。
