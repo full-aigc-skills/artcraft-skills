@@ -51,6 +51,12 @@ class FirstWorkflowTests(unittest.TestCase):
                 output.writeframes(b''.join(struct.pack('<h',round(4000*math.sin(i*2*math.pi*440/48000))) for i in range(48000)))
             runtime=root/'runtime';project=root/'project'
             args=[sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(skill/'examples/brand-campaign.json'),'--output',str(project),'--runtime-home',str(runtime),'--authorization','isolated-first-use','--asset','voice='+str(voice)]
+            # 使用复制的单技能公开入口创建需求记录，不借用仓库内部 API。
+            brief=json.loads((skill/'examples/brand-brief.json').read_text());brief['authorizationRef']='isolated-first-use'
+            brief_input=root/'brief-input.json';brief_input.write_text(json.dumps(brief));brief_root=root/'brief-v1'
+            created=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/brief.py'),'create','--input',str(brief_input),'--output',str(brief_root)],capture_output=True,text=True,timeout=30)
+            self.assertEqual(created.returncode,0,created.stdout+created.stderr);brief_receipt=json.loads(created.stdout)
+            args.extend(['--brief',str(brief_root),'--brief-sha',brief_receipt['sha256']])
             args.extend(archive_arguments(os.environ))
             environment=dict(os.environ,PATH='/usr/bin:/bin')
             first_run=subprocess.run(args,capture_output=True,text=True,env=environment,timeout=240)
@@ -103,5 +109,6 @@ class FirstWorkflowTests(unittest.TestCase):
             verified_run=subprocess.run(verify_args,capture_output=True,text=True,env=environment,timeout=120)
             self.assertEqual(verified_run.returncode,0,verified_run.stdout+verified_run.stderr)
             self.assertEqual(len(json.loads(verified_run.stdout)['children']),4)
+            self.assertEqual(json.loads((moved/'workflow-plan-portable.json').read_text())['projectBrief'],brief)
 
 if __name__ == '__main__':unittest.main()
