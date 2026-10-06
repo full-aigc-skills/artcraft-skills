@@ -1,8 +1,8 @@
 # ArtCraft 独立技能
 
-JPEG 内容登记与尺寸核验仍为未发布的工作树候选。单技能复制、空运行时首次使用既有公开 dev.56 通过；候选 Node 另外核验实际暂存 JPEG。新不可变发布和安装后宿主复验仍未完成。[JPEG 架构](docs/ArtCraft-JPEG-Architecture.zh_CN.md)。
+固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 
-技能源 dev.41 固定 JPEG 运行时 dev.58。候选原生证据保留 dev.56 安装范围，新固定版本的安装后宿主验收仍待完成。
+技能源 dev.41 固定 JPEG 运行时 dev.58，安装后宿主复验通过；历史候选证据保留 dev.56 范围。
 
 历史技能源 dev.39／插件 dev.55／runtime dev.54 已通过固定安装后的 PCM WAV 冷启动原生交付与迁移打包；十项 Art 独立冷启动及原安装 58 项技能摘要核对通过。完整首版／模型／GUI／创作及通用 Skills CLI 验收仍开放。
 

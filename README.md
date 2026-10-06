@@ -1,8 +1,8 @@
 # ArtCraft independent skills
 
-JPEG registration and dimension checks are an unpublished working-tree candidate. A copied-alone skill cold test passed with the existing public runtime dev.56; the candidate Node inspector independently verified the actual staged JPEG. New immutable publication and installed-host verification remain pending. [JPEG architecture](docs/ArtCraft-JPEG-Architecture.md).
+Fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
 
-Source dev.41 pins JPEG runtime dev.58. Candidate native evidence is retained at its dev.56 installation scope; new fixed installed-host acceptance remains pending.
+Source dev.41 pins JPEG runtime dev.58; fixed installed-host JPEG verification passes. Historical candidate evidence keeps its dev.56 scope.
 
 Historical source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
 
