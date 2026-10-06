@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-技能源 `0.1.0-dev.45` 固定不可变 runtime `0.1.0-dev.66`，接入 Film 技能源 dev.9 与 Effect 技能源 dev.9 的类型化透明动画及整份效果／蒙版计划参数预检；Photo dev.9、Vector dev.10 保持固定。固定 Art 插件 dev.67 安装及原生混合拒绝／纠正与动态工作流已通过，全部 58 项独立 CLI 冷启动已通过。完整首版仍开放。
+技能源 `0.1.0-dev.46` 固定不可变 Art runtime `0.1.0-dev.68` 与 Film 技能源 dev.10，支持类型化 LUT／运动交接；Effect dev.9、Photo dev.9、Vector dev.10 保持固定。候选原生联调通过，新的固定 Art 安装验收待执行；完整首版仍开放。
 
 历史固定 JPEG 发行 dev.59／技能源 dev.41／运行时 dev.58：隔离 Codex 发现五插件／58 技能／零错误；安装副本 JPEG、PNG、PCM 原生交付、十项 Art 冷安装及全部安装摘要保全通过。渐进 JPEG 交付重开的三层 Photo 工程及独立解码 PNG／PSD，迁移验包通过。[版本绑定证据](docs/evidence/codex-release59-jpeg-first-use-20261006.json)。完整首版／模型／GUI／创作验收仍开放。
 

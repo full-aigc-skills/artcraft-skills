@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Source `0.1.0-dev.45` pins immutable runtime `0.1.0-dev.66`, Film source dev.9 and Effect source dev.9 for typed transparent animation and whole-plan effect/mask parameter preflight; Photo dev.9 and Vector dev.10 remain fixed. Fixed Art plugin dev.67 installation and native mixed rejection/correction and dynamic workflow pass; all 58 independent cold CLI validations pass. Full V1 remains open.
+Source `0.1.0-dev.46` pins immutable Art runtime `0.1.0-dev.68` and Film source dev.10 for typed LUT/motion handoff. Effect dev.9, Photo dev.9 and Vector dev.10 stay pinned. Candidate native integration passes; new fixed installed Art acceptance remains pending. Full V1 remains open.
 
 Historical fixed JPEG release dev.59 / source dev.41 / runtime dev.58 passes isolated Codex discovery (five plugins, 58 skills, zero errors), installed copied-alone JPEG/PNG/PCM native delivery, ten Art cold CLI installations and all 58 installed digest checks. Progressive JPEG produces a reopened three-layer Photo project plus independently decoded PNG/PSD and a moved package. [Version-bound evidence](docs/evidence/codex-release59-jpeg-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
 
