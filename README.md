@@ -208,3 +208,5 @@ Source dev.42 pins published Art runtime dev.60 and immutable Vector source dev.
 Source dev.42 also binds Photo skills dev.9 to fix image-only font preconditions. Public cold Vector/Photo create, replacement, selective reuse and moved-package acceptance passed; actual new full-plugin install remains pending. [Evidence](docs/evidence/vector-assets-public-candidate-20261006.json).
 
 Source dev.42 default regression: 98 total / 75 passed / 23 gated skips. Public four-domain first use: 3 passed, including real native mixed create/revision/recovery/package checks (104.465s). Fixed plugin host repetition remains separate. [Evidence](docs/evidence/source42-four-domain-candidate-20261006.json).
+
+Fixed installed matrix Film9 / Effect8 / Photo10 / Vector11 / Art61 passes registered PNG/JPEG Vector→Photo replacement/reuse (1 test), four-domain native first use/recovery/package (3 tests), and all 22 updated Photo/Art single-skill cold CLI starts (190.051s). All 58 installed skill hashes are preserved. SVG mixed input, dynamic transparent sequence and full creative acceptance remain open. [Proof](docs/evidence/codex-release61-vector-photo-first-use-20261006.json).

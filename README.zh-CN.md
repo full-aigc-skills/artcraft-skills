@@ -208,3 +208,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源 dev.42 同时固定 Photo 技能源 dev.9，修复纯图片字体前置条件。公开冷启动 Vector／Photo 创建、替换、选择性复用与移动包验收通过；新版完整插件实际安装仍待复验。[证据](docs/evidence/vector-assets-public-candidate-20261006.json)。
 
 技能源 dev.42 默认回归 98 项：75 通过、23 项开关跳过。公开四工具首用 3 项通过，包含真实原生混合创建／修订／恢复／打包（104.465 秒）。固定插件宿主复验单独执行。[证据](docs/evidence/source42-four-domain-candidate-20261006.json)。
+
+固定已安装矩阵 Film9／Effect8／Photo10／Vector11／Art61 通过登记 PNG／JPEG 的 Vector→Photo 替换复用（1 项）、四领域原生首用／恢复／打包（3 项），以及更新的 Photo／Art 全部 22 技能独立空缓存 CLI 检查（190.051 秒）；58 个安装技能摘要保持不变。SVG 混合输入、动态透明序列与完整创作验收仍开放。[证据](docs/evidence/codex-release61-vector-photo-first-use-20261006.json)。
