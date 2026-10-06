@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.38 / plugin dev.53 / runtime dev.52 pins EffectCraft source dev.7. Fixed Codex installation, ten independent Art skill cold starts, native mixed failure/correction, and all 58 installed skill hashes pass. Runtime dev.51 is invalid provenance; do not install. Complete V1/model/GUI/creative acceptance remains open.
+Current source dev.39 pins runtime dev.54. PCM WAV first-use registration and bounded artifact verification pass candidate native delivery; fixed new plugin installation remains pending. Earlier published dev.38 / plugin dev.53 evidence retains its own scope. Full V1/model/GUI/creative acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -192,3 +192,5 @@ Fixed ArtCraft dev.50 / VectorCraft dev.10 first use passes in isolated Codex 0.
 All 22 updated skills pass individual public cold first use (159.811s): each is copied alone to .agents/skills and installs into an independent empty runtime, checks exact version and command contracts, and preserves its files and all host-installed hashes. This does not establish generic Skills CLI installation or every creative scenario.
 
 Fixed dev.53 first use: 58 discovered / zero errors, ten independent Art cold starts (110.577s), installed native failure/corrected mixed delivery (56.202s), five reproducible locked bundles and 58 unchanged installed skill hashes. [Evidence](docs/evidence/codex-release53-effect-mapping-first-use-20261006.json). Generic Skills CLI, full creative V1, model/GUI and production remain open.
+
+[PCM WAV architecture](docs/ArtCraft-PCM-WAV-Architecture.md).

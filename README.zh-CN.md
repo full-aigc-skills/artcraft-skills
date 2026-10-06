@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 dev.38／插件 dev.53／runtime dev.52 固定 EffectCraft 技能源 dev.7。固定 Codex 安装、十项 Art 技能独立冷启动、真实混合失败与修正及原安装 58 项技能摘要均通过。runtime dev.51 来源无效，请勿安装；完整首版／模型／GUI／创作验收仍开放。
+当前技能源 dev.39 固定 runtime dev.54，PCM WAV 首次使用登记与有界素材核验通过候选原生交付；固定新版插件安装仍待完成。既有 dev.38／插件 dev.53 证据保持原范围；完整首版／模型／GUI／创作验收仍开放。
 
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
@@ -192,3 +192,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 本次更新的 22 个技能逐项公开冷启动全部通过（159.811 秒）：每项只复制自身目录到 .agents/skills，独立空运行时完成版本与命令合同检查，目录摘要和全部宿主安装摘要保留。该证据不代表通用 Skills CLI 安装或全部创作场景。
 
 固定 dev.53 首次使用：58 技能发现／零错误、十项 Art 独立冷启动（110.577 秒）、安装后真实失败及修正混合交付（56.202 秒）、五个锁定包可重建且原安装 58 项技能摘要不变。[证据](docs/evidence/codex-release53-effect-mapping-first-use-20261006.json)。通用 Skills CLI、完整创作首版、模型／GUI 与生产门禁仍开放。
+
+[PCM WAV 架构](docs/ArtCraft-PCM-WAV-Architecture.zh_CN.md)。
