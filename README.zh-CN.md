@@ -130,3 +130,5 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 已发布插件 dev.27／技能 dev.24／运行时 dev.26 的实际安装原生授权范围测试通过（1 项，23.649 秒），四领域首次使用／重放／冲突保全／移动验包回归通过（3 项，95.854 秒），全部 58 个安装摘要不变。[证据](docs/evidence/codex-release28-authorization-native-20261006.json)。
 
 ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、安装前评估和按节点需求指纹。单技能在线冷安装测试通过（3 项，98.048 秒），插件同步及实际安装宿主验证尚待完成。[架构](docs/ArtCraft-Versioned-Brief-Architecture.zh_CN.md)。
+
+已发布插件 dev.29／技能 dev.25／运行时 dev.28 的实际安装 Brief 在线首次使用复验通过（3 项，89.841 秒），五插件 58 个技能发现通过且执行后摘要不变。整体实现仍未完成。[证据](docs/evidence/codex-release29-brief-native-20261006.json)。
