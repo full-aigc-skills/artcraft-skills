@@ -1,6 +1,8 @@
+Current standalone source: `0.1.0-dev.59`; runtime83; Film19/Effect18/Photo18/Vector19. Public native appearance source candidate passes; fixed installed acceptance pending. [Architecture](docs/ArtCraft-Vector-Appearance-Architecture.md).
+
 Fixed native gateway first use passes:48 independently installed domain skills and ten Art85/source58 public workflows cold-install, create/reopen/export, revise and preserve original deliveries. Art public Brief, all four gateway domains, five child nodes, selective Logo revision/icon reuse, moved package, native cancellation and six unknown faults pass. All58 installed identities are unchanged. Full2639-command/GUI/model/generic Skills CLI/V1 gates remain open. [Usage](docs/Craft-Native-Gateway-Usage.md) · [Fixed evidence](docs/evidence/codex-native-gateway-first-use-20261007.json).
 
-Current source dev.58 aligns Python Brief with runtime83; fixed public-workflow first-use passes. Full per-command/GUI/model/V1 remains open.
+Historical release record: Current source dev.58 aligns Python Brief with runtime83; fixed public-workflow first-use passes. Full per-command/GUI/model/V1 remains open.
 
 Historical prerelease note: Published native gateway source dev.57 / runtime dev.83 pins Film19 and Effect/Photo/Vector18. Fixed installed retest pending; source candidate proof remains separately scoped.
 
@@ -10,7 +12,7 @@ Historical source-candidate note: Source candidate: complete native workflow gat
 
 Fixed ArtCraft82 / source56 component first use passes: five plugins,58 discovered skills and zero loading errors; ten Art skills each query2639 entries and cold-install/run all four domains independently (40 native cases,920 operations). Actual saved revisions reopen, target settings and output pixels pass, non-target objects and all58 installed identities remain unchanged. Two public source ZIPs exactly match the fixed tag; four plugin CI runs pass. Only component gate6.50 closes. Full DAG gate6.51, exhaustive2639 commands, GUI/model, generic Skills CLI and fullV1 remain open. [Version-bound evidence](docs/evidence/codex-art82-complete-domain-component-first-use-20261007.json).
 
-Current skill source: `0.1.0-dev.56`; runtime: `0.1.0-dev.78`. Fixed installed-component gate 6.50 passes; complete DAG gate 6.51 remains open.
+Historical release record: Current skill source: `0.1.0-dev.56`; runtime: `0.1.0-dev.78`. Fixed installed-component gate 6.50 passes; complete DAG gate 6.51 remains open.
 
 # ArtCraft independent skills
 

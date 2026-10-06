@@ -1,6 +1,8 @@
+当前独立技能源：`0.1.0-dev.59`；runtime83；Film19／Effect18／Photo18／Vector19。公开原生外观候选通过，固定安装待验证。[架构](docs/ArtCraft-Vector-Appearance-Architecture.zh_CN.md)。
+
 固定原生命令网关首用通过：48项领域安装技能与十项 Art85／技能源58 的公开入口独立冷安装、创建／重开／导出、返工并保全原交付。公开 Brief、四领域网关、五子工程、Logo选择性更新／无关图标复用、移动包、真实取消和六类未知回复故障通过；58项安装摘要不变。全2639命令／GUI／模型／通用Skills CLI／完整V1门禁保持开放。[使用指南](docs/Craft-Native-Gateway-Usage.zh_CN.md) · [固定证据](docs/evidence/codex-native-gateway-first-use-20261007.json)。
 
-当前技能源 dev.58 同步 Python Brief 与 runtime83；固定公开工作流首用通过，全量逐命令／GUI／模型／完整V1仍开放。
+历史发行记录：当前技能源 dev.58 同步 Python Brief 与 runtime83；固定公开工作流首用通过，全量逐命令／GUI／模型／完整V1仍开放。
 
 历史预发布记录：原生命令网关技能源 dev.57／runtime dev.83 固定 Film19 与 Effect／Photo／Vector18。固定安装复验待执行；源码候选证据保持独立。
 
@@ -10,7 +12,7 @@ Historical source-candidate note: Source candidate: complete native workflow gat
 
 固定 ArtCraft82／技能源56 的组件首次使用通过：5插件、58技能、零加载错误；十个Art技能各自查询2639条目录，并独立从空缓存安装、调用四领域（40项原生用例，920次操作）。实际工程保存与返工后重开、目标状态及像素、非目标对象保留均通过；58个安装技能摘要不变。两个公开源包与固定标签逐字节一致，4项插件CI通过。仅关闭组件门禁6.50；完整DAG门禁6.51、2639条逐项命令、GUI／模型、通用Skills CLI及完整V1仍开放。[版本绑定证据](docs/evidence/codex-art82-complete-domain-component-first-use-20261007.json)。
 
-当前技能源 dev.57／runtime dev.83，领域固定 Film19／Effect18／Photo18／Vector18；包含完整原生命令网关，固定安装完整 DAG 复验待执行。
+历史发行记录：当前技能源 dev.57／runtime dev.83，领域固定 Film19／Effect18／Photo18／Vector18；包含完整原生命令网关，固定安装完整 DAG 复验待执行。
 
 # ArtCraft 独立技能
 
@@ -22,7 +24,7 @@ Art完整领域命令组件候选已支持2639条离线查询、实际MCP schema
 
 当前独立技能源 dev.54 复用不可变runtime dev.78，固定 Film17 与 Effect／Photo／Vector16 的完整命令内层JSON修复。新固定安装验收进行中；旧证据保持其原版本。
 
-当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装门禁4.9已通过，完整V1仍开放，下方历史证据仍按原版本解读。
+历史发行记录：当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装门禁4.9已通过，完整V1仍开放，下方历史证据仍按原版本解读。
 
 固定插件 dev.77／技能源 dev.52／运行时 dev.76 已通过实际安装首用：Codex 发现五插件58项技能、零加载错误；十个 Art 技能分别从空运行时公开安装全部四领域（累计461.66秒）；1080p／24 fps／五秒混合创作、Logo 返工、坏帧恢复及五子工程移动包通过（215.727秒）；四领域公开工作流24个保存后响应故障均停止且不重放。全部58项安装身份、四领域完整源包、原生CLI和Node摘要保全，四项固定提交CI通过。测试检查器曾产生一个字节码缓存，清理后重新核验固定身份并补跑第十项。仅关闭OpenSpec4.7分发升级子门禁；全量2639命令／GUI／修订、通用Skills CLI、模型和完整V1仍开放。测试代理捕获工程不证明产品保留失败暂存工程。[版本绑定证据](docs/evidence/codex-art77-domain-distribution-first-use-20261007.json)。
 固定领域客户端首用复验：Film 插件 dev.16／技能源 dev.15，Effect／Photo／Vector 插件 dev.15／技能源 dev.14。隔离 Codex 发现58项零错误；实际安装副本24类保存后故障、四个健康公开工作流和已发布 Art 引擎＋安装后 Vector 客户端六类故障通过，全部58项安装摘要保全。Art dev.75 内置旧领域分发包尚需升级，全量命令／GUI／模型验收仍开放。[版本绑定证据](docs/evidence/codex-public-workflow-session-first-use-20261007.json)。
