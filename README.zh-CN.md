@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-当前技能源 v0.1.0-dev.30 绑定 runtime v0.1.0-dev.36，由插件 v0.1.0-dev.38 引用。默认测试 66 项通过、13 项可选跳过；固定安装技能的在线首次使用 3 项通过、无跳过，95.289 秒，包含四源返工和三领域尺寸修改。完整创作／模型／GUI／生产验收仍开放。[证据](docs/evidence/codex-release38-native-brief-first-use-20261006.json)。
+当前技能源 v0.1.0-dev.31 保留运行时 v0.1.0-dev.36，锁定 PhotoCraft skills v0.1.0-dev.8。默认测试 66 项通过、13 项可选跳过；在线冷安装混合回归 3 项通过，包含四源返工、尺寸记录打包迁移与篡改拒绝。完整创作与宿主复验尚未完成。
 
 `artcraft-use` 的公开入口已在干净复制目录中验证：不依赖全局 Node 或兄弟仓库，安装锁定 Node、ArtCraft 运行时、四个独立技能源快照及四个锁定原生 CLI，生成 Logo、海报、动态图形片头和带字幕、音频的短片，保留四种原生工程。
 
@@ -156,3 +156,5 @@ ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、�
 本地 Film 源工程 Brief 候选在写入前使用固定原生 CLI 读取真实元数据，支持字幕与镜头修订，并在就绪发布前拒绝原生导出成功但时长不符的结果。实际本地原生回归通过；固定发行及安装后的源工程首次使用待完成。Photo／Effect／Vector 源工程 Brief 检查及整体验收仍未完成。 [Architecture](docs/ArtCraft-Film-Source-Brief-Architecture.zh_CN.md)。
 
 本地候选更新：Photo／Effect／Vector 源 Brief 已接入保存后原生门禁、主 PNG 尺寸、Effect 实际视频探测与缓存复验。真实源返工、尺寸调整与错误结果拒绝本地通过；固定发布冷启动验收仍开放，尚未发布新版本或更新托管技能快照。
+
+[Photo variant integration / 尺寸变体集成](docs/ArtCraft-Photo-Variant-Integration-Architecture.md) · [中文](docs/ArtCraft-Photo-Variant-Integration-Architecture.zh_CN.md) · [Evidence](docs/evidence/photo-variant-integration.json).

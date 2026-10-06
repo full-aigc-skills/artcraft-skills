@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source v0.1.0-dev.30 pins runtime v0.1.0-dev.36 and is vendored by plugin v0.1.0-dev.38. Default tests: 66 passed, 13 optional skipped. Fixed installed-skill cold online acceptance: 3 passed, no skips, 95.289 seconds, including four source revisions and three geometry changes. Full creative/model/GUI/production acceptance remains open. [Evidence](docs/evidence/codex-release38-native-brief-first-use-20261006.json).
+Current source v0.1.0-dev.31 retains runtime v0.1.0-dev.36 and pins PhotoCraft skills v0.1.0-dev.8. Default suite: 66 passed, 13 optional skipped. Cold online mixed regression: 3 passed, covering four source revisions, relocated geometry-record packaging and tamper rejection. Full creative acceptance and fixed host repetition remain pending.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -156,3 +156,5 @@ Fixed ArtCraft plugin dev.35 / skills dev.29 / runtime dev.34 pass actual instal
 Local Film source Brief candidate reads metadata with the fixed native CLI before writes, supports subtitle and shot revisions, and rejects a successfully rendered duration mismatch before readiness. Actual local native regression passed; fixed release and cold installed source first use remain pending. Photo/Effect/Vector source Brief checks and overall acceptance remain open. [Architecture](docs/ArtCraft-Film-Source-Brief-Architecture.md)。
 
 Local candidate update: source Brief checks now cover Photo/Effect/Vector with saved-native gates, primary PNG dimensions, actual Effect video probing and cache rechecks. Native source revisions, resizing and wrong-output rejection pass locally. Fixed-release cold acceptance remains open; no new release or managed skill snapshot has been published.
+
+[Photo variant integration / 尺寸变体集成](docs/ArtCraft-Photo-Variant-Integration-Architecture.md) · [中文](docs/ArtCraft-Photo-Variant-Integration-Architecture.zh_CN.md) · [Evidence](docs/evidence/photo-variant-integration.json).
