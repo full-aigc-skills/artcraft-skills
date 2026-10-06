@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.36 targets plugin dev.49 with runtime dev.48 and FilmCraft source dev.8. Candidate native mixed failure and positive gain checks pass; public fixed-host revalidation of this release is pending. Earlier evidence retains its original release scope; full V1/model/GUI/creative acceptance remains open.
+Current source dev.36 / plugin dev.49 / runtime dev.48 pin FilmCraft source dev.8. Fixed public installed negative/positive mixed first use and ten independent Art skill cold starts pass. Historical evidence retains its original scope; full V1/model/GUI/creative acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
@@ -181,4 +181,6 @@ Fixed plugin dev.46 / skills dev.34 / runtime dev.45 now passes public installed
 
 Installed dev.46 deadline acceptance passes: a recover skill cold-installs selected dependencies, then a four-second execution deadline stops an observed native render before lease release; its dependent consumer never starts. Repeating the cancelled plan preserves the native attempt and budget without replay. [Deadline proof](docs/ArtCraft-Deadline-Acceptance.md). Installation time is outside that execution deadline.
 
-Required-source-audio propagation has passed local candidate native mixed tests, retaining failure diagnostics and blocking downstream work without replay. Positive audio/gain revision also passes. The new runtime is not publicly released or fixed-host verified yet. [Design and candidate evidence](docs/ArtCraft-Required-Audio-Architecture.md).
+Required-source-audio propagation has passed local candidate native mixed tests, retaining failure diagnostics and blocking downstream work without replay. Positive audio/gain revision also passes. Subsequent fixed public-release verification is recorded below. [Design and candidate evidence](docs/ArtCraft-Required-Audio-Architecture.md).
+
+Fixed ArtCraft dev.49 first use passes in Codex 0.153.4: 58 skills, zero loading errors; installed mixed required-audio failure and positive gain revision; ten Art skills in individual empty runtimes. All installed hashes are preserved. [Release-bound evidence](docs/evidence/codex-release49-required-audio-mixed-first-use-20261006.json). Full V1/model/GUI/creative acceptance remains open.
