@@ -108,6 +108,43 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(bad.returncode,1);self.assertIn('workflow_revision_conflict',bad.stdout)
             self.assertEqual(hashlib.sha256(voice.read_bytes()).hexdigest(),first['nodes']['film']['outputs'][0]['sourceRefs'][1]['sha256'])
 
+            # 同一个首次安装环境，通过单技能公开入口返工四种真实源工程。
+            source_plan=json.loads((skill/'examples/brand-campaign.json').read_text())
+            source_plan['workflowId']='cold-source-brief';source_plan['revision']='v1'
+            source_brief=json.loads(json.dumps(brief));source_brief['workflowId']=source_plan['workflowId']
+            source_hashes={}
+            for node in source_plan['nodes']:
+                prior=first['nodes'][node['id']];artifact=prior['outputs'][0];native_root=Path(prior['root'])
+                source_hashes[node['id']]={str(p.relative_to(native_root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in native_root.rglob('*') if p.is_file()}
+                node['dependsOn']=[];node.pop('providedAssets',None);node.pop('inputBindings',None)
+                node['externalInputs']=[{'root':str(native_root),'artifact':artifact}];node['expectedRevision']=artifact['nativeProjectRef']['sha256']
+                node['payload']['sourceProject']={'assetId':artifact['assetId']};node['payload']['assetBindings']=[]
+                node['payload']['plan'].pop('document');node['payload']['plan']['operations']=[]
+                if node['id']=='film':node['payload']['plan']['operations']=[{'command':'captions.setStyle','params':{'track':'C1','font':'Arial','size':18,'color':'#ffffff','background':True}}]
+                elif node['id']=='logo':node['payload']['plan']['operations']=[{'command':'artboard.setProps','params':{'index':0,'width':352,'height':256}}]
+                elif node['id']=='poster':node['payload']['plan']['operations']=[{'command':'image.canvasSize','params':{'width':352,'height':400}}]
+                else:
+                    manifest=json.loads((native_root/'manifest.json').read_text())
+                    node['payload']['plan']['operations']=[{'command':'comp.settings','params':{'comp':manifest['bindings']['composition']['comp'],'width':352}}]
+            for item in source_brief['deliverables']:
+                item['dependsOn']=[]
+                if item['id']!='film':item['width']=352
+            source_plan['projectBrief']=source_brief
+            source_file=root/'source-brief-plan.json';source_file.write_text(json.dumps(source_plan));source_project=root/'source-project'
+            source_args=[sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(source_file),'--output',str(source_project),'--runtime-home',str(runtime),'--authorization','isolated-first-use']+archive_arguments(os.environ)
+            source_run=subprocess.run(source_args,capture_output=True,text=True,env=environment,timeout=240)
+            self.assertEqual(source_run.returncode,0,source_run.stdout+source_run.stderr);source_result=json.loads(source_run.stdout)
+            self.assertEqual(source_result['state'],'review_ready')
+            for id,result in source_result['nodes'].items():
+                self.assertEqual(result['sourceInspection']['nativeProjectSha256'],first['nodes'][id]['outputs'][0]['nativeProjectRef']['sha256'])
+                original=Path(first['nodes'][id]['root'])
+                self.assertEqual({str(p.relative_to(original)):hashlib.sha256(p.read_bytes()).hexdigest() for p in original.rglob('*') if p.is_file()},source_hashes[id])
+            source_replay=subprocess.run(source_args,capture_output=True,text=True,env=environment,timeout=120)
+            self.assertEqual(source_replay.returncode,0,source_replay.stdout+source_replay.stderr)
+            self.assertTrue(all(result['status']=='reused' for result in json.loads(source_replay.stdout)['nodes'].values()))
+            source_status=json.loads(subprocess.run([setup['nodeExecutable'],setup['entryPoint'],'status','--database',str(source_project/'tasks.sqlite')],check=True,capture_output=True,text=True,env=environment,timeout=30).stdout)
+            self.assertFalse(source_status['leases'])
+
             # 单技能首次使用后的公开打包入口，不依赖全局 Node 或仓库脚本。
             package=root/'delivery-package'
             pack_args=[sys.executable,'-I','-B',str(skill/'scripts/package.py'),'create','--project',str(project),'--workflow',first['runKey'],'--output',str(package),'--authorization','isolated-first-use','--runtime-home',str(runtime)]
@@ -124,7 +161,7 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(json.loads((moved/'workflow-plan-portable.json').read_text())['projectBrief'],brief)
             if os.environ.get('CRAFT_WORKFLOW_EVIDENCE_FILE'):
                 artifacts={id:[{'assetId':a['assetId'],'sha256':a['sha256'],'bytes':a['bytes'],'mediaType':a['mediaType'],'nativeProjectRef':a['nativeProjectRef']} for a in value['outputs']] for id,value in first['nodes'].items()}
-                proof={'schema':'craft-installed-mixed-first-use/v1','python':sys.version.split()[0],'runtimeVersion':setup['version'],'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'checks':['hash-bound native and export Film duration','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
+                proof={'schema':'craft-installed-mixed-first-use/v1','python':sys.version.split()[0],'runtimeVersion':setup['version'],'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'sourceBrief':{'nativeProjectHashes':{id:result['sourceInspection']['nativeProjectSha256'] for id,result in source_result['nodes'].items()},'inspections':{id:result['sourceInspection'] for id,result in source_result['nodes'].items()},'originalFilesPreserved':True,'reused':True,'leases':0},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'checks':['hash-bound native and export Film duration','four native domain source Brief revisions and reuse','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
                 with Path(os.environ['CRAFT_WORKFLOW_EVIDENCE_FILE']).open('x') as output:json.dump(proof,output,ensure_ascii=False,indent=2);output.write('\n')
 
 if __name__ == '__main__':unittest.main()

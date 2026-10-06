@@ -34,6 +34,58 @@ class BriefTests(unittest.TestCase):
         self.assertIn('duration_mismatch',m.assess(value,plan,'user','scope')['blocked'][0]['reasons'])
         value['deliverables'][0]['durationSeconds']=1/3;domain['operations'][0]['params'].update(time='0',duration='84672000000')
         self.assertEqual(m.assess(value,plan,'user','scope')['state'],'ready')
+    def test_only_film_source_metadata_may_defer_to_trusted_native_inspection(self):
+        m=self.module();value,plan=self.fixture();value['deliverables'][0].update(nativeFormat='.fcproj',durationSeconds=1,frameRate={'num':12,'den':1})
+        node=plan['nodes'][0];node['pluginId']='filmcraft';node['expectedRevision']='a'*64
+        node['payload']['sourceProject']={'assetId':'source'};node['payload']['plan'].pop('document')
+        node['externalInputs']=[{'artifact':{'assetId':'source','nativeProjectRef':{'sha256':node['expectedRevision']}}}]
+        assessment=m.assess(value,plan,'user','scope')
+        self.assertEqual(assessment['state'],'blocked');self.assertTrue(m.pending_native_assessment(assessment,plan))
+        value['ambiguities']=[{'id':'question','question':'Confirm title','affects':['logo']}]
+        self.assertFalse(m.pending_native_assessment(m.assess(value,plan,'user','scope'),plan))
+        value['ambiguities']=[];node['expectedRevision']='invalid'
+        self.assertFalse(m.pending_native_assessment(m.assess(value,plan,'user','scope'),plan))
+        node['expectedRevision']='a'*64;node['pluginId']='photocraft';value['deliverables'][0]['nativeFormat']='.pcraft'
+        self.assertFalse(m.pending_native_assessment(m.assess(value,plan,'user','scope'),plan))
+
+    def test_design_source_deferral_and_metadata_changes_require_native_gate(self):
+        m=self.module();value,plan=self.fixture();node=plan['nodes'][0]
+        node['expectedRevision']='a'*64;node['payload']['sourceProject']={'assetId':'source'};node['payload']['plan'].pop('document')
+        node['externalInputs']=[{'artifact':{'assetId':'source','nativeProjectRef':{'sha256':node['expectedRevision']}}}]
+        self.assertTrue(m.pending_native_assessment(m.assess(value,plan,'user','scope'),plan))
+        value['deliverables'][0]['durationSeconds']=1
+        self.assertFalse(m.pending_native_assessment(m.assess(value,plan,'user','scope'),plan))
+        del value['deliverables'][0]['durationSeconds']
+        node['pluginId']='photocraft';value['deliverables'][0]['nativeFormat']='.pcraft'
+        node['payload']['plan']['operations']=[{'command':'image.canvasSize','params':{'width':320,'height':180}}]
+        assessment=m.assess(value,plan,'user','scope')
+        self.assertIn('native_output_inspection_required',assessment['blocked'][0]['reasons'])
+        self.assertTrue(m.pending_native_assessment(assessment,plan))
+
+    def test_source_deferral_reaches_runtime_and_ambiguity_still_prevents_install(self):
+        # 仅验证 Python 桥接分支；原生行为由独立真实工作流测试证明。
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        spec=importlib.util.spec_from_file_location('source_workflow',SCRIPT.with_name('workflow.py'));workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
+        m=self.module();value,plan=self.fixture();value['deliverables'][0].update(nativeFormat='.fcproj',durationSeconds=1,frameRate={'num':12,'den':1})
+        node=plan['nodes'][0];node['pluginId']='filmcraft';node['expectedRevision']='a'*64;node['payload']['plan'].pop('document');node['payload']['sourceProject']={'assetId':'source'};node['externalInputs']=[{'artifact':{'assetId':'source','nativeProjectRef':{'sha256':node['expectedRevision']}}}]
+        calls=[]
+        def process(argv,**kwargs):
+            calls.append(argv)
+            if 'bootstrap.py' in str(argv[3]):
+                identity=lambda name:{'runtimeIdentity':{'pluginId':name,'pluginVersion':'fixture'},'skillRoot':'fixture-skill','executable':'fixture-native','files':[]}
+                result={'schema':'artcraft-setup/v1','nodeExecutable':'fixture-node','entryPoint':'fixture-entry','pythonExecutable':'fixture-python','pythonSha256':'b'*64,'runtimeHome':'fixture-home','skills':{name:identity(name) for name in ('filmcraft','vectorcraft','photocraft')}}
+                return SimpleNamespace(returncode=0,stdout=json.dumps(result),stderr='')
+            return SimpleNamespace(returncode=2,stdout=json.dumps({'state':'blocked','error':'native_inspection_required'}),stderr='')
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);source=root/'input.json';source.write_text(json.dumps(value));brief=m.create(source,root/'brief');planfile=root/'plan.json';planfile.write_text(json.dumps(plan))
+            with patch.object(workflow.subprocess,'run',side_effect=process):
+                with self.assertRaisesRegex(RuntimeError,'native_inspection_required'):workflow.execute(planfile,root/'project','user','scope',brief_root=root/'brief',brief_sha=brief['sha256'])
+                self.assertEqual(len(calls),2);self.assertIn('run',calls[1])
+                calls.clear();value['ambiguities']=[{'id':'title','question':'Confirm title','affects':['logo']}];source.write_text(json.dumps(value));ambiguous=m.create(source,root/'ambiguous')
+                with self.assertRaisesRegex(ValueError,'brief_plan_blocked'):workflow.execute(planfile,root/'other','user','scope',brief_root=root/'ambiguous',brief_sha=ambiguous['sha256'])
+                self.assertEqual(calls,[])
+
     def module(self):
         spec=importlib.util.spec_from_file_location('brief',SCRIPT);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
     def fixture(self):

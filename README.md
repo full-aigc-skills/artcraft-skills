@@ -150,3 +150,7 @@ Source candidate dev.29 pins runtime dev.34 and includes a one-second Film Brief
 Source candidate dev.29 cold online first use passed: 3 tests in 93.401 seconds. The saved Film project is exactly one second; export, native inspection and project hashes are bound. Fixed installed-plugin proof remains pending.
 
 Fixed ArtCraft plugin dev.35 / skills dev.29 / runtime dev.34 pass actual installed-skill online first use (3 tests, 94.638s), including the hash-bound one-second native Film duration and exported probe. All 58 installed skill hashes remain unchanged. Source-project Brief inspection and full implementation/creative acceptance remain open. [Evidence](docs/evidence/codex-release35-film-duration-native-20261006.json)。
+
+Local Film source Brief candidate reads metadata with the fixed native CLI before writes, supports subtitle and shot revisions, and rejects a successfully rendered duration mismatch before readiness. Actual local native regression passed; fixed release and cold installed source first use remain pending. Photo/Effect/Vector source Brief checks and overall acceptance remain open. [Architecture](docs/ArtCraft-Film-Source-Brief-Architecture.md)。
+
+Local candidate update: source Brief checks now cover Photo/Effect/Vector with saved-native gates, primary PNG dimensions, actual Effect video probing and cache rechecks. Native source revisions, resizing and wrong-output rejection pass locally. Fixed-release cold acceptance remains open; no new release or managed skill snapshot has been published.
