@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Current source dev.36 / plugin dev.49 / runtime dev.48 pin FilmCraft source dev.8. Fixed public installed negative/positive mixed first use and ten independent Art skill cold starts pass. Historical evidence retains its original scope; full V1/model/GUI/creative acceptance remains open.
+Current source dev.38 pins runtime dev.52 and EffectCraft source dev.7; public first-use and the next fixed plugin installation remain pending. Runtime dev.51 has invalid tag/archive provenance and must not be installed. Historical evidence retains its original scope; full V1/model/GUI/creative acceptance remains open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
