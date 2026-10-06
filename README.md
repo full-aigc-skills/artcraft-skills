@@ -1,6 +1,8 @@
 # ArtCraft independent skills
 
-Source dev.40 pins PNG runtime dev.56 for content registration, bounded verification and native PNG staging. Fixed installed-host PNG acceptance passes; historical candidate evidence is not substituted for release verification.
+JPEG registration and dimension checks are an unpublished working-tree candidate. A copied-alone skill cold test passed with the existing public runtime dev.56; the candidate Node inspector independently verified the actual staged JPEG. New immutable publication and installed-host verification remain pending. [JPEG architecture](docs/ArtCraft-JPEG-Architecture.md).
+
+Source dev.41 pins JPEG runtime dev.58. Candidate native evidence is retained at its dev.56 installation scope; new fixed installed-host acceptance remains pending.
 
 Historical source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
 
