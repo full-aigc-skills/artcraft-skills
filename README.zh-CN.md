@@ -142,3 +142,5 @@ ArtCraft Brief 源更新锁定运行时 dev.28，支持不可变需求记录、�
 固定 PhotoCraft 插件 dev.8／技能源 dev.7 与 ArtCraft 插件 dev.31／技能源 dev.27 通过安装后的原生修图和交接测试（13.260 秒／23.264 秒）。58 个安装后技能摘要全部保持不变。仅完成有界修图任务；完整目标仍未完成。[证据](docs/evidence/codex-release31-retouch-native-20261006.json)。
 
 源码候选 dev.28 固定运行时 dev.32，提供有界失败诊断。单技能全新在线 PhotoCraft 集成通过（21.660 秒），覆盖保护失败报告、公开状态查询、重复调用保持 attempt、合法修订和移动包。安装后的插件证据仍待完成。[证据](docs/evidence/native-failure-diagnostics.json)。
+
+固定 ArtCraft 插件 dev.33／技能源 dev.28／运行时 dev.32 通过安装后的失败／状态／重复执行测试（1 项，26.233 秒）及四领域在线首次使用回归（3 项，95.701 秒）。58 个已安装技能摘要全部保持不变。仅完成有界任务 5.12；完整实施和创作接受仍未完成。[证据](docs/evidence/codex-release33-diagnostics-native-20261006.json)。
