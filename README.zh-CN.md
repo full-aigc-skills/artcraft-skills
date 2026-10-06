@@ -213,4 +213,6 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 
 固定已安装矩阵 Film9／Effect8／Photo10／Vector11／Art61 通过登记 PNG／JPEG 的 Vector→Photo 替换复用（1 项）、四领域原生首用／恢复／打包（3 项），以及更新的 Photo／Art 全部 22 技能独立空缓存 CLI 检查（190.051 秒）；58 个安装技能摘要保持不变。SVG 混合输入、动态透明序列与完整创作验收仍开放。[证据](docs/evidence/codex-release61-vector-photo-first-use-20261006.json)。
 
-技能源 dev.43 单独复制、默认公开冷安装的 PNG／JPEG 与 SVG 混合首用两项通过（55.457 秒），覆盖外部 SVG 明确拒绝、非目标像素保持、PSD 独立解码、选择性返工、重复任务复用和迁移打包。[源码候选证据](docs/evidence/svg-mixed-source43-candidate-20261006.json)。固定完整插件安装复验仍待完成。
+技能源 dev.43 单独复制、默认公开冷安装的 PNG／JPEG 与 SVG 混合首用两项通过（55.457 秒），覆盖外部 SVG 明确拒绝、非目标像素保持、PSD 独立解码、选择性返工、重复任务复用和迁移打包。[源码候选证据](docs/evidence/svg-mixed-source43-candidate-20261006.json)。固定完整插件 dev.63 安装复验通过；完整首版仍开放。
+
+固定 ArtCraft 插件 dev.63／技能源 dev.43／runtime dev.62：隔离 Codex 发现五插件／58 技能／零错误；安装后 PNG／JPEG 与 SVG 混合首用 2 项通过（76.574 秒）、四领域回归 3 项通过（116.076 秒）、Art 十项独立冷启动通过（133.395 秒）。原安装全部 58 项摘要保全，五包固定重建一致，两份公开发行附件及逐文件摘要匹配。SVG 拒绝保留领域代码；替换只重建消费者，非目标像素保持，PNG／PSD 独立核对且迁移包通过。仅关闭有界固定 SVG 交接门禁；SVG 类型元数据、动态透明序列及完整首版／创作／模型／GUI 仍开放。[固定证据](docs/evidence/codex-release63-svg-first-use-20261006.json)。
