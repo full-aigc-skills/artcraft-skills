@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+技能源dev.51补充Node与领域技能制品的最多三次只读下载恢复；半包清理及固定摘要仍强制校验。[方案](docs/ArtCraft-Download-Recovery-Architecture.zh_CN.md)，[候选回归](docs/evidence/download-recovery-candidate-20261007.json)。全部十技能冷安装与固定宿主验收保持开放。dev.50仅保留标签，因元数据未更新不发布、不用于插件快照。
+
 领域分发候选已升级至dev.73：四领域固定完整命令／协议修复技能源，公开冷安装混合创作、依赖返工、恢复、移动包和24个领域故障案例通过。[候选证据](docs/evidence/art-domain-distribution-candidate-20261007.json)。新技能源／插件固定安装与十技能完整安装验收另行跟踪。
 
 技能源 `0.1.0-dev.47` 固定 Art runtime `0.1.0-dev.68`、Photo 源 dev.10 与维护版 CLI `0.2.0-craft.1`，Film dev.10、Effect dev.9、Vector dev.10。四领域智能对象候选首次使用通过：在已有海报工程替换内容，保留蒙版、变换和非目标图层，更新依赖任务并复用无关任务。固定插件宿主验收与完整首版仍开放。[架构与证据](docs/ArtCraft-Smart-Mixed-Architecture.zh_CN.md)。

@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Skills dev.51 add at most three read-only Node/domain archive download attempts, discarding partial files and retaining pinned digests. [Design](docs/ArtCraft-Download-Recovery-Architecture.md), [candidate regression](docs/evidence/download-recovery-candidate-20261007.json). All-ten cold installation and fixed-host acceptance remain open. Dev.50 retains its tag only: stale metadata means it has no Release and is not a plugin snapshot.
+
 Candidate distribution dev.73 pins the four complete-command/protocol-repair domain sources. Public cold mixed creation, dependent revisions, recovery, moved delivery and 24 downloaded-domain fault cases passed. [Candidate evidence](docs/evidence/art-domain-distribution-candidate-20261007.json). New immutable source/plugin installed-host checks and ten full skill installations remain separately tracked.
 
 Source `0.1.0-dev.47` pins immutable Art runtime `0.1.0-dev.68`, Photo source dev.10 with maintained CLI `0.2.0-craft.1`, Film dev.10, Effect dev.9 and Vector dev.10. Smart four-domain candidate first use passes: saved poster smart replacement preserves mask, transform and non-target layers, while downstream tasks update and unrelated tasks reuse. Fixed plugin host acceptance remains open; full V1 remains open. [Architecture and evidence](docs/ArtCraft-Smart-Mixed-Architecture.md).
