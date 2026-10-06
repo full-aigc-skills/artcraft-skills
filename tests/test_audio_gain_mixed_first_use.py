@@ -34,6 +34,8 @@ class AudioGainMixedFirstUseTests(unittest.TestCase):
                 path = root / (plan['revision'] + '.json')
                 path.write_text(json.dumps(plan))
                 args = [sys.executable, '-I', '-B', str(skill / 'scripts/workflow.py'), str(path), '--output', str(project), '--runtime-home', str(runtime), '--authorization', 'mixed-gain-first-use']
+                if os.environ.get('CRAFT_BUNDLE_DIRECTORY'):
+                    args += ['--bundle-dir', os.environ['CRAFT_BUNDLE_DIRECTORY']]
                 if any('voice' in n.get('providedAssets', []) for n in plan['nodes']):
                     args += ['--asset', 'voice=' + str(voice)]
                 result = subprocess.run(args, capture_output=True, text=True, env=environment, timeout=600)
