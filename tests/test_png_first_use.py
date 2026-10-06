@@ -2,11 +2,12 @@
 import hashlib,json,os,shutil,struct,subprocess,sys,tempfile,unittest,zlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+SOURCE=Path(os.environ.get('CRAFT_INSTALLED_PNG_ART_SKILL',str(ROOT/'skills/artcraft-cli-execute')))
 @unittest.skipUnless(os.environ.get('CRAFT_PNG_FIRST_USE')=='1','requires public downloads and native Photo runtime')
 class PngFirstUse(unittest.TestCase):
  def test_isolated_skill_registers_real_png_and_packages_native_poster(self):
   with tempfile.TemporaryDirectory() as temporary:
-   root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-execute';shutil.copytree(ROOT/'skills/artcraft-cli-execute',skill,ignore=shutil.ignore_patterns('__pycache__'))
+   root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-execute';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'))
    hashes=lambda:{p.relative_to(skill).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in skill.rglob('*') if p.is_file()}
    before=hashes()
    def chunk(kind,data):return struct.pack('>I',len(data))+kind+data+struct.pack('>I',zlib.crc32(kind+data))
@@ -21,3 +22,6 @@ class PngFirstUse(unittest.TestCase):
    self.assertEqual(asset['mediaType'],'image/png');self.assertEqual(asset['technicalMetadata'],{'width':1,'height':1,'bitDepth':8,'alpha':True})
    package=root/'package';packed=run('package.py',['create','--project',project,'--workflow',result['runKey'],'--authorization','png-first-use','--output',package]);moved=root/'moved';shutil.move(package,moved)
    verified=run('package.py',['verify','--package',moved,'--sha',packed['sha256']]);self.assertEqual(len(verified['children']),1);self.assertEqual(product.read_bytes(),original);self.assertEqual(hashes(),before)
+   if os.environ.get('CRAFT_PNG_FIRST_USE_EVIDENCE'):
+    evidence={'schema':'artcraft-png-installed-first-use/v1','result':'passed','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'mediaType':asset['mediaType'],'technicalMetadata':asset['technicalMetadata'],'movedPackageChildren':1,'sourceAndSkillPreserved':True,'runtimeMode':'default public downloads','skillFiles':before}
+    with Path(os.environ['CRAFT_PNG_FIRST_USE_EVIDENCE']).open('x') as stream:json.dump(evidence,stream,indent=2)

@@ -141,12 +141,12 @@ A required-audio Film node without a timeline audio source reports `export_audio
 
 Standard PCM WAV narration is identified from content, carries exact sample-based facts, and is verified again by the runtime. Invalid WAV files and unsupported compression are rejected explicitly; no replacement voice is generated. Native FilmCraft export/decode and creative/audio review remain separate checks.
 
-## PNG 候选合同 / PNG candidate contract
+## PNG 固定合同 / PNG pinned contract
 
-尚未发布的工作树候选按内容登记静态 PNG 的 width、height、bitDepth、alpha，检查 CRC、块结构、有限解压扫描数据及过滤字节。Alpha 仅表示通道或 tRNS，不证明实际像素透明。支持标准位深／颜色类型及 Adam7，限制输入 64 MiB、扫描数据 128 MiB，明确拒绝 APNG。错误 PNG 在安装前拒绝，声明属性不匹配由候选运行时在领域执行前拒绝。
+运行时 dev.56 与技能源 dev.40 按内容登记静态 PNG 的 width、height、bitDepth、alpha，检查 CRC、块结构、有限解压扫描数据及过滤字节。Alpha 仅表示通道或 tRNS，不证明实际像素透明。支持标准位深／颜色类型及 Adam7，限制输入 64 MiB、扫描数据 128 MiB，明确拒绝 APNG。错误 PNG 在安装前拒绝，声明属性不匹配由候选运行时在领域执行前拒绝。
 
 原生 Photo 导入按扩展名路由。识别为 PNG 的非 .png 输入在项目身份与修订绑定通过后原样复制到 provided-assets/<sha>.png；两份摘要须一致，不改写原输入。副本进入登记和可迁移交付包。
 
-The unpublished candidate recognizes static PNG by content and records width, height, bitDepth and alpha representation. It checks CRC, chunk structure, bounded decompressed scan data and filter bytes, including standard depths/colors and Adam7. Limits: 64 MiB input, 128 MiB scan data; APNG is explicitly unsupported. Alpha representation does not prove visually transparent pixels. A non-.png input recognized as PNG is copied byte-for-byte to project-owned provided-assets/<sha>.png only after owner/revision binding; both hashes must match. The original is preserved and the copy enters portable packaging.
+Runtime dev.56 and skill source dev.40 recognize static PNG by content and records width, height, bitDepth and alpha representation. It checks CRC, chunk structure, bounded decompressed scan data and filter bytes, including standard depths/colors and Adam7. Limits: 64 MiB input, 128 MiB scan data; APNG is explicitly unsupported. Alpha representation does not prove visually transparent pixels. A non-.png input recognized as PNG is copied byte-for-byte to project-owned provided-assets/<sha>.png only after owner/revision binding; both hashes must match. The original is preserved and the copy enters portable packaging.
 
-Candidate runtime publication and installed-host verification remain open; JPEG/video identification, ICC/visual fidelity and creative acceptance are not implied.
+Fixed installed-host verification remains open; JPEG/video identification, ICC/visual fidelity and creative acceptance are not implied.

@@ -1,8 +1,8 @@
 # ArtCraft independent skills
 
-Working-tree candidate: static PNG content registration and bounded verification are implemented but unpublished. An isolated candidate skill can use existing public runtimes for Photo native delivery; this does not prove a new fixed runtime or host release.
+Source dev.40 pins PNG runtime dev.56 for content registration, bounded verification and native PNG staging. Fixed installed-host acceptance is pending; historical candidate evidence is not substituted for release verification.
 
-Current source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
+Historical source dev.39 / plugin dev.55 / runtime dev.54 passes fixed installed PCM WAV cold native delivery and portable packaging; ten independent Art cold starts and all 58 installed skill hashes pass. Complete V1/model/GUI/creative and generic Skills CLI acceptance remain open.
 
 The public `artcraft-use` entry is verified from a clean copied directory without global Node or sibling repositories. It installs pinned Node, the ArtCraft runtime, four independent skill snapshots and four pinned native CLIs, then creates Logo, poster, animated intro and video with subtitles/audio while retaining all four native project formats.
 
