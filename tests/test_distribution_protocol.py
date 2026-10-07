@@ -5,7 +5,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 class DistributionProtocolTests(unittest.TestCase):
  def test_every_standalone_skill_pins_fixed_complete_domain_helpers(self):
-  expected = {"filmcraft": "0.1.0-dev.34", "effectcraft": "0.1.0-dev.31", "photocraft": "0.1.0-dev.31", "vectorcraft": "0.1.0-dev.30"}
+  expected = {"filmcraft": "0.1.0-dev.35", "effectcraft": "0.1.0-dev.34", "photocraft": "0.1.0-dev.33", "vectorcraft": "0.1.0-dev.31"}
   bootstraps = {'filmcraft': 'bd0c370eace07fe88ae63d4be08374d9b1845b68f0cd43ab0e23a444504623fe', 'effectcraft': 'ad89838b5fd4452685c8cbcfb4394e93597624825356e134e0b809a6a0b3606b', 'photocraft': 'a6e3e9f7b3ab4898b88ecac46fdfa72b32338fcd51d540dde1280882b6813179', 'vectorcraft': '78d5bdf16bf08e9abc96b4b23e5d071da72b648698b888b85fa1b90f81cf32a9'}
   counts = {"filmcraft": 13, "effectcraft": 15, "photocraft": 13, "vectorcraft": 13}
   transport = "ad8a8fb3f84f9fbf814b5a593c96faf3cf9bb476ff32627039975d7f57c86616"
@@ -21,8 +21,8 @@ class DistributionProtocolTests(unittest.TestCase):
      self.assertEqual(bundle["version"],version)
      self.assertEqual(bundle["archiveFormat"],"git-archive-zip")
      if domain == "filmcraft":
-      self.assertEqual(bundle["sourceCommit"], "3fa37afe17047feca0d341c9c8ae266cc7b59798")
-      self.assertEqual(bundle["sha256"], "60fa0bbc89e8e751a793afb9e559bcaf80ccf5c861b326ffa235f4d7d8f4cc7f")
+      self.assertEqual(bundle["sourceCommit"], "09717472fc0253d9679ca03238b7403e7bd86829")
+      self.assertEqual(bundle["sha256"], "d921693a524001c3a818b16e9a5a8b3d6399adf30c10e25db7c1489428fa5d1e")
      for suffix in ["/scripts/output_guard.py", "/references/output-execution.md"]:
       guards = [value for path, value in bundle["files"].items()
                 if path.startswith("skills/") and path.endswith(suffix)]

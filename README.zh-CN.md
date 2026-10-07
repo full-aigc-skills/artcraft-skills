@@ -307,3 +307,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 当前固定协议引用发行矩阵（Film／Effect dev.37、Photo dev.36、Vector dev.34、Art dev.107）已通过隔离 Codex 安装／发现 64 项技能、16 项实际安装所有者文件摘要核对，以及五个全新领域缓存下的 64 项独立公开 CLI 探测。原生场景证据仅对字节一致的技能复用，完整首版仍开放。[固定发行证据](docs/evidence/craft-protocol-authority-fixed-first-use-20261008.json)。
 
 技能源 dev.81 候选固定已发布 runtime dev.108，补充持久工作流任务回执说明；145 项源码测试中 109 项通过、36 项条件跳过，单项源码候选技能默认公开空缓存 CLI 安装通过。当前四领域依赖锁保持既有版本，升级等待 PhotoCraft dev.33 前缀 ZIP 的严格兼容。独立技能源标签和完整插件发行仍未完成。[候选证据](docs/evidence/artcraft108-task-receipt-sdk-candidate-20261008.json)。
+
+源码候选将 Art 领域依赖更新为 Film35／Effect34／Photo33／Vector31，并严格归一化固定 Photo 归档前缀。五个不可变归档精确重建，114 项源码测试通过、36 项条件跳过，且已有真实公开空缓存原生 Photo 返工／打包证据。固定完整插件验收仍待完成。[架构说明](docs/Craft-Domain-Archive-Prefix-Architecture.zh_CN.md)。

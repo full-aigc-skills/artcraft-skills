@@ -9,7 +9,7 @@ class AppearanceContract(unittest.TestCase):
    if not (skill/'SKILL.md').is_file():continue
    plan=json.loads((skill/'examples/vector-appearance-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'vectorcraft')
    self.assertTrue((skill/'references/vector-appearance.md').is_file());self.assertIn('references/vector-appearance.md',(skill/'SKILL.md').read_text())
-   lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['vectorcraft-skills']['version'],'0.1.0-dev.30');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.108')
+   lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['vectorcraft-skills']['version'],'0.1.0-dev.31');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.108')
 @unittest.skipUnless(os.environ.get('CRAFT_ART_VECTOR_APPEARANCE')=='1','explicit public native opt-in')
 class AppearancePublicFirstUse(unittest.TestCase):
  def test_cold_native_creation_source_revision_and_moved_package(self):
