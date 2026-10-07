@@ -1,3 +1,5 @@
+Fixed ArtCraft98 / source72 first use passes: five public plugins expose64 skills with zero loading errors;64 separately copied CLI probes pass using five fresh domain caches and subsequent reuse. One real cold native mixed workflow plus two archive-option contracts pass (154.62s), with source revisions, recovery and portable delivery. All64 installed hashes remain unchanged. Effect source29/runtime83 identities and public source archive bytes are verified. Generic Skills CLI, Art role-specific acceptance and complete V1 remain open. [Evidence / 证据](docs/evidence/artcraft98-effect29-fixed-first-use-20261007.json).
+
 Source72 candidate distribution passed104 regressions (32 opt-in skips) and one real public cold mixed workflow (plus two archive-option contracts). Effect29 is pinned, with unchanged runtime83 and the2646-command index. Fixed publication/installation remains separate. [Evidence / 证据](docs/evidence/artcraft-effect29-distribution-candidate-20261007.json).
 
 Domain scene acceptance now has **43 passed native tests / all 42 distinct domain scene skills**. The fixed-installed tracking case passed with supported H.264 High; the earlier lossless input is unsupported by the native decoder and its failed evidence remains historical. Art role-specific tasks, generic Skills CLI and complete V1 remain open. [Evidence / 证据](docs/evidence/craft-fixed-tracking-supported-input-20261007.json).
@@ -12,7 +14,7 @@ Every-skill cold first use: **64/64 passed** on macOS arm64 / Python3.13.5 (620.
 
 Fixed ArtCraft97 / source71 acceptance: five public plugins expose 64 skills with zero loading errors; all64 copied-skill CLI probes pass (five fresh domain caches, subsequent reuse). Installed Art passes240 strict JSON rejection calls and cold native mixed creation/revision/crash recovery/portable delivery. Installed hashes remain unchanged. Generic Skills CLI and complete V1 remain open. [Evidence](docs/evidence/artcraft97-strict-plan-fixed-first-use-20261007.json).
 
-Source candidate: **0.1.0-dev.72**. Ten independent skills pin Film/Vector dev.28 and Effect/Photo dev.29 with Art runtime dev.83. The 2,646-command immutable index and synced distribution pass regression; candidate mixed workflow and fixed publication are checked separately. Complete V1 remains open.
+Published source: **0.1.0-dev.72**. Ten independent skills pin Film/Vector dev.28 and Effect/Photo dev.29 with Art runtime dev.83. The 2,646-command immutable index and synced distribution pass regression; candidate mixed workflow and fixed publication are checked separately. Complete V1 remains open.
 
 Earlier version-bound verification records:
 

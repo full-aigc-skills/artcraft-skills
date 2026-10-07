@@ -1,3 +1,5 @@
+固定 ArtCraft98／技能源72 首用通过：五个公开插件发现64技能，加载错误0；64个独立副本CLI探测通过，使用五个新领域缓存及后续复用。1项真实冷原生混合工作流和2项归档选项合同通过（154.62秒），覆盖源返工、恢复及移动交付。全部64安装摘要保持；Effect源29／runtime83身份及公开技能源归档字节已核验。通用Skills CLI、Art角色专项及完整首版仍开放。 [Evidence / 证据](docs/evidence/artcraft98-effect29-fixed-first-use-20261007.json).
+
 技能源72候选分发通过104项回归（32项条件跳过）和1项真实公开冷混合工作流（另有2项归档选项合同）。已固定Effect29，保留runtime83及2646命令目录，固定发布／安装另行验收。 [Evidence / 证据](docs/evidence/artcraft-effect29-distribution-candidate-20261007.json).
 
 领域场景验收现为 **43项原生测试通过／全部42个不同场景技能**。固定安装跟踪用例使用受支持H.264 High通过；此前无损输入不受原生解码器支持，失败证据保留。Art角色专项、实际Skills CLI及完整V1仍开放。 [Evidence / 证据](docs/evidence/craft-fixed-tracking-supported-input-20261007.json).
@@ -12,7 +14,7 @@
 
 固定 ArtCraft97／技能源71 验收：五个公开插件发现64技能，加载错误0；64个独立副本CLI探测通过（五个新领域缓存，后续复用）。已安装 Art 通过240次严格JSON拒绝，以及冷原生混合创作、返工、崩溃恢复和移动交付验证。全部安装摘要保持不变。通用Skills CLI及完整首版门禁仍开放。[证据](docs/evidence/artcraft97-strict-plan-fixed-first-use-20261007.json)。
 
-技能源候选：**0.1.0-dev.72**。十个独立技能固定Film／Vector dev.28、Effect／Photo dev.29和Art runtime dev.83。2,646命令不可变索引及分发同步回归通过；候选混合任务与固定发布分别验收，完整首版仍开放。
+已发布技能源：**0.1.0-dev.72**。十个独立技能固定Film／Vector dev.28、Effect／Photo dev.29和Art runtime dev.83。2,646命令不可变索引及分发同步回归通过；候选混合任务与固定发布分别验收，完整首版仍开放。
 
 以下为各历史版本的验收记录：
 
