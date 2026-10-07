@@ -2,7 +2,7 @@
 
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.80`; current fixed plugin: `0.1.0-dev.107`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.81`; current fixed plugin: `0.1.0-dev.107`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -311,3 +311,5 @@ Fixed plugin dev.107 installed acceptance passes ten new cold installations, 390
 Independent-install dependency boundary: current byte-identical cold-install records and 128 new fixed-copy bootstrap/CLI failure checks qualify four domain SK-002 requirements. Art and generic Skills CLI installation stay open. [Design and evidence](docs/Craft-Independent-Setup-Boundary-Architecture.md).
 
 Current fixed protocol-reference release matrix (Film/Effect dev.37, Photo dev.36, Vector dev.34, Art dev.107) passes actual isolated Codex installation/discovery of 64 skills, 16 installed authority-file digest checks, and 64 independent public CLI probes using five fresh domain caches. Historical native scene proof is reused only for byte-identical skills; full V1 remains open. [Fixed release evidence](docs/evidence/craft-protocol-authority-fixed-first-use-20261008.json).
+
+Source dev.81 candidate pins released runtime dev.108 and documents durable workflow task receipts. Its 145 source tests pass with 36 conditional skips, and one standalone source-candidate skill performs default public cold CLI setup. Existing four domain dependency pins are retained pending strict PhotoCraft dev.33 prefixed ZIP support. Independent source tag and full plugin publication remain pending. [Candidate evidence](docs/evidence/artcraft108-task-receipt-sdk-candidate-20261008.json).

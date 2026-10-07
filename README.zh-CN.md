@@ -2,7 +2,7 @@
 
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.80`；现有固定插件：`0.1.0-dev.107`；10 个独立技能。
+当前技能源快照：`0.1.0-dev.81`；现有固定插件：`0.1.0-dev.107`；10 个独立技能。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -305,3 +305,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 独立安装依赖边界：当前摘要一致的冷安装记录与 128 项新固定副本安装器／CLI 失败检查验收四领域 SK-002。Art 与通用 Skills CLI 安装继续开放。[设计与证据](docs/Craft-Independent-Setup-Boundary-Architecture.zh_CN.md)。
 
 当前固定协议引用发行矩阵（Film／Effect dev.37、Photo dev.36、Vector dev.34、Art dev.107）已通过隔离 Codex 安装／发现 64 项技能、16 项实际安装所有者文件摘要核对，以及五个全新领域缓存下的 64 项独立公开 CLI 探测。原生场景证据仅对字节一致的技能复用，完整首版仍开放。[固定发行证据](docs/evidence/craft-protocol-authority-fixed-first-use-20261008.json)。
+
+技能源 dev.81 候选固定已发布 runtime dev.108，补充持久工作流任务回执说明；145 项源码测试中 109 项通过、36 项条件跳过，单项源码候选技能默认公开空缓存 CLI 安装通过。当前四领域依赖锁保持既有版本，升级等待 PhotoCraft dev.33 前缀 ZIP 的严格兼容。独立技能源标签和完整插件发行仍未完成。[候选证据](docs/evidence/artcraft108-task-receipt-sdk-candidate-20261008.json)。

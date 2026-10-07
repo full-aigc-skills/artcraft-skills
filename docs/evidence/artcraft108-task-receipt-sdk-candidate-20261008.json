@@ -1,0 +1,37 @@
+{
+  "schema": "artcraft-task-receipt-sdk-source-candidate/v1",
+  "result": "PASS",
+  "goalComplete": false,
+  "runtime": {
+    "version": "0.1.0-dev.108",
+    "sha256": "04d50e78efb94a31433403c073fe3922733db3829c373dbd4640cc5e92f3a6f1"
+  },
+  "sourceCandidate": "0.1.0-dev.81",
+  "sourceTests": {
+    "total": 145,
+    "passed": 109,
+    "conditionalSkipped": 36
+  },
+  "sourceSingleSkillCold": {
+    "result": "PASS",
+    "identity": {
+      "name": "artcraft",
+      "version": "0.1.0-dev.108"
+    },
+    "scope": "source candidate single copied skill, empty default public cache, system-only PATH; not published independent skill tag or creative scene"
+  },
+  "domainDependencies": {
+    "filmcraft-skills": "0.1.0-dev.34",
+    "effectcraft-skills": "0.1.0-dev.31",
+    "photocraft-skills": "0.1.0-dev.31",
+    "vectorcraft-skills": "0.1.0-dev.30"
+  },
+  "dependencyUpgrade": "not_applied; PhotoCraft33 public ZIP has photocraft-skills/ top-level prefix unsupported by current root-only installer",
+  "scope": "candidate source runtime lock and receipt guide; public runtime is released, independent source tag/full plugin are not",
+  "unverified": [
+    "strict prefixed source ZIP support and upgraded domain locks",
+    "published independent source81 and new complete plugin",
+    "ten separate Art installed skill creative cold scenes",
+    "complete AC-CP-001"
+  ]
+}
