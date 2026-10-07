@@ -1,6 +1,8 @@
+Current first-use entry: plugin `0.1.0-dev.87`, skill source `0.1.0-dev.60`. Installation and command guides are checked against the current pinned releases; historical evidence retains its original version scope. [Guide](docs/Craft-Native-Gateway-Usage.md).
+
 Current standalone source: `0.1.0-dev.60`; runtime83; Film19/Effect19/Photo18/Vector19. Public native expression source candidate passes; ten installed Art expression cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Effect-Expression-Architecture.md).
 
-Current standalone source: `0.1.0-dev.59`; runtime83; Film19/Effect18/Photo18/Vector19. Public native appearance source candidate passes; ten installed Art appearance cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Vector-Appearance-Architecture.md).
+Historical release record: Current standalone source: `0.1.0-dev.59`; runtime83; Film19/Effect18/Photo18/Vector19. Public native appearance source candidate passes; ten installed Art appearance cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Vector-Appearance-Architecture.md).
 
 Fixed native gateway first use passes:48 independently installed domain skills and ten Art85/source58 public workflows cold-install, create/reopen/export, revise and preserve original deliveries. Art public Brief, all four gateway domains, five child nodes, selective Logo revision/icon reuse, moved package, native cancellation and six unknown faults pass. All58 installed identities are unchanged. Full2639-command/GUI/model/generic Skills CLI/V1 gates remain open. [Usage](docs/Craft-Native-Gateway-Usage.md) · [Fixed evidence](docs/evidence/codex-native-gateway-first-use-20261007.json).
 
@@ -8,7 +10,7 @@ Historical release record: Current source dev.58 aligns Python Brief with runtim
 
 Historical prerelease note: Published native gateway source dev.57 / runtime dev.83 pins Film19 and Effect/Photo/Vector18. Fixed installed retest pending; source candidate proof remains separately scoped.
 
-Full native-gateway DAG source candidate passes mixed delivery, five-child packaging/icon reuse, native revisions, moved reopening, budget rejection, corruption recovery, live cancellation and six unknown-response faults. Immutable installed-release retesting remains pending;6.51 stays open. [Evidence](docs/evidence/native-gateway-joint-candidate-20261007.json).
+Historical candidate record: Full native-gateway DAG source candidate passes mixed delivery, five-child packaging/icon reuse, native revisions, moved reopening, budget rejection, corruption recovery, live cancellation and six unknown-response faults. Immutable installed-release retesting remains pending;6.51 stays open. [Evidence](docs/evidence/native-gateway-joint-candidate-20261007.json).
 
 Historical source-candidate note: Source candidate: complete native workflow gateway; immutable installed acceptance and full DAG gate6.51 remain pending. [Architecture](docs/Craft-Native-Workflow-Gateway-Architecture.md).
 
@@ -24,7 +26,7 @@ Fixed native first-use and complete-command recovery acceptance passed:58 standa
 
 Historical candidate observation before fixed acceptance: Art native first-use recovery candidate pins Film18 / Effect, Photo, Vector17 and reuses runtime78. Earlier Art80 cold installation failed on a domain native SSL EOF; this is preserved evidence. New fixed installed acceptance remains open.
 
-Current standalone source: `0.1.0-dev.55`; fixed installed macOS arm64 acceptance passed; fullV1 remains open.
+Historical release record: Current standalone source: `0.1.0-dev.55`; fixed installed macOS arm64 acceptance passed; fullV1 remains open.
 
 Previous accepted source: dev.53; runtime: dev.78; domain sources: Film16 and Effect/Photo/Vector15. Recovery module hashes participate in capability snapshots and trusted launchers. Fixed installed gate4.9 has passed; fullV1 remains open; historical evidence below retains its original versions.
 
