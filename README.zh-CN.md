@@ -1,6 +1,8 @@
+当前独立技能源：`0.1.0-dev.67`；runtime83；Film25／Effect25／Photo25／Vector25。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+
 固定安装诊断检查：58技能发现通过，184项诊断检查通过；四领域固定副本仍缺失安装脚本本身不存在时的补充修复，当前验收为部分完成。Art插件dev.92锁定技能源dev.66。[证据](docs/evidence/craft-first-use-diagnostics-installed-20261007.json)。
 
-当前独立技能源：`0.1.0-dev.66`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+历史发行记录：当前独立技能源：`0.1.0-dev.66`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 历史发行记录：当前独立技能源：`0.1.0-dev.65`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
