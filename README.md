@@ -1,3 +1,5 @@
+Fixed installed diagnostics: 58 skills discovered and 184 scoped checks passed. The four frozen domain copies still lack the additional missing-bootstrap-script repair; acceptance remains partial. Art plugin dev.92 pins source dev.66. [Evidence](docs/evidence/craft-first-use-diagnostics-installed-20261007.json).
+
 Current standalone source: `0.1.0-dev.66`; runtime83; Film24/Effect24/Photo24/Vector24. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Historical release record: Current standalone source: `0.1.0-dev.65`; runtime83; Film24/Effect24/Photo24/Vector24. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
