@@ -1,4 +1,7 @@
 """输入素材流式摘要与现有用户目录保护。"""
+from contextlib import redirect_stdout
+import io
+import sys
 import hashlib
 import importlib.util
 import json
@@ -45,5 +48,38 @@ class WorkflowTests(unittest.TestCase):
             after={str(p.relative_to(project)):p.read_bytes() for p in project.rglob('*') if p.is_file()}
             self.assertEqual(after,before)
             self.assertEqual(len(launches),1)
+
+    def test_nonzero_native_workflow_exposes_structured_receipt_without_replay(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); project = root/'project'; plan = root/'plan.json'
+            plan.write_text(json.dumps({'workflowId':'fixture','revision':'v1','nodes':[{'id':'logo','pluginId':'vectorcraft','payload':{'schemaVersion':'fixture/v1'}}]}))
+            setup = {'schema':'artcraft-setup/v1','nodeExecutable':'fixture-node','entryPoint':'fixture-entry','pythonExecutable':'fixture-python','pythonSha256':'a'*64,'runtimeHome':'fixture-home','skills':{'vectorcraft':{'runtimeIdentity':{'pluginId':'vectorcraft','pluginVersion':'fixture'},'skillRoot':'fixture-skill','executable':'fixture-native','files':[]}}}
+            receipt = {'runKey':'fixture-run','state':'waiting','nodes':{'logo':{'status':'waiting','taskId':'original-task'}},'budget':{'used':1}}
+            launches = []
+            def run(argv, **kwargs):
+                if 'bootstrap.py' in str(argv[3]):
+                    return SimpleNamespace(returncode=0,stdout=json.dumps(setup),stderr='')
+                launches.append(argv)
+                return SimpleNamespace(returncode=1,stdout=json.dumps(receipt),stderr='')
+            output = io.StringIO()
+            argv = ['workflow.py',str(plan),'--output',str(project),'--authorization','scope']
+            with patch.object(sys,'argv',argv), patch.object(workflow.subprocess,'run',side_effect=run), redirect_stdout(output):
+                with self.assertRaises(SystemExit) as stopped:
+                    workflow.main()
+            self.assertEqual(stopped.exception.code,1)
+            reply = json.loads(output.getvalue())
+            expected = dict(receipt,projectRoot=str(project.resolve()))
+            self.assertEqual(reply.get('workflowReceipt'),expected)
+            self.assertEqual(json.loads(reply['error']),expected)
+            self.assertEqual(len(launches),1)
+            stored = next(project.glob('result-*.json'))
+            self.assertEqual(json.loads(stored.read_text()),expected)
+
+    def test_plain_input_failure_does_not_invent_workflow_receipt(self):
+        output = io.StringIO()
+        with patch.object(sys,'argv',['workflow.py','missing.json','--output','unused','--authorization','scope']), patch.object(workflow,'execute',side_effect=ValueError('invalid_input')), redirect_stdout(output):
+            with self.assertRaises(SystemExit):
+                workflow.main()
+        self.assertEqual(json.loads(output.getvalue()),{'error':'invalid_input'})
 
 if __name__=='__main__':unittest.main()

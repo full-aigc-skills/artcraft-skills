@@ -89,8 +89,11 @@ class WorkerCrashFirstUseTests(unittest.TestCase):
                 stdout, stderr = process.communicate(timeout=30)
                 self.assertNotEqual(process.returncode, 0, stdout+stderr)
                 pending = json.loads(stdout)
-                if 'error' in pending:
-                    pending = json.loads(pending['error'])
+                structured = os.environ.get('CRAFT_EXPECT_STRUCTURED_WORKFLOW_RECEIPT') == '1'
+                if structured:
+                    self.assertIsInstance(pending.get('workflowReceipt'), dict)
+                    self.assertEqual(pending['workflowReceipt'], json.loads(pending['error']))
+                pending = pending.get('workflowReceipt') or json.loads(pending['error'])
                 self.assertEqual(pending['state'], 'waiting')
                 artifact = Path(pending['nodes']['intro']['root'])
                 # worker 停止后原生副作用仍可完成；结果存在不能代替停止证据。
@@ -114,8 +117,10 @@ class WorkerCrashFirstUseTests(unittest.TestCase):
                     repeated = subprocess.run(argv, env=environment, capture_output=True, text=True, timeout=180)
                     self.assertNotEqual(repeated.returncode, 0, repeated.stdout+repeated.stderr)
                     reply = json.loads(repeated.stdout)
-                    if 'error' in reply:
-                        reply = json.loads(reply['error'])
+                    if structured:
+                        self.assertIsInstance(reply.get('workflowReceipt'), dict)
+                        self.assertEqual(reply['workflowReceipt'], json.loads(reply['error']))
+                    reply = reply.get('workflowReceipt') or json.loads(reply['error'])
                     self.assertEqual(reply['state'], 'waiting')
                 after = read_database(database)
                 self.assertEqual(after['tasks'][0]['attempt_id'], before['tasks'][0]['attempt_id'])
@@ -136,7 +141,7 @@ class WorkerCrashFirstUseTests(unittest.TestCase):
                     'attemptId': after['tasks'][0]['attempt_id'], 'executionStatus': after['executions'][0]['status'],
                     'taskState': after['tasks'][0]['state'], 'stopEvidence': None,
                     'nativeGroupGoneObservedByTestOnly': True, 'artifacts': files,
-                    'nativeSpawnCount': 1, 'repeatCount': 2, 'budgetPreserved': True,
+                    'nativeSpawnCount': 1, 'repeatCount': 2, 'structuredWorkflowReceiptChecked': structured, 'budgetPreserved': True,
                     'projectLeasePreserved': True, 'installedSkillBytesPreserved': True,
                     'unverified': ['automatic settlement without trusted stop evidence',
                         'pre-spawn submission window', 'concurrent recoverers', 'creative acceptance']}
