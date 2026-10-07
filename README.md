@@ -1,4 +1,8 @@
+Art source73 candidate passes104 source regressions (33 explicit-environment skips) and one cold four-domain native workflow plus two archive contracts. Film29 creation/revision records bind the effective plan and runtime; reuse preserves their bytes. Runtime83 and the other three domain bundles stay unchanged. Fixed plugin installation remains pending. [Evidence](docs/evidence/artcraft-film29-distribution-candidate-20261007.json).
+
 Fixed Art98/source72 assets role now passes three cold native tests: register and replace PNG/JPEG/SVG inputs, rebuild consumers while retaining unrelated icons and old deliveries, reject external SVG dependencies, and register PCM audio through native Film delivery and relocated packaging. Input/output/package hashes are retained, all64 installed skill hashes remain unchanged. The PCM fixture is a test signal, not speech acceptance. Other asset families, complete protocol/V1 and generic Skills CLI remain open. [Evidence / 证据](docs/evidence/artcraft98-assets-role-first-use-20261007.json).
+
+Art source73 candidate pins Film29 execution protection across all ten independent skills, with runtime83 and other domain bundles unchanged. Candidate and fixed installation acceptance remain separate. [Architecture](docs/ArtCraft-Film-Execution-Architecture.md).
 
 Fixed Art98/source72 role-entrypoint acceptance passes: seven role skills cover Brief planning, native execution/source revision, existing-ledger queries, portable packaging, observation recording and same-attempt scheduler-crash recovery. Each handoff uses an absent runtime directory. All64 installed hashes remain unchanged. Asset registration beyond ledger query, worker crashes, creative/human acceptance, generic Skills CLI and complete V1 remain open. [Evidence / 证据](docs/evidence/artcraft98-role-first-use-20261007.json) · [Architecture / 架构](docs/ArtCraft-Role-FirstUse-Architecture.md).
 
@@ -18,7 +22,7 @@ Every-skill cold first use: **64/64 passed** on macOS arm64 / Python3.13.5 (620.
 
 Fixed ArtCraft97 / source71 acceptance: five public plugins expose 64 skills with zero loading errors; all64 copied-skill CLI probes pass (five fresh domain caches, subsequent reuse). Installed Art passes240 strict JSON rejection calls and cold native mixed creation/revision/crash recovery/portable delivery. Installed hashes remain unchanged. Generic Skills CLI and complete V1 remain open. [Evidence](docs/evidence/artcraft97-strict-plan-fixed-first-use-20261007.json).
 
-Published source: **0.1.0-dev.72**. Ten independent skills pin Film/Vector dev.28 and Effect/Photo dev.29 with Art runtime dev.83. The 2,646-command immutable index and synced distribution pass regression; candidate mixed workflow and fixed publication are checked separately. Complete V1 remains open.
+Earlier published source: **0.1.0-dev.72**. Ten independent skills pin Film/Vector dev.28 and Effect/Photo dev.29 with Art runtime dev.83. The 2,646-command immutable index and synced distribution pass regression; candidate mixed workflow and fixed publication are checked separately. Complete V1 remains open.
 
 Earlier version-bound verification records:
 
