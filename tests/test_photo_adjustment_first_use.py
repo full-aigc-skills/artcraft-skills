@@ -6,7 +6,7 @@ class PhotoAdjustmentContract(unittest.TestCase):
  def test_each_skill_owns_plan_and_pinned_photo(self):
   for skill in (ROOT/'skills').iterdir():
    if not (skill/'SKILL.md').exists():continue
-   plan=json.loads((skill/'examples/photo-adjustment-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'photocraft');self.assertIn('references/photo-adjustment.md',(skill/'SKILL.md').read_text());self.assertTrue((skill/'references/photo-adjustment.md').exists());lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['photocraft-skills']['version'],'0.1.0-dev.29')
+   plan=json.loads((skill/'examples/photo-adjustment-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'photocraft');self.assertIn('references/photo-adjustment.md',(skill/'SKILL.md').read_text());self.assertTrue((skill/'references/photo-adjustment.md').exists());lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['photocraft-skills']['version'],'0.1.0-dev.30')
 
 import hashlib,os,shutil,subprocess,sys,tempfile
 
