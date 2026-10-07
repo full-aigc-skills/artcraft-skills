@@ -44,12 +44,16 @@ class FirstUseArgumentTests(unittest.TestCase):
 class FirstWorkflowTests(unittest.TestCase):
     def test_isolated_single_skill_installs_runs_and_reuses_four_native_deliveries(self):
         with tempfile.TemporaryDirectory() as temporary:
-            root=Path(temporary).resolve();skill=root/'only-artcraft-use';shutil.copytree(SOURCE, skill, ignore=shutil.ignore_patterns('__pycache__'))
+            root=Path(temporary).resolve()
+            path_case=os.environ.get('CRAFT_UNICODE_PATH_FIRST_USE')=='1'
+            if path_case:root=root/'首次 使用 中文路径';root.mkdir()
+            skill=root/'only-artcraft-use';shutil.copytree(SOURCE, skill, ignore=shutil.ignore_patterns('__pycache__'))
+            if path_case:self.assertIn(' ',str(skill));self.assertIn('中文',str(skill))
             voice=root/'voice.wav'
             with wave.open(str(voice), 'wb') as output:
                 output.setparams((1,2,48000,48000,'NONE','not compressed'))
                 output.writeframes(b''.join(struct.pack('<h',round(4000*math.sin(i*2*math.pi*440/48000))) for i in range(48000)))
-            runtime=root/'runtime';project=root/'project'
+            runtime=root/'runtime';project=root/'project';self.assertFalse(runtime.exists())
             args=[sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(skill/'examples/brand-campaign.json'),'--output',str(project),'--runtime-home',str(runtime),'--authorization','isolated-first-use','--asset','voice='+str(voice)]
             # 使用复制的单技能公开入口创建需求记录，不借用仓库内部 API。
             brief=json.loads((skill/'examples/brand-brief.json').read_text());brief['authorizationRef']='isolated-first-use'
@@ -59,6 +63,8 @@ class FirstWorkflowTests(unittest.TestCase):
             args.extend(['--brief',str(brief_root),'--brief-sha',brief_receipt['sha256']])
             args.extend(archive_arguments(os.environ))
             environment=dict(os.environ,PATH='/usr/bin:/bin')
+            if os.environ.get('CRAFT_ONLINE_FIRST_USE')=='1':
+                for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):environment.pop(key,None)
             first_run=subprocess.run(args,capture_output=True,text=True,env=environment,timeout=240)
             self.assertEqual(first_run.returncode,0,first_run.stdout+first_run.stderr)
             first=json.loads(first_run.stdout);self.assertEqual(first['state'],'review_ready')
@@ -261,7 +267,7 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(json.loads((moved/'workflow-plan-portable.json').read_text())['projectBrief'],brief)
             if os.environ.get('CRAFT_WORKFLOW_EVIDENCE_FILE'):
                 artifacts={id:[{'assetId':a['assetId'],'sha256':a['sha256'],'bytes':a['bytes'],'mediaType':a['mediaType'],'nativeProjectRef':a['nativeProjectRef']} for a in value['outputs']] for id,value in first['nodes'].items()}
-                proof={'schema':'craft-installed-mixed-first-use/v1','python':sys.version.split()[0],'runtimeVersion':setup['version'],'filmOutputGuards':[first_guard_value,revised_guard_value],'domainOutputGuards':{id:[first_guards[id][2],revised_guards[id][2]] for id in domains},'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'photoVariant':{'layout':variant_layout,'packageSha256':variant_receipt['sha256'],'movedPackageVerified':True,'tamperedLayoutRejected':True,'staleCachedLayoutBlocked':True,'restoredWithoutReplay':True},'sourceBrief':{'savedOutputs':saved_source_evidence,'nativeProjectHashes':{id:result['sourceInspection']['nativeProjectSha256'] for id,result in source_result['nodes'].items()},'inspections':{id:result['sourceInspection'] for id,result in source_result['nodes'].items()},'originalFilesPreserved':True,'reused':True,'leases':0},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'nativeReceipt':{'mismatchRejected':True,'installationPreserved':True,'projectFilesPreserved':True,'restoredTaskIdsReused':True},'checks':['Film installation receipt checked before mixed reuse','hash-bound native and export Film duration','four native domain source Brief revisions and reuse','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
+                proof={'schema':'craft-installed-mixed-first-use/v1','pathCase':{'unicodeAndSpaces':path_case,'parentName':root.name,'runtimeInitiallyAbsent':True},'python':sys.version.split()[0],'runtimeVersion':setup['version'],'filmOutputGuards':[first_guard_value,revised_guard_value],'domainOutputGuards':{id:[first_guards[id][2],revised_guards[id][2]] for id in domains},'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'photoVariant':{'layout':variant_layout,'packageSha256':variant_receipt['sha256'],'movedPackageVerified':True,'tamperedLayoutRejected':True,'staleCachedLayoutBlocked':True,'restoredWithoutReplay':True},'sourceBrief':{'savedOutputs':saved_source_evidence,'nativeProjectHashes':{id:result['sourceInspection']['nativeProjectSha256'] for id,result in source_result['nodes'].items()},'inspections':{id:result['sourceInspection'] for id,result in source_result['nodes'].items()},'originalFilesPreserved':True,'reused':True,'leases':0},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'nativeReceipt':{'mismatchRejected':True,'installationPreserved':True,'projectFilesPreserved':True,'restoredTaskIdsReused':True},'checks':['Film installation receipt checked before mixed reuse','hash-bound native and export Film duration','four native domain source Brief revisions and reuse','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
                 with Path(os.environ['CRAFT_WORKFLOW_EVIDENCE_FILE']).open('x') as output:json.dump(proof,output,ensure_ascii=False,indent=2);output.write('\n')
 
 if __name__ == '__main__':unittest.main()

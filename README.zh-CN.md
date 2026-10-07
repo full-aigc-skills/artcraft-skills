@@ -22,6 +22,8 @@ python3 -I -B "$SKILL_DIR/scripts/cli.py" -- --help
 
 [首次使用入口证据](docs/evidence/craft-readme-first-use-navigation-20261007.json)。
 
+固定安装路径验收：独立技能及 Art 混合工作流在含中文和空格的路径下，通过原生创建与重开、定点返工及导出；Art 另验证移动交付包。技能与运行时身份保持不变。该结果仅覆盖 macOS arm64 的本次首次使用场景。 [路径验收证据](docs/evidence/craft-fixed-unicode-path-first-use-20261007.json).
+
 ---
 
 Art完整领域命令组件候选已支持2639条离线查询、实际MCP schema及只安装选定领域的公开交接。四域冷安装创建／重开／返工与目标／对照像素通过；固定安装6.50及DAG原生交付6.51仍开放。 [Evidence](docs/evidence/art-complete-domain-component-candidate-20261007.json).
@@ -289,3 +291,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 当前固定分发：十项Art＋十三项Effect独立冷启动表达式和源返工通过；更新四领域混合任务与五子工程移动包通过。全量命令／GUI／模型／完整V1仍开放。 [Evidence](docs/evidence/codex-art87-effect-expression-first-use-20261007.json).
 
 当前固定分发：十项Art＋十二项Photo独立冷启动蒙版调整和源返工通过；更新四领域混合任务与五子工程移动包通过。全量命令／GUI／模型／完整V1仍开放。 [Evidence](docs/evidence/codex-art88-photo-adjustment-first-use-20261007.json).
+
+[原生路径首次使用架构](docs/ArtCraft-Native-Path-Architecture.zh_CN.md)
