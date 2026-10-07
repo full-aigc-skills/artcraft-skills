@@ -60,6 +60,12 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
     result=subprocess.run(args,capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
     self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
    first=run(plan);self.assertEqual(first['state'],'review_ready')
+   # 小尺寸默认模板须在真实导出预览中保留可读字形。
+   with Image.open(Path(first['nodes']['film']['root'])/'frame-0000.png') as caption_preview:
+    caption_preview=caption_preview.convert('RGB');caption_pixels=[(x,y) for y in range(150,180) for x in range(320) if min(caption_preview.getpixel((x,y)))>180]
+   self.assertTrue(caption_pixels)
+   caption_bounds=[min(x for x,y in caption_pixels),min(y for x,y in caption_pixels),max(x for x,y in caption_pixels)+1,max(y for x,y in caption_pixels)+1]
+   self.assertGreaterEqual(caption_bounds[3]-caption_bounds[1],8,'default mixed-template caption is too small')
    install=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(Path(install['pythonExecutable']).resolve(),workflow_python);self.assertEqual(install['skills']['vectorcraft']['runtimeIdentity']['pluginVersion'],json.loads((skill/'scripts/distribution.lock.json').read_text())['bundles']['vectorcraft-skills']['version'])
    originals={name:{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(node['root']).iterdir() if p.is_file()} for name,node in first['nodes'].items()}
    revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
@@ -91,5 +97,5 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
    self.assertFalse(any(skill.rglob('*.pyc')))
    for filename,sha in skill_hashes.items():self.assertEqual(hashlib.sha256((skill/filename).read_bytes()).hexdigest(),sha)
    if os.environ.get('CRAFT_BRAND_MIXED_EVIDENCE'):
-    proof={'schema':'artcraft-brand-artboard-mixed-first-use/v1','scope':'single copied revise skill; empty public runtime/domain install; five native projects, global brand revision and selective reuse; native board geometry and SVG/PNG/PDF byte identity; independent consumer PNG pixel changes; repeated budget/tasks; five-child package verify','runtimeVersion':install['version'],'vectorRuntimeIdentity':install['skills']['vectorcraft']['runtimeIdentity'],'unaffectedExports':unchanged,'initialTaskIds':{k:v['taskId'] for k,v in first['nodes'].items()},'revisedTaskIds':{k:v['taskId'] for k,v in second['nodes'].items()},'originalDeliveryPreserved':True,'providedVoicePreserved':True,'skillFilesPreserved':True,'repeatBudgetAndTasksPreserved':True,'packageChildren':5,'artboards':initial_native['artboards'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest()}
+    proof={'schema':'artcraft-brand-artboard-mixed-first-use/v1','scope':'single copied revise skill; empty public runtime/domain install; five native projects, global brand revision and selective reuse; native board geometry and SVG/PNG/PDF byte identity; independent consumer PNG pixel changes; repeated budget/tasks; five-child package verify','captionGlyphBounds':caption_bounds,'runtimeVersion':install['version'],'vectorRuntimeIdentity':install['skills']['vectorcraft']['runtimeIdentity'],'unaffectedExports':unchanged,'initialTaskIds':{k:v['taskId'] for k,v in first['nodes'].items()},'revisedTaskIds':{k:v['taskId'] for k,v in second['nodes'].items()},'originalDeliveryPreserved':True,'providedVoicePreserved':True,'skillFilesPreserved':True,'repeatBudgetAndTasksPreserved':True,'packageChildren':5,'artboards':initial_native['artboards'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest()}
     with Path(os.environ['CRAFT_BRAND_MIXED_EVIDENCE']).open('x') as stream:json.dump(proof,stream,indent=2)

@@ -2,7 +2,7 @@
 
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.81`; current fixed plugin: `0.1.0-dev.107`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.82`; last fixed plugin before this source update: `0.1.0-dev.109`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -319,3 +319,5 @@ Source candidate upgrades Art domain dependencies to Film35 / Effect34 / Photo33
 Fixed releases Film38/Effect38/Photo37/Vector35/Art109 pass actual isolated Codex installation/discovery of 64 skills, 16 installed protocol file digests, and 64 CLI probes using five fresh domain caches. Each of ten Art skills freshly passes its own empty-public-runtime native Photo mask/adjustment creation, source revision and moved package verification. The remaining 54 skills reuse historical native proof only when the entire skill hash matches. Maintainer defaults now select this matrix; generic Skills CLI installation, model dispatch, GUI and complete V1/protocol acceptance remain open. [Fixed evidence](docs/evidence/craft-archive-prefix-fixed-first-use-20261008.json).
 
 The current installed Art109 revise skill passes a five-node native brand revision: four affected outputs change, the independent badge reuses its task, unrelated SVG/PNG/PDF artboard exports and original deliveries remain unchanged, and the five-child package verifies. This is one fixed mixed-scene sample. [Evidence](docs/evidence/craft-archive-prefix-mixed-brand-first-use-20261008.json).
+
+Small-frame English caption examples now use the1080-line size conversion; every independent skill carries output-size and short-audio guidance. Source/native validation and fixed-plugin acceptance are separate. [Guidance and evidence](docs/Caption-Size-First-Use.md).
