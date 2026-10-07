@@ -1,6 +1,6 @@
 当前独立技能源：`0.1.0-dev.62`；runtime83；Film21／Effect21／Photo21／Vector21。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
-当前独立技能源：`0.1.0-dev.61`；runtime83；Film19／Effect19／Photo19／Vector19。公开原生蒙版调整候选通过，十项实际安装蒙版调整及更新混合工作流通过。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+历史发行记录：当前独立技能源：`0.1.0-dev.61`；runtime83；Film19／Effect19／Photo19／Vector19。公开原生蒙版调整候选通过，十项实际安装蒙版调整及更新混合工作流通过。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 ArtCraft 的十项独立技能源候选通过 Photo19 可编辑蒙版调整、可信源返工与移动包验收。固定发布版本和更新四领域混合项目尚待复验，6.58保持开放。 [Evidence](docs/evidence/artcraft-photo-adjustment-candidate-20261007.json). [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
@@ -8,7 +8,7 @@ ArtCraft 的十项独立技能源候选通过 Photo19 可编辑蒙版调整、�
 
 当前首次使用入口：插件 `0.1.0-dev.87`，技能源 `0.1.0-dev.60`。中英文安装与命令指南按当前固定发行核验；历史样例证据保留原版本范围。 [Guide](docs/Craft-Native-Gateway-Usage.zh_CN.md).
 
-当前独立技能源：`0.1.0-dev.60`；runtime83；Film19／Effect19／Photo18／Vector19。公开原生表达式候选通过，十项实际安装表达式及更新混合工作流通过。[架构](docs/ArtCraft-Effect-Expression-Architecture.zh_CN.md)。
+历史发行记录：当前独立技能源：`0.1.0-dev.60`；runtime83；Film19／Effect19／Photo18／Vector19。公开原生表达式候选通过，十项实际安装表达式及更新混合工作流通过。[架构](docs/ArtCraft-Effect-Expression-Architecture.zh_CN.md)。
 
 历史发行记录：当前独立技能源：`0.1.0-dev.59`；runtime83；Film19／Effect18／Photo18／Vector19。公开原生外观候选通过，十项实际安装外观及更新混合工作流通过。[架构](docs/ArtCraft-Vector-Appearance-Architecture.zh_CN.md)。
 
