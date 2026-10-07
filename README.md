@@ -1,4 +1,4 @@
-Current standalone source: `0.1.0-dev.61`; runtime83; Film19/Effect19/Photo19/Vector19. Public native adjustment/mask source candidate passes; fixed installed acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+Current standalone source: `0.1.0-dev.61`; runtime83; Film19/Effect19/Photo19/Vector19. Public native adjustment/mask source candidate passes; ten installed Art adjustmentMask cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Ten independent Art skill source candidates pass Photo19 editable mask/adjustment, trusted source revision and moved-package acceptance. Fixed published Art installation and updated four-domain mixed retests remain pending; task6.58 stays open. [Evidence](docs/evidence/artcraft-photo-adjustment-candidate-20261007.json). [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
@@ -289,3 +289,5 @@ Fixed Art plugin dev.79 / source dev.53 / runtime dev.78 passes bounded installe
 Current fixed distribution: ten Art plus twelve Vector installed cold native appearance/source-revision cases and one updated four-domain mixed/moved-five-child workflow pass. Exhaustive commands/GUI/model/fullV1 remain open. [Evidence](docs/evidence/codex-art86-vector-appearance-first-use-20261007.json).
 
 Current fixed distribution: ten Art plus thirteen Effect installed cold native expression/source-revision cases and one updated four-domain mixed/moved-five-child workflow pass. Exhaustive commands/GUI/model/fullV1 remain open. [Evidence](docs/evidence/codex-art87-effect-expression-first-use-20261007.json).
+
+Current fixed distribution: ten Art plus twelve Photo installed cold native adjustmentMask/source-revision cases and one updated four-domain mixed/moved-five-child workflow pass. Exhaustive commands/GUI/model/fullV1 remain open. [Evidence](docs/evidence/codex-art88-photo-adjustment-first-use-20261007.json).
