@@ -1,4 +1,6 @@
-Current standalone source: `0.1.0-dev.65`; runtime83; Film24/Effect24/Photo24/Vector24. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+Current standalone source: `0.1.0-dev.66`; runtime83; Film24/Effect24/Photo24/Vector24. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+
+Historical release record: Current standalone source: `0.1.0-dev.65`; runtime83; Film24/Effect24/Photo24/Vector24. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Additional fixed native acceptance passed: ten Art cold cases, four domain GUI edit/save/reopen cases and mixed brand-color revision with dependency updates and packaging. Exhaustive commands, all GUI interactions and creative quality remain open. [Evidence](docs/evidence/craft-fixed-scene-guidance-20261007.json).
 

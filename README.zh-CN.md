@@ -1,4 +1,6 @@
-当前独立技能源：`0.1.0-dev.65`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+当前独立技能源：`0.1.0-dev.66`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+
+历史发行记录：当前独立技能源：`0.1.0-dev.65`；runtime83；Film24／Effect24／Photo24／Vector24。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 本次固定版本追加原生验收：Art十项冷启动、四领域四项GUI编辑与保存重开，以及品牌色局部返工、依赖更新和交付打包通过；全量命令、全部GUI和创作质量仍待验收。[证据](docs/evidence/craft-fixed-scene-guidance-20261007.json)。
 

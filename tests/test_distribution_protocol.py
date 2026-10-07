@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class DistributionProtocolTests(unittest.TestCase):
  def test_every_standalone_skill_pins_fixed_complete_domain_helpers(self):
   expected = {"filmcraft": "0.1.0-dev.24", "effectcraft": "0.1.0-dev.24", "photocraft": "0.1.0-dev.24", "vectorcraft": "0.1.0-dev.24"}
-  bootstraps = {'filmcraft': '4ccde613d5bb41ef6889ea7c0f240d7e11844c4e0bdc0b23ff4e548094c31478', 'effectcraft': '29d147df9357059024a5a6a8df1b5971a669343be96b1df18c16da4fc85576e6', 'photocraft': '2f6d9b94f456593870ca2eafcfafd4e02d69b04597d5d3e42e3e651d29f43133', 'vectorcraft': '594af69f53e2df5accba79e0b611e46fdbe2adb1aa172cd7bc983f50e78f255e'}
+  bootstraps = {'filmcraft': '67e2b45008eda54b92172f80d00d0e5abaef3fdaa6463a1ed8b11de462910948', 'effectcraft': '788bb929eb4e3bd84c4245ed8bd0e1e5701926566f292b119818f0af6a74713f', 'photocraft': '9212a3fc41650415584fc373b5cd4877b552e156f066d781d96b20bea5f1402d', 'vectorcraft': '92bdafb23e6199a19640ee90c0f0162c8a8df9f58056e2697b1b61a0d622dcdb'}
   counts = {"filmcraft": 11, "effectcraft": 13, "photocraft": 12, "vectorcraft": 12}
   transport = "ad8a8fb3f84f9fbf814b5a593c96faf3cf9bb476ff32627039975d7f57c86616"
   skills = sorted((ROOT/"skills").iterdir())
