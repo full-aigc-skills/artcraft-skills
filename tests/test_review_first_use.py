@@ -51,4 +51,9 @@ class ReviewFirstUseTests(unittest.TestCase):
    bad=run('review.py','verify','--package',movedpackage,'--package-sha',packed['sha256'],'--review',moved,'--review-sha',receipt['sha256'],ok=False,home=clean)
    self.assertIn('review_record_file_mismatch',bad['error'])
    self.assertFalse(any(skill.rglob('*.pyc')))
+   evidence=os.environ.get('CRAFT_REVIEW_ROLE_EVIDENCE_FILE')
+   if evidence:
+    record={'schema':'artcraft-review-role-first-use/v1','result':'PASS','packageSha256':packed['sha256'],'reviewSha256':receipt['sha256'],'decision':receipt['decision'],'creative':receipt['dimensions']['creative'],'ledgerPreserved':True,'nativePackagePreserved':True,'staleAssetRejected':True,'tamperedEvidenceRejected':True,'movedVerifyColdRuntime':True,'unrelatedDomainsNotInstalled':True}
+    with open(evidence,'x',encoding='utf-8') as stream:
+     json.dump(record,stream,ensure_ascii=False,indent=2);stream.write('\n')
 if __name__=='__main__':unittest.main()

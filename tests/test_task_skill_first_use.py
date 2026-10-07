@@ -28,6 +28,59 @@ class TaskContractTests(unittest.TestCase):
 @unittest.skipUnless(os.environ.get('CRAFT_TASK_FIRST_USE') == '1',
                      'requires macOS arm64 and default online downloads')
 class TaskSkillFirstUseTests(unittest.TestCase):
+    def test_isolated_plan_saves_moves_and_blocks_conflicting_requirements(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            skill = root / '.agents/skills/artcraft-cli-plan'
+            shutil.copytree(SKILLS / skill.name, skill,
+                            ignore=shutil.ignore_patterns('__pycache__'))
+            brief = json.loads((skill / 'examples/brand-brief.json').read_text())
+            plan = json.loads((skill / 'examples/brand-campaign.json').read_text())
+            brief['deliverables'] = [item for item in brief['deliverables'] if item['id'] == 'logo']
+            brief['brand']['appliesTo'] = ['logo']
+            plan['nodes'] = [node for node in plan['nodes'] if node['id'] == 'logo']
+            source = root / 'brief.json'; source.write_text(json.dumps(brief))
+            path = root / 'plan.json'; path.write_text(json.dumps(plan))
+            original = source.read_bytes()
+
+            def run(*args):
+                result = subprocess.run([sys.executable, '-I', '-B',
+                    str(skill / 'scripts/brief.py'), *map(str, args)],
+                    env=dict(os.environ, PATH='/usr/bin:/bin'),
+                    capture_output=True, text=True, timeout=30)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                return json.loads(result.stdout)
+
+            receipt = run('create', '--input', source, '--output', root / 'record')
+            moved = root / 'moved record'; (root / 'record').rename(moved)
+            verified = run('verify', '--brief', moved, '--sha', receipt['sha256'])
+            self.assertEqual(verified['brief'], brief)
+            args = ['assess', '--brief', moved, '--sha', receipt['sha256'],
+                    '--plan', path, '--owner', brief['ownerId'],
+                    '--authorization', brief['authorizationRef']]
+            ready = run(*args)
+            self.assertEqual(ready['state'], 'blocked')
+            self.assertEqual(ready['blocked'][0]['reasons'], ['native_output_inspection_required'])
+            plan['nodes'][0]['pluginId'] = 'photocraft'
+            path.write_text(json.dumps(plan))
+            blocked = run(*args)
+            self.assertEqual(blocked['state'], 'blocked')
+            self.assertEqual(blocked['blocked'][0]['nodeId'], 'logo')
+            self.assertIn('native_format_mismatch', blocked['blocked'][0]['reasons'])
+            self.assertEqual(source.read_bytes(), original)
+            self.assertEqual([p.name for p in skill.parent.iterdir()], [skill.name])
+            self.assertFalse(any(skill.rglob('*.pyc')))
+            evidence = os.environ.get('CRAFT_PLAN_ROLE_EVIDENCE_FILE')
+            if evidence:
+                with open(evidence, 'x', encoding='utf-8') as stream:
+                    json.dump({'schema': 'artcraft-plan-role-first-use/v1',
+                        'result': 'PASS', 'briefSha256': receipt['sha256'],
+                        'movedBriefVerified': True, 'nativeGate': ready['blocked'],
+                        'conflict': blocked['blocked'], 'inputPreserved': True,
+                        'scope': 'installed standalone planning skill; declared constraints only; no native creation'},
+                        stream, ensure_ascii=False, indent=2)
+                    stream.write('\n')
+
     def test_isolated_revise_updates_consumers_preserves_unrelated_and_delivers(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -35,6 +88,7 @@ class TaskSkillFirstUseTests(unittest.TestCase):
             shutil.copytree(SKILLS / 'artcraft-cli-revise', skill,
                             ignore=shutil.ignore_patterns('__pycache__'))
             runtime = root / 'runtime'; project = root / 'project'
+            role_observations = []
             voice = root / 'voice.wav'
             with wave.open(str(voice), 'wb') as stream:
                 stream.setparams((1, 2, 48000, 48000, 'NONE', 'not compressed'))
@@ -124,13 +178,16 @@ class TaskSkillFirstUseTests(unittest.TestCase):
             self.assertEqual(second['budget'], repeated['budget'])
 
             def switch_skill(name):
-                nonlocal skill
+                nonlocal skill, runtime
                 self.assertFalse(any(skill.rglob('*.pyc')))
                 shutil.rmtree(skill)
                 skill = root / '.agents/skills' / name
                 shutil.copytree(SKILLS / name, skill,
                                 ignore=shutil.ignore_patterns('__pycache__'))
                 self.assertEqual([p.name for p in skill.parent.iterdir()], [name])
+                runtime = root / ('runtime-' + name)
+                self.assertFalse(runtime.exists())
+                role_observations.append({'skill': name, 'runtimeInitiallyAbsent': True})
 
             switch_skill('artcraft-cli-assets')
             status = run('cli.py', '--runtime-home', runtime, '--', 'status', '--database', project / 'tasks.sqlite')
@@ -155,6 +212,12 @@ class TaskSkillFirstUseTests(unittest.TestCase):
             again = run('cli.py', '--runtime-home', runtime, '--', 'cancel',
                         '--database', project / 'tasks.sqlite', '--task', task)
             self.assertEqual(again, cancelled)
+            evidence = os.environ.get('CRAFT_TASK_ROLE_EVIDENCE_FILE')
+            if evidence:
+                record = {'schema': 'artcraft-role-first-use/v1', 'result': 'PASS', 'roles': role_observations, 'sourceRevisionNodes': 4, 'unrelatedNodeReused': True, 'packageSha256': packed['sha256'], 'children': len(verified['children']), 'repeatedCancellationStable': True, 'reviewScope': 'package integrity only; creative review NOT_RUN'}
+                with open(evidence, 'x', encoding='utf-8') as stream:
+                    json.dump(record, stream, ensure_ascii=False, indent=2)
+                    stream.write('\n')
             self.assertFalse(run('cli.py', '--runtime-home', runtime, '--', 'status',
                                  '--database', project / 'tasks.sqlite')['leases'])
             self.assertFalse(any(skill.rglob('*.pyc')))
