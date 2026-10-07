@@ -1,5 +1,9 @@
 固定安装复验：五插件共62技能在隔离Codex宿主中加载成功，加载错误0；62技能完整命令查询与场景资源核对通过，248项安装失败诊断检查通过；四个新增专项技能的空运行时安装、版本与查询通过。原生创作、全量命令和完整V1按各自证据验收。[安装证据](docs/evidence/craft-fixed62-installation-20261007.json)。
 
+本次候选验证：源回归 103 项通过／32 项跳过；另行开启四领域单技能空运行时原生创建、局部返工和重开检查，4 项通过／无跳过。见 [证据](docs/evidence/art-domain27-upgrade-candidate-20261007.json)。固定发布与宿主安装复验待完成。
+
+当前工作树候选已将四领域技能依赖从 dev.26 更新到 dev.27：四个公开 ZIP 的大小、SHA-256 和固定标签 Git 归档字节已核验，十个独立技能同步完整分发锁与命令索引。候选尚未发布，不替代固定插件安装后验收。
+
 当前独立技能源：`0.1.0-dev.68`；runtime83；Film26／Effect26／Photo26／Vector26。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 历史发行记录：当前独立技能源：`0.1.0-dev.67`；runtime83；Film25／Effect25／Photo25／Vector25。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。

@@ -1,5 +1,9 @@
 Fixed installation verification: five plugins / 62 skills discovered in isolated Codex, zero loading errors; all62 command/resource checks and248 setup-diagnostic checks passed. Four new specialized skills passed empty-runtime installation, version and command queries. Native creative, exhaustive-command and fullV1 acceptance remain separately scoped. [Evidence](docs/evidence/craft-fixed62-installation-20261007.json).
 
+Candidate verification: 103 source regression tests passed and 32 were skipped; four separately enabled single-skill native cold-start creation/revision/reopen tests passed with no skips. See [evidence](docs/evidence/art-domain27-upgrade-candidate-20261007.json). Fixed publication and installed-host verification remain pending.
+
+The current worktree candidate upgrades all four domain skill dependencies from dev.26 to dev.27. The four public ZIPs match their published sizes, SHA-256 digests, and immutable-tag Git archive bytes. All ten standalone skills carry the updated distribution locks and command indexes. This candidate is not yet published and does not establish installed-plugin acceptance.
+
 Current standalone source: `0.1.0-dev.68`; runtime83; Film26/Effect26/Photo26/Vector26. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Historical release record: Current standalone source: `0.1.0-dev.67`; runtime83; Film25/Effect25/Photo25/Vector25. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
