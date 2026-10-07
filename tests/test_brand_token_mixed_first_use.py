@@ -26,7 +26,7 @@ class BrandTokenMixedContractTests(unittest.TestCase):
    self.assertTrue(any(op['command']=='swatch.new' and op.get('as')=='primary' for op in nodes['logo']['payload']['plan']['operations']))
    lock=json.loads((directory/'scripts/distribution.lock.json').read_text())
    bundle=lock['bundles']['vectorcraft-skills']
-   self.assertEqual(bundle['version'],'0.1.0-dev.25')
+   self.assertEqual(bundle['version'],'0.1.0-dev.26')
    self.assertIn('skills/vectorcraft-use/examples/brand-token-assets.json',bundle['files'])
    self.assertIn('skills/vectorcraft-cli-text/references/chinese-text.md',bundle['files'])
    for node_id in ('logo','badge'):
