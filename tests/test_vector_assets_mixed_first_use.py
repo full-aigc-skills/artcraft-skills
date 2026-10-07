@@ -31,7 +31,7 @@ class VectorAssetsMixedFirstUse(unittest.TestCase):
         from PIL import Image
         with tempfile.TemporaryDirectory(prefix='craft-vector-mixed-first-use-') as temporary:
             root = Path(temporary)
-            skill = root/'.agents/skills/artcraft-cli-revise'
+            skill = root/'.agents/skills'/SOURCE.name
             shutil.copytree(SOURCE, skill, ignore=shutil.ignore_patterns('__pycache__'))
             original_skill, copied_skill = hashes(SOURCE), hashes(skill)
             provided = root/'provided'; provided.mkdir()
@@ -96,6 +96,9 @@ class VectorAssetsMixedFirstUse(unittest.TestCase):
             original_deliveries = {name: hashes(Path(item['root'])) for name, item in first['nodes'].items()}
             old = Path(first['nodes']['brand']['root'])
             old_manifest = json.loads((old/'manifest.json').read_text())
+            self.assertEqual(old_manifest['assets']['product']['sha256'], original_inputs[initial_name])
+            self.assertTrue(any(ref['assetId'] == 'product' and ref['sha256'] == original_inputs[initial_name]
+                                for ref in first['nodes']['brand']['outputs'][0]['sourceRefs']))
             changed = json.loads(json.dumps(plan)); changed['revision'] = 'v2'
             prior = first['nodes']['brand']['outputs'][0]
             brand = changed['nodes'][0]
@@ -176,7 +179,11 @@ class VectorAssetsMixedFirstUse(unittest.TestCase):
             evidence = os.environ.get('CRAFT_VECTOR_SVG_MIXED_EVIDENCE' if svg else 'CRAFT_VECTOR_MIXED_EVIDENCE')
             if evidence:
                 proof = {'schema': 'artcraft-vector-assets-public-first-use/v1', 'result': 'passed',
-                         'scope': 'one copied revise skill; empty runtime; default public downloads; Vector/Photo three-node native workflow',
+                         'scope': 'one copied ' + SOURCE.name + '; empty runtime; default public downloads; Vector/Photo three-node native workflow',
+                         'skillName': SOURCE.name, 'inputFiles': original_inputs,
+                         'planSha256': {revision: hashlib.sha256((root/(revision+'.json')).read_bytes()).hexdigest() for revision in ('v1','v2')},
+                         'oldAndNewArtifacts': {revision: {name: item['outputs'] for name,item in result['nodes'].items()} for revision,result in [('v1',first),('v2',second)]},
+                         'movedPackageSha256': packed['sha256'],
                          'runtimeVersion': installation['version'], 'skillFiles': copied_skill,
                          'domainVersions': {name: item['runtimeIdentity']['pluginVersion'] for name, item in installation['skills'].items()},
                          'rasterIdsRetained': not svg, 'vectorIdsReplaced': svg,
