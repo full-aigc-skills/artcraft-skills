@@ -8,7 +8,7 @@ class DomainCommandsTests(unittest.TestCase):
  def module(self,script=SCRIPT):
   spec=importlib.util.spec_from_file_location('domain_commands',script);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
  def test_all_ten_single_skill_queries_need_no_install(self):
-  expected={'filmcraft':666,'effectcraft':640,'photocraft':748,'vectorcraft':585}
+  expected={'filmcraft':666,'effectcraft':640,'photocraft':755,'vectorcraft':585}
   for original in sorted((ROOT/'skills').iterdir()):
    with tempfile.TemporaryDirectory() as temporary:
     target=Path(temporary)/'.agents/skills'/original.name;shutil.copytree(original,target);m=self.module(target/'scripts/domain_commands.py')

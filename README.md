@@ -1,5 +1,7 @@
 Fixed installation verification: five plugins / 62 skills discovered in isolated Codex, zero loading errors; all62 command/resource checks and248 setup-diagnostic checks passed. Four new specialized skills passed empty-runtime installation, version and command queries. Native creative, exhaustive-command and fullV1 acceptance remain separately scoped. [Evidence](docs/evidence/craft-fixed62-installation-20261007.json).
 
+The current source candidate pins PhotoCraft dev.28 and the other three domains dev.27. All ten standalone skill indexes now expose 2,646 commands, including all 755 PhotoCraft IDs. The public ZIP matches the immutable-tag Git archive byte for byte. Fixed plugin installation and added-command execution verification remain pending.
+
 Candidate verification: 103 source regression tests passed and 32 were skipped; four separately enabled single-skill native cold-start creation/revision/reopen tests passed with no skips. See [evidence](docs/evidence/art-domain27-upgrade-candidate-20261007.json). Fixed publication and installed-host verification remain pending.
 
 The current worktree candidate upgrades all four domain skill dependencies from dev.26 to dev.27. The four public ZIPs match their published sizes, SHA-256 digests, and immutable-tag Git archive bytes. All ten standalone skills carry the updated distribution locks and command indexes. This candidate is not yet published and does not establish installed-plugin acceptance.
