@@ -1,7 +1,7 @@
 {
   "schema": "craft-skill-suite/v1",
   "pluginId": "artcraft",
-  "version": "0.1.0-dev.78",
+  "version": "0.1.0-dev.79",
   "source": {
     "repository": "https://github.com/storytold/artcraft",
     "commit": "3210977fb114cff7179aff2f480bf279572d5942",

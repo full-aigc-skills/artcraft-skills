@@ -105,3 +105,7 @@ Fixed ArtCraft82 / source56 component first use passes: five plugins,58 discover
 
 Historical release record: Current skill source: `0.1.0-dev.56`; runtime: `0.1.0-dev.78`. Fixed installed-component gate 6.50 passes; complete DAG gate 6.51 remains open.
 
+
+## 0.1.0-dev.79
+
+Source dev.79 candidate updates only Film distribution to immutable source34/native craft.4, retaining Art runtime83 and the other three domains. Old actual Whisper availability fails; new selected cold setup and real first-model-download/five-native-project brand workflow, recognition, selective revision and moved package pass. Fixed Art distribution remains pending. [Evidence](docs/evidence/whisper-distribution-20261008.json).

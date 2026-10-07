@@ -105,3 +105,7 @@ Historical source-candidate note: Source candidate: complete native workflow gat
 
 历史发行记录：当前技能源 dev.57／runtime dev.83，领域固定 Film19／Effect18／Photo18／Vector18；包含完整原生命令网关，固定安装完整 DAG 复验待执行。
 
+
+## 0.1.0-dev.79
+
+源 dev.79 候选仅将 Film 分发更新到不可变源34／原生 craft.4，保留 Art 运行时83与其他三域。旧实际Whisper不可用红例已复现；新选择性冷安装、真实模型首次下载／五原生子工程混合识别、品牌局部返工与移动包通过；固定 Art 分发仍待验收。 [Evidence](docs/evidence/whisper-distribution-20261008.json).
