@@ -37,6 +37,11 @@ def verify(target, lock):
 
 
 def install_node(lock, runtime_home, archive=None, platform_key=None):
+    # 先验证 JSON 对象和字段类型，避免损坏锁泄露内部异常或触发安装。
+    if (not isinstance(lock, dict) or lock.get('schema') != 'artcraft-node-lock/v1'
+            or any(not isinstance(lock.get(field), str)
+                   for field in ('platform', 'version', 'url', 'archiveSha256', 'binarySha256'))):
+        raise ValueError('node_lock_invalid')
     actual = platform_key or (platform.system().lower() + '-' + {'arm64': 'arm64', 'aarch64': 'arm64', 'x86_64': 'x64'}.get(platform.machine(), platform.machine()))
     if actual != 'darwin-arm64' or lock.get('platform') != actual:
         raise ValueError('unsupported_platform')
