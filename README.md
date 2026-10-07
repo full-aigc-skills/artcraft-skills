@@ -307,3 +307,5 @@ Fixed Art105/source79 passes actual isolated Codex installation (all64 skills, z
 Source dev.80 pins new immutable Art runtime dev.106 for strict own-field protocol validation. All ten skills carry the same runtime file digests, and their command evidence now records the observed runtime106 help. Four domain source versions and archive identities remain unchanged. Source regression and a single isolated default public runtime download pass; fixed plugin107 and installed creative acceptance are recorded separately after publication.
 
 Fixed plugin dev.107 installed acceptance passes ten new cold installations, 390 protocol checks and three native mixed-workflow tests. [Evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/artcraft107-protocol-fixed-first-use-20261008.json).
+
+Independent-install dependency boundary: current byte-identical cold-install records and 128 new fixed-copy bootstrap/CLI failure checks qualify four domain SK-002 requirements. Art and generic Skills CLI installation stay open. [Design and evidence](docs/Craft-Independent-Setup-Boundary-Architecture.md).

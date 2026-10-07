@@ -301,3 +301,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源dev.80固定新不可变Art runtime dev.106，修复公共协议自有字段校验。十个技能携带相同运行时文件摘要，命令证据更新为实际runtime106帮助查询；四领域技能源版本和归档身份保持不变。源码回归与单技能隔离默认公开下载安装通过；固定插件107及安装后创作验收在发布后单独记录。
 
 固定插件 dev.107 安装验收通过：十技能新冷安装、390项协议检查、三项原生混合工作流测试。[Evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/artcraft107-protocol-fixed-first-use-20261008.json).
+
+独立安装依赖边界：当前摘要一致的冷安装记录与 128 项新固定副本安装器／CLI 失败检查验收四领域 SK-002。Art 与通用 Skills CLI 安装继续开放。[设计与证据](docs/Craft-Independent-Setup-Boundary-Architecture.zh_CN.md)。
