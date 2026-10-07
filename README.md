@@ -1,10 +1,12 @@
-Fixed installed scene guidance: five plugins / 58 skills passed discovery, content identity, local example references and complete command queries. Domain runtime scripts, locks and fixtures retain their prior fixed identity. Art cold verification of its new distribution remains separate; exhaustive commands and full V1 remain open. [Evidence](docs/evidence/craft-fixed-scene-guidance-20261007.json).
+Additional fixed native acceptance passed: ten Art cold cases, four domain GUI edit/save/reopen cases and mixed brand-color revision with dependency updates and packaging. Exhaustive commands, all GUI interactions and creative quality remain open. [Evidence](docs/evidence/craft-fixed-scene-guidance-20261007.json).
 
-Current standalone source: `0.1.0-dev.64`; runtime83; Film23/Effect23/Photo23/Vector23. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+Fixed installed scene guidance: five plugins / 58 skills passed discovery, content identity, local example references and complete command queries. Domain runtime scripts, locks and fixtures retain their prior fixed identity. Art cold verification of its new distribution passed in ten cases; exhaustive commands and full V1 remain open. [Evidence](docs/evidence/craft-fixed-scene-guidance-20261007.json).
+
+Current standalone source: `0.1.0-dev.64`; runtime83; Film23/Effect23/Photo23/Vector23. Owned desktop handoff and reserved-output protection included; fixed installed bounded desktop acceptance passed. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Historical release record: Current standalone source: `0.1.0-dev.63`. Complete reflected-command entries and standalone CLI/desktop bootstrap are available. Fixed releases passed 58 standalone cold cases, four advanced GUI save/reopen/render cases and Art mixed revision. Exhaustive native command execution and full V1 remain open. [Fixed evidence](docs/evidence/craft-full-command-fixed-first-use-20261007.json).
 
-Historical release record: Current standalone source: `0.1.0-dev.62`; runtime83; Film21/Effect21/Photo21/Vector21. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+Historical release record: Current standalone source: `0.1.0-dev.62`; runtime83; Film21/Effect21/Photo21/Vector21. Owned desktop handoff and reserved-output protection included; fixed installed bounded desktop acceptance passed. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Historical release record: Current standalone source: `0.1.0-dev.61`; runtime83; Film19/Effect19/Photo19/Vector19. Public native adjustment/mask source candidate passes; ten installed Art adjustmentMask cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
