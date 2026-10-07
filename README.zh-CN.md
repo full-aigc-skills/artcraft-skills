@@ -309,3 +309,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 技能源 dev.81 候选固定已发布 runtime dev.108，补充持久工作流任务回执说明；145 项源码测试中 109 项通过、36 项条件跳过，单项源码候选技能默认公开空缓存 CLI 安装通过。当前四领域依赖锁保持既有版本，升级等待 PhotoCraft dev.33 前缀 ZIP 的严格兼容。独立技能源标签和完整插件发行仍未完成。[候选证据](docs/evidence/artcraft108-task-receipt-sdk-candidate-20261008.json)。
 
 源码候选将 Art 领域依赖更新为 Film35／Effect34／Photo33／Vector31，并严格归一化固定 Photo 归档前缀。五个不可变归档精确重建，114 项源码测试通过、36 项条件跳过，且已有真实公开空缓存原生 Photo 返工／打包证据。固定完整插件验收仍待完成。[架构说明](docs/Craft-Domain-Archive-Prefix-Architecture.zh_CN.md)。
+
+固定发行 Film38／Effect38／Photo37／Vector35／Art109 已通过实际隔离 Codex 安装和发现 64 项技能、16 项安装副本协议文件摘要核对、五个全新领域缓存下的 64 项 CLI 探测。十项 ArtCraft 技能分别从空缓存完成原生 Photo 蒙版调整、源工程返工与迁移打包；另外 54 项技能仅复用整个技能摘要一致的历史原生证据。默认维护验收矩阵已更新；通用 Skills CLI 安装、模型调度、GUI 和完整 V1／协议验收仍开放。[本次固定证据](docs/evidence/craft-archive-prefix-fixed-first-use-20261008.json)。
