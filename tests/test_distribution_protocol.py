@@ -5,8 +5,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 class DistributionProtocolTests(unittest.TestCase):
  def test_every_standalone_skill_pins_fixed_complete_domain_helpers(self):
-  expected = {"filmcraft": "0.1.0-dev.29", "effectcraft": "0.1.0-dev.30", "photocraft": "0.1.0-dev.30", "vectorcraft": "0.1.0-dev.29"}
-  bootstraps = {'filmcraft': '67e2b45008eda54b92172f80d00d0e5abaef3fdaa6463a1ed8b11de462910948', 'effectcraft': '788bb929eb4e3bd84c4245ed8bd0e1e5701926566f292b119818f0af6a74713f', 'photocraft': '9212a3fc41650415584fc373b5cd4877b552e156f066d781d96b20bea5f1402d', 'vectorcraft': '92bdafb23e6199a19640ee90c0f0162c8a8df9f58056e2697b1b61a0d622dcdb'}
+  expected = {"filmcraft": "0.1.0-dev.30", "effectcraft": "0.1.0-dev.31", "photocraft": "0.1.0-dev.31", "vectorcraft": "0.1.0-dev.30"}
+  bootstraps = {'filmcraft': 'bd0c370eace07fe88ae63d4be08374d9b1845b68f0cd43ab0e23a444504623fe', 'effectcraft': 'ad89838b5fd4452685c8cbcfb4394e93597624825356e134e0b809a6a0b3606b', 'photocraft': 'a6e3e9f7b3ab4898b88ecac46fdfa72b32338fcd51d540dde1280882b6813179', 'vectorcraft': '78d5bdf16bf08e9abc96b4b23e5d071da72b648698b888b85fa1b90f81cf32a9'}
   counts = {"filmcraft": 13, "effectcraft": 15, "photocraft": 13, "vectorcraft": 13}
   transport = "ad8a8fb3f84f9fbf814b5a593c96faf3cf9bb476ff32627039975d7f57c86616"
   skills = sorted((ROOT/"skills").iterdir())
@@ -21,7 +21,7 @@ class DistributionProtocolTests(unittest.TestCase):
      self.assertEqual(bundle["version"],version)
      self.assertEqual(bundle["archiveFormat"],"git-archive-zip")
      if domain == "filmcraft":
-      self.assertEqual(bundle["sha256"], "9915f068265ef14e945d8bf06751e80c33d2d61ed1a8e9e40266be8fcb4c0db0")
+      self.assertEqual(bundle["sha256"], "5c7b9411334dafc2485fe4a876932b10404623332b1c4e8bbcbc27ed2c9180de")
      for suffix in ["/scripts/output_guard.py", "/references/output-execution.md"]:
       guards = [value for path, value in bundle["files"].items()
                 if path.startswith("skills/") and path.endswith(suffix)]

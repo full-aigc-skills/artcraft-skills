@@ -2,7 +2,7 @@
 
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source: `0.1.0-dev.75`; corresponding plugin: `0.1.0-dev.101`; 10 independent skills.
+Current source: `0.1.0-dev.76`; target plugin: `0.1.0-dev.102`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
