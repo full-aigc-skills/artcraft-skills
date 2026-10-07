@@ -309,3 +309,5 @@ Source dev.80 pins new immutable Art runtime dev.106 for strict own-field protoc
 Fixed plugin dev.107 installed acceptance passes ten new cold installations, 390 protocol checks and three native mixed-workflow tests. [Evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/artcraft107-protocol-fixed-first-use-20261008.json).
 
 Independent-install dependency boundary: current byte-identical cold-install records and 128 new fixed-copy bootstrap/CLI failure checks qualify four domain SK-002 requirements. Art and generic Skills CLI installation stay open. [Design and evidence](docs/Craft-Independent-Setup-Boundary-Architecture.md).
+
+Current fixed protocol-reference release matrix (Film/Effect dev.37, Photo dev.36, Vector dev.34, Art dev.107) passes actual isolated Codex installation/discovery of 64 skills, 16 installed authority-file digest checks, and 64 independent public CLI probes using five fresh domain caches. Historical native scene proof is reused only for byte-identical skills; full V1 remains open. [Fixed release evidence](docs/evidence/craft-protocol-authority-fixed-first-use-20261008.json).

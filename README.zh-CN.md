@@ -303,3 +303,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 固定插件 dev.107 安装验收通过：十技能新冷安装、390项协议检查、三项原生混合工作流测试。[Evidence](https://github.com/full-aigc-plugins/artcraft-plugin/blob/main/docs/evidence/artcraft107-protocol-fixed-first-use-20261008.json).
 
 独立安装依赖边界：当前摘要一致的冷安装记录与 128 项新固定副本安装器／CLI 失败检查验收四领域 SK-002。Art 与通用 Skills CLI 安装继续开放。[设计与证据](docs/Craft-Independent-Setup-Boundary-Architecture.zh_CN.md)。
+
+当前固定协议引用发行矩阵（Film／Effect dev.37、Photo dev.36、Vector dev.34、Art dev.107）已通过隔离 Codex 安装／发现 64 项技能、16 项实际安装所有者文件摘要核对，以及五个全新领域缓存下的 64 项独立公开 CLI 探测。原生场景证据仅对字节一致的技能复用，完整首版仍开放。[固定发行证据](docs/evidence/craft-protocol-authority-fixed-first-use-20261008.json)。
