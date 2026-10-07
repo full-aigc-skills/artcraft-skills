@@ -1,4 +1,11 @@
+Current source release candidate: **0.1.0-dev.71**. Ten independent skills pin Film/Effect/Vector dev.28 and Photo dev.29, with Art runtime dev.83. Public cold mixed workflow and strict JSON preflight pass; new fixed plugin installation verification remains pending.
+
+Earlier version-bound verification records:
+
 Fixed installation verification: five plugins / 62 skills discovered in isolated Codex, zero loading errors; all62 command/resource checks and248 setup-diagnostic checks passed. Four new specialized skills passed empty-runtime installation, version and command queries. Native creative, exhaustive-command and fullV1 acceptance remain separately scoped. [Evidence](docs/evidence/craft-fixed62-installation-20261007.json).
+
+Local distribution candidate (2026-10-07): all ten Art skills pin Film/Effect/Vector source dev.28 and Photo dev.29, retaining runtime dev.83 and the 2,646-command catalog. Public ZIP identity, 240 duplicate-key rejection calls, 104 source regressions (32 opt-in skips), and three public cold mixed workflow tests pass. Candidate publication and installed revalidation remain open. [Evidence](docs/evidence/artcraft-strict-plan-distribution-candidate-20261007.json).
+
 
 Fixed publication/installation proof: PhotoCraft plugin dev.30 / source dev.28 and ArtCraft plugin dev.96 / source dev.70. Isolated Codex 0.147.0 discovers all 64 skills with no loading errors; 64 standalone-copy CLI probes and 161 parameter queries across all 23 Photo/Art skills pass. Both installed entry points execute the added commands from fresh caches and preserve presets, original projects, layers and pixels; all installed skill hashes remain unchanged. The classified domain catalog contains 2,646 IDs. Exhaustive contexts, generic Skills CLI installation and full V1 remain open. [Evidence](docs/evidence/craft-photo30-art96-fixed-first-use-20261007.json).
 

@@ -1,4 +1,11 @@
+当前技能源发行候选：**0.1.0-dev.71**。十个独立技能固定 Film／Effect／Vector dev.28、Photo dev.29 和 Art runtime dev.83。公开冷启动混合工作流与严格 JSON 预检通过；新固定插件安装复验仍待完成。
+
+以下为各历史版本的验收记录：
+
 固定安装复验：五插件共62技能在隔离Codex宿主中加载成功，加载错误0；62技能完整命令查询与场景资源核对通过，248项安装失败诊断检查通过；四个新增专项技能的空运行时安装、版本与查询通过。原生创作、全量命令和完整V1按各自证据验收。[安装证据](docs/evidence/craft-fixed62-installation-20261007.json)。
+
+本地分发候选（2026-10-07）：十个 Art 技能已固定 Film／Effect／Vector 技能源 dev.28、Photo dev.29，保留 runtime dev.83 和 2,646 条命令目录。公开 ZIP 身份、240 次重复键无副作用拒绝、104 项源回归（32 项显式跳过）及三项公开冷启动混合工作流测试通过；新发行和实际安装复验仍开放。[证据](docs/evidence/artcraft-strict-plan-distribution-candidate-20261007.json)。
+
 
 固定发布安装验收：PhotoCraft 插件 dev.30／源 dev.28，ArtCraft 插件 dev.96／源 dev.70。隔离 Codex 0.147.0 发现五插件全部 64 技能，零加载错误；64 独立副本 CLI 探测通过，23 个 Photo／Art 独立技能的七条新增命令参数查询共 161 次通过。两个实际安装入口分别从空缓存执行新增命令并验证预设、原工程、图层及像素保全；安装后全部技能摘要不变。四领域分类目录共 2,646 条，逐命令全部上下文、通用 Skills CLI 和完整首版保持开放。 [Evidence](docs/evidence/craft-photo30-art96-fixed-first-use-20261007.json).
 
