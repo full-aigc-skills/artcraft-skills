@@ -79,3 +79,32 @@ class DomainCommandsTests(unittest.TestCase):
    with patch.object(m.subprocess,'run',side_effect=AssertionError('query installed')):result,code=m.dispatch(args)
    self.assertEqual(code,0);self.assertEqual(result,{'domain':domain,**tool})
 if __name__=='__main__':unittest.main()
+
+class OwnedDesktopHandoffTests(unittest.TestCase):
+ def module(self):
+  spec=importlib.util.spec_from_file_location('domain_commands_owned',SCRIPT);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+ def test_desktop_mode_owns_connection_before_install(self):
+  m=self.module()
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);plan=root/'plan.json';plan.write_text(json.dumps({'schema':'craft-command-plan/v1','operations':[{'command':'file.newProject','params':{}}]}));args=m.parser().parse_args(['run','filmcraft',str(plan),'--output',str(root/'out'),'--mode','desktop','--connect','127.0.0.1:1234'])
+   with patch.object(m.subprocess,'run',side_effect=AssertionError('installed')):
+    with self.assertRaisesRegex(ValueError,'desktop_owns_connection'):m.dispatch(args)
+   self.assertFalse((root/'out').exists())
+ def test_desktop_child_argv_uses_only_owned_launcher(self):
+  m=self.module();args=m.parser().parse_args(['run','filmcraft','plan.json','--output','out','--mode','desktop']);argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{'asset':Path('/asset')});self.assertEqual(argv[3],'/domain/scripts/desktop.py');self.assertEqual(argv[4],'run');self.assertNotIn('--mode',argv);self.assertNotIn('--connect',argv);self.assertIn('asset=/asset',argv)
+
+class DesktopReceiptIdentityTests(unittest.TestCase):
+ module=OwnedDesktopHandoffTests.module
+ def test_desktop_receipt_requires_identity_and_owned_cleanup(self):
+  m=self.module();lock={'version':'0.2.0','binarySha256':'a'*64};proof={'schema':'craft-owned-desktop-session/v1','domain':'filmcraft','result':'PASS','ownedProcessesStopped':True,'listenerOwnedByPID':True,'sessionsStarted':1,'desktop':dict(lock)}
+  m.validate_desktop_receipt(proof,'filmcraft','PASS',lock,0)
+  for field,value in [('domain','photocraft'),('ownedProcessesStopped',False),('listenerOwnedByPID',False),('sessionsStarted',0),('desktop',dict(lock,binarySha256='b'*64)),('result','unknown')]:
+   with self.subTest(field=field),self.assertRaisesRegex(ValueError,'outcome_unknown'):m.validate_desktop_receipt(dict(proof,**{field:value}),'filmcraft','PASS',lock,0)
+
+class DesktopOutputPreflightTests(unittest.TestCase):
+ module=OwnedDesktopHandoffTests.module
+ def test_owned_desktop_metadata_refused_before_setup(self):
+  m=self.module();entry=m.domain_entry('filmcraft')
+  for name in ['desktop-session.json','desktop.log','.desktop-data/prefs.json']:
+   plan={'schema':'craft-command-plan/v1','operations':[{'command':'file.newProject','params':{'path':{'$output':name}}}]}
+   with self.subTest(name=name),self.assertRaisesRegex(ValueError,'invalid_output_path'):m.validate_plan(plan,entry,{})

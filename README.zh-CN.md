@@ -1,3 +1,5 @@
+当前独立技能源：`0.1.0-dev.62`；runtime83；Film21／Effect21／Photo21／Vector21。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+
 当前独立技能源：`0.1.0-dev.61`；runtime83；Film19／Effect19／Photo19／Vector19。公开原生蒙版调整候选通过，十项实际安装蒙版调整及更新混合工作流通过。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 ArtCraft 的十项独立技能源候选通过 Photo19 可编辑蒙版调整、可信源返工与移动包验收。固定发布版本和更新四领域混合项目尚待复验，6.58保持开放。 [Evidence](docs/evidence/artcraft-photo-adjustment-candidate-20261007.json). [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).

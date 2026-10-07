@@ -1,3 +1,5 @@
+Current standalone source: `0.1.0-dev.62`; runtime83; Film21/Effect21/Photo21/Vector21. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+
 Current standalone source: `0.1.0-dev.61`; runtime83; Film19/Effect19/Photo19/Vector19. Public native adjustment/mask source candidate passes; ten installed Art adjustmentMask cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 
 Ten independent Art skill source candidates pass Photo19 editable mask/adjustment, trusted source revision and moved-package acceptance. Fixed published Art installation and updated four-domain mixed retests remain pending; task6.58 stays open. [Evidence](docs/evidence/artcraft-photo-adjustment-candidate-20261007.json). [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
