@@ -15,6 +15,11 @@ def build(repositories,check=False):
   relative=prefix+'references/native-command-snapshot.json';snapshot=subprocess.check_output(['git','show',tag+':'+relative],cwd=repo)
   if hashlib.sha256(snapshot).hexdigest()!=bundle['files'][relative]:raise ValueError('snapshot_identity_mismatch')
   domains[domain]['snapshotText']=snapshot.decode()
+  relative=prefix+'references/bridge-tools.json'
+  if relative in bundle['files']:
+   bridge=subprocess.check_output(['git','show',tag+':'+relative],cwd=repo)
+   if hashlib.sha256(bridge).hexdigest()!=bundle['files'][relative]:raise ValueError('bridge_snapshot_identity_mismatch')
+   domains[domain]['bridgeSnapshotText']=bridge.decode()
   for old,new in [('commands-revision-create.json','create'),('commands-revision.json','revise')]:
    relative=prefix+'examples/'+old;data=subprocess.check_output(['git','show',tag+':'+relative],cwd=repo)
    if hashlib.sha256(data).hexdigest()!=bundle['files'][relative]:raise ValueError('example_identity_mismatch')

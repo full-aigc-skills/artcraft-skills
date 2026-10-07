@@ -108,3 +108,29 @@ class DesktopOutputPreflightTests(unittest.TestCase):
   for name in ['desktop-session.json','desktop.log','.desktop-data/prefs.json']:
    plan={'schema':'craft-command-plan/v1','operations':[{'command':'file.newProject','params':{'path':{'$output':name}}}]}
    with self.subTest(name=name),self.assertRaisesRegex(ValueError,'invalid_output_path'):m.validate_plan(plan,entry,{})
+
+class BridgeToolModeTests(unittest.TestCase):
+ module=OwnedDesktopHandoffTests.module
+ def test_bridge_only_tools_require_explicit_mode(self):
+  m=self.module();entry=m.domain_entry('effectcraft');entry['bridgeToolSchemas']=[{'name':'ui_inspect','inputSchema':{'type':'object','properties':{}}}]
+  plan={'schema':'craft-command-plan/v1','operations':[{'tool':'ui_inspect','params':{}}]}
+  for mode in ['bridge','desktop']:m.validate_plan(plan,entry,{},mode=mode)
+  with self.assertRaisesRegex(ValueError,'bridge_tool_requires_bridge'):m.validate_plan(plan,entry,{})
+ def test_query_mode_needs_no_installer(self):
+  m=self.module();index=m.load_index();index['effectcraft']['bridgeToolSchemas']=[{'name':'ui_inspect','inputSchema':{'type':'object','properties':{}}}]
+  with patch.object(m,'load_index',return_value=index),patch.object(m.subprocess,'run',side_effect=AssertionError('installed')):
+   value,code=m.dispatch(m.parser().parse_args(['describe','effectcraft','ui_inspect','--tool','--mode','desktop']))
+   self.assertEqual(value['name'],'ui_inspect');self.assertEqual(code,0)
+   with self.assertRaisesRegex(ValueError,'unknown_command'):m.dispatch(m.parser().parse_args(['describe','effectcraft','ui_inspect','--tool']))
+ def test_bridge_index_cannot_be_injected_without_locked_resource(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'skill';shutil.copytree(SCRIPT.parent.parent,root);path=root/'references/domain-command-index.json';value=json.loads(path.read_text());value['domains']['effectcraft']['bridgeSnapshotText']='{}';path.write_text(json.dumps(value));m=DomainCommandsTests().module(root/'scripts/domain_commands.py')
+   with self.assertRaisesRegex(ValueError,'command_index_identity'):m.load_index()
+ def test_locked_bridge_index_preserves_schema_and_rejects_native_identity_drift(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td)/'skill';shutil.copytree(SCRIPT.parent.parent,root);path=root/'references/domain-command-index.json';lock_path=root/'scripts/distribution.lock.json';value=json.loads(path.read_text());lock=json.loads(lock_path.read_text());snapshot=json.loads(value['domains']['effectcraft']['snapshotText']);tool={'name':'ui_inspect','inputSchema':{'type':'object','properties':{}}};bridge={'schema':'craft-bridge-tools/v1','pluginId':'effectcraft','mode':'bridge','runtimeSha256':snapshot['runtimeSha256'],'tools':[tool]};key='skills/effectcraft-use/references/bridge-tools.json';m=DomainCommandsTests().module(root/'scripts/domain_commands.py')
+   for valid in [True,False]:
+    bridge['runtimeSha256']=snapshot['runtimeSha256'] if valid else '0'*64;text=json.dumps(bridge);value['domains']['effectcraft']['bridgeSnapshotText']=text;lock['bundles']['effectcraft-skills']['files'][key]=hashlib.sha256(text.encode()).hexdigest();path.write_text(json.dumps(value));lock_path.write_text(json.dumps(lock))
+    if valid:self.assertEqual(m.load_index()['effectcraft']['bridgeToolSchemas'],[tool])
+    else:
+     with self.assertRaisesRegex(ValueError,'command_index_invalid'):m.load_index()

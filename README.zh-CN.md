@@ -1,4 +1,6 @@
-当前独立技能源：`0.1.0-dev.62`；runtime83；Film21／Effect21／Photo21／Vector21。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+当前独立技能源：`0.1.0-dev.63`；runtime83；Film22／Effect22／Photo22／Vector22。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+
+历史发行记录：当前独立技能源：`0.1.0-dev.62`；runtime83；Film21／Effect21／Photo21／Vector21。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
 历史发行记录：当前独立技能源：`0.1.0-dev.61`；runtime83；Film19／Effect19／Photo19／Vector19。公开原生蒙版调整候选通过，十项实际安装蒙版调整及更新混合工作流通过。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
@@ -34,7 +36,7 @@ Art完整领域命令组件候选已支持2639条离线查询、实际MCP schema
 
 固定发布前的候选记录：Art原生首用恢复候选固定Film18／Effect、Photo、Vector17，复用runtime78。此前Art80冷安装在领域CLI下载遇到SSL EOF失败，保留失败证据；新固定安装验收仍开放。
 
-当前独立技能源 dev.54 复用不可变runtime dev.78，固定 Film17 与 Effect／Photo／Vector16 的完整命令内层JSON修复。新固定安装验收进行中；旧证据保持其原版本。
+历史发行记录：当前独立技能源 dev.54 复用不可变runtime dev.78，固定 Film17 与 Effect／Photo／Vector16 的完整命令内层JSON修复。新固定安装验收进行中；旧证据保持其原版本。
 
 历史发行记录：当前技能源 dev.53／运行时 dev.78，固定 Film16 与 Effect／Photo／Vector15 技能源。恢复模块摘要进入能力快照和可信启动器；固定安装门禁4.9已通过，完整V1仍开放，下方历史证据仍按原版本解读。
 
