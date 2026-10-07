@@ -1,3 +1,5 @@
+Current standalone source: `0.1.0-dev.60`; runtime83; Film19/Effect19/Photo18/Vector19. Public native expression source candidate passes; fixed installed acceptance pending. [Architecture](docs/ArtCraft-Effect-Expression-Architecture.md).
+
 Current standalone source: `0.1.0-dev.59`; runtime83; Film19/Effect18/Photo18/Vector19. Public native appearance source candidate passes; ten installed Art appearance cases and updated mixed workflow pass. [Architecture](docs/ArtCraft-Vector-Appearance-Architecture.md).
 
 Fixed native gateway first use passes:48 independently installed domain skills and ten Art85/source58 public workflows cold-install, create/reopen/export, revise and preserve original deliveries. Art public Brief, all four gateway domains, five child nodes, selective Logo revision/icon reuse, moved package, native cancellation and six unknown faults pass. All58 installed identities are unchanged. Full2639-command/GUI/model/generic Skills CLI/V1 gates remain open. [Usage](docs/Craft-Native-Gateway-Usage.md) · [Fixed evidence](docs/evidence/codex-native-gateway-first-use-20261007.json).
