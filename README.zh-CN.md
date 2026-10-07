@@ -1,4 +1,6 @@
-当前技能源发行候选：**0.1.0-dev.71**。十个独立技能固定 Film／Effect／Vector dev.28、Photo dev.29 和 Art runtime dev.83。公开冷启动混合工作流与严格 JSON 预检通过；新固定插件安装复验仍待完成。
+固定 ArtCraft97／技能源71 验收：五个公开插件发现64技能，加载错误0；64个独立副本CLI探测通过（五个新领域缓存，后续复用）。已安装 Art 通过240次严格JSON拒绝，以及冷原生混合创作、返工、崩溃恢复和移动交付验证。全部安装摘要保持不变。通用Skills CLI及完整首版门禁仍开放。[证据](docs/evidence/artcraft97-strict-plan-fixed-first-use-20261007.json)。
+
+已发布技能源：**0.1.0-dev.71**。十个独立技能固定 Film／Effect／Vector dev.28、Photo dev.29 和 Art runtime dev.83。公开冷启动混合工作流、严格 JSON 预检和固定插件安装复验通过；完整首版仍开放。
 
 以下为各历史版本的验收记录：
 

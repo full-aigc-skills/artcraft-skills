@@ -1,4 +1,6 @@
-Current source release candidate: **0.1.0-dev.71**. Ten independent skills pin Film/Effect/Vector dev.28 and Photo dev.29, with Art runtime dev.83. Public cold mixed workflow and strict JSON preflight pass; new fixed plugin installation verification remains pending.
+Fixed ArtCraft97 / source71 acceptance: five public plugins expose 64 skills with zero loading errors; all64 copied-skill CLI probes pass (five fresh domain caches, subsequent reuse). Installed Art passes240 strict JSON rejection calls and cold native mixed creation/revision/crash recovery/portable delivery. Installed hashes remain unchanged. Generic Skills CLI and complete V1 remain open. [Evidence](docs/evidence/artcraft97-strict-plan-fixed-first-use-20261007.json).
+
+Published skill source: **0.1.0-dev.71**. Ten independent skills pin Film/Effect/Vector dev.28 and Photo dev.29, with Art runtime dev.83. Public cold mixed workflow, strict JSON preflight and fixed plugin installation verification pass; complete V1 remains open.
 
 Earlier version-bound verification records:
 
