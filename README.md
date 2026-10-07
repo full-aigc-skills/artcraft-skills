@@ -1,4 +1,4 @@
-Current standalone source: `0.1.0-dev.63`; runtime83; Film22/Effect22/Photo22/Vector22. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
+Current standalone source: `0.1.0-dev.63`. Complete reflected-command entries and standalone CLI/desktop bootstrap are available. Fixed releases passed 58 standalone cold cases, four advanced GUI save/reopen/render cases and Art mixed revision. Exhaustive native command execution and full V1 remain open. [Fixed evidence](docs/evidence/craft-full-command-fixed-first-use-20261007.json).
 
 Historical release record: Current standalone source: `0.1.0-dev.62`; runtime83; Film21/Effect21/Photo21/Vector21. Owned desktop handoff and reserved-output protection included; fixed installed desktop acceptance pending. [Architecture](docs/ArtCraft-Photo-Adjustment-Architecture.md).
 

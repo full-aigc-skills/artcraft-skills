@@ -1,4 +1,4 @@
-当前独立技能源：`0.1.0-dev.63`；runtime83；Film22／Effect22／Photo22／Vector22。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
+当前独立技能源：`0.1.0-dev.63`。完整反射命令入口、独立CLI与桌面安装已提供；固定版本58项独立冷启动、四领域进阶GUI保存／重开／渲染及Art混合返工通过。逐条原生命令执行验收与完整V1保持开放。[固定验收记录](docs/evidence/craft-full-command-fixed-first-use-20261007.json)。
 
 历史发行记录：当前独立技能源：`0.1.0-dev.62`；runtime83；Film21／Effect21／Photo21／Vector21。加入自有桌面交接及输出保护；固定安装桌面首用待验证。[架构](docs/ArtCraft-Photo-Adjustment-Architecture.zh_CN.md)。
 
