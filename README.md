@@ -2,7 +2,7 @@
 
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.79`; current fixed plugin: `0.1.0-dev.105`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.80`; current fixed plugin: `0.1.0-dev.105`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -303,3 +303,5 @@ Source candidate now includes owned standalone desktop startup: 48/48 single-ski
 [Native paths first-use architecture](docs/ArtCraft-Native-Path-Architecture.md)
 
 Fixed Art105/source79 passes actual isolated Codex installation (all64 skills, zero errors), ten installed standalone cold starts (201.746s) and first-model-download/five-child real recognition, brand revision and moved package (196.910s). Full V1 and generic Skills CLI remain open.
+
+Source dev.80 pins new immutable Art runtime dev.106 for strict own-field protocol validation. All ten skills carry the same runtime file digests, and their command evidence now records the observed runtime106 help. Four domain source versions and archive identities remain unchanged. Source regression and a single isolated default public runtime download pass; fixed plugin107 and installed creative acceptance are recorded separately after publication.
