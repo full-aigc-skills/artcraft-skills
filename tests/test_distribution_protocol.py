@@ -13,7 +13,7 @@ class DistributionProtocolTests(unittest.TestCase):
   self.assertEqual(len(skills), 10)
   for skill in skills:
    lock = json.loads((skill/"scripts/distribution.lock.json").read_text())
-   self.assertEqual(lock["version"], "0.1.0-dev.125-runtime.1")
+   self.assertEqual(lock["version"], "0.1.0-dev.126-runtime.1")
    self.assertEqual(lock["bundles"]["artcraft-runtime"]["version"], lock["version"])
    for domain, version in expected.items():
     with self.subTest(skill=skill.name,domain=domain):
