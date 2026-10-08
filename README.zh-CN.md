@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+开发发布137／技能源109／运行时136增加受任务截止时间约束的Film导出与解码预算。真实子进程目标测试通过；完整原生超长影片和新宿主验收仍待完成。[架构与限制](docs/ArtCraft-Long-Export-Budget-Architecture.zh_CN.md)。
+
 固定136／源108／runtime135安装检查点通过：64宿主身份、十独立冷首用、100次完整目录／参数查询、三个签名桌面及三个bridge保存重开、44固定运行时错误测试、120安装后包装用例及4项真实原生保存后故障。12项任务与完整V1继续开放。[证据及边界](docs/ArtCraft-Fixed-Mode-Error-Acceptance-Architecture.zh_CN.md)。
 
 此前候选公共错误映射：已补齐8种协议错误及旧预算别名在已停止子任务和独立技能入口中的公开身份，四领域真实保存后未知结果复验通过。固定发行安装及完整任务1.3仍待验收。[错误矩阵](docs/ArtCraft-Public-Error-Matrix-Architecture.zh_CN.md)。
@@ -93,7 +95,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.109`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -175,7 +177,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.109`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 

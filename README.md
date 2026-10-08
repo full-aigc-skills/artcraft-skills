@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Development release137/source109/runtime136 adds deadline-bound Film export/decode budgets. Targeted OS-child tests pass; full native long-timeline export and new-host qualification remain pending. [Architecture and limits](docs/ArtCraft-Long-Export-Budget-Architecture.md).
+
 Fixed136/source108/runtime135 installed checkpoint passes:64 host identities,ten independent cold starts,100 complete-directory/parameter queries,three signed desktop and three bridge save/reopen workflows,44 fixed-runtime error tests,120 installed wrapper cases and4 actual native post-save faults. Twelve tasks and full V1 remain open. [Evidence and limits](docs/ArtCraft-Fixed-Mode-Error-Acceptance-Architecture.md).
 
 Earlier candidate public error mapping: eight protocol codes and the legacy budget alias retain their public identities across stopped child tasks and independent skill entry points; four real native post-save unknown cases pass. Fixed-release installation and complete task1.3 acceptance remain pending. [Error matrix](docs/ArtCraft-Public-Error-Matrix-Architecture.md).
@@ -93,7 +95,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.108`; most recently tested development plugin: `0.1.0-dev.136`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.109`; most recently tested development plugin: `0.1.0-dev.136`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
