@@ -11,7 +11,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.96`; qualified plugin: `0.1.0-dev.123`; plugin124 fixed installation verification pending; 10 independent skills.
+Current source snapshot: `0.1.0-dev.96`; qualified plugin: `0.1.0-dev.124`; 10 independent skills; full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -360,3 +360,5 @@ Quality evidence separation and bounded explicit-patch revision complete tasks8.
 Implementation tasks **5.1–5.2** have current fixed-runtime, installed-skill and four-domain native revision evidence. Full AC-TX-001 acceptance **5.3 remains open**, including actual GUI conflict observation. [Version binding architecture](docs/ArtCraft-Version-Binding-Architecture.md).
 
 Immutable artifact version protection is fixed in runtime123 / source95 / plugin123: ten independent Art cold starts, 64 installed CLI probes, native conflict refusal/new-version execution and four-domain revision pass. Task 2.2 is verified; 2.3 and full V1 remain open. [Evidence](docs/evidence/craft-art123-artifact-version-fixed-first-use-20261008.json).
+
+Exact Film timing is fixed in runtime124/source96/plugin124: public artifacts carry decimal native ticks, time base, rational frame rate and digest-bound probe evidence. Installed create/revise/reuse/moved-package checks pass. Complete artifact protocol task 2.3 remains open. [Architecture](docs/ArtCraft-Film-Timing-Architecture.md).
