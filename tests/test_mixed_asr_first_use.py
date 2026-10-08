@@ -49,7 +49,7 @@ class MixedAsrTests(unittest.TestCase):
             if op['command']=='timeline.place':
                 if op['params']['track']=='A1':op['params'].pop('duration',None)
                 else:op['params']['duration']=str(10*254016000000)
-        film['operations'] += [{'command':'native.command','params':{'command':'transcript.generate','params':{'model':'whisper-tiny','language':'en','items':[{'$ref':'voice.item'}]}}},{'command':'native.command','params':{'command':'transcript.createCaptions','params':{'name':'Recognized speech','maxChars':42}}}]
+        film['operations'] += json.loads((skill/'examples/mixed-asr-operations.json').read_text())
         def workflow(value,label):
             path=root/(label+'.json');path.write_text(json.dumps(value))
             result=art('workflow.py',[path,'--output',project,'--authorization','real-speech-mixed-first-use','--asset','voice='+str(voice)],label)
@@ -59,10 +59,24 @@ class MixedAsrTests(unittest.TestCase):
         transcript=native(['exec','transcript.inspect','--project',first_film/'project.fcproj'],'transcript-reopen')
         self.assertGreaterEqual(len(transcript['words']),15)
         self.assertIn('studio',(first_film/'captions.srt').read_text().lower())
+        caption_tracks=json.loads((first_film/'captions.json').read_text())['tracks']
+        visible=[track for track in caption_tracks if track['enabled'] and track['captions']]
+        self.assertEqual(len(visible),1,'mixed ASR output must have a single target caption track')
+        self.assertEqual(visible[0]['style']['size'],84,'default speech captions must be readable at180 height')
+        self.assertNotIn('First scene',(first_film/'captions.srt').read_text())
+        for caption in visible[0]['captions']:
+            self.assertTrue(all(len(line)<=32 for line in caption['text'].splitlines()))
+            self.assertEqual(len(caption['text'].splitlines()),1,'mixed brand template reserves one bottom caption line')
         ops=json.loads((first_film/'operations.json').read_text());generated=next(x['result'] for x in ops if x.get('nativeCommand')=='transcript.generate');self.assertNotEqual(generated['items'][0]['source'],'fixed')
+        created=next(x['result'] for x in ops if x.get('nativeCommand')=='transcript.createCaptions')
+        styled=next(x['arguments']['params'] for x in ops if x.get('arguments',{}).get('id')=='captions.setStyle')
+        self.assertEqual(styled['track'],created['track'])
         revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
         logo['expectedRevision']=artifact['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':prior['root'],'artifact':artifact}];logo['payload']['sourceProject']={'assetId':artifact['assetId']};logo['payload']['plan']={'operations':[{'command':'swatch.edit','params':{'name':{'$ref':'primary.name'},'color':'#175cce'}}]}
         second=workflow(revised,'revised')
+        second_film=Path(second['nodes']['film']['root'])
+        after_captions=json.loads((second_film/'captions.json').read_text())['tracks']
+        self.assertEqual(caption_tracks,after_captions,'brand revision must preserve speech captions and timing')
         for name in ['logo','poster','intro','film']:self.assertNotEqual(first['nodes'][name]['taskId'],second['nodes'][name]['taskId'])
         self.assertEqual(first['nodes']['badge']['taskId'],second['nodes']['badge']['taskId'])
         from PIL import Image, ImageChops
@@ -79,5 +93,5 @@ class MixedAsrTests(unittest.TestCase):
         verified=art('package.py',['verify','--package',root/'moved-package','--sha',packed['sha256']],'verify-package');self.assertEqual(len(verified['children']),5)
         self.assertFalse(any((root/'moved-package').rglob('model.safetensors')))
         for path,sha in fingerprints.items():self.assertEqual(digest(skill/path),sha)
-        proof={'result':'PASS','scope':'Single Art source/installed skill, real public model first download and four-domain five-child DAG, brand revision and moved package; human creative quality separate','runtimeIdentity':setup['skills']['filmcraft']['runtimeIdentity'],'modelFiles':expected,'wordCount':len(transcript['words']),'realInference':True,'sourceAndVoicePreserved':True,'modelFilesUnchanged':True,'unrelatedBadgeReused':True,'packageChildren':5,'packageSha256':packed['sha256'],'skillFiles':fingerprints,'calls':calls}
+        proof={'result':'PASS','scope':'Single Art source/installed skill, real public model first download and four-domain five-child DAG, brand revision and moved package; human creative quality separate','runtimeIdentity':setup['skills']['filmcraft']['runtimeIdentity'],'modelFiles':expected,'wordCount':len(transcript['words']),'captionTracks':len(visible),'captionSegments':len(visible[0]['captions']),'captionSize':visible[0]['style']['size'],'returnedTrackStyled':True,'captionsAndTimingPreservedAcrossBrandRevision':True,'realInference':True,'sourceAndVoicePreserved':True,'modelFilesUnchanged':True,'unrelatedBadgeReused':True,'packageChildren':5,'packageSha256':packed['sha256'],'skillFiles':fingerprints,'calls':calls}
         (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
