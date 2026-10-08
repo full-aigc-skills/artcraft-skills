@@ -134,7 +134,14 @@ class WorkerCrashFirstUseTests(unittest.TestCase):
                     self.assertEqual(list(db.execute('SELECT project_key, task_id, epoch FROM leases')), leases)
                 self.assertEqual(tree_hash(skill), expected)
                 self.assertEqual(tree_hash(original), expected)
+                installation_bytes = (project/'installation-receipt.json').read_bytes()
+                installation = json.loads(installation_bytes)
                 evidence = {'schema': 'craft-installed-worker-crash-first-use/v1', 'result': 'PASS',
+                    'runtimeVersion': installation['version'],
+                    'installationReceiptSha256': hashlib.sha256(installation_bytes).hexdigest(),
+                    'nativeRuntimeIdentity': installation['skills']['effectcraft']['runtimeIdentity'],
+                    'requestSha256': hashlib.sha256(after['tasks'][0]['request_json'].encode()).hexdigest(),
+                    'driverSha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                     'skillSha256': expected, 'planSha256': hashlib.sha256(plan.read_bytes()).hexdigest(),
                     'runtimeMode': 'one installed recover skill, empty runtime, default public downloads',
                     'fault': 'SIGKILL only the owned execution supervision worker after native spawn',
