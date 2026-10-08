@@ -21,6 +21,13 @@ HEX = re.compile(r'^[a-f0-9]{64}$')
 MAX_BYTES = 8 * 1024 * 1024
 
 
+class StaleConsistencyEvidence(ValueError):
+    """当前一致性证据无法绑定有效资产时，明确要求重评。"""
+    def __init__(self, code):
+        super().__init__(code)
+        self.diagnostic = {'consistency': {'result': 'STALE', 'action': 'reevaluate', 'reason': code}}
+
+
 def fail(code):
     raise ValueError(code)
 
@@ -125,8 +132,15 @@ def evaluate(value, package, evidence_root):
         fail('review_asset_missing')
     if not isinstance(value['brandReferences'], list) or len(value['brandReferences']) > 1000:
         fail('review_brand_reference_invalid')
+    def current_binding(target, current_assets):
+        try:
+            return binding(target, current_assets)
+        except ValueError as error:
+            if 'consistency' in value and str(error) in ('review_asset_stale', 'review_asset_binding_invalid', 'review_digest_invalid'):
+                raise StaleConsistencyEvidence(str(error)) from error
+            raise
     for target in value['brandReferences']:
-        binding(target, assets)
+        current_binding(target, assets)
     if not isinstance(value['checks'], list) or len(value['checks']) > 10000:
         fail('review_checks_invalid')
     verified_evidence = {}
@@ -149,7 +163,7 @@ def evaluate(value, package, evidence_root):
         if dimension == 'acceptance' and status != 'NOT_RUN' and actor['kind'] != 'human':
             fail('review_human_acceptance_required')
         text(check['note'], 'review_note_required')
-        artifact = binding(check['target'], assets)
+        artifact = current_binding(check['target'], assets)
         if status == 'FAIL' and dimension == 'creative' and not any(k in check['target'] for k in ('objectId', 'frame', 'region')):
             fail('review_issue_locator_required')
         evidence = check['evidence']
@@ -175,7 +189,7 @@ def evaluate(value, package, evidence_root):
         spec = importlib.util.spec_from_file_location('craft_consistency', Path(__file__).with_name('consistency.py'))
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        result['consistency'] = module.evaluate(value['consistency'], value['brandReferences'], checks, assets, verified_evidence, binding, load_json, text)
+        result['consistency'] = module.evaluate(value['consistency'], value['brandReferences'], checks, assets, verified_evidence, current_binding, load_json, text)
         if result['consistency']['result'] == 'FAIL':
             result['decision'] = 'changes_requested'
         elif result['consistency']['result'] == 'NOT_RUN' and result['decision'] == 'accepted':
@@ -307,7 +321,8 @@ def main():
         print(json.dumps(result, ensure_ascii=False))
     except (ValueError, RuntimeError, OSError, KeyError, TypeError, subprocess.SubprocessError) as error:
         reply = {'error': str(error), 'result': 'unknown' if isinstance(error, subprocess.TimeoutExpired) else 'failed'}
-        if isinstance(error, P.PublicCallFailure):reply.update(error.diagnostic)
+        if isinstance(error, (P.PublicCallFailure, StaleConsistencyEvidence)):
+            reply.update(error.diagnostic)
         print(json.dumps(reply, ensure_ascii=False))
         raise SystemExit(1)
 

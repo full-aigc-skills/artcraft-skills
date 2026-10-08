@@ -1,8 +1,8 @@
 # 固定参考的一致性审阅 / Fixed-reference consistency review
 
-此能力属于 `scripts/review.py record/verify` 的可选合同。当前为源码候选，发布锁仍指向旧版本；不能把本指南当固定安装验收证明。原有不含 consistency 的输入及记录保持兼容。
+此能力属于 `scripts/review.py record/verify` 的可选合同。技能源提供此合同；首次使用以当前技能锁定的运行时为准，固定安装验收另有版本绑定证据。原有不含 consistency 的输入及记录保持兼容。
 
-Use the optional contract through `scripts/review.py record/verify`. This is a source candidate; the release lock still identifies the prior release. This guide does not prove installed-release acceptance. Legacy inputs and records remain supported.
+Use the optional contract through `scripts/review.py record/verify`. The skill source provides this contract. Use its pinned runtime; installed-release acceptance requires separate version-bound evidence. Legacy inputs and records remain supported.
 
 ## 输入 / Input
 
@@ -42,3 +42,7 @@ Use the commands in [review records](review.md). The directory contains the orig
 一致性 PASS 只说明具名评价者的观察合同通过，不证明模型语义正确或人工接受。没有实际执行的视觉、听觉或人工审阅仍为未验证；工具不得生成虚假观察来填满覆盖率。任务账本仍为 review_ready。
 
 Consistency PASS proves the named-evaluator observation contract only. It does not establish semantic correctness or human acceptance. Unperformed visual, audio or human review remains unverified; tools must not fabricate observations to fill coverage. The task ledger remains review_ready.
+
+旧版本引用、缺失目标摘要或无效摘要会在公开拒绝回执中返回 `consistency.result=STALE`、`action=reevaluate` 及原始 reason；不得复用为已审阅结果。
+
+Stale references, missing target digests and invalid digests return `consistency.result=STALE`, `action=reevaluate` and the original reason in the public refusal receipt. They must not be reused as reviewed results.

@@ -159,3 +159,19 @@ class ConsistencyTests(unittest.TestCase):
             args.review_sha = hashlib.sha256(report_path.read_bytes()).hexdigest()
             with self.assertRaisesRegex(ValueError, 'review_record_result_mismatch'):
                 m.verify_record(args, package)
+
+    def test_stale_reference_or_unbound_target_requires_reevaluation(self):
+        for kind in ('reference-version', 'target-digest'):
+            with self.subTest(kind=kind), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp); package, value = self.fixture(root)
+                if kind == 'reference-version':
+                    value['consistency']['references'][0]['asset']['version'] = 'old'
+                else:
+                    value['checks'][0]['target'].pop('sha256')
+                try:
+                    self.module().evaluate(value, package, root)
+                except ValueError as error:
+                    self.assertEqual(error.diagnostic['consistency']['result'], 'STALE')
+                    self.assertEqual(error.diagnostic['consistency']['action'], 'reevaluate')
+                else:
+                    self.fail('Stale evidence was accepted')

@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+技能源99补充过期一致性引用及缺失目标摘要的 STALE／reevaluate 回执；不可变分发与固定安装验收正在准备，不因此关闭6.14／6.15。[证据](docs/evidence/consistency-stale-action-20261009.json)。
+
 源码候选已补充固定品牌／主体参考的一致性观察绑定：8 项目标 fixture 与 7 项既有审阅测试通过。6.13 完成，6.14／6.15 仍未完成；公开发行身份不变。见 [候选架构](docs/ArtCraft-Consistency-Candidate-Architecture.zh_CN.md)。
 
 能力路由任务6.6已完成当前11个场景；十个固定安装入口各自完成完整四域混合网关冷启动、原生源返工、恢复与移动包验收。插件126／源98／runtime126生产字节保持不变。仍有24项编号任务及完整V1未完成。见[验收架构](docs/ArtCraft-Capability-Routing-Acceptance-Architecture.zh_CN.md)。
@@ -25,7 +27,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.98`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.99`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -107,7 +109,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.98`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.99`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 

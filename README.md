@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Source99 adds explicit STALE / reevaluate refusals for expired consistency references and missing target digests. Immutable distribution and fixed installed qualification are being prepared; this does not close6.14/6.15. [Evidence](docs/evidence/consistency-stale-action-20261009.json).
+
 Source-candidate consistency review now binds fixed brand/subject references to every observed output; eight targeted fixture tests and seven legacy review tests pass. Task6.13 is complete;6.14/6.15 remain open. Public release identities are unchanged. See [candidate architecture](docs/ArtCraft-Consistency-Candidate-Architecture.md).
 
 Capability-routing task6.6 is complete for all eleven current scenarios, including separate full four-domain mixed gateway cold starts, native source revisions, recovery and moved packages through all ten installed entries. Fixed plugin126/source98/runtime126 bytes remain unchanged. Twenty-four numbered tasks and full V1 remain open. See [acceptance architecture](docs/ArtCraft-Capability-Routing-Acceptance-Architecture.md).
@@ -25,7 +27,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.98`; qualified plugin: `0.1.0-dev.126`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.99`; qualified plugin: `0.1.0-dev.126`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
