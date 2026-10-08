@@ -4,8 +4,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('setup_prefix',ROOT/'skills/artcraft-use/scripts/setup.py');setup=importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
 class PrefixTests(unittest.TestCase):
- def fixture(self,root,extra=None):
-  archive=root/'bundle.zip';prefix='photocraft-skills/'
+ def fixture(self,root,extra=None,prefix='photocraft-skills/'):
+  archive=root/'bundle.zip'
   with zipfile.ZipFile(archive,'w') as z:
    z.writestr(prefix,b'');z.writestr(prefix+'LICENSE',b'license');z.writestr(prefix+'skills/',b'');z.writestr(prefix+'skills/item.txt',b'fixed')
    if extra:
@@ -19,6 +19,13 @@ class PrefixTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as t:
    root=Path(t);archive,lock=self.fixture(root);target=setup.install_bundle(lock,root/'installed',archive)
    self.assertEqual((target/'skills/item.txt').read_bytes(),b'fixed');self.assertFalse((target/'photocraft-skills').exists());self.assertEqual(setup.install_bundle(lock,target,archive),target)
+ def test_exact_versioned_prefix_installs_but_wrong_version_is_refused(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);archive,lock=self.fixture(root,prefix='photocraft-skills-1.0.0/');target=setup.install_bundle(lock,root/'installed',archive)
+   self.assertEqual((target/'skills/item.txt').read_bytes(),b'fixed')
+   lock['archivePrefix']='photocraft-skills-1.0.1/'
+   with self.assertRaisesRegex(ValueError,'bundle_prefix_invalid'):setup.install_bundle(lock,root/'wrong',archive)
+   self.assertFalse((root/'wrong').exists())
  def test_bad_prefix_is_rejected_before_creating_directories(self):
   for prefix in ('../','other/','photocraft-skills','photocraft-skills//','',None,42):
    with self.subTest(prefix=prefix),tempfile.TemporaryDirectory() as t:

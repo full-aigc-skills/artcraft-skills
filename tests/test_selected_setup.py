@@ -42,6 +42,11 @@ class SelectedSetupTests(unittest.TestCase):
                     digest=domain['capabilitySnapshot']['scriptHashes']['preserved_stage.py']
                     self.assertEqual(digest,setup.sha(Path(domain['skillRoot'])/'scripts/preserved_stage.py'))
                     self.assertIn({'path':str(Path(domain['skillRoot'])/'scripts/preserved_stage.py'),'sha256':digest},domain['files'])
+                    if name == 'photocraft':
+                        delivery = Path(domain['skillRoot'])/'scripts/delivery.py'
+                        digest = domain['capabilitySnapshot']['scriptHashes']['delivery.py']
+                        self.assertEqual(digest, setup.sha(delivery))
+                        self.assertIn({'path':str(delivery),'sha256':digest}, domain['files'])
 
     def test_skill_first_use_instructions_do_not_preinstall_unused_domains(self):
         suite=json.loads((ROOT/'skill-suite.json').read_text())
