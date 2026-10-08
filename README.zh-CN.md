@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+固定135命令检查点：十技能独立空缓存首用、40项真实原生命令探测、210项模式目标、真实Effect bridge与36项保存后故障通过。完整任务4.6继续开放。[证据及范围](docs/ArtCraft-Fixed-Command-Checkpoint-Architecture.zh_CN.md)。
+
 固定135版本绑定与单写验收完成任务5.3：64宿主身份、四领域原生创建／修订、同源串行、冻结元数据与授权复用，以及真实GUI保存后的固定安装旧计划冲突均通过。仍有11项编号任务与完整V1开放。[验收](docs/ArtCraft-Version-Single-Writer-Acceptance-Architecture.zh_CN.md)。
 
 开发技能源107固定运行时134-runtime.1，包含三模式命令校验和原生源版本冲突修复。真实EffectCraft界面证据与固定安装验收分别记录，完整V1继续开放。[源版本架构](docs/ArtCraft-Source-Revision-Architecture.zh_CN.md)。
