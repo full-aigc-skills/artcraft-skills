@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Four-domain font candidate: native creation, moved packages and all four source reopens pass;644 runtime tests pass. A new pinned development chain is being prepared. [Architecture and limits](docs/ArtCraft-Four-Domain-Fonts-Architecture.md).
+
 Current source candidate records Photo editable font requirements explicitly as uncollected, with native-project and inspection binding. Fixed distribution and other-domain font mapping remain pending. [Font state and evidence](docs/ArtCraft-Font-Dependency-Architecture.md).
 
 Fixed137 artifact checkpoint: full9.85-hour/12fps movie exports and independently decodes425,512frames; current native dynamic/version/JPEG scenarios pass. CP-002 remains open because editable native fonts are absent from public dependencies. [Audit and remaining gap](docs/ArtCraft-Artifact-Protocol-Acceptance-Architecture.md).
@@ -99,7 +101,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.109`; most recently tested development plugin: `0.1.0-dev.136`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.110`; most recently tested development plugin: `0.1.0-dev.136`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
