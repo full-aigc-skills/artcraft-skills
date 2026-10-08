@@ -20,6 +20,15 @@ class BundleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'bundle_version_invalid'):
                 setup.bundle_version({'version': '0.1.0-dev.1'}, {'version': version})
 
+    def test_immutable_runtime_version_is_accepted_and_unsafe_suffixes_are_rejected(self):
+        import json
+        lock=json.loads((Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/distribution.lock.json').read_text())
+        setup.validate_distribution(lock)
+        self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.113-runtime.1')
+        for value in ('0.1.0-dev.113-runtime.', '0.1.0-dev.113-runtime.1/escape', '0.1.0-dev.113-other.1'):
+            with self.subTest(version=value), self.assertRaisesRegex(ValueError,'bundle_version_invalid'):
+                setup.bundle_version(lock,{'version':value})
+
     def bundle(self, root, unsafe=False):
         archive = root/'bundle.zip'
         with zipfile.ZipFile(archive, 'w') as zip:
