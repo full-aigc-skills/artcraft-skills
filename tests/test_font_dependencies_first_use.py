@@ -27,6 +27,7 @@ class FontDependenciesFirstUse(unittest.TestCase):
    plan=json.loads((skill/'examples/brand-campaign.json').read_text());plan['workflowId']='four-domain-fonts';intro=next(n for n in plan['nodes'] if n['id']=='intro')
    intro['payload']['plan']['operations'].append({'command':'layer.newText','params':{'name':'Font title','text':'NOVA','font':'Arial','size':20,'position':[30,50]},'as':'fontTitle'})
    path=root/'create-plan.json';path.write_text(json.dumps(plan));first=run('workflow.py',path,'--output',project,'--authorization','font-first-use','--asset','voice='+str(voice));self.assertEqual(first['state'],'review_ready')
+   reused=run('workflow.py',path,'--output',project,'--authorization','font-first-use','--asset','voice='+str(voice));self.assertEqual(reused['state'],'review_ready');self.assertTrue(all(node['status']=='reused' for node in reused['nodes'].values()))
    def fonts(output):
     deps=[d for d in output['dependencies'] if d['kind']=='font'];self.assertTrue(deps)
     for dep in deps:
@@ -46,5 +47,5 @@ class FontDependenciesFirstUse(unittest.TestCase):
    self.assertEqual({n['id']:fonts(second['nodes'][n['id']]['outputs'][0]) for n in reopen['nodes']},required)
    second_package=run('package.py','create','--project',project,'--workflow',second['runKey'],'--authorization','font-first-use','--output',root/'reopened-package');run('package.py','verify','--package',root/'reopened-package','--sha',second_package['sha256'])
    self.assertTrue(all(sha(project/name)==digest for name,digest in original.items()));self.assertEqual(sha(voice),voice_before);self.assertEqual(inventory(),before)
-   installation=json.loads((project/'installation-receipt.json').read_text());expected=os.environ.get('CRAFT_FONT_EXPECTED_RUNTIME','0.1.0-dev.137-runtime.1');self.assertEqual(installation['version'],expected)
+   installation=json.loads((project/'installation-receipt.json').read_text());expected=os.environ.get('CRAFT_FONT_EXPECTED_RUNTIME','0.1.0-dev.138-runtime.1');self.assertEqual(installation['version'],expected)
    if retained:(root/'proof.json').write_text(json.dumps({'schema':'artcraft-fonts-installed-first-use/v1','status':'passed','runtimeVersion':installation['version'],'warmRuntimeCache':warm,'fonts':required,'calls':calls,'initialResult':first,'reopenedResult':second,'packageSha256':packed['sha256'],'reopenedPackageSha256':second_package['sha256'],'sourceSkillHashes':before,'sourceAndSkillPreserved':True,'scope':'single isolated fixed skill, public pinned runtime installer, four native domains, moved package source reopen; not target font availability or host64 acceptance'},indent=2)+'\n')
