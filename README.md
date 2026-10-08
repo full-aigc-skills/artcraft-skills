@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+The DAG identity fix is verified in plugin126/source98/runtime126;core tasks6.7/6.8 are complete.Task6.9 full native concurrency acceptance remains open.[Architecture and evidence](docs/ArtCraft-Dag-Identity-Architecture.md).The earlier6.12 seven-scenario evidence is bound to plugin125 and is not a full rerun on126.
+
 Core asset versioning and selective invalidation implementation is verified; tasks6.10/6.11 are complete. Old packages and review records remain traceable after a native source revision; old review on a new package is refused. Task6.12 seven-scenario acceptance is complete; see [current acceptance architecture](docs/ArtCraft-Selective-Version-Acceptance-Architecture.md). Complete V1 stays open. See [implementation architecture](docs/ArtCraft-Selective-Version-Implementation-Architecture.md).
 
 The maintenance branch corrects command guidance in all ten standalone source skills: offline discovery, standalone domain calls and DAG native delivery now have explicit routes, with obsolete dependency versions removed. Sixteen command regressions and documentation/fixed-index checks pass. Fixed source91/plugin119 includes the corrected guides; installation and native guide evidence is recorded below. Runtime and domain dependencies are unchanged. [Evidence](docs/evidence/command-guidance-refresh-20261008.json).
@@ -13,7 +15,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.98`; qualified plugin: `0.1.0-dev.125`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.98`; qualified plugin: `0.1.0-dev.126`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
