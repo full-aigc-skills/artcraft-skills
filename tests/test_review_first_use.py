@@ -20,6 +20,7 @@ class ReviewFirstUseTests(unittest.TestCase):
    root=Path(d);skill=root/'only review skill'
    installed=os.environ.get('CRAFT_INSTALLED_REVIEW_SKILL_ROOT')
    shutil.copytree(Path(installed) if installed else ROOT/'skills/artcraft-cli-review',skill,ignore=shutil.ignore_patterns('__pycache__'))
+   skill_snapshot={p.relative_to(skill):p.read_bytes() for p in skill.rglob('*') if p.is_file()}
    runtime=root/'runtime';project=root/'project';authorization='review-fixture-scope';calls=[]
    environment=dict(os.environ,PATH='/usr/bin:/bin')
    for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):environment.pop(key,None)
@@ -52,6 +53,36 @@ class ReviewFirstUseTests(unittest.TestCase):
    self.assertTrue(all(not (runtime/n).exists() for n in ('filmcraft','effectcraft','photocraft')))
    self.assertEqual((project/'tasks.sqlite').read_bytes(),ledger)
    for path,contents in snapshots.items():self.assertEqual((movedpackage/path.relative_to(root/'package')).read_bytes(),contents)
+   # 新原生修订不能改写旧包或旧审阅，也不能将旧观察套用到新内容。
+   old_output=made['nodes']['logo']['outputs'][0]
+   old_root=Path(made['nodes']['logo']['root'])
+   old_files={p.relative_to(old_root):p.read_bytes() for p in old_root.rglob('*') if p.is_file()}
+   review_files={p.relative_to(moved):p.read_bytes() for p in moved.rglob('*') if p.is_file()}
+   revised=json.loads(json.dumps(plan));revised['revision']='review-logo-v2'
+   node=revised['nodes'][0];node['expectedRevision']=old_output['nativeProjectRef']['sha256']
+   node['externalInputs']=[{'root':str(old_root),'artifact':old_output}]
+   node['payload']['sourceProject']={'assetId':old_output['assetId']}
+   node['payload']['plan'].pop('document')
+   node['payload']['plan']['operations']=[{'command':'select.set','params':{'ids':{'$ref':'logo.ids'}}},{'command':'paint.setFill','params':{'color':'#ee6622'}}]
+   revised_path=root/'revised-plan.json';revised_path.write_text(json.dumps(revised))
+   changed=run('workflow.py',revised_path,'--output',project,'--authorization',authorization)
+   self.assertEqual(changed['state'],'review_ready',changed)
+   new_output=changed['nodes']['logo']['outputs'][0]
+   self.assertEqual(new_output['assetId'],old_output['assetId'])
+   self.assertNotEqual(new_output['version'],old_output['version'])
+   self.assertNotEqual(new_output['sha256'],old_output['sha256'])
+   repeated=run('workflow.py',revised_path,'--output',project,'--authorization',authorization)
+   self.assertEqual(repeated['nodes']['logo']['taskId'],changed['nodes']['logo']['taskId'])
+   self.assertEqual(repeated['budget'],changed['budget'])
+   next_package=root/'revised-package'
+   next_receipt=run('package.py','create','--project',project,'--workflow',changed['runKey'],'--output',next_package,'--authorization',authorization)
+   old_checked=run('review.py','verify','--package',movedpackage,'--package-sha',packed['sha256'],'--review',moved,'--review-sha',receipt['sha256'],home=clean)
+   self.assertEqual(old_checked['decision'],'pending')
+   old_on_new=run('review.py','verify','--package',next_package,'--package-sha',next_receipt['sha256'],'--review',moved,'--review-sha',receipt['sha256'],home=clean,ok=False)
+   self.assertIn('review_package_stale',old_on_new['error'])
+   for path,contents in old_files.items():self.assertEqual((old_root/path).read_bytes(),contents)
+   for path,contents in review_files.items():self.assertEqual((moved/path).read_bytes(),contents)
+   for path,contents in snapshots.items():self.assertEqual((movedpackage/path.relative_to(root/'package')).read_bytes(),contents)
    input['checks'][0]['target']['version']='stale';source.write_text(json.dumps(input))
    bad=run('review.py','record','--package',movedpackage,'--package-sha',packed['sha256'],'--input',source,'--output',root/'stale-review',ok=False)
    self.assertIn('review_asset_stale',bad['error']);self.assertFalse((root/'stale-review').exists())
@@ -59,8 +90,9 @@ class ReviewFirstUseTests(unittest.TestCase):
    bad=run('review.py','verify','--package',movedpackage,'--package-sha',packed['sha256'],'--review',moved,'--review-sha',receipt['sha256'],ok=False,home=clean)
    self.assertIn('review_record_file_mismatch',bad['error'])
    self.assertFalse(any(skill.rglob('*.pyc')))
+   self.assertEqual({p.relative_to(skill):p.read_bytes() for p in skill.rglob('*') if p.is_file()},skill_snapshot)
    if retained:
-    proof={'schema':'craft-current-review-record-acceptance/v1','result':'PASS','workflow':made,'packageReceipt':packed,'reviewReceipt':receipt,'movedVerification':checked,'ledgerAndPackagePreserved':True,'staleAssetRejected':True,'tamperedObservationRejected':True,'calls':calls,'scope':'actual fixed installed copied single review skill, public cold native Vector plus separate cold runtime-only moved verification; declared fixture feedback, no aesthetic or human acceptance'}
+    proof={'schema':'craft-current-review-record-acceptance/v1','result':'PASS','workflow':made,'packageReceipt':packed,'reviewReceipt':receipt,'movedVerification':checked,'ledgerAndPackagePreserved':True,'staleAssetRejected':True,'tamperedObservationRejected':True,'revisionWorkflow':changed,'repeatedRevision':repeated,'revisedPackageReceipt':next_receipt,'oldReviewAfterRevision':old_checked,'oldReviewOnNewPackageRejected':old_on_new,'oldDeliveryReviewAndPackagePreservedAfterRevision':True,'calls':calls,'scope':'actual fixed installed copied single review skill, public cold native Vector source revision plus separate cold runtime-only moved verification; old version review traceability; declared fixture feedback, no aesthetic or human acceptance'}
     (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
    evidence=os.environ.get('CRAFT_REVIEW_ROLE_EVIDENCE_FILE')
    if evidence:
