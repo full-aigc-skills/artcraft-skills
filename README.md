@@ -11,7 +11,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.92`; qualified plugin: `0.1.0-dev.119`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.92`; qualified plugin: `0.1.0-dev.120`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -341,4 +341,6 @@ Fixed Film41/source38 and Art118/source90 first use passes: all64 installation i
 
 Fixed Art119/source91 passes the bounded identity/guidance distribution gate:64 host identities and public CLI probes,10 new independent cold starts,54 whole-hash-matched historical cold records only, and actual installed execute-skill expression creation/source revision/preserved original and control pixels/moved packaging. Source package and suite both identify91. Only3.28 closes; fullV1 remains open. [Evidence](docs/evidence/craft-art119-guidance-fixed-first-use-20261008.json).
 
-Scenario bootstrap diagnostics: candidate implementation and real single-skill public installation recovery passed; immutable release acceptance remains separate. [Evidence](docs/evidence/scenario-setup-diagnostics-20261008.json).
+Scenario bootstrap diagnostics are qualified in fixed source92/plugin120; see the bounded acceptance below. [Evidence](docs/evidence/scenario-setup-diagnostics-20261008.json).
+
+Fixed Art120/source92 passes ten new independent public cold installs,64 host identities/CLI probes,20 real failed calls from installed isolated copies, and public cold recovery/native Vector creation/same-task reuse/moved-package recovery.54 other skills reuse historical cold evidence only after complete hash equality. Only3.29 closes; full V1 and the overall goal remain incomplete. [Evidence](docs/evidence/craft-art120-scenario-setup-fixed-first-use-20261008.json).
