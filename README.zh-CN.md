@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+固定139／源111／runtime138已通过字体复用重验及实际四领域创建／复用／移动源重开；继承媒体的公共依赖清单仍有已确认缺口，2.3与完整V1继续开放。[验收](docs/ArtCraft-Font-Reuse-Acceptance-Architecture.zh_CN.md)。
+
 四领域字体候选已通过真实创建、移动包和四个源工程重开；644项运行时测试通过。正在准备新的固定开发发行链。[架构与边界](docs/ArtCraft-Four-Domain-Fonts-Architecture.zh_CN.md)。
 
 当前源码候选已明确记录 Photo 可编辑字体的未收集状态，并绑定原生工程与检查证据；固定发行和其他领域字体映射仍待完成。[字体状态与证据](docs/ArtCraft-Font-Dependency-Architecture.zh_CN.md)。
@@ -101,7 +103,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.111`；最近验收的开发插件：`0.1.0-dev.138`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.111`；最近验收的开发插件：`0.1.0-dev.139`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -183,7 +185,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.111`；最近验收的开发插件：`0.1.0-dev.138`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.111`；最近验收的开发插件：`0.1.0-dev.139`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
