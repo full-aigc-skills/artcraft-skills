@@ -41,6 +41,16 @@ class ReviewTests(unittest.TestCase):
    self.assertEqual(m.evaluate(value,package,Path(d))['decision'],'pending')
    value['checks'][0]['status']='FAIL';value['checks'][0]['evidence']=value['checks'][1]['evidence']
    self.assertEqual(m.evaluate(value,package,Path(d))['decision'],'changes_requested')
+ def test_positive_creative_and_acceptance_declarations_cannot_override_technical_failure(self):
+  m=self.load()
+  with tempfile.TemporaryDirectory() as d:
+   package,value=self.fixture(Path(d))
+   value['checks'][0]['status']='FAIL'
+   value['checks'][0]['note']='Decoder failure declaration in a unit fixture'
+   report=m.evaluate(value,package,Path(d))
+   self.assertEqual(report['dimensions'],{'engineering':'PASS','technical':'FAIL','creative':'PASS','acceptance':'PASS'})
+   self.assertEqual(report['decision'],'changes_requested')
+   self.assertEqual(report['taskState'],'review_ready')
  def test_stale_identity_missing_proof_nonhuman_acceptance_and_bad_locator_rejected(self):
   m=self.load()
   mutations=[lambda v:v.update(packageSha256='d'*64),lambda v:v.update(planSha256='d'*64),lambda v:v.update(ownerId='other'),lambda v:v['checks'][0]['target'].update(version='old'),lambda v:v['brandReferences'][0].update(sha256='d'*64),lambda v:v['checks'][0].update(evidence=[]),lambda v:v['checks'][-1]['evaluator'].update(kind='model'),lambda v:v['checks'][0]['target'].update(frame=-1),lambda v:v['checks'][0]['target'].update(region={'x':0,'y':0,'width':2,'height':1}),lambda v:v['checks'][0]['evidence'][0].update(location='../outside'),lambda v:v['checks'][0]['evidence'][0].update(sha256='d'*64)]

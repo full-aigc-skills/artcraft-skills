@@ -10,20 +10,27 @@ import signal
 import time
 import tempfile
 import unittest
+from contextlib import nullcontext
 ROOT=Path(__file__).resolve().parents[1]
 
 @unittest.skipUnless(os.environ.get('CRAFT_REVISION_FIRST_USE')=='1','requires public native cold first-use downloads')
 class RevisionFirstUseTests(unittest.TestCase):
  def test_native_revision_and_all_stop_policies_preserve_original_deliveries(self):
-  with tempfile.TemporaryDirectory(prefix='artcraft-revision-first-use-') as d:
+  retained=os.environ.get('CRAFT_REVISION_EVIDENCE_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory(prefix='artcraft-revision-first-use-') as d:
    root=Path(d);skill=root/'single revise skill'
    installed=os.environ.get('CRAFT_INSTALLED_REVISE_SKILL_ROOT')
    shutil.copytree(Path(installed) if installed else ROOT/'skills/artcraft-cli-revise',skill,ignore=shutil.ignore_patterns('__pycache__'))
-   runtime=root/'runtime';env=dict(os.environ,PATH='/usr/bin:/bin')
+   runtime=root/'runtime';env=dict(os.environ,PATH='/usr/bin:/bin');calls=[];records=[]
+   for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):env.pop(key,None)
    def run(script,*args,success=True):
     argv=[sys.executable,'-I','-B',str(skill/'scripts'/script)]
     argv += ['--runtime-home',str(runtime),*map(str,args)] if script=='cli.py' else [*map(str,args),'--runtime-home',str(runtime)]
     result=subprocess.run(argv,capture_output=True,text=True,env=env,timeout=600)
+    if retained:
+     log=root/('call-%03d.log'%len(calls));log.write_text(result.stdout+result.stderr)
+     calls.append({'script':script,'exitCode':result.returncode,'logSha256':hashlib.sha256(log.read_bytes()).hexdigest()})
     if success:self.assertEqual(result.returncode,0,result.stdout+result.stderr)
     else:self.assertNotEqual(result.returncode,0,result.stdout+result.stderr)
     return json.loads(result.stdout)
@@ -111,5 +118,9 @@ class RevisionFirstUseTests(unittest.TestCase):
      status=run('revision.py','status','--project',project);self.assertEqual(status['rounds'],1)
      policy['targetSha256']='e'*64;policyfile.write_text(json.dumps(policy));policy_sha=hashlib.sha256(policyfile.read_bytes()).hexdigest()
      denied=step(package,packed,feedback,feedback_receipt,success=False);self.assertIn('revision_policy_changed_requires_new_authorization',denied['error'])
+     records.append({'stopPolicy':reason,'initialWorkflow':first,'finalStep':made,'stopReceipt':made if reason=='budget_exceeded' else stopped,'finalStatus':status,'changedTargetRejected':denied,'originalNativeAndPackagePreserved':True,'realControllerInterruptedAndResumed':reason=='stagnation'})
    self.assertFalse(any(skill.rglob('*.pyc')))
+   if retained:
+    proof={'schema':'craft-current-revision-acceptance/v1','result':'PASS','scope':'current fixed installed standalone skill; three stop policies, real process-group interruption and same-step recovery; declared fixture observations, no actual creative or human acceptance','records':records,'calls':calls}
+    (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
 if __name__=='__main__':unittest.main()

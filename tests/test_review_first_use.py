@@ -8,19 +8,27 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import nullcontext
 ROOT=Path(__file__).resolve().parents[1]
 
 @unittest.skipUnless(os.environ.get('CRAFT_REVIEW_FIRST_USE')=='1','requires public native first-use downloads')
 class ReviewFirstUseTests(unittest.TestCase):
  def test_single_review_skill_records_native_package_without_unrelated_installs(self):
-  with tempfile.TemporaryDirectory(prefix='artcraft-review-first-use-') as d:
+  retained=os.environ.get('CRAFT_REVIEW_EVIDENCE_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory(prefix='artcraft-review-first-use-') as d:
    root=Path(d);skill=root/'only review skill'
    installed=os.environ.get('CRAFT_INSTALLED_REVIEW_SKILL_ROOT')
    shutil.copytree(Path(installed) if installed else ROOT/'skills/artcraft-cli-review',skill,ignore=shutil.ignore_patterns('__pycache__'))
-   runtime=root/'runtime';project=root/'project';authorization='review-fixture-scope'
+   runtime=root/'runtime';project=root/'project';authorization='review-fixture-scope';calls=[]
+   environment=dict(os.environ,PATH='/usr/bin:/bin')
+   for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):environment.pop(key,None)
    def run(script,*args,ok=True,home=runtime):
     command=[sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args),'--runtime-home',str(home)]
-    result=subprocess.run(command,env=dict(os.environ,PATH='/usr/bin:/bin'),capture_output=True,text=True,timeout=600)
+    result=subprocess.run(command,env=environment,capture_output=True,text=True,timeout=600)
+    if retained:
+     log=root/('call-%02d.log'%len(calls));log.write_text(result.stdout+result.stderr)
+     calls.append({'script':script,'exitCode':result.returncode,'logSha256':hashlib.sha256(log.read_bytes()).hexdigest()})
     if ok:self.assertEqual(result.returncode,0,result.stdout+result.stderr)
     else:self.assertNotEqual(result.returncode,0,result.stdout+result.stderr)
     return json.loads(result.stdout)
@@ -51,6 +59,9 @@ class ReviewFirstUseTests(unittest.TestCase):
    bad=run('review.py','verify','--package',movedpackage,'--package-sha',packed['sha256'],'--review',moved,'--review-sha',receipt['sha256'],ok=False,home=clean)
    self.assertIn('review_record_file_mismatch',bad['error'])
    self.assertFalse(any(skill.rglob('*.pyc')))
+   if retained:
+    proof={'schema':'craft-current-review-record-acceptance/v1','result':'PASS','workflow':made,'packageReceipt':packed,'reviewReceipt':receipt,'movedVerification':checked,'ledgerAndPackagePreserved':True,'staleAssetRejected':True,'tamperedObservationRejected':True,'calls':calls,'scope':'actual fixed installed copied single review skill, public cold native Vector plus separate cold runtime-only moved verification; declared fixture feedback, no aesthetic or human acceptance'}
+    (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
    evidence=os.environ.get('CRAFT_REVIEW_ROLE_EVIDENCE_FILE')
    if evidence:
     record={'schema':'artcraft-review-role-first-use/v1','result':'PASS','packageSha256':packed['sha256'],'reviewSha256':receipt['sha256'],'decision':receipt['decision'],'creative':receipt['dimensions']['creative'],'ledgerPreserved':True,'nativePackagePreserved':True,'staleAssetRejected':True,'tamperedEvidenceRejected':True,'movedVerifyColdRuntime':True,'unrelatedDomainsNotInstalled':True}
