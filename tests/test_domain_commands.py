@@ -46,7 +46,7 @@ class DomainCommandsTests(unittest.TestCase):
   for outcome in ['PASS','unknown','wrong-plan','tamper','changed-input']:
    with self.subTest(outcome=outcome),tempfile.TemporaryDirectory() as temporary:
     base=Path(temporary);art=base/'one Art skill';shutil.copytree(SCRIPT.parent.parent,art);m=self.module(art/'scripts/domain_commands.py');domain='filmcraft';entry=m.domain_entry(domain);catalog=entry['catalogSha256'];root=base/'one domain';(root/'scripts').mkdir(parents=True);(root/'references').mkdir();executable=base/'native';executable.write_bytes(b'fixture, not a native runtime');native_sha=hashlib.sha256(executable.read_bytes()).hexdigest();commands=root/'scripts/commands.py';commands.write_text('# fixture only');native=root/'scripts/runtime.lock.json';native.write_text(json.dumps({'artifacts':{'darwin-arm64':{'binarySha256':native_sha}}}));index=json.loads((art/'references/domain-command-index.json').read_text());(root/'references/command-coverage.json').write_text(index['domains'][domain]['catalogText']);(root/'references/native-command-snapshot.json').write_text(index['domains'][domain]['snapshotText']);lock=json.loads((art/'scripts/distribution.lock.json').read_text());prefix='skills/filmcraft-use/';lock['bundles']['filmcraft-skills']['files']={prefix+str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file()};(art/'scripts/distribution.lock.json').write_text(json.dumps(lock));version=lock['bundles']['filmcraft-skills']['version']
-    setup={'runtimeHome':str(base/'runtime'),'skills':{domain:{'skillRoot':str(root),'executable':str(executable),'runtimeIdentity':{'pluginId':domain,'pluginVersion':version,'sha256':native_sha}}}}
+    setup={'schema':'artcraft-setup/v1','nodeExecutable':'fixture-node','entryPoint':'fixture-entry','runtimeHome':str(base/'runtime'),'skills':{domain:{'skillRoot':str(root),'executable':str(executable),'runtimeIdentity':{'pluginId':domain,'pluginVersion':version,'sha256':native_sha}}}}
     plan={'schema':'craft-command-plan/v1','operations':[{'command':'file.newProject','params':{'name':'Fixture'}}]};plan_file=base/'plan.json';plan_file.write_text(json.dumps(plan));output=base/'output';source=base/'source';source.write_bytes(b'original');argv=['run',domain,str(plan_file),'--output',str(output),'--runtime-home',str(base/'runtime')]
     if outcome=='changed-input':argv+=['--input','input='+str(source)]
     args=m.parser().parse_args(argv);calls=[]
@@ -134,3 +134,28 @@ class BridgeToolModeTests(unittest.TestCase):
     if valid:self.assertEqual(m.load_index()['effectcraft']['bridgeToolSchemas'],[tool])
     else:
      with self.assertRaisesRegex(ValueError,'command_index_invalid'):m.load_index()
+
+class CheckHandoffCompatibilityTests(unittest.TestCase):
+ module=OwnedDesktopHandoffTests.module
+ def test_fixed_domain_check_arguments_match_released_parsers(self):
+  m=self.module()
+  for domain in m.NAMES:
+   for mode in ['headless','bridge','desktop']:
+    args=m.parser().parse_args(['check',domain,'plan.json','--mode',mode])
+    argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{})
+    with self.subTest(domain=domain,mode=mode):
+     self.assertEqual('--mode' in argv,domain=='effectcraft')
+     if domain=='effectcraft':self.assertEqual(argv[-1],'bridge' if mode=='desktop' else mode)
+ def test_check_failure_preserves_native_reply_and_stderr(self):
+  m=self.module()
+  for code,stdout,stderr in [(2,b'',b'usage: unrecognized arguments'),(1,b'{"error":"invalid_reference"}',b'native refused'),(0,b'not json',b''),(0,b'[]',b'')]:
+   with self.subTest(code=code,stdout=stdout),self.assertRaises(m.P.PublicCallFailure) as failed:
+    m.check_reply(code,stdout,stderr,Path('/runtime'))
+   diagnostic=failed.exception.diagnostic
+   self.assertNotIn('dependencySetup',diagnostic)
+   self.assertEqual(diagnostic['domainCall']['returncode'],code)
+   self.assertEqual(diagnostic['domainCall']['stderr'],stderr.decode())
+   if stdout.startswith(b'{'):self.assertEqual(diagnostic['publicCallReceipt']['error'],'invalid_reference')
+  good={'result':'PASS','nativeExecution':'NOT_RUN'}
+  self.assertEqual(m.check_reply(0,json.dumps(good).encode(),b'',Path('/runtime')),good)
+  with self.assertRaisesRegex(ValueError,'command_check_reply_too_large'):m.check_reply(0,b'x'*65537,b'',Path('/runtime'))

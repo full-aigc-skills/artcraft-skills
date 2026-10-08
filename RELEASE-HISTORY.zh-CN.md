@@ -109,3 +109,5 @@ Historical source-candidate note: Source candidate: complete native workflow gat
 ## 0.1.0-dev.79
 
 源 dev.79 候选仅将 Film 分发更新到不可变源34／原生 craft.4，保留 Art 运行时83与其他三域。旧实际Whisper不可用红例已复现；新选择性冷安装、真实模型首次下载／五原生子工程混合识别、品牌局部返工与移动包通过；固定 Art 分发仍待验收。 [Evidence](docs/evidence/whisper-distribution-20261008.json).
+
+源93：嵌套公开安装诊断与固定领域检查兼容；源码174项测试136通过、38条件跳过。原生候选冷恢复／审阅／返工通过，新固定宿主验收待完成。

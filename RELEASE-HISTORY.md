@@ -109,3 +109,5 @@ Historical release record: Current skill source: `0.1.0-dev.56`; runtime: `0.1.0
 ## 0.1.0-dev.79
 
 Source dev.79 candidate updates only Film distribution to immutable source34/native craft.4, retaining Art runtime83 and the other three domains. Old actual Whisper availability fails; new selected cold setup and real first-model-download/five-native-project brand workflow, recognition, selective revision and moved package pass. Fixed Art distribution remains pending. [Evidence](docs/evidence/whisper-distribution-20261008.json).
+
+Source93: nested public setup diagnostics and pinned domain check compatibility. Source174 tests:136 pass,38 conditional skips. Native candidate cold recovery/review/revision pass; new installed-host qualification pending.
