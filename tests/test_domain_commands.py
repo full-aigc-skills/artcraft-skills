@@ -58,7 +58,7 @@ class DomainCommandsTests(unittest.TestCase):
       self.assertEqual(argv[-2:],['--plugin',domain])
       if outcome=='changed-input':source.write_bytes(b'changed')
       return subprocess.CompletedProcess(argv,0,stdout=json.dumps(setup))
-     self.assertEqual(Path(argv[3]),commands);self.assertEqual(argv[4],'run');self.assertEqual(argv[argv.index('--runtime-home')+1],setup['runtimeHome']);output.mkdir();(output/'project.fcproj').write_bytes(b'fixture saved before reply');passed=outcome not in ['unknown','FAIL'];result={'schema':'craft-command-receipt/v1','pluginId':domain,'result':'PASS' if passed else outcome,'mode':'headless','planSha256':hashlib.sha256(json.dumps(plan,ensure_ascii=False,sort_keys=True,allow_nan=False).encode()).hexdigest(),'runtimeSha256':native_sha,'catalogSha256':catalog,'inputs':{},'steps':[{'index':0,'command':command_id,'tool':None,'state':'succeeded' if passed else 'unknown' if outcome=='unknown' else 'failed'}]}
+     self.assertEqual(Path(argv[3]).resolve(),(art/'scripts/native_contract.py').resolve());self.assertEqual(Path(argv[4]),root/'scripts/mcp_session.py');self.assertEqual(Path(argv[5]),commands);self.assertEqual(argv[6],'run');self.assertEqual(argv[argv.index('--runtime-home')+1],setup['runtimeHome']);output.mkdir();(output/'project.fcproj').write_bytes(b'fixture saved before reply');passed=outcome not in ['unknown','FAIL'];result={'schema':'craft-command-receipt/v1','pluginId':domain,'result':'PASS' if passed else outcome,'mode':'headless','planSha256':hashlib.sha256(json.dumps(plan,ensure_ascii=False,sort_keys=True,allow_nan=False).encode()).hexdigest(),'runtimeSha256':native_sha,'catalogSha256':catalog,'inputs':{},'steps':[{'index':0,'command':command_id,'tool':None,'state':'succeeded' if passed else 'unknown' if outcome=='unknown' else 'failed'}]}
      if outcome=='wrong-plan':result['planSha256']='c'*64
      if outcome=='tamper':commands.write_text('changed installed helper')
      (output/('success.json' if passed else 'failure.json')).write_text(json.dumps(result))
@@ -161,3 +161,17 @@ class CheckHandoffCompatibilityTests(unittest.TestCase):
   good={'result':'PASS','nativeExecution':'NOT_RUN'}
   self.assertEqual(m.check_reply(0,json.dumps(good).encode(),b'',Path('/runtime')),good)
   with self.assertRaisesRegex(ValueError,'command_check_reply_too_large'):m.check_reply(0,b'x'*65537,b'',Path('/runtime'))
+
+class HeadlessContractLauncherTests(unittest.TestCase):
+ module=OwnedDesktopHandoffTests.module
+ def test_headless_run_uses_self_contained_contract_launcher(self):
+  m=self.module()
+  for domain in m.NAMES:
+   args=m.parser().parse_args(['run',domain,'plan.json','--output','out'])
+   argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{})
+   self.assertEqual(argv[3],str(m.ROOT/'scripts/native_contract.py'))
+   self.assertEqual(argv[4:7],['/domain/scripts/mcp_session.py','/domain/scripts/commands.py','run'])
+ def test_contract_launcher_is_present_in_all_independent_skills(self):
+  sources=[(p/'scripts/native_contract.py').read_bytes() for p in sorted((ROOT/'skills').iterdir())]
+  self.assertEqual(len(sources),10);self.assertEqual(len(set(sources)),1)
+  compile(sources[0],'native_contract.py','exec')
