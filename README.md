@@ -1,6 +1,8 @@
 # ArtCraft independent skills
 
-Current acceptance: task5.9 is complete for all six budget/cancellation scenarios on fixed plugin127/source99/runtime126. Actual manual/deadline native cancellation, repeated quota/policy refusal and cold native worker-crash recovery pass. Runtime regression:303 total/282 passed/21 conditional skips; source:201/149/52. Fourteen numbered tasks remain;5.3 still requires actual GUI stale-plan conflict evidence. Immutable production assets unchanged. See [budget/cancel acceptance](docs/ArtCraft-Budget-Cancel-Acceptance-Architecture.md).
+Development release: plugin `0.1.0-dev.128` / independent skills `0.1.0-dev.100` / runtime `0.1.0-dev.128-runtime.1`, with legacy-ledger draining, read-only status and verified pre-migration snapshots. Runtime:298 passed,21 conditional skips. All14 outstanding tasks remain open; full V1 is incomplete. Fixed-install evidence is recorded separately. See [ledger upgrade architecture](docs/ArtCraft-Ledger-Upgrade-Architecture.md).
+
+Earlier acceptance: task5.9 is complete for all six budget/cancellation scenarios on fixed plugin127/source99/runtime126. Actual manual/deadline native cancellation, repeated quota/policy refusal and cold native worker-crash recovery pass. Runtime regression:303 total/282 passed/21 conditional skips; source:201/149/52. Fourteen numbered tasks remain;5.3 still requires actual GUI stale-plan conflict evidence. Immutable production assets unchanged. See [budget/cancel acceptance](docs/ArtCraft-Budget-Cancel-Acceptance-Architecture.md).
 
 Earlier maintenance checkpoint: independent install planning, installed CLI verification and completion auditing default to qualified plugin127/source99 and matching evidence. Tasks3.4/3.5 complete;33 targeted tests,20 public discovery calls across ten entries and own-setup failure paths pass. Actual Skills CLI installation3.16/full installation acceptance3.6 remain open; whole-workspace auditing refuses four tracked domain-source drifts. Fifteen tasks remain; fullV1 stays open. See [default identity architecture](docs/ArtCraft-Independent-Install-Defaults-Architecture.md).
 
@@ -37,7 +39,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.99`; qualified plugin: `0.1.0-dev.127`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.100`; previously qualified plugin: `0.1.0-dev.127`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 

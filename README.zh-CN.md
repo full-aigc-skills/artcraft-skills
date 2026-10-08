@@ -1,6 +1,8 @@
 # ArtCraft 独立技能
 
-当前验收：固定插件127／源99／runtime126的预算与取消六场景通过，5.9已完成。真实主动／期限取消、额度及政策拒绝、空缓存原生worker崩溃恢复通过。运行时303项：282通过／21条件跳过；技能源201项：149通过／52条件跳过。剩余14项，5.3仍缺实际GUI旧计划冲突证据。生产发行包不变。见[预算与取消验收](docs/ArtCraft-Budget-Cancel-Acceptance-Architecture.zh_CN.md)。
+开发发行：插件 `0.1.0-dev.128`／独立技能源 `0.1.0-dev.100`／runtime `0.1.0-dev.128-runtime.1`，包含旧账本排空、只读状态与迁移前快照修复。运行时298项通过、21项条件跳过；14项任务继续开放，完整V1未完成。固定安装证据单独记录。见[账本升级架构](docs/ArtCraft-Ledger-Upgrade-Architecture.zh_CN.md)。
+
+此前验收：固定插件127／源99／runtime126的预算与取消六场景通过，5.9已完成。真实主动／期限取消、额度及政策拒绝、空缓存原生worker崩溃恢复通过。运行时303项：282通过／21条件跳过；技能源201项：149通过／52条件跳过。剩余14项，5.3仍缺实际GUI旧计划冲突证据。生产发行包不变。见[预算与取消验收](docs/ArtCraft-Budget-Cancel-Acceptance-Architecture.zh_CN.md)。
 
 此前维护检查点：独立安装计划、安装副本CLI验收与完成审计默认统一到已验收插件127／源99及匹配证据。3.4／3.5完成；33项目标测试、十入口20次公开发现及安装失败自身setup路径验证通过。实际Skills CLI安装3.16与完整安装验收3.6仍开放；全工作区审计正确拒绝四域跟踪源漂移。剩余15项任务，完整V1未完成。见[默认身份架构](docs/ArtCraft-Independent-Install-Defaults-Architecture.zh_CN.md)。
 
@@ -37,7 +39,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.99`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.100`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -119,7 +121,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.99`；已验收插件：`0.1.0-dev.126`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.100`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
