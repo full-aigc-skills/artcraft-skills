@@ -1,4 +1,5 @@
 """候选独立技能首次登记 JPEG，使用既有公开运行时完成 Photo 原生交付。"""
+from contextlib import nullcontext
 import base64,hashlib,json,os,shutil,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -6,7 +7,9 @@ SOURCE=Path(os.environ.get('CRAFT_INSTALLED_JPEG_ART_SKILL',str(ROOT/'skills/art
 @unittest.skipUnless(os.environ.get('CRAFT_JPEG_FIRST_USE')=='1','requires public downloads and native Photo runtime')
 class JpegFirstUse(unittest.TestCase):
  def test_isolated_skill_registers_real_jpeg_and_packages_native_poster(self):
-  with tempfile.TemporaryDirectory() as temporary:
+  retained=os.environ.get('CRAFT_JPEG_RETAIN_ROOT')
+  if retained:Path(retained).resolve().mkdir(parents=True,exist_ok=False)
+  with (nullcontext(str(Path(retained).resolve())) if retained else tempfile.TemporaryDirectory()) as temporary:
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-execute';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'))
    hashes=lambda:{p.relative_to(skill).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in skill.rglob('*') if p.is_file()}
    before=hashes()
@@ -38,4 +41,5 @@ class JpegFirstUse(unittest.TestCase):
    verified=run('package.py',['verify','--package',moved,'--sha',packed['sha256']]);self.assertEqual(len(verified['children']),1);self.assertEqual(product.read_bytes(),original);self.assertEqual(hashes(),before)
    if os.environ.get('CRAFT_JPEG_FIRST_USE_EVIDENCE'):
     evidence={'schema':'artcraft-jpeg-first-use-candidate/v1','result':'passed','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'mediaType':asset['mediaType'],'technicalMetadata':asset['technicalMetadata'],'movedPackageChildren':1,'nativeLayers':len(layers),'sourceAndSkillPreserved':True,'independentDecoder':'Pillow; original JPEG, exported PNG and PSD loaded','candidateRuntimeVerified':bool(os.environ.get('CRAFT_JPEG_CANDIDATE_CONTRACTS')),'runtimeMode':'default public downloads','skillFiles':before}
+    evidence['retainedRoot']=str(root) if retained else None;evidence['resultReceipt']=result;evidence['inputArtifact']=asset;evidence['movedPackageSha256']=packed['sha256'];evidence['inputSha256']=hashlib.sha256(original).hexdigest()
     with Path(os.environ['CRAFT_JPEG_FIRST_USE_EVIDENCE']).open('x') as stream:json.dump(evidence,stream,indent=2)
