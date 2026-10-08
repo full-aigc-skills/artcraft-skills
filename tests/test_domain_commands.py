@@ -147,7 +147,8 @@ class CheckHandoffCompatibilityTests(unittest.TestCase):
     argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{})
     with self.subTest(domain=domain,mode=mode):
      self.assertEqual('--mode' in argv,domain=='effectcraft')
-     if domain=='effectcraft':self.assertEqual(argv[-1],'bridge' if mode=='desktop' else mode)
+     if domain=='effectcraft':self.assertEqual(argv[argv.index('--mode')+1],'bridge' if mode=='desktop' else mode)
+     if mode!='headless':self.assertEqual(argv[-1],'--art-mode=bridge');self.assertEqual(Path(argv[3]).name,'native_contract.py')
  def test_check_failure_preserves_native_reply_and_stderr(self):
   m=self.module()
   for code,stdout,stderr in [(2,b'',b'usage: unrecognized arguments'),(1,b'{"error":"invalid_reference"}',b'native refused'),(0,b'not json',b''),(0,b'[]',b'')]:
