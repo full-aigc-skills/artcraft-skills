@@ -9,7 +9,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.90`; target plugin: `0.1.0-dev.118`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.90`; qualified plugin: `0.1.0-dev.118`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -334,3 +334,5 @@ Unpublished Vector33 bundle candidate: both real mixed brand revision entries de
 Fixed source89/plugin117: all ten actual installed skills independently cold-install public Node/core/Vector33, trust the fixed workflow and discover585 native commands. Both installed mixed brand entries deliver all nine variants, update consumers, preserve controls and verify moved five-child packages. All64 installation identities match;54 historical cold records were not rerun. FullV1 remains incomplete. [Evidence](docs/evidence/craft-art117-gateway-export-fixed-first-use-20261008.json).
 
 Corrected segmented guidance and the pinned Film38 dependency are ready; new-release installation qualification remains pending. [Architecture](docs/ArtCraft-Segmented-Guide-Distribution-Architecture.md).
+
+Fixed Film41/source38 and Art118/source90 first use passes: all64 installation identities match; Film13 and Art10 independently cold-install, while41 unchanged skills reuse identity-matched historical cold evidence only. The new installed Art skill passes1080p/24fps/120-frame creation, Logo dependency revision, corrupt-frame recovery and moved five-child packaging. Film passes relocated text revision and animation-key preservation. FullV1 remains open. [Evidence](docs/evidence/craft-art118-segment-guide-fixed-first-use-20261008.json).
