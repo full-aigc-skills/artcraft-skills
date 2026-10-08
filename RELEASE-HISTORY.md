@@ -1,5 +1,7 @@
 # Version-bound release records
 
+Source101 pins runtime129 and adds self-contained public upgrade/snapshot/compatibility guides. Source150 passed/52 conditional skips. Installed distribution acceptance is recorded separately; full V1 remains open.
+
 Development release: plugin `0.1.0-dev.128` / independent skills `0.1.0-dev.100` / runtime `0.1.0-dev.128-runtime.1`, with legacy-ledger draining, read-only status and verified pre-migration snapshots. Runtime:298 passed,21 conditional skips. All14 outstanding tasks remain open; full V1 is incomplete. Fixed-install evidence is recorded separately. See [ledger upgrade architecture](docs/ArtCraft-Ledger-Upgrade-Architecture.md).
 
 These records were moved verbatim from the README preface. They describe their own versions and are not the current installation contract.
