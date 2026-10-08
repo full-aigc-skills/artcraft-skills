@@ -1,5 +1,7 @@
 # Version-bound release records
 
+Source102 corrects the missing upgrade whitelist entry in all10 public Python launchers. Source101 help discovery was insufficient: actual installed upgrade rejected before runtime dispatch. New forwarding RED/GREEN tests and fixed-install revalidation are kept separately; runtime129 bytes are unchanged.
+
 Source101 pins runtime129 and adds self-contained public upgrade/snapshot/compatibility guides. Source150 passed/52 conditional skips. Installed distribution acceptance is recorded separately; full V1 remains open.
 
 Development release: plugin `0.1.0-dev.128` / independent skills `0.1.0-dev.100` / runtime `0.1.0-dev.128-runtime.1`, with legacy-ledger draining, read-only status and verified pre-migration snapshots. Runtime:298 passed,21 conditional skips. All14 outstanding tasks remain open; full V1 is incomplete. Fixed-install evidence is recorded separately. See [ledger upgrade architecture](docs/ArtCraft-Ledger-Upgrade-Architecture.md).
