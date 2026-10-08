@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Fixed installed upgrade boundary supplement:24 public calls cover12 blocked ledger cases;64 installation identities reverified. Full14-scenario acceptance4.6 remains open. [Boundary architecture](docs/ArtCraft-Upgrade-Boundaries-Architecture.md).
+
 Current acceptance: fixed plugin130/source102/runtime129 upgrade distribution passes; task4.5 is complete,12 tasks remain. Full scenario matrix4.6 remains open.64 host trees,10 independent cold entries with actual upgrade refusals, native legacy migration/compatible snapshot, four-domain revisions/moved package and prior version preservation pass. Source101/plugin129 whitelist failure is preserved and fixed by this new release. [Distribution architecture](docs/ArtCraft-Runtime-Upgrade-Distribution-Architecture.md).
 
 Earlier distribution: source102 fixes the public Python upgrade whitelist omitted in source101. All10 entrypoints forward upgrade to pinned runtime129. Source151 passed/52 conditional skips. Plugin130 fixed-install acceptance is recorded separately; full V1 remains open.
