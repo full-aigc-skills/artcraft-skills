@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from contextlib import nullcontext
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,7 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 class AudioGainMixedFirstUseTests(unittest.TestCase):
     def test_gain_revision_only_rebuilds_film_and_preserves_original_delivery(self):
         source = Path(os.environ.get('CRAFT_INSTALLED_GAIN_MIXED_SKILL_ROOT', ROOT / 'skills/artcraft-cli-revise'))
-        with tempfile.TemporaryDirectory(prefix='artcraft-gain-') as temporary:
+        retained=os.environ.get('CRAFT_GAIN_MIXED_ROOT')
+        if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+        with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary).resolve()
             skill = root / '.agents/skills/artcraft-cli-revise'
             shutil.copytree(source, skill, ignore=shutil.ignore_patterns('__pycache__'))

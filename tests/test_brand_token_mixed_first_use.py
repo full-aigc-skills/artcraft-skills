@@ -8,6 +8,7 @@ import struct
 import subprocess
 import sys
 import tempfile
+from contextlib import nullcontext
 import unittest
 import wave
 ROOT=Path(__file__).resolve().parents[1]
@@ -37,7 +38,9 @@ class BrandTokenMixedContractTests(unittest.TestCase):
 class BrandTokenMixedFirstUseTests(unittest.TestCase):
  def test_native_token_revision_rebuilds_consumers_and_reuses_unrelated_node(self):
   from PIL import Image,ImageChops
-  with tempfile.TemporaryDirectory() as temporary:
+  retained=os.environ.get('CRAFT_BRAND_MIXED_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise'
    shutil.copytree(Path(os.environ.get('CRAFT_INSTALLED_BRAND_MIXED_SKILL_ROOT',ROOT/'skills/artcraft-cli-revise')),skill,ignore=shutil.ignore_patterns('__pycache__'))
    skill_hashes={str(p.relative_to(skill)):hashlib.sha256(p.read_bytes()).hexdigest() for p in skill.rglob('*') if p.is_file()}

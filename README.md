@@ -1,6 +1,6 @@
 # ArtCraft independent skills
 
-Core asset versioning and selective invalidation implementation is verified; tasks6.10/6.11 are complete. Old packages and review records remain traceable after a native source revision; old review on a new package is refused. Full scenario acceptance6.12 stays open. See [implementation architecture](docs/ArtCraft-Selective-Version-Implementation-Architecture.md).
+Core asset versioning and selective invalidation implementation is verified; tasks6.10/6.11 are complete. Old packages and review records remain traceable after a native source revision; old review on a new package is refused. Task6.12 seven-scenario acceptance is complete; see [current acceptance architecture](docs/ArtCraft-Selective-Version-Acceptance-Architecture.md). Complete V1 stays open. See [implementation architecture](docs/ArtCraft-Selective-Version-Implementation-Architecture.md).
 
 The maintenance branch corrects command guidance in all ten standalone source skills: offline discovery, standalone domain calls and DAG native delivery now have explicit routes, with obsolete dependency versions removed. Sixteen command regressions and documentation/fixed-index checks pass. Fixed source91/plugin119 includes the corrected guides; installation and native guide evidence is recorded below. Runtime and domain dependencies are unchanged. [Evidence](docs/evidence/command-guidance-refresh-20261008.json).
 

@@ -9,6 +9,7 @@ import struct
 import subprocess
 import sys
 import tempfile
+from contextlib import nullcontext
 import unittest
 import wave
 
@@ -22,7 +23,9 @@ class SmartMixedFirstUseTests(unittest.TestCase):
  def test_cold_four_domain_logo_revision_recovery_and_portable_delivery(self):
   from PIL import Image, ImageChops
   source_hashes=hashes(SOURCE)
-  with tempfile.TemporaryDirectory(prefix='art-dynamic-first-use-') as temporary:
+  retained=os.environ.get('CRAFT_SMART_MIXED_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'));skill_hashes=hashes(skill)
    runtime=root/'empty-runtime';project=root/'project';self.assertFalse(runtime.exists())
    background=root/'background.png';Image.new('RGB',(320,180),(0,128,0)).save(background)

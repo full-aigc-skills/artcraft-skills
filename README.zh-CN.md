@@ -1,6 +1,6 @@
 # ArtCraft 独立技能
 
-核心素材版本与选择性失效实现已核验，任务6.10／6.11完成；原生源工程修订后旧包与旧审阅仍可独立追溯，旧审阅应用到新包时拒绝。完整逐场景验收6.12保持开放。见[实现架构](docs/ArtCraft-Selective-Version-Implementation-Architecture.zh_CN.md)。
+核心素材版本与选择性失效实现已核验，任务6.10／6.11完成；原生源工程修订后旧包与旧审阅仍可独立追溯，旧审阅应用到新包时拒绝。6.12七场景验收已完成，见[当前验收架构](docs/ArtCraft-Selective-Version-Acceptance-Architecture.zh_CN.md)。完整V1仍开放。见[实现架构](docs/ArtCraft-Selective-Version-Implementation-Architecture.zh_CN.md)。
 
 维护分支已修正十个独立技能源的命令使用指南：明确离线查询、单领域调用与 DAG 原生命令交付的入口，清理旧依赖版本说明。16项命令回归及文档／固定索引检查通过；固定source91/plugin119已包含新指南；安装与原生指南实测证据见下文。运行时和领域依赖未变。 [Evidence](docs/evidence/command-guidance-refresh-20261008.json).
 
