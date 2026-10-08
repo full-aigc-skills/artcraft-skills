@@ -1,4 +1,5 @@
 """Art独立入口的Effect父级／表达式公开冷安装及可信源返工。"""
+from contextlib import nullcontext
 import hashlib,json,os,shutil,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -13,11 +14,14 @@ class ExpressionPublicFirstUse(unittest.TestCase):
  def test_cold_expression_parent_source_revision_and_moved_package(self):
   from PIL import Image
   original=Path(os.environ.get('CRAFT_ART_EXPRESSION_SKILL',ROOT/'skills/artcraft-use'));before=hashes(original)
-  with tempfile.TemporaryDirectory() as temporary:
+  retained=os.environ.get('CRAFT_ART_SCENE_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
    root=Path(temporary);skill=root/'.agents/skills'/original.name;shutil.copytree(original,skill,ignore=shutil.ignore_patterns('__pycache__'));identity=hashes(skill);runtime=root/'empty-runtime';self.assertFalse(runtime.exists());project=root/'project';env=dict(os.environ,PATH='/usr/bin:/bin')
    for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):env.pop(key,None)
+   calls=[]
    def call(script,args):
-    r=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],env=env,capture_output=True,text=True,timeout=900);self.assertEqual(r.returncode,0,r.stdout+r.stderr);return json.loads(r.stdout)
+    r=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],env=env,capture_output=True,text=True,timeout=900);label='call-'+str(len(calls));(root/(label+'.stdout')).write_text(r.stdout);(root/(label+'.stderr')).write_text(r.stderr);calls.append({'argv':[sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],'exitCode':r.returncode,'stdoutSha256':hashlib.sha256(r.stdout.encode()).hexdigest(),'stderrSha256':hashlib.sha256(r.stderr.encode()).hexdigest()});self.assertEqual(r.returncode,0,r.stdout+r.stderr);return json.loads(r.stdout)
    def execute(plan):
     file=root/(plan['revision']+'.json');file.write_text(json.dumps(plan));value=call('workflow.py',[file,'--output',project,'--runtime-home',runtime,'--owner','local-user','--authorization','effect-expression-local']);self.assertEqual(value['state'],'review_ready');return value
    plan=json.loads((skill/'examples/effect-expression-workflow.json').read_text());first=execute(plan);node=first['nodes']['intro'];old=Path(node['root']);old_files=hashes(old);manifest=json.loads((old/'manifest.json').read_text());native=json.loads((old/'native.json').read_text());target=str(manifest['bindings']['target']['layer']);parent=str(manifest['bindings']['parent']['layer']);control=str(manifest['bindings']['control']['layer']);self.assertEqual(native['layers'][target]['parent'],int(parent))
@@ -30,4 +34,4 @@ class ExpressionPublicFirstUse(unittest.TestCase):
      a=a.convert('RGBA');b=b.convert('RGBA');self.assertEqual(a.size,(128,64));self.assertEqual(b.size,(128,64));x=a.getpixel((32,32))[3];y=b.getpixel((32,32))[3];self.assertAlmostEqual(x,[128,191][index],delta=2);self.assertAlmostEqual(y,[64,128][index],delta=2);self.assertEqual(a.crop((84,20,108,44)).tobytes(),b.crop((84,20,108,44)).tobytes());alphas.append({'seconds':[0,.5][index],'initial':x,'revised':y})
    packed=call('package.py',['create','--project',project,'--workflow',second['runKey'],'--owner','local-user','--authorization','effect-expression-local','--output',root/'package','--runtime-home',runtime]);(root/'package').rename(root/'moved');verified=call('package.py',['verify','--package',root/'moved','--sha',packed['sha256'],'--runtime-home',runtime]);self.assertEqual(len(verified['children']),1);bundles=runtime/'artcraft/bundles';self.assertTrue((bundles/'effectcraft-skills').is_dir());self.assertFalse(any((bundles/(d+'-skills')).exists() for d in ('filmcraft','vectorcraft','photocraft')));self.assertEqual(before,hashes(original));self.assertEqual(identity,hashes(skill));self.assertFalse(list(skill.rglob('*.pyc')))
    if os.environ.get('CRAFT_ART_EXPRESSION_REPORT'):
-    Path(os.environ['CRAFT_ART_EXPRESSION_REPORT']).write_text(json.dumps({'schema':'artcraft-effect-expression-first-use/v1','result':'PASS','skill':original.name,'emptyPublicRuntime':True,'sourceRevision':True,'nativeProjectSha256':second['nodes']['intro']['outputs'][0]['nativeProjectRef']['sha256'],'parentControlCompositionAndIdsPreserved':True,'controlPixelsUnchanged':True,'originalDeliveryPreserved':True,'alphaSamples':alphas,'movedChildren':1,'skillUnchanged':True,'packageSha256':packed['sha256'],'scope':'native Effect expression/parent sample, not exhaustive640 commands/GUI/fullV1'},indent=2)+'\n')
+    Path(os.environ['CRAFT_ART_EXPRESSION_REPORT']).write_text(json.dumps({'calls':calls,'schema':'artcraft-effect-expression-first-use/v1','result':'PASS','skill':original.name,'emptyPublicRuntime':True,'sourceRevision':True,'nativeProjectSha256':second['nodes']['intro']['outputs'][0]['nativeProjectRef']['sha256'],'parentControlCompositionAndIdsPreserved':True,'controlPixelsUnchanged':True,'originalDeliveryPreserved':True,'alphaSamples':alphas,'movedChildren':1,'skillUnchanged':True,'packageSha256':packed['sha256'],'scope':'native Effect expression/parent sample, not exhaustive640 commands/GUI/fullV1'},indent=2)+'\n')

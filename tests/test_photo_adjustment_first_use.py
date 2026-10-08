@@ -1,4 +1,5 @@
 """Art单技能蒙版调整计划与可信源返工。"""
+from contextlib import nullcontext
 import json,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,11 +17,14 @@ class PhotoAdjustmentPublic(unittest.TestCase):
  def test_cold_native_mask_revision_and_moved_package(self):
   from PIL import Image
   original=Path(os.environ.get('CRAFT_ART_ADJUSTMENT_SKILL',ROOT/'skills/artcraft-use'));before=hashes(original)
-  with tempfile.TemporaryDirectory() as td:
+  retained=os.environ.get('CRAFT_ART_SCENE_ROOT')
+  if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as td:
    root=Path(td);skill=root/'.agents/skills'/original.name;shutil.copytree(original,skill,ignore=shutil.ignore_patterns('__pycache__'));identity=hashes(skill);runtime=root/'empty-runtime';project=root/'project';self.assertFalse(runtime.exists());env=dict(os.environ,PATH='/usr/bin:/bin')
    for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):env.pop(key,None)
+   calls=[]
    def call(script,args):
-    r=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],env=env,capture_output=True,text=True,timeout=900);self.assertEqual(r.returncode,0,r.stdout+r.stderr);return json.loads(r.stdout)
+    r=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],env=env,capture_output=True,text=True,timeout=900);label='call-'+str(len(calls));(root/(label+'.stdout')).write_text(r.stdout);(root/(label+'.stderr')).write_text(r.stderr);calls.append({'argv':[sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args)],'exitCode':r.returncode,'stdoutSha256':hashlib.sha256(r.stdout.encode()).hexdigest(),'stderrSha256':hashlib.sha256(r.stderr.encode()).hexdigest()});self.assertEqual(r.returncode,0,r.stdout+r.stderr);return json.loads(r.stdout)
    def execute(plan):
     p=root/(plan['revision']+'.json');p.write_text(json.dumps(plan));v=call('workflow.py',[p,'--output',project,'--runtime-home',runtime,'--owner','local-user','--authorization','photo-adjustment-local']);self.assertEqual(v['state'],'review_ready');return v
    plan=json.loads((skill/'examples/photo-adjustment-workflow.json').read_text());first=execute(plan);node=first['nodes']['poster'];old=Path(node['root']);old_files=hashes(old);m=json.loads((old/'manifest.json').read_text());native=json.loads((old/'native.json').read_text());adjustment=m['bindings']['adjustment']['layer'];layers={l['id']:l for l in native['layers']};self.assertEqual(layers[adjustment]['adjustment']['BrightnessContrast']['brightness'],30);self.assertTrue(layers[adjustment]['hasMask']);self.assertEqual(execute(plan)['nodes']['poster']['taskId'],node['taskId'])
@@ -32,4 +36,4 @@ class PhotoAdjustmentPublic(unittest.TestCase):
     a=a.convert('RGBA');b=b.convert('RGBA');self.assertEqual(a.size,(128,64));self.assertEqual(b.size,(128,64));x=a.getpixel((16,32));y=b.getpixel((16,32));self.assertGreater(x[0],128);self.assertLess(y[0],128);self.assertEqual(a.crop((32,0,128,64)).tobytes(),b.crop((32,0,128,64)).tobytes())
    self.assertEqual(old_files,hashes(old));packed=call('package.py',['create','--project',project,'--workflow',second['runKey'],'--owner','local-user','--authorization','photo-adjustment-local','--output',root/'package','--runtime-home',runtime]);(root/'package').rename(root/'moved');verified=call('package.py',['verify','--package',root/'moved','--sha',packed['sha256'],'--runtime-home',runtime]);self.assertEqual(len(verified['children']),1);bundles=runtime/'artcraft/bundles';self.assertTrue((bundles/'photocraft-skills').is_dir());self.assertFalse(any((bundles/(d+'-skills')).exists() for d in ('filmcraft','effectcraft','vectorcraft')));self.assertEqual(before,hashes(original));self.assertEqual(identity,hashes(skill));self.assertFalse(list(skill.rglob('*.pyc')))
    if os.environ.get('CRAFT_ART_ADJUSTMENT_REPORT'):
-    Path(os.environ['CRAFT_ART_ADJUSTMENT_REPORT']).write_text(json.dumps({'schema':'artcraft-photo-adjustment-first-use/v1','result':'PASS','skill':original.name,'initialPixel':x,'revisedPixel':y,'emptyPublicRuntime':True,'nativeProjectSha256':second['nodes']['poster']['outputs'][0]['nativeProjectRef']['sha256'],'maskAndAdjustmentPersisted':True,'sourceRevision':True,'controlPixelsUnchanged':True,'nonTargetLayersPreserved':True,'originalDeliveryPreserved':True,'movedChildren':1,'skillUnchanged':True,'packageSha256':packed['sha256'],'photoSourceVersion':lock['bundles']['photocraft-skills']['version'],'deliveryScriptSha256':digest,'deliveryLauncherIdentityBound':True,'deliveryIntegrity':integrity,'scope':'native Photo adjustment/mask sample; not exhaustive commands, PSD, GUI, model or fullV1'},indent=2)+'\n')
+    Path(os.environ['CRAFT_ART_ADJUSTMENT_REPORT']).write_text(json.dumps({'calls':calls,'schema':'artcraft-photo-adjustment-first-use/v1','result':'PASS','skill':original.name,'initialPixel':x,'revisedPixel':y,'emptyPublicRuntime':True,'nativeProjectSha256':second['nodes']['poster']['outputs'][0]['nativeProjectRef']['sha256'],'maskAndAdjustmentPersisted':True,'sourceRevision':True,'controlPixelsUnchanged':True,'nonTargetLayersPreserved':True,'originalDeliveryPreserved':True,'movedChildren':1,'skillUnchanged':True,'packageSha256':packed['sha256'],'photoSourceVersion':lock['bundles']['photocraft-skills']['version'],'deliveryScriptSha256':digest,'deliveryLauncherIdentityBound':True,'deliveryIntegrity':integrity,'scope':'native Photo adjustment/mask sample; not exhaustive commands, PSD, GUI, model or fullV1'},indent=2)+'\n')
