@@ -1,6 +1,8 @@
 # ArtCraft 独立技能
 
-Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受与锁定 v 标签完全匹配的 ZIP 前缀。暖缓存五节点原生返工与移动交付通过，固定发行及错误阻断验收仍待完成。[架构](docs/ArtCraft-Brand-Guard-Distribution-Architecture.zh_CN.md)。
+固定 source88／plugin116 已通过十项 Art 独立公开冷安装（Node／核心及所选 Vector32）、固定安装副本五节点品牌返工／移动交付和两条真实原生品牌误改阻断。64 安装摘要一致；54 个未变技能沿用历史冷安装证明。完整首版仍开放。[固定证据](docs/evidence/craft-art116-brand-guard-fixed-first-use-20261008.json)。
+
+Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受与锁定 v 标签完全匹配的 ZIP 前缀。暖缓存五节点原生返工与移动交付通过，该候选阶段的固定发行及错误阻断验收待验状态已由上方固定证据更新。[架构](docs/ArtCraft-Brand-Guard-Distribution-Architecture.zh_CN.md)。
 
 固定 source87／plugin115 已包含十个 Art 技能的 Node／组合安装锁修复，每把锁最多等待 120 秒。实际 Codex 安装发现全部 64 个技能，零加载错误；10 个变化技能逐项独立冷安装通过，其余 54 项仅在完整摘要相等时复用历史冷证明。[安装锁架构](docs/ArtCraft-Install-Lock-Architecture.zh_CN.md)。 固定安装副本的四领域原生创建、源返工、同修订复用、回执篡改拒绝及移动包验证通过；前两次磁盘不足失败日志保留。[固定验收](docs/evidence/craft-art115-install-lock-fixed-first-use-20261008.json)。
 

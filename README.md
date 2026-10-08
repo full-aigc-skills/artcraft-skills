@@ -1,6 +1,8 @@
 # ArtCraft independent skills
 
-Candidate Vector32 dependency upgrade binds the brand guard into trusted launch receipts and accepts only its exact locked v-tag ZIP prefix. Warm five-node native revision and moved delivery pass; fixed-release and fault acceptance remain pending. [Architecture](docs/ArtCraft-Brand-Guard-Distribution-Architecture.md).
+Fixed source88/plugin116 passes ten independent Art public cold installs (Node/core and selected Vector32), fixed installed five-node brand revision/moved delivery and two real native brand-violation cases. All64 installed identities match;54 unchanged skills retain historical cold evidence. Complete V1 remains open. [Fixed evidence](docs/evidence/craft-art116-brand-guard-fixed-first-use-20261008.json).
+
+Candidate Vector32 dependency upgrade binds the brand guard into trusted launch receipts and accepts only its exact locked v-tag ZIP prefix. Warm five-node native revision and moved delivery pass; fixed-release and fault acceptance were pending at that candidate checkpoint; see the fixed evidence above. [Architecture](docs/ArtCraft-Brand-Guard-Distribution-Architecture.md).
 
 Fixed source87/plugin115 includes bounded Node/setup installation locks across all ten Art skills, with a 120-second budget per lock. Actual Codex discovery finds all64 skills with zero loading errors; ten changed skills pass independent cold installations and54 unchanged skills reuse historical cold evidence only after full-tree identity checks. [Install-lock architecture](docs/ArtCraft-Install-Lock-Architecture.md). The fixed installed skill also passes four-domain native creation, source revisions, same-revision reuse, receipt-tamper refusal and moved-package verification; both disk-full failures remain recorded. [Fixed acceptance](docs/evidence/craft-art115-install-lock-fixed-first-use-20261008.json).
 
