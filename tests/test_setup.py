@@ -11,6 +11,21 @@ spec = importlib.util.spec_from_file_location('setup', SCRIPT)
 setup = importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
 
 class BundleTests(unittest.TestCase):
+    def test_domain_launcher_snapshot_is_mandatory_and_digest_bound(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)
+            for name in ('workflow.py','bootstrap.py','mcp_session.py','runtime.lock.json','exchange_loss.py','preserved_stage.py'):
+                path=root/'scripts'/name;path.parent.mkdir(exist_ok=True);path.write_text('fixture')
+            with self.assertRaises(FileNotFoundError):
+                setup.domain_launcher_files(root)
+            snapshot=root/'references/native-command-snapshot.json'
+            snapshot.parent.mkdir();snapshot.write_text('{"tools":[]}')
+            files=setup.domain_launcher_files(root)
+            locked=next(file for file in files if file['path']==str(snapshot))
+            self.assertEqual(locked['sha256'],hashlib.sha256(snapshot.read_bytes()).hexdigest())
+            snapshot.write_text('{"tools":[{}]}')
+            self.assertNotEqual(locked['sha256'],hashlib.sha256(snapshot.read_bytes()).hexdigest())
+
     def test_domain_bundle_keeps_its_own_version_when_artcraft_advances(self):
         self.assertEqual(setup.bundle_version({'version': '0.1.0-dev.1'}, {'version': '0.1.0-dev.0'}), '0.1.0-dev.0')
         self.assertEqual(setup.bundle_version({'version': '0.1.0-dev.0'}, {}), '0.1.0-dev.0')
@@ -24,7 +39,7 @@ class BundleTests(unittest.TestCase):
         import json
         lock=json.loads((Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/distribution.lock.json').read_text())
         setup.validate_distribution(lock)
-        self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.131-runtime.1')
+        self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.132-runtime.1')
         for value in ('0.1.0-dev.113-runtime.', '0.1.0-dev.122-runtime.1/escape', '0.1.0-dev.113-other.1'):
             with self.subTest(version=value), self.assertRaisesRegex(ValueError,'bundle_version_invalid'):
                 setup.bundle_version(lock,{'version':value})

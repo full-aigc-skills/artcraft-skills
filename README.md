@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Current candidate adds locked live tool schema discovery before DAG editing. Task4.18 and overall4.6 remain open pending fixed installation. [Architecture](docs/ArtCraft-Live-Tool-Schema-Architecture.md).
+
 Fixed132/source104/runtime131 mode acceptance passes: four bridge DAG requests refuse before output/native launch; independent explicit mode checks remain distinct. All64 host identities, ten cold first uses, actual four-domain mixed revision/portable delivery and36 native reply faults pass. Task4.17 completes;4.6 stays open at13/15 after adding MODE, with12 numbered tasks open. [Fixed mode acceptance](docs/ArtCraft-Runtime-Mode-Boundary-Architecture.md).
 
 Earlier MODE boundary candidate: fixed131 silently prepares headless workflows for four bridge identities. Candidate refuses capability_missing; four-domain targets, actual Effect creation/reuse and305 runtime tests pass. New fixed distribution acceptance remains open. [Mode boundary](docs/ArtCraft-Runtime-Mode-Boundary-Architecture.md).
@@ -73,7 +75,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.104`; previously qualified plugin: `0.1.0-dev.127`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.105`; previously qualified plugin: `0.1.0-dev.127`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 

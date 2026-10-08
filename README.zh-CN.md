@@ -1,5 +1,7 @@
 # ArtCraft 独立技能
 
+当前候选补齐DAG编辑前的受信实际工具schema发现。任务4.18与整体4.6保持开放，等待固定安装验收。[架构](docs/ArtCraft-Live-Tool-Schema-Architecture.zh_CN.md)。
+
 固定132／源104／runtime131模式修复验收通过：四领域bridge DAG均在输出／原生启动前拒绝，独立显式模式检查保持区分；64宿主身份、十独立冷首用、实际四领域混合返工／移动包和36项原生响应故障通过。任务4.17完成；4.6仍开放（新增MODE后13/15场景），12个编号任务仍开放。[固定模式验收](docs/ArtCraft-Runtime-Mode-Boundary-Architecture.zh_CN.md)。
 
 此前MODE边界候选：固定131四领域bridge身份被准备为headless的红灯已复现；候选明确capability_missing，四领域目标、Effect原生创建／复用和305项运行时回归通过。新固定分发验收未完成。[模式边界](docs/ArtCraft-Runtime-Mode-Boundary-Architecture.zh_CN.md)。
@@ -73,7 +75,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.104`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.105`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -155,7 +157,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.104`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.105`；此前已验收插件：`0.1.0-dev.127`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
