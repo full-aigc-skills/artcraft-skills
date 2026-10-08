@@ -11,6 +11,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from contextlib import nullcontext
 
 ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = os.environ.get("CRAFT_ART_DOMAIN", "filmcraft")
@@ -25,13 +26,17 @@ def fingerprint(directory):
 class NativeCommandRevisionTests(unittest.TestCase):
     def test_targeted_revision_survives_reopen_without_changing_other_objects(self):
         from PIL import Image
-        source = ROOT / "skills" / os.environ.get("CRAFT_ART_DOMAIN_SKILL", "artcraft-cli")
+        source = Path(os.environ.get("CRAFT_ART_DOMAIN_SKILL_ROOT", ROOT / "skills" / os.environ.get("CRAFT_ART_DOMAIN_SKILL", "artcraft-cli")))
         original_skills = fingerprint(source)
-        with tempfile.TemporaryDirectory() as temporary:
+        retained = os.environ.get("CRAFT_ART_DOMAIN_ROOT")
+        if retained:
+            Path(retained).mkdir(parents=True, exist_ok=False)
+        with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             skill = root / "single-skill"
             shutil.copytree(source, skill)
             runtime = root / "empty-runtime"
+            calls = []
             class PublicArtCommands:
                 # 只调用Art公开组件；不导入领域技能内部模块。
                 def execute(self, plan, output, runtime_home=None, inputs=None):
@@ -40,6 +45,10 @@ class NativeCommandRevisionTests(unittest.TestCase):
                     argv = [sys.executable, "-I", "-B", str(skill/"scripts/domain_commands.py"), "run", DOMAIN, str(plan_file), "--output", str(output), "--runtime-home", str(runtime_home)]
                     for name, path in (inputs or {}).items(): argv += ["--input", name+"="+str(path)]
                     result = subprocess.run(argv, env=dict(os.environ, PATH="/usr/bin:/bin"), capture_output=True, text=True, timeout=600)
+                    label = 'call-' + str(len(calls))
+                    (root / (label + '.stdout')).write_text(result.stdout)
+                    (root / (label + '.stderr')).write_text(result.stderr)
+                    calls.append({'exitCode': result.returncode, 'stdoutSha256': hashlib.sha256(result.stdout.encode()).hexdigest(), 'stderrSha256': hashlib.sha256(result.stderr.encode()).hexdigest()})
                     if result.returncode: raise AssertionError(result.stdout+result.stderr)
                     reply = json.loads(result.stdout)
                     if reply["dagDeliveryAcceptance"] != "NOT_RUN": raise AssertionError("native calls are not DAG deliveries")
@@ -156,6 +165,7 @@ class NativeCommandRevisionTests(unittest.TestCase):
             if os.environ.get("CRAFT_ART_DOMAIN_REPORT"):
                 Path(os.environ["CRAFT_ART_DOMAIN_REPORT"]).write_text(json.dumps({
                     "schema": "artcraft-domain-command-native-revision/v1", "domain": DOMAIN, "result": "PASS",
+                    "calls": calls,
                     "entrySha256": hashlib.sha256((skill / "scripts/domain_commands.py").read_bytes()).hexdigest(),
                     "catalogSha256": created["catalogSha256"], "runtimeSha256": created["runtimeSha256"],
                     "testSha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
