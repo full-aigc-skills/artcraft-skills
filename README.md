@@ -11,7 +11,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.94`; qualified plugin: `0.1.0-dev.121`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.94`; qualified plugin: `0.1.0-dev.122`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -350,3 +350,5 @@ Nested setup diagnostics and pinned check-parser compatibility pass source regre
 Fixed Art121/source93 passes10 independent public cold starts,64 host identities/CLI probes,30 installed nested setup refusals,12 pinned domain checks and native recovery/review/revision.54 other skills reuse whole-hash-equal historical cold evidence. Only3.30 closes. Parallel runtime cancellation timing and full V1 remain open. [Evidence](docs/evidence/craft-art121-nested-setup-fixed-first-use-20261008.json).
 
 Cancellation signal ESRCH race: controlled real-process RED/GREEN and parallel/serial regression pass; fixed installed native qualification remains pending. [Architecture](docs/ArtCraft-Cancel-Signal-Architecture.md).
+
+Fixed Art122/source94/runtime122-runtime.1 passes10 independent public cold starts,64 host identities/CLI probes and two installed native cancellation cases: controlled ESRCH and normal deadline. Original attempt/budget stay fixed, dependents never launch and repeats do not replay.54 other skills reuse whole-hash-equal historical cold evidence. Only5.19 closes; full5.9/V1 and the original intermittent parallel failure attribution remain open. [Evidence](docs/evidence/craft-art122-cancel-signal-fixed-first-use-20261008.json).

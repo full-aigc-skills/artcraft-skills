@@ -11,7 +11,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.94`；已验收插件：`0.1.0-dev.121`；10 个独立技能。
+当前技能源快照：`0.1.0-dev.94`；已验收插件：`0.1.0-dev.122`；10 个独立技能。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -344,3 +344,5 @@ Vector33 捆绑升级候选已通过两入口真实混合返工、九变体及�
 固定Art121／源93通过10项独立公开冷启动、64宿主身份／CLI核验、30条安装副本嵌套拒绝、12项固定领域检查及原生恢复／审阅／返工。54项其他技能仅复用整树摘要相等历史冷证明；只关闭3.30。并行运行时取消时序与完整V1仍开放。 [Evidence](docs/evidence/craft-art121-nested-setup-fixed-first-use-20261008.json).
 
 取消信号ESRCH退出竞态已通过可控真实进程红灯／绿灯与并行／串行回归；固定安装原生验收待完成。 [Architecture](docs/ArtCraft-Cancel-Signal-Architecture.zh_CN.md).
+
+固定Art122／源94／运行时122-runtime.1通过10项独立公开冷启动、64宿主身份／CLI核验，以及安装副本可控ESRCH和普通期限两条原生取消。原attempt／预算保留，下游不启动，重复不重放。54项其他技能仅复用整树摘要相等历史冷证明。只关闭5.19；完整5.9／V1及原偶发并行失败归因仍开放。 [Evidence](docs/evidence/craft-art122-cancel-signal-fixed-first-use-20261008.json).
