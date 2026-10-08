@@ -1,6 +1,8 @@
 # ArtCraft 独立技能
 
-固定插件 dev.127／技能源 dev.99 的四个一致性场景已完成验收，任务 6.15 已标记完成。旧依赖拒绝、原交付保全、当前保护区／笔刷修订、实际样本视觉观察与移动记录核验通过。源码回归 199 项：149 通过、50 条件跳过。仍有 21 项编号任务及历史 SC-003（共 22 项）；人工接受与完整 V1 未完成。[验收架构](docs/ArtCraft-Consistency-Acceptance-Architecture.zh_CN.md)。
+当前补充：外部交付三个规范场景已验收，6.16／6.17／6.18 完成；六节点公开验证、错误尺寸拒绝、原工程保全及移动包通过。仍有 18 项编号任务及历史 SC-003（共 19 项），完整 V1 未完成。插件 dev.127／技能源 dev.99 安装包不变。见[外部交付验收架构](docs/ArtCraft-External-Delivery-Acceptance-Architecture.zh_CN.md)。
+
+此前一致性检查点：固定插件 dev.127／技能源 dev.99 的四个一致性场景已完成验收，任务 6.15 已标记完成。旧依赖拒绝、原交付保全、当前保护区／笔刷修订、实际样本视觉观察与移动记录核验通过。源码回归 199 项：149 通过、50 条件跳过。仍有 21 项编号任务及历史 SC-003（共 22 项）；人工接受与完整 V1 未完成。[验收架构](docs/ArtCraft-Consistency-Acceptance-Architecture.zh_CN.md)。
 
 此前源码检查点：技能源99补充过期一致性引用及缺失目标摘要的 STALE／reevaluate 回执；不可变分发与固定安装验收正在准备，不因此关闭6.14／6.15。[证据](docs/evidence/consistency-stale-action-20261009.json)。
 
