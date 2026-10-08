@@ -9,6 +9,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from contextlib import nullcontext
 from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -99,21 +100,39 @@ class SelectedSetupTests(unittest.TestCase):
 @unittest.skipUnless(os.environ.get('CRAFT_SELECTED_FIRST_USE')=='1','requires default public dependencies and native macOS arm64 CLIs')
 class SelectedFirstUseTests(unittest.TestCase):
     def test_vector_only_then_incremental_poster_and_unknown_executor(self):
-        with tempfile.TemporaryDirectory() as temporary:
+        retained=os.environ.get('CRAFT_SELECTED_ROOT')
+        if retained:Path(retained).mkdir(parents=True,exist_ok=False)
+        with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-plan'
-            shutil.copytree(ROOT/'skills/artcraft-cli-plan',skill,ignore=shutil.ignore_patterns('__pycache__'))
+            source=Path(os.environ.get('CRAFT_SELECTED_SKILL',ROOT/'skills/artcraft-cli-plan'))
+            def hashes(directory):return {str(p.relative_to(directory)):hashlib.sha256(p.read_bytes()).hexdigest() for p in directory.rglob('*') if p.is_file()}
+            source_hashes=hashes(source)
+            shutil.copytree(source,skill,ignore=shutil.ignore_patterns('__pycache__'))
             runtime=root/'runtime';project=root/'project'
+            self.assertFalse(runtime.exists())
+            calls=[]
+            environment=dict(os.environ,PATH='/usr/bin:/bin')
+            for key in ('CRAFT_RUNTIME_HOME','CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY'):
+                environment.pop(key,None)
+            def capture(command,label):
+                result=subprocess.run(command,capture_output=True,text=True,env=environment,timeout=600)
+                (root/(label+'.stdout')).write_text(result.stdout);(root/(label+'.stderr')).write_text(result.stderr)
+                calls.append({'label':label,'argv':list(map(str,command)),'cwd':str(Path.cwd()),'exitCode':result.returncode,
+                    'stdoutSha256':hashlib.sha256(result.stdout.encode()).hexdigest(),'stderrSha256':hashlib.sha256(result.stderr.encode()).hexdigest()})
+                return result
             template=json.loads((skill/'examples/brand-campaign.json').read_text())
             plan=json.loads(json.dumps(template));plan['nodes']=[n for n in plan['nodes'] if n['id']=='logo']
             def run(value,home=runtime,output=project):
                 path=root/(value['revision']+'.json');path.write_text(json.dumps(value))
-                result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(output),'--runtime-home',str(home),'--authorization','selected-first-use'],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
+                result=capture([sys.executable,'-I','-B',str(skill/'scripts/workflow.py'),str(path),'--output',str(output),'--runtime-home',str(home),'--authorization','selected-first-use'],'workflow-'+str(len(calls)))
                 return result
             first=run(plan);self.assertEqual(first.returncode,0,first.stdout+first.stderr);one=json.loads(first.stdout)
             self.assertEqual(one['state'],'review_ready')
             receipt=json.loads((project/'installation-receipt.json').read_text())
             self.assertEqual(set(receipt['skills']),{'vectorcraft'})
             self.assertEqual(set(receipt['bundleHashes']),{'artcraft-runtime','vectorcraft-skills'})
+            first_receipt=receipt
+            vector_native=hashes(runtime/'vectorcraft');vector_skills=hashes(runtime/'artcraft/bundles/vectorcraft-skills')
             for name in ['filmcraft','effectcraft','photocraft']:
                 self.assertFalse((runtime/name).exists());self.assertFalse((runtime/'artcraft/bundles'/(name+'-skills')).exists())
             old=Path(one['nodes']['logo']['root']);old_hashes={str(p.relative_to(old)):hashlib.sha256(p.read_bytes()).hexdigest() for p in old.rglob('*') if p.is_file()}
@@ -122,26 +141,38 @@ class SelectedFirstUseTests(unittest.TestCase):
             self.assertEqual(two['state'],'review_ready');self.assertEqual(one['nodes']['logo']['taskId'],two['nodes']['logo']['taskId'])
             self.assertTrue((Path(two['nodes']['poster']['root'])/'project.pcraft').is_file())
             receipt=json.loads((project/'installation-receipt.json').read_text());self.assertEqual(set(receipt['skills']),{'photocraft','vectorcraft'})
+            self.assertEqual(hashes(runtime/'vectorcraft'),vector_native)
+            self.assertEqual(hashes(runtime/'artcraft/bundles/vectorcraft-skills'),vector_skills)
             for name in ['filmcraft','effectcraft']:
                 self.assertFalse((runtime/name).exists());self.assertFalse((runtime/'artcraft/bundles'/(name+'-skills')).exists())
             for path,digest in old_hashes.items():self.assertEqual(hashlib.sha256((old/path).read_bytes()).hexdigest(),digest)
             again=run(plan);self.assertEqual(again.returncode,0,again.stdout+again.stderr);three=json.loads(again.stdout)
             self.assertEqual(two['budget'],three['budget']);self.assertEqual({k:n['taskId'] for k,n in two['nodes'].items()},{k:n['taskId'] for k,n in three['nodes'].items()})
             def query(script,*arguments,home=runtime):
-                result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,arguments),'--runtime-home',str(home)],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
+                result=capture([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,arguments),'--runtime-home',str(home)],script+'-'+str(len(calls)))
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
             packed=query('package.py','create','--project',project,'--workflow',two['runKey'],'--authorization','selected-first-use','--output',root/'delivery')
             self.assertEqual(len(query('package.py','verify','--package',root/'delivery','--sha',packed['sha256'])['children']),2)
             clean_verify=root/'verify-runtime'
             self.assertEqual(len(query('package.py','verify','--package',root/'delivery','--sha',packed['sha256'],home=clean_verify)['children']),2)
             self.assertTrue((clean_verify/'artcraft').is_dir())
-            for name in setup.NAMES:self.assertFalse((clean_verify/name).exists())
-            status=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/cli.py'),'--runtime-home',str(runtime),'--','status','--database',str(project/'tasks.sqlite')],capture_output=True,text=True,env=dict(os.environ,PATH='/usr/bin:/bin'),timeout=600)
+            for name in setup.NAMES:
+                self.assertFalse((clean_verify/name).exists());self.assertFalse((clean_verify/'artcraft/bundles'/(name+'-skills')).exists())
+            status=capture([sys.executable,'-I','-B',str(skill/'scripts/cli.py'),'--runtime-home',str(runtime),'--','status','--database',str(project/'tasks.sqlite')],'status')
             self.assertEqual(status.returncode,0,status.stdout+status.stderr)
             for name in ['filmcraft','effectcraft']:
                 self.assertFalse((runtime/name).exists());self.assertFalse((runtime/'artcraft/bundles'/(name+'-skills')).exists())
             plan['revision']='v3';plan['nodes'][0]['pluginId']='jianying';newruntime=root/'unsupported-runtime'
             failed=run(plan,newruntime,root/'unsupported-project');self.assertNotEqual(failed.returncode,0);self.assertIn('capability_missing: jianying',failed.stdout);self.assertFalse(newruntime.exists())
             self.assertFalse(any(skill.rglob('*.pyc')))
+            self.assertEqual(hashes(source),source_hashes);self.assertEqual(hashes(skill),source_hashes)
+            if retained:
+                (root/'proof.json').write_text(json.dumps({'schema':'craft-selected-routing-fixed-first-use/v1','result':'PASS',
+                    'calls':calls,'runtimeVersion':receipt['version'],'initialDependencies':first_receipt['bundleHashes'],
+                    'incrementalDependencies':receipt['bundleHashes'],'initialSkills':list(first_receipt['skills']),
+                    'incrementalSkills':list(receipt['skills']),'skillFiles':source_hashes,'vectorNativeFilesPreserved':vector_native,
+                    'vectorSkillFilesPreserved':vector_skills,'oldLogoFilesPreserved':old_hashes,'packageSha256':packed['sha256'],
+                    'taskIdsReused':True,'budgetReused':True,'cleanVerifyRuntimeOnly':True,'jianyingRefusedBeforeDownload':True,
+                    'coldPublicDownloads':True,'scope':'selected/incremental public native install and orchestration-only query/package;not full AC-DM-002 scenario matrix'},indent=2)+'\n')
 
 if __name__=='__main__':unittest.main()
