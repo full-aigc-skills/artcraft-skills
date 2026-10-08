@@ -9,7 +9,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.88`；插件发行：`0.1.0-dev.116`；10 个独立技能。
+当前技能源快照：`0.1.0-dev.89`；插件发行：`0.1.0-dev.117`；10 个独立技能。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -322,3 +322,5 @@ dev.44 首次使用已知取消问题：原生运行中取消后，短暂进程�
 当前 Art109 安装副本的混合品牌返工用例通过：四个受影响产物更新，独立徽标复用，无关画板 SVG／PNG／PDF 和原交付保持不变，五个原生子工程打包核验通过。本次覆盖一项 revise 技能的五节点场景。[固定混合场景证据](docs/evidence/craft-archive-prefix-mixed-brand-first-use-20261008.json)。
 
 小尺寸英文字幕模板按1080行归一修正字号；每项独立技能自含画面尺寸换算、预览及短配音源范围指引。源码原生验证与固定插件首用分别验收。[说明与证据](docs/Caption-Size-First-Use.zh_CN.md)。
+
+Vector33 捆绑升级候选已通过两入口真实混合返工、九变体及移动五子工程包验收。当前固定发行仍为source88/plugin116；实际固定安装和十技能冷启动尚未验收。 [Evidence](docs/evidence/art-vector33-gateway-export-candidate-20261008.json).

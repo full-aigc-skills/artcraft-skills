@@ -9,7 +9,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.88`; plugin release: `0.1.0-dev.116`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.89`; plugin release: `0.1.0-dev.117`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
@@ -328,3 +328,5 @@ Fixed releases Film38/Effect38/Photo37/Vector35/Art109 pass actual isolated Code
 The current installed Art109 revise skill passes a five-node native brand revision: four affected outputs change, the independent badge reuses its task, unrelated SVG/PNG/PDF artboard exports and original deliveries remain unchanged, and the five-child package verifies. This is one fixed mixed-scene sample. [Evidence](docs/evidence/craft-archive-prefix-mixed-brand-first-use-20261008.json).
 
 Small-frame English caption examples now use the1080-line size conversion; every independent skill carries output-size and short-audio guidance. Source/native validation and fixed-plugin acceptance are separate. [Guidance and evidence](docs/Caption-Size-First-Use.md).
+
+Unpublished Vector33 bundle candidate: both real mixed brand revision entries deliver nine variants and a verified moved five-child package. Source88/plugin116 remain the current fixed release; fixed installation and cold10 acceptance are pending. [Evidence](docs/evidence/art-vector33-gateway-export-candidate-20261008.json).

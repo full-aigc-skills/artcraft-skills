@@ -26,7 +26,7 @@ class BrandTokenMixedContractTests(unittest.TestCase):
    self.assertTrue(any(op['command']=='swatch.new' and op.get('as')=='primary' for op in nodes['logo']['payload']['plan']['operations']))
    lock=json.loads((directory/'scripts/distribution.lock.json').read_text())
    bundle=lock['bundles']['vectorcraft-skills']
-   self.assertEqual(bundle['version'],'0.1.0-dev.32')
+   self.assertEqual(bundle['version'],'0.1.0-dev.33')
    self.assertIn('skills/vectorcraft-use/examples/brand-token-assets.json',bundle['files'])
    self.assertIn('skills/vectorcraft-cli-text/references/chinese-text.md',bundle['files'])
    for node_id in ('logo','badge'):
@@ -71,6 +71,11 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
    revised=json.loads(json.dumps(plan));revised['revision']='v2';logo=next(n for n in revised['nodes'] if n['id']=='logo');prior=first['nodes']['logo'];artifact=prior['outputs'][0]
    logo['expectedRevision']=artifact['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':prior['root'],'artifact':artifact}]
    logo['payload']['sourceProject']={'assetId':artifact['assetId']};logo['payload']['plan']={'operations':[{'command':'swatch.edit','params':{'name':{'$ref':'primary.name'},'color':'#175cce'}}]}
+   entry=os.environ.get('CRAFT_BRAND_MIXED_ENTRY','direct')
+   self.assertIn(entry,('direct','native-gateway'))
+   if entry=='native-gateway':
+    edit=logo['payload']['plan']['operations'][0]
+    logo['payload']['plan']['operations']=[{'command':'native.command','params':edit}]
    second=run(revised);self.assertEqual(second['state'],'review_ready')
    for name in ('logo','poster','intro','film'):
     self.assertNotEqual(first['nodes'][name]['taskId'],second['nodes'][name]['taskId'])
@@ -79,6 +84,10 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
    for name,node in first['nodes'].items():
     for filename,sha in originals[name].items():self.assertEqual(hashlib.sha256((Path(node['root'])/filename).read_bytes()).hexdigest(),sha)
    old=Path(first['nodes']['logo']['root']);new=Path(second['nodes']['logo']['root'])
+   old_manifest=json.loads((old/'manifest.json').read_text());new_manifest=json.loads((new/'manifest.json').read_text())
+   self.assertEqual(len(old_manifest['outputs']),9)
+   self.assertEqual({o['path'] for o in old_manifest['outputs']},{o['path'] for o in new_manifest['outputs']})
+   for output in new_manifest['outputs']:self.assertTrue((new/output['path']).is_file())
    initial_native=json.loads((old/'native.json').read_text());revised_native=json.loads((new/'native.json').read_text())
    self.assertEqual(initial_native['artboards'],revised_native['artboards'])
    unchanged={fmt:{'before':hashlib.sha256((old/('artboard-2.'+fmt)).read_bytes()).hexdigest(),'after':hashlib.sha256((new/('artboard-2.'+fmt)).read_bytes()).hexdigest()} for fmt in ('svg','png','pdf')}
@@ -97,5 +106,5 @@ class BrandTokenMixedFirstUseTests(unittest.TestCase):
    self.assertFalse(any(skill.rglob('*.pyc')))
    for filename,sha in skill_hashes.items():self.assertEqual(hashlib.sha256((skill/filename).read_bytes()).hexdigest(),sha)
    if os.environ.get('CRAFT_BRAND_MIXED_EVIDENCE'):
-    proof={'schema':'artcraft-brand-artboard-mixed-first-use/v1','scope':'single copied revise skill; empty public runtime/domain install; five native projects, global brand revision and selective reuse; native board geometry and SVG/PNG/PDF byte identity; independent consumer PNG pixel changes; repeated budget/tasks; five-child package verify','captionGlyphBounds':caption_bounds,'runtimeVersion':install['version'],'vectorRuntimeIdentity':install['skills']['vectorcraft']['runtimeIdentity'],'unaffectedExports':unchanged,'initialTaskIds':{k:v['taskId'] for k,v in first['nodes'].items()},'revisedTaskIds':{k:v['taskId'] for k,v in second['nodes'].items()},'originalDeliveryPreserved':True,'providedVoicePreserved':True,'skillFilesPreserved':True,'repeatBudgetAndTasksPreserved':True,'packageChildren':5,'artboards':initial_native['artboards'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest()}
+    proof={'schema':'artcraft-brand-artboard-mixed-first-use/v1','scope':'single copied revise skill; empty public runtime/domain install; five native projects, global brand revision and selective reuse; native board geometry and SVG/PNG/PDF byte identity; independent consumer PNG pixel changes; repeated budget/tasks; five-child package verify','brandEntry':entry,'inheritedVariants':9,'captionGlyphBounds':caption_bounds,'runtimeVersion':install['version'],'vectorRuntimeIdentity':install['skills']['vectorcraft']['runtimeIdentity'],'unaffectedExports':unchanged,'initialTaskIds':{k:v['taskId'] for k,v in first['nodes'].items()},'revisedTaskIds':{k:v['taskId'] for k,v in second['nodes'].items()},'originalDeliveryPreserved':True,'providedVoicePreserved':True,'skillFilesPreserved':True,'repeatBudgetAndTasksPreserved':True,'packageChildren':5,'artboards':initial_native['artboards'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest()}
     with Path(os.environ['CRAFT_BRAND_MIXED_EVIDENCE']).open('x') as stream:json.dump(proof,stream,indent=2)
