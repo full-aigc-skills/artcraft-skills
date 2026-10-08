@@ -1,5 +1,6 @@
 """ArtCraft 单技能公开计划必须消费带保护检查的固定 PhotoCraft 技能源。"""
 import hashlib
+from contextlib import nullcontext
 import json
 import os
 from pathlib import Path
@@ -12,9 +13,18 @@ ROOT=Path(__file__).resolve().parents[1]
 @unittest.skipUnless(os.environ.get('CRAFT_PHOTO_PROTECTION_FIRST_USE')=='1','requires pinned public runtime downloads')
 class PhotoProtectionFirstUse(unittest.TestCase):
  def test_protected_photo_source_revision_refuses_invalid_region_and_packages_valid_revision(self):
-  with tempfile.TemporaryDirectory() as temp:
+  retained = os.environ.get('CRAFT_PHOTO_ART_RETAINED_OUTPUT')
+  if retained:
+   Path(retained).mkdir(parents=True, exist_ok=False)
+  with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temp:
    root=Path(temp);source=Path(os.environ.get('CRAFT_INSTALLED_PHOTO_ART_SKILL_ROOT',ROOT/'skills/artcraft-use'));skill=root/'single-artcraft';shutil.copytree(source,skill,ignore=shutil.ignore_patterns('__pycache__'));runtime=root/'runtime';project=root/'project'
-   def run(script,args):return subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args),'--runtime-home',str(runtime)],capture_output=True,text=True,env={**os.environ,'PATH':'/usr/bin:/bin'},timeout=300)
+   calls=[]
+   def run(script,args):
+    result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*map(str,args),'--runtime-home',str(runtime)],capture_output=True,text=True,env={**os.environ,'PATH':'/usr/bin:/bin'},timeout=300)
+    label='call-%02d'%len(calls)
+    (root/(label+'.stdout')).write_text(result.stdout);(root/(label+'.stderr')).write_text(result.stderr)
+    calls.append({'script':script,'exitCode':result.returncode,'stdoutSha256':hashlib.sha256(result.stdout.encode()).hexdigest(),'stderrSha256':hashlib.sha256(result.stderr.encode()).hexdigest()})
+    return result
    def workflow(plan):
     file=root/'plan.json';file.write_text(json.dumps(plan));return run('workflow.py',[file,'--output',project,'--authorization','photo-protection-scope'])
    stroke={'command':'paint.stroke','params':{'points':[[130,180],[135,180]],'size':12,'hardness':1,'opacity':1,'flow':1,'color':'#0033ff'}}
@@ -23,7 +33,10 @@ class PhotoProtectionFirstUse(unittest.TestCase):
    node={'id':'poster','pluginId':'photocraft','dependsOn':[],'projectKey':'poster','expectedRevision':None,'payload':payload}
    plan={'workflowId':'photo-protection','revision':'v1','budget':{'currency':'USD','maxMinorUnits':0,'maxExternalCalls':0,'maxRevisions':2},'nodes':[node]};first=workflow(plan);self.assertEqual(first.returncode,0,first.stdout+first.stderr);old=json.loads(first.stdout)['nodes']['poster'];old_root=Path(old['root']);original={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in old_root.iterdir() if p.is_file()};artifact=old['outputs'][0]
    plan['revision']='v2';node['expectedRevision']=artifact['nativeProjectRef']['sha256'];node['externalInputs']=[{'root':str(old_root),'artifact':artifact}];payload['sourceProject']={'assetId':'poster-png'};payload['plan']={'minimumLayers':2,'operations':[{'command':'type.edit','params':{'layer':{'$ref':'headline.layer'},'text':'NOVA PLUS'}}],'exports':[{'format':'png'}],'protectedRegions':[{'id':'header','rect':[0,0,320,100]}]}
-   bad=workflow(plan);self.assertNotEqual(bad.returncode,0,bad.stdout+bad.stderr);failed=json.loads(json.loads(bad.stdout)['error']);self.assertEqual(failed['state'],'failed');self.assertEqual(failed['nodes']['poster']['status'],'failed');self.assertFalse(Path(failed['nodes']['poster']['root']).exists())
+   bad=workflow(plan);self.assertNotEqual(bad.returncode,0,bad.stdout+bad.stderr);failed=json.loads(json.loads(bad.stdout)['error']);self.assertEqual(failed['state'],'failed');self.assertEqual(failed['nodes']['poster']['status'],'failed');self.assertEqual(failed['nodes']['poster']['outputs'],[])
+   failed_root=Path(failed['nodes']['poster']['root']);self.assertEqual({p.name for p in failed_root.iterdir()},{'failure.json'})
+   retained_failure=json.loads((failed_root/'failure.json').read_text());self.assertEqual(retained_failure['acceptance'],'not-a-successful-delivery');self.assertFalse(retained_failure['replayAllowed'])
+   self.assertEqual(failed['nodes']['poster']['taskReceipt']['outputRefs'],[]);self.assertEqual(failed['nodes']['poster']['taskReceipt']['evidenceRefs'],[])
    diagnostics=failed['nodes']['poster']['failure']['diagnostics'];self.assertEqual(diagnostics['domainCode'],'protected_region_changed');self.assertEqual(diagnostics['source'],'stdout');self.assertTrue(diagnostics['stdout']['complete']);self.assertGreater(diagnostics['stdout']['bytes'],0)
    status_args=[sys.executable,'-I','-B',str(skill/'scripts/cli.py'),'--runtime-home',str(runtime),'--','status','--database',str(project/'tasks.sqlite'),'--task',failed['nodes']['poster']['taskId']]
    status=subprocess.run(status_args,capture_output=True,text=True,env={**os.environ,'PATH':'/usr/bin:/bin'},timeout=300);self.assertEqual(status.returncode,2,status.stdout+status.stderr);stopped=json.loads(status.stdout);self.assertEqual(stopped['error']['diagnostics'],diagnostics)
@@ -36,7 +49,7 @@ class PhotoProtectionFirstUse(unittest.TestCase):
    package=root/'package';packed=run('package.py',['create','--project',project,'--workflow',result['runKey'],'--authorization','photo-protection-scope','--output',package]);self.assertEqual(packed.returncode,0,packed.stdout+packed.stderr);receipt=json.loads(packed.stdout);moved=root/'moved';package.rename(moved);checked=run('package.py',['verify','--package',moved,'--sha',receipt['sha256']]);self.assertEqual(checked.returncode,0,checked.stdout+checked.stderr)
    child=json.loads(checked.stdout)['children'][0];self.assertEqual(json.loads((Path(child['root'])/'pixel-protection.json').read_text()),report);self.assertEqual(original,{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in old_root.iterdir() if p.is_file()});self.assertFalse(list(skill.rglob('*.pyc')))
    if os.environ.get('CRAFT_PHOTO_ART_EVIDENCE_FILE'):
-    value={'schema':'craft-photo-protection-first-use/v1','runtimeVersion':setup['version'],'photoSourceVersion':setup['skills']['photocraft']['runtimeIdentity']['pluginVersion'],'photoSourceSha256':json.loads((skill/'scripts/distribution.lock.json').read_text())['bundles']['photocraft-skills']['sha256'],'originalFiles':original,'updatedManifest':json.loads((Path(current['root'])/'manifest.json').read_text()),'protection':report,'packageSha256':receipt['sha256'],'taskIds':[old['taskId'],failed['nodes']['poster']['taskId'],current['taskId']],'budget':result['budget'],'retouchStrokeRecorded':True,'failureDiagnostics':diagnostics,'failedAttemptId':stopped['attemptId'],'repeatedFailureKeepsAttempt':True,'scope':'single copied ArtCraft skill, online Photo-only install, generic worker failure on rejected region, valid native revision and moved package; no creative acceptance'}
+    value={'schema':'craft-photo-protection-first-use/v1','runtimeVersion':setup['version'],'photoSourceVersion':setup['skills']['photocraft']['runtimeIdentity']['pluginVersion'],'photoSourceSha256':json.loads((skill/'scripts/distribution.lock.json').read_text())['bundles']['photocraft-skills']['sha256'],'originalFiles':original,'updatedManifest':json.loads((Path(current['root'])/'manifest.json').read_text()),'protection':report,'packageSha256':receipt['sha256'],'taskIds':[old['taskId'],failed['nodes']['poster']['taskId'],current['taskId']],'budget':result['budget'],'retouchStrokeRecorded':True,'failureDiagnostics':diagnostics,'failedAttemptId':stopped['attemptId'],'repeatedFailureKeepsAttempt':True,'failedStageAcceptance':retained_failure['acceptance'],'failedStageReplayAllowed':retained_failure['replayAllowed'],'calls':calls,'scope':'single copied ArtCraft skill, online Photo-only install, generic worker failure on rejected region, valid native revision and moved package; no creative acceptance'}
     with Path(os.environ['CRAFT_PHOTO_ART_EVIDENCE_FILE']).open('x') as output:json.dump(value,output,ensure_ascii=False,indent=2);output.write('\n')
 
 if __name__=='__main__':unittest.main()
