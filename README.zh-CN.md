@@ -11,7 +11,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.97`；runtime125图片属性映射；固定插件125安装验收待完成；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.97`；已验收插件：`0.1.0-dev.125`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -93,7 +93,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.97`；runtime125图片属性映射；固定插件125安装验收待完成；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.97`；已验收插件：`0.1.0-dev.125`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
@@ -357,4 +357,4 @@ Vector33 捆绑升级候选已通过两入口真实混合返工、九变体及�
 
 Film精确时间交接固定至runtime124／源96／插件124：原生ticks字符串、时间基准、有理帧率及摘要绑定的探测记录进入公共素材；安装后的创建、返工、复用与移动包通过。完整素材协议2.3仍开放。[架构](docs/ArtCraft-Film-Timing-Architecture.zh_CN.md)。
 
-派生 PNG/JPEG 元数据映射已形成工作树候选，固定发行与安装复验仍待完成。见[架构与证据](docs/ArtCraft-Image-Metadata-Architecture.zh_CN.md)。完整素材协议任务2.3保持开放。
+派生 PNG/JPEG 元数据已固定至runtime125／源97／插件125，安装后的图片返工／复用／移动包通过。[架构与证据](docs/ArtCraft-Image-Metadata-Architecture.zh_CN.md)。完整任务2.3仍开放。

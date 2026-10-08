@@ -20,7 +20,7 @@ class ImageMetadataFirstUseTests(unittest.TestCase):
    self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
   value=json.loads((skill/'examples/brand-campaign.json').read_text());value['workflowId']='image-metadata';value['nodes']=[n for n in value['nodes'] if n['id']!='film']
   poster=next(n for n in value['nodes'] if n['id']=='poster');poster['payload']['plan']['exports'].append({'format':'jpg'});poster['payload']['outputs'].append({'assetId':'poster-jpeg','location':'design.jpg','mediaType':'image/jpeg'})
-  intro=next(n for n in value['nodes'] if n['id']=='intro');intro['payload']['plan']['exports']=[];intro['payload']['outputs']=[{'assetId':'intro-preview','location':'frame-0000.png','mediaType':'image/png'}]
+  intro=next(n for n in value['nodes'] if n['id']=='intro');intro['payload']['plan']['exports']=[];intro['payload']['outputs']=[{'assetId':'intro-preview','location':'frame-0001.png','mediaType':'image/png'}]
   plan=root/'plan.json';plan.write_text(json.dumps(value));authorization='image-metadata-scope'
   def check_images(nodes):
    facts=[]
