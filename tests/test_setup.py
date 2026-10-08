@@ -24,7 +24,7 @@ class BundleTests(unittest.TestCase):
         import json
         lock=json.loads((Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/distribution.lock.json').read_text())
         setup.validate_distribution(lock)
-        self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.130-runtime.1')
+        self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.131-runtime.1')
         for value in ('0.1.0-dev.113-runtime.', '0.1.0-dev.122-runtime.1/escape', '0.1.0-dev.113-other.1'):
             with self.subTest(version=value), self.assertRaisesRegex(ValueError,'bundle_version_invalid'):
                 setup.bundle_version(lock,{'version':value})
