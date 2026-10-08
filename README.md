@@ -329,4 +329,6 @@ The current installed Art109 revise skill passes a five-node native brand revisi
 
 Small-frame English caption examples now use the1080-line size conversion; every independent skill carries output-size and short-audio guidance. Source/native validation and fixed-plugin acceptance are separate. [Guidance and evidence](docs/Caption-Size-First-Use.md).
 
-Unpublished Vector33 bundle candidate: both real mixed brand revision entries deliver nine variants and a verified moved five-child package. Source88/plugin116 remain the current fixed release; fixed installation and cold10 acceptance are pending. [Evidence](docs/evidence/art-vector33-gateway-export-candidate-20261008.json).
+Unpublished Vector33 bundle candidate: both real mixed brand revision entries deliver nine variants and a verified moved five-child package. This historical candidate record predates fixed source89/plugin117 acceptance below. [Evidence](docs/evidence/art-vector33-gateway-export-candidate-20261008.json).
+
+Fixed source89/plugin117: all ten actual installed skills independently cold-install public Node/core/Vector33, trust the fixed workflow and discover585 native commands. Both installed mixed brand entries deliver all nine variants, update consumers, preserve controls and verify moved five-child packages. All64 installation identities match;54 historical cold records were not rerun. FullV1 remains incomplete. [Evidence](docs/evidence/craft-art117-gateway-export-fixed-first-use-20261008.json).
