@@ -1,8 +1,10 @@
 # ArtCraft independent skills
 
-Candidate public error mapping: eight protocol codes and the legacy budget alias retain their public identities across stopped child tasks and independent skill entry points; four real native post-save unknown cases pass. Fixed-release installation and complete task1.3 acceptance remain pending. [Error matrix](docs/ArtCraft-Public-Error-Matrix-Architecture.md).
+Fixed136/source108/runtime135 installed checkpoint passes:64 host identities,ten independent cold starts,100 complete-directory/parameter queries,three signed desktop and three bridge save/reopen workflows,44 fixed-runtime error tests,120 installed wrapper cases and4 actual native post-save faults. Twelve tasks and full V1 remain open. [Evidence and limits](docs/ArtCraft-Fixed-Mode-Error-Acceptance-Architecture.md).
 
-Candidate mode catalogs: FilmCraft, PhotoCraft and EffectCraft desktop save/reopen workflows pass; VectorCraft has 763 records / 762 IDs and conflicting `file.place` descriptors, so desktop/bridge execution remains refused. Source108 includes this implementation; fixed-plugin installation qualification remains pending. [Mode catalog design and evidence](docs/ArtCraft-Mode-Command-Catalog-Architecture.md).
+Earlier candidate public error mapping: eight protocol codes and the legacy budget alias retain their public identities across stopped child tasks and independent skill entry points; four real native post-save unknown cases pass. Fixed-release installation and complete task1.3 acceptance remain pending. [Error matrix](docs/ArtCraft-Public-Error-Matrix-Architecture.md).
+
+Earlier candidate mode catalogs: FilmCraft, PhotoCraft and EffectCraft desktop save/reopen workflows pass; VectorCraft has 763 records / 762 IDs and conflicting `file.place` descriptors, so desktop/bridge execution remains refused. Source108 includes this implementation; fixed-plugin installation qualification remains pending. [Mode catalog design and evidence](docs/ArtCraft-Mode-Command-Catalog-Architecture.md).
 
 Fixed135 command checkpoint:ten independent cold starts,40 real native command probes,210 mode targets, actual Effect bridge and36 post-save fault cases pass. Full task4.6 remains open. [Evidence and scope](docs/ArtCraft-Fixed-Command-Checkpoint-Architecture.md).
 
@@ -91,7 +93,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.108`; most recently tested development plugin: `0.1.0-dev.135`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.108`; most recently tested development plugin: `0.1.0-dev.136`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 

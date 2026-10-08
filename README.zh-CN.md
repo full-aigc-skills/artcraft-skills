@@ -1,8 +1,10 @@
 # ArtCraft 独立技能
 
-候选公共错误映射：已补齐8种协议错误及旧预算别名在已停止子任务和独立技能入口中的公开身份，四领域真实保存后未知结果复验通过。固定发行安装及完整任务1.3仍待验收。[错误矩阵](docs/ArtCraft-Public-Error-Matrix-Architecture.zh_CN.md)。
+固定136／源108／runtime135安装检查点通过：64宿主身份、十独立冷首用、100次完整目录／参数查询、三个签名桌面及三个bridge保存重开、44固定运行时错误测试、120安装后包装用例及4项真实原生保存后故障。12项任务与完整V1继续开放。[证据及边界](docs/ArtCraft-Fixed-Mode-Error-Acceptance-Architecture.zh_CN.md)。
 
-候选模式目录：FilmCraft、PhotoCraft、EffectCraft 实际桌面保存／重开通过；VectorCraft 为763记录／762 ID，`file.place` 参数描述重复冲突，desktop／bridge执行保持拒绝。技能源108包含此实现；新插件的固定安装验收仍待完成。[模式目录设计与证据](docs/ArtCraft-Mode-Command-Catalog-Architecture.zh_CN.md)。
+此前候选公共错误映射：已补齐8种协议错误及旧预算别名在已停止子任务和独立技能入口中的公开身份，四领域真实保存后未知结果复验通过。固定发行安装及完整任务1.3仍待验收。[错误矩阵](docs/ArtCraft-Public-Error-Matrix-Architecture.zh_CN.md)。
+
+此前候选模式目录：FilmCraft、PhotoCraft、EffectCraft 实际桌面保存／重开通过；VectorCraft 为763记录／762 ID，`file.place` 参数描述重复冲突，desktop／bridge执行保持拒绝。技能源108包含此实现；新插件的固定安装验收仍待完成。[模式目录设计与证据](docs/ArtCraft-Mode-Command-Catalog-Architecture.zh_CN.md)。
 
 固定135命令检查点：十技能独立空缓存首用、40项真实原生命令探测、210项模式目标、真实Effect bridge与36项保存后故障通过。完整任务4.6继续开放。[证据及范围](docs/ArtCraft-Fixed-Command-Checkpoint-Architecture.zh_CN.md)。
 
@@ -91,7 +93,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.135`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -173,7 +175,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.135`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.136`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
