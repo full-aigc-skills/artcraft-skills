@@ -1,12 +1,12 @@
 # ArtCraft independent skills
 
-Fixed plugin127/source99 consistency implementation is verified: ten independent public-source cold entries, all64 installed host identities, actual five-child native brand/subject delivery, bound observations and STALE/reevaluate refusals. Current Photo protection/retouch and moved report pass; a historical test assumption about failure-directory absence was corrected to verify failure-only evidence and zero outputs. Task6.14 is complete;6.15 remains open for the complete old-dependency refusal audit. Twenty-two numbered tasks plus historical SC-003 remain open (23 total). [Fixed evidence](docs/evidence/consistency-fixed127-20261009.json).
+Fixed plugin dev.127/source dev.99 passes all four named consistency scenarios; task 6.15 is complete. Legacy dependency refusal, original preservation, current protected-region/brush revision, actual sampled visual observations and moved records are verified. Source regression: 199 tests, 149 passed, 50 conditional skips. Twenty-one numbered tasks plus historical SC-003 remain open (22 total); human acceptance and full V1 remain open. [Acceptance architecture](docs/ArtCraft-Consistency-Acceptance-Architecture.md).
 
 Earlier source checkpoint: Source99 adds explicit STALE / reevaluate refusals for expired consistency references and missing target digests. Immutable distribution and fixed installed qualification are being prepared; this does not close6.14/6.15. [Evidence](docs/evidence/consistency-stale-action-20261009.json).
 
 Earlier source-candidate checkpoint: Source-candidate consistency review now binds fixed brand/subject references to every observed output; eight targeted fixture tests and seven legacy review tests pass. Task6.13 is complete;6.14/6.15 remain open. Public release identities are unchanged. See [candidate architecture](docs/ArtCraft-Consistency-Candidate-Architecture.md).
 
-Capability-routing task6.6 is complete for all eleven current scenarios, including separate full four-domain mixed gateway cold starts, native source revisions, recovery and moved packages through all ten installed entries. Fixed plugin126/source98/runtime126 bytes remain unchanged. Twenty-two numbered tasks plus historical SC-003 remain open (23 total); full V1 remains open. See [acceptance architecture](docs/ArtCraft-Capability-Routing-Acceptance-Architecture.md).
+Earlier routing checkpoint: capability-routing task6.6 is complete for all eleven current scenarios, including separate full four-domain mixed gateway cold starts, native source revisions, recovery and moved packages through all ten installed entries. Fixed plugin126/source98/runtime126 bytes remain unchanged. Twenty-two numbered tasks plus historical SC-003 remain open (23 total); full V1 remains open. See [acceptance architecture](docs/ArtCraft-Capability-Routing-Acceptance-Architecture.md).
 
 Earlier specialized checkpoint (6.6 was open then; it is now complete): Fixed126 routing revalidation passes real mixed ASR, Vector appearance, Effect expressions, Photo masked adjustment and four untrusted-source refusals, four-domain gateways and command components, and ten independent Vector Brief gateway cold starts/revisions/moved packages. All 64 installed trees and 33 runtime files in each public entry match the release locks. Task6.6 stays open for the complete mixed-workflow matrix per entry. See [scope and evidence](docs/ArtCraft-Routing-Scenario-Revalidation.md).
 
@@ -29,7 +29,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.99`; qualified plugin: `0.1.0-dev.126`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.99`; qualified plugin: `0.1.0-dev.127`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
