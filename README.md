@@ -1,5 +1,7 @@
 # ArtCraft independent skills
 
+Development source107 pins runtime134-runtime.1, including all-mode command guards and canonical native source revision conflicts. Actual EffectCraft GUI evidence is recorded separately from fixed installation; full V1 remains open. [Source revision architecture](docs/ArtCraft-Source-Revision-Architecture.md).
+
 Unreleased candidate extends command contract enforcement to standalone bridge/desktop, with locked EffectCraft bridge tool identities.220 controlled boundary targets and526 runtime tests pass (25 conditional skips); actual GUI and new fixed distribution acceptance remain open. [Mode architecture](docs/ArtCraft-Command-Modes-Architecture.md).
 
 Development checkpoint134/source106/runtime133 adds full2646-command contract checks before headless editing. Runtime380 pass/25 skip,20 native readonly probes and36 native fault regressions pass. New fixed host/mixed acceptance and task4.6 remain open. [Architecture](docs/ArtCraft-Live-Command-Contract-Architecture.md).
@@ -81,7 +83,7 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.106`; most recently tested development plugin: `0.1.0-dev.133`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.107`; most recently tested development plugin: `0.1.0-dev.133`;10 independent skills;full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 

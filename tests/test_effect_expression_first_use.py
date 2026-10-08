@@ -8,7 +8,7 @@ class ExpressionContract(unittest.TestCase):
  def test_each_skill_owns_expression_recipe_and_fixed_domain(self):
   for skill in (ROOT/'skills').iterdir():
    if not (skill/'SKILL.md').is_file():continue
-   plan=json.loads((skill/'examples/effect-expression-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'effectcraft');self.assertTrue((skill/'references/effect-expression.md').is_file());self.assertIn('references/effect-expression.md',(skill/'SKILL.md').read_text());lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['effectcraft-skills']['version'],'0.1.0-dev.34');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.133-runtime.1')
+   plan=json.loads((skill/'examples/effect-expression-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'effectcraft');self.assertTrue((skill/'references/effect-expression.md').is_file());self.assertIn('references/effect-expression.md',(skill/'SKILL.md').read_text());lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['effectcraft-skills']['version'],'0.1.0-dev.34');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.134-runtime.1')
 @unittest.skipUnless(os.environ.get('CRAFT_ART_EFFECT_EXPRESSION')=='1','explicit public native opt-in')
 class ExpressionPublicFirstUse(unittest.TestCase):
  def test_cold_expression_parent_source_revision_and_moved_package(self):
