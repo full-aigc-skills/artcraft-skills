@@ -93,7 +93,7 @@ class OwnedDesktopHandoffTests(unittest.TestCase):
     with self.assertRaisesRegex(ValueError,'desktop_owns_connection'):m.dispatch(args)
    self.assertFalse((root/'out').exists())
  def test_desktop_child_argv_uses_only_owned_launcher(self):
-  m=self.module();args=m.parser().parse_args(['run','filmcraft','plan.json','--output','out','--mode','desktop']);argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{'asset':Path('/asset')});self.assertEqual(argv[3],'/domain/scripts/desktop.py');self.assertEqual(argv[4],'run');self.assertNotIn('--mode',argv);self.assertNotIn('--connect',argv);self.assertIn('asset=/asset',argv)
+  m=self.module();args=m.parser().parse_args(['run','filmcraft','plan.json','--output','out','--mode','desktop']);argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{'asset':Path('/asset')});self.assertEqual(argv[3],str(m.ROOT/'scripts/native_contract.py'));self.assertEqual(argv[4:7],['/domain/scripts/mcp_session.py','/domain/scripts/desktop.py','run']);self.assertNotIn('--mode',argv);self.assertNotIn('--connect',argv);self.assertIn('asset=/asset',argv)
 
 class DesktopReceiptIdentityTests(unittest.TestCase):
  module=OwnedDesktopHandoffTests.module
@@ -166,11 +166,11 @@ class HeadlessContractLauncherTests(unittest.TestCase):
  module=OwnedDesktopHandoffTests.module
  def test_headless_run_uses_self_contained_contract_launcher(self):
   m=self.module()
-  for domain in m.NAMES:
-   args=m.parser().parse_args(['run',domain,'plan.json','--output','out'])
+  for domain,mode in [(d,k) for d in m.NAMES for k in ['headless','bridge','desktop']]:
+   args=m.parser().parse_args(['run',domain,'plan.json','--output','out','--mode',mode])
    argv=m.launch_command(Path('/domain'),args,Path('/frozen.json'),'/runtime',{})
    self.assertEqual(argv[3],str(m.ROOT/'scripts/native_contract.py'))
-   self.assertEqual(argv[4:7],['/domain/scripts/mcp_session.py','/domain/scripts/commands.py','run'])
+   self.assertEqual(argv[4:7],['/domain/scripts/mcp_session.py','/domain/scripts/'+('desktop.py' if mode=='desktop' else 'commands.py'),'run'])
  def test_contract_launcher_is_present_in_all_independent_skills(self):
   sources=[(p/'scripts/native_contract.py').read_bytes() for p in sorted((ROOT/'skills').iterdir())]
   self.assertEqual(len(sources),10);self.assertEqual(len(set(sources)),1)
