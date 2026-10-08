@@ -54,7 +54,7 @@ class ArtifactVersionFirstUseTests(unittest.TestCase):
     if 'color' in params:params['color']='#ef5b36'
    second=execute();self.assertEqual(second['state'],'review_ready');new=second['nodes']['logo']['outputs'][0];self.assertNotEqual(old['sha256'],new['sha256']);self.assertNotEqual(old['version'],new['version'])
    self.assertTrue(all(deliveries()[name]==digest for name,digest in original.items()))
-   setup=json.loads((project/'installation-receipt.json').read_text());expected=os.environ.get('CRAFT_EXPECTED_ARTIFACT_VERSION_RUNTIME','0.1.0-dev.124-runtime.1');self.assertEqual(setup['version'],expected)
+   setup=json.loads((project/'installation-receipt.json').read_text());expected=os.environ.get('CRAFT_EXPECTED_ARTIFACT_VERSION_RUNTIME','0.1.0-dev.125-runtime.1');self.assertEqual(setup['version'],expected)
    self.assertEqual(setup['skills'].keys(),{'vectorcraft'})
    before=state();files_before=deliveries();conflict=json.loads(json.dumps(new));conflict['version']=old['version'];conflict['assetId']=old['assetId'];refusals=[]
    value['nodes'][0]['payload']['assetBindings']=[{'name':'registered','assetId':old['assetId']}]
