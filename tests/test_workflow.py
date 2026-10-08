@@ -72,6 +72,7 @@ class WorkflowTests(unittest.TestCase):
                 expected = dict(receipt,projectRoot=str(project.resolve()))
                 self.assertEqual(reply.get('workflowReceipt'),expected)
                 self.assertEqual(json.loads(reply['error']),expected)
+                self.assertEqual(reply['errorDetail'],{'code':'workflow_not_ready','message':reply['error']})
                 self.assertEqual(len(launches),1)
                 stored = next(project.glob('result-*.json'))
                 self.assertEqual(json.loads(stored.read_text()),expected)
@@ -81,6 +82,27 @@ class WorkflowTests(unittest.TestCase):
         with patch.object(sys,'argv',['workflow.py','missing.json','--output','unused','--authorization','scope']), patch.object(workflow,'execute',side_effect=ValueError('invalid_input')), redirect_stdout(output):
             with self.assertRaises(SystemExit):
                 workflow.main()
-        self.assertEqual(json.loads(output.getvalue()),{'error':'invalid_input'})
+        self.assertEqual(json.loads(output.getvalue()),{'error':'invalid_input','errorDetail':{'code':'invalid_input','message':'invalid_input'}})
+
+    def test_public_failure_preserves_upstream_error_detail_and_original_receipt(self):
+        receipt={'error':'authorization_scope_mismatch','errorDetail':{'code':'authorization_scope_mismatch','message':'authorization_scope_mismatch'}}
+        output=io.StringIO()
+        with patch.object(sys,'argv',['workflow.py','missing.json','--output','unused','--authorization','scope']), patch.object(workflow,'execute',side_effect=workflow.WorkflowFailure(receipt)), redirect_stdout(output):
+            with self.assertRaises(SystemExit):workflow.main()
+        reply=json.loads(output.getvalue())
+        self.assertEqual(reply['errorDetail'],receipt['errorDetail'])
+        self.assertEqual(reply['workflowReceipt'],receipt)
+        self.assertEqual(json.loads(reply['error']),receipt)
+        self.assertNotIn('taskReceipt',reply)
+
+    def test_public_input_rejection_before_install_has_no_task_or_runtime(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);plan=root/'plan.json';plan.write_text('{}');runtime=root/'runtime';project=root/'project';output=io.StringIO()
+            with patch.object(sys,'argv',['workflow.py',str(plan),'--output',str(project),'--authorization','scope','--runtime-home',str(runtime)]),patch.object(workflow.subprocess,'run') as launch,redirect_stdout(output):
+                with self.assertRaises(SystemExit):workflow.main()
+            reply=json.loads(output.getvalue())
+            self.assertEqual(reply['errorDetail']['code'],'workflow_plan_invalid')
+            self.assertNotIn('workflowReceipt',reply);self.assertNotIn('taskReceipt',reply)
+            launch.assert_not_called();self.assertFalse(runtime.exists());self.assertFalse((project/'tasks.sqlite').exists())
 
 if __name__=='__main__':unittest.main()
