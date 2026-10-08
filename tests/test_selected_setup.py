@@ -42,6 +42,11 @@ class SelectedSetupTests(unittest.TestCase):
                     digest=domain['capabilitySnapshot']['scriptHashes']['preserved_stage.py']
                     self.assertEqual(digest,setup.sha(Path(domain['skillRoot'])/'scripts/preserved_stage.py'))
                     self.assertIn({'path':str(Path(domain['skillRoot'])/'scripts/preserved_stage.py'),'sha256':digest},domain['files'])
+                    if name == 'vectorcraft':
+                        guard = Path(domain['skillRoot'])/'scripts/brand_variants.py'
+                        digest = domain['capabilitySnapshot']['scriptHashes']['brand_variants.py']
+                        self.assertEqual(digest, setup.sha(guard))
+                        self.assertIn({'path':str(guard),'sha256':digest}, domain['files'])
                     if name == 'photocraft':
                         delivery = Path(domain['skillRoot'])/'scripts/delivery.py'
                         digest = domain['capabilitySnapshot']['scriptHashes']['delivery.py']

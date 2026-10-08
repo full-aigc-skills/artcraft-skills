@@ -26,6 +26,16 @@ class PrefixTests(unittest.TestCase):
    lock['archivePrefix']='photocraft-skills-1.0.1/'
    with self.assertRaisesRegex(ValueError,'bundle_prefix_invalid'):setup.install_bundle(lock,root/'wrong',archive)
    self.assertFalse((root/'wrong').exists())
+ def test_exact_v_tag_prefix_installs_and_mismatched_tag_never_writes(self):
+  with tempfile.TemporaryDirectory() as t:
+   root=Path(t);archive,lock=self.fixture(root,prefix='photocraft-skills-v1.0.0/')
+   target=setup.install_bundle(lock,root/'installed',archive)
+   self.assertEqual((target/'skills/item.txt').read_bytes(),b'fixed')
+   for prefix,url in [('photocraft-skills-v1.0.1/',lock['url']),('photocraft-skills-v1.0.0/',lock['url'].replace('/v1.0.0/','/v1.0.1/'))]:
+    with self.subTest(prefix=prefix,url=url):
+     bad=dict(lock,archivePrefix=prefix,url=url)
+     with self.assertRaisesRegex(ValueError,'bundle_prefix_invalid'):setup.install_bundle(bad,root/'wrong/installed',archive)
+     self.assertFalse((root/'wrong').exists())
  def test_bad_prefix_is_rejected_before_creating_directories(self):
   for prefix in ('../','other/','photocraft-skills','photocraft-skills//','',None,42):
    with self.subTest(prefix=prefix),tempfile.TemporaryDirectory() as t:

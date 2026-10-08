@@ -1,11 +1,13 @@
 # ArtCraft 独立技能
 
+Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受与锁定 v 标签完全匹配的 ZIP 前缀。暖缓存五节点原生返工与移动交付通过，固定发行及错误阻断验收仍待完成。[架构](docs/ArtCraft-Brand-Guard-Distribution-Architecture.zh_CN.md)。
+
 固定 source87／plugin115 已包含十个 Art 技能的 Node／组合安装锁修复，每把锁最多等待 120 秒。实际 Codex 安装发现全部 64 个技能，零加载错误；10 个变化技能逐项独立冷安装通过，其余 54 项仅在完整摘要相等时复用历史冷证明。[安装锁架构](docs/ArtCraft-Install-Lock-Architecture.zh_CN.md)。 固定安装副本的四领域原生创建、源返工、同修订复用、回执篡改拒绝及移动包验证通过；前两次磁盘不足失败日志保留。[固定验收](docs/evidence/craft-art115-install-lock-fixed-first-use-20261008.json)。
 
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.87`；插件发行：`0.1.0-dev.115`；10 个独立技能。
+当前技能源快照：`0.1.0-dev.88`；插件发行：`0.1.0-dev.116`；10 个独立技能。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
