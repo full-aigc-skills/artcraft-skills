@@ -1,5 +1,6 @@
 """干净复制一项 ArtCraft 技能，安装全部依赖并交付四个原生工程。"""
 import hashlib
+import contextlib
 import json
 import os
 from pathlib import Path
@@ -43,7 +44,14 @@ class FirstUseArgumentTests(unittest.TestCase):
                      'requires declared online first use or verified offline archives')
 class FirstWorkflowTests(unittest.TestCase):
     def test_isolated_single_skill_installs_runs_and_reuses_four_native_deliveries(self):
-        with tempfile.TemporaryDirectory() as temporary:
+        retained=os.environ.get('CRAFT_MIXED_RETAINED_OUTPUT')
+        if retained:
+            target=Path(retained)
+            if not target.is_absolute():raise ValueError('retained_output_absolute_required')
+            target.mkdir(exist_ok=False)
+            workspace=contextlib.nullcontext(str(target))
+        else:workspace=tempfile.TemporaryDirectory()
+        with workspace as temporary:
             root=Path(temporary).resolve()
             path_case=os.environ.get('CRAFT_UNICODE_PATH_FIRST_USE')=='1'
             if path_case:root=root/'首次 使用 中文路径';root.mkdir()
@@ -187,6 +195,17 @@ class FirstWorkflowTests(unittest.TestCase):
             source_run=subprocess.run(source_args,capture_output=True,text=True,env=environment,timeout=240)
             self.assertEqual(source_run.returncode,0,source_run.stdout+source_run.stderr);source_result=json.loads(source_run.stdout)
             self.assertEqual(source_result['state'],'review_ready')
+            photo_delivery=Path(setup['skills']['photocraft']['skillRoot'])/'scripts/delivery.py'
+            photo_digest=hashlib.sha256(photo_delivery.read_bytes()).hexdigest()
+            self.assertEqual(photo_digest,distribution['bundles']['photocraft-skills']['files']['skills/photocraft-use/scripts/delivery.py'])
+            self.assertEqual(photo_digest,setup['skills']['photocraft']['capabilitySnapshot']['scriptHashes']['delivery.py'])
+            photo_integrity=[]
+            for photo_root in [Path(first['nodes']['poster']['root']),Path(source_result['nodes']['poster']['root'])]:
+                manifest_digest=hashlib.sha256((photo_root/'manifest.json').read_bytes()).hexdigest()
+                checked=subprocess.run([sys.executable,'-I','-B',str(photo_delivery),str(photo_root),'--expected-manifest-sha256',manifest_digest],capture_output=True,text=True,env=environment,timeout=30)
+                self.assertEqual(checked.returncode,0,checked.stdout+checked.stderr)
+                observed=json.loads(checked.stdout);self.assertEqual(observed['result'],'PASS');photo_integrity.append(observed)
+
             saved_source_evidence={}
             for id,result in source_result['nodes'].items():
                 self.assertEqual(result['sourceInspection']['nativeProjectSha256'],first['nodes'][id]['outputs'][0]['nativeProjectRef']['sha256'])
@@ -247,9 +266,13 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(verified_variant.returncode,0,verified_variant.stdout+verified_variant.stderr)
             layouts=list(variant_moved.rglob('layout-variant.json'));self.assertEqual(len(layouts),1)
             variant_layout=json.loads(layouts[0].read_text());self.assertEqual(variant_layout['targetSize'],[352,400])
+            retained_layout=layouts[0].read_bytes()
             layouts[0].write_text('{}')
             rejected_variant=subprocess.run(variant_verify,capture_output=True,text=True,env=environment,timeout=120)
             self.assertNotEqual(rejected_variant.returncode,0,rejected_variant.stdout+rejected_variant.stderr)
+            layouts[0].write_bytes(retained_layout)
+            restored_variant=subprocess.run(variant_verify,capture_output=True,text=True,env=environment,timeout=120)
+            self.assertEqual(restored_variant.returncode,0,restored_variant.stdout+restored_variant.stderr)
 
             # 单技能首次使用后的公开打包入口，不依赖全局 Node 或仓库脚本。
             package=root/'delivery-package'
@@ -267,7 +290,7 @@ class FirstWorkflowTests(unittest.TestCase):
             self.assertEqual(json.loads((moved/'workflow-plan-portable.json').read_text())['projectBrief'],brief)
             if os.environ.get('CRAFT_WORKFLOW_EVIDENCE_FILE'):
                 artifacts={id:[{'assetId':a['assetId'],'sha256':a['sha256'],'bytes':a['bytes'],'mediaType':a['mediaType'],'nativeProjectRef':a['nativeProjectRef']} for a in value['outputs']] for id,value in first['nodes'].items()}
-                proof={'schema':'craft-installed-mixed-first-use/v1','pathCase':{'unicodeAndSpaces':path_case,'parentName':root.name,'runtimeInitiallyAbsent':True},'python':sys.version.split()[0],'runtimeVersion':setup['version'],'filmOutputGuards':[first_guard_value,revised_guard_value],'domainOutputGuards':{id:[first_guards[id][2],revised_guards[id][2]] for id in domains},'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'photoVariant':{'layout':variant_layout,'packageSha256':variant_receipt['sha256'],'movedPackageVerified':True,'tamperedLayoutRejected':True,'staleCachedLayoutBlocked':True,'restoredWithoutReplay':True},'sourceBrief':{'savedOutputs':saved_source_evidence,'nativeProjectHashes':{id:result['sourceInspection']['nativeProjectSha256'] for id,result in source_result['nodes'].items()},'inspections':{id:result['sourceInspection'] for id,result in source_result['nodes'].items()},'originalFilesPreserved':True,'reused':True,'leases':0},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'nativeReceipt':{'mismatchRejected':True,'installationPreserved':True,'projectFilesPreserved':True,'restoredTaskIdsReused':True},'checks':['Film installation receipt checked before mixed reuse','hash-bound native and export Film duration','four native domain source Brief revisions and reuse','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
+                proof={'schema':'craft-installed-mixed-first-use/v1','retainedOutputs':bool(retained),'photoDeliveryIntegrity':{'scriptSha256':photo_digest,'launcherIdentityBound':True,'deliveries':photo_integrity},'pathCase':{'unicodeAndSpaces':path_case,'parentName':root.name,'runtimeInitiallyAbsent':True},'python':sys.version.split()[0],'runtimeVersion':setup['version'],'filmOutputGuards':[first_guard_value,revised_guard_value],'domainOutputGuards':{id:[first_guards[id][2],revised_guards[id][2]] for id in domains},'briefSha256':brief_receipt['sha256'],'artifacts':artifacts,'packageSha256':packed['sha256'],'voiceSha256':hashlib.sha256(voice.read_bytes()).hexdigest(),'sourceSkillVersions':{name:entry['version'] for name,entry in distribution['bundles'].items()},'photoVariant':{'layout':variant_layout,'packageSha256':variant_receipt['sha256'],'movedPackageVerified':True,'tamperedLayoutRejected':True,'staleCachedLayoutBlocked':True,'restoredWithoutReplay':True},'sourceBrief':{'savedOutputs':saved_source_evidence,'nativeProjectHashes':{id:result['sourceInspection']['nativeProjectSha256'] for id,result in source_result['nodes'].items()},'inspections':{id:result['sourceInspection'] for id,result in source_result['nodes'].items()},'originalFilesPreserved':True,'reused':True,'leases':0},'filmDuration':{'requiredSeconds':1,'nativeTicks':film_native['sequence']['duration'],'exportTicks':film_probe['duration'],'frameRate':rate,'files':{name:film_manifest['files'][name] for name in ['project.fcproj','film.mp4','native.json','export-probe.json']}},'nativeReceipt':{'mismatchRejected':True,'installationPreserved':True,'projectFilesPreserved':True,'restoredTaskIdsReused':True},'checks':['Film installation receipt checked before mixed reuse','hash-bound native and export Film duration','four native domain source Brief revisions and reuse','four native domain deliveries','same-revision no replay','status has four tasks and zero leases','relocated runtime conflict preserves whole project','changed frozen plan refused','voice source digest bound','four-child moved package verified','portable Brief retained'],'scope':'single copied installed skill, fresh default online install and system-only PATH; technical fixture, not creative acceptance'}
                 with Path(os.environ['CRAFT_WORKFLOW_EVIDENCE_FILE']).open('x') as output:json.dump(proof,output,ensure_ascii=False,indent=2);output.write('\n')
 
 if __name__ == '__main__':unittest.main()

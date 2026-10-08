@@ -1,9 +1,9 @@
 # ArtCraft independent skills
 
-Photo34 dependency candidate: exact published ZIP layout and delivery helper identity binding. Fixed plugin acceptance remains open. [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
+Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.86`; previous fixed plugin: `0.1.0-dev.113`; 10 independent skills.
+Current source snapshot: `0.1.0-dev.86`; fixed plugin: `0.1.0-dev.114`; 10 independent skills.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 

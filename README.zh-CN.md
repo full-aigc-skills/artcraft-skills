@@ -1,9 +1,9 @@
 # ArtCraft 独立技能
 
-Photo34 依赖候选：支持真实发布 ZIP 布局，并绑定交付助手执行身份；固定插件验收尚未完成。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
+固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.86`；此前固定插件：`0.1.0-dev.113`；10 个独立技能。
+当前技能源快照：`0.1.0-dev.86`；固定插件：`0.1.0-dev.114`；10 个独立技能。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
