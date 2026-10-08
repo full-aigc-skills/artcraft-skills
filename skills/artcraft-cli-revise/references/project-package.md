@@ -16,9 +16,9 @@ python3 "$SKILL_DIR/scripts/package.py" verify \
   --sha MANIFEST_SHA256_FROM_PACKAGE_RECEIPT
 ```
 
-使用工作流结果中的 runKey；owner 和 authorization 必须与账本一致。自定义运行时目录加 --runtime-home。create 的 JSON 回执提供 sha256，需单独保存或传给验包，不能从可能被修改的包自身推导信任。已有输出目录拒绝覆盖，未核验任务、活跃工程写入、授权冲突、源摘要变动、路径外逃或缺依赖都会拒绝发布。
+使用工作流结果中的 runKey；owner 和 authorization 必须与账本一致。自定义运行时目录加 --runtime-home。create 的 JSON 回执提供 sha256，需单独保存或传给验包，不能从可能被修改的包自身推导信任。已有输出目录拒绝覆盖，未核验任务、活跃工程写入、授权冲突、源摘要变动、路径外逃或声明已收集的依赖文件缺失都会拒绝发布；明确记录的未收集字体状态保留供审阅。
 
-Use runKey from the workflow result, with its original owner and authorization. Add --runtime-home for a custom runtime directory. The create receipt provides sha256: retain it independently and pass it to verification. Existing directories are never overwritten; unfinished tasks, active writers, unauthorized scope, source changes, escaping paths or missing dependencies reject publication.
+Use runKey from the workflow result, with its original owner and authorization. Add --runtime-home for a custom runtime directory. The create receipt provides sha256: retain it independently and pass it to verification. Existing directories are never overwritten; unfinished tasks, active writers, unauthorized scope, source changes, escaping paths or missing declared collected dependency files reject publication; explicit uncollected font states remain available for review.
 
 | 文件 / File | 用途 / Purpose |
 | :--- | :--- |
@@ -36,3 +36,10 @@ Verification checks the manifest digest, every file and native reference, reject
 打包后状态仍为 review_ready，仅代表技术待审，不提升为创作通过。包不是运行时安装包，也不复制活跃 SQLite 账本或建立新预算授权。跨机器字体、效果与授权环境仍需按领域能力检查；交换损失报告仅保留已经生成的真实证据，不凭打包自动推定无损。
 
 Packaging retains review_ready, without creative approval. It is a delivery bundle rather than an installed runtime or live SQLite database, and creates no new budget authorization. Domain capability checks remain necessary for fonts, effects and environment differences; existing exchange-loss evidence is retained, never inferred as lossless by packaging.
+
+
+## 字体缺失状态 / Missing font state
+
+当前源码候选（尚未进入 plugin137/source109/runtime136）将 Photo 原生可编辑文字字体记录为 `kind=font`、`assetRef=null`、`packaged=false`、`missingReason=font_file_not_collected`；`fontRequirement` 提供 family、nativeProjectSha256、inspectionRef。没有字体文件时不可伪造摘要，也不可承诺跨机器可编辑排版一致。移动包保留缺失状态，源工程重开重新检查实际文字；不得把像素导出当作字体已收集。其他领域映射与实际字体打包尚待完成。
+
+The current source candidate (not plugin137/source109/runtime136) records unresolved Photo editable font requirements with a null asset identity, explicit missing state, native project digest and inspection evidence. No font binary identity or target font availability is inferred. Moving a package preserves the missing state; source reopen inspects editable text again. Other-domain mapping and actual font-file packaging remain pending.
