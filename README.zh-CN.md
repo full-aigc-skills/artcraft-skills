@@ -2,15 +2,15 @@
 
 候选公共错误映射：已补齐8种协议错误及旧预算别名在已停止子任务和独立技能入口中的公开身份，四领域真实保存后未知结果复验通过。固定发行安装及完整任务1.3仍待验收。[错误矩阵](docs/ArtCraft-Public-Error-Matrix-Architecture.zh_CN.md)。
 
-候选模式目录：FilmCraft、PhotoCraft、EffectCraft 实际桌面保存／重开通过；VectorCraft 为763记录／762 ID，`file.place` 参数描述重复冲突，desktop／bridge执行保持拒绝。此候选尚未发行或完成固定安装验收。[模式目录设计与证据](docs/ArtCraft-Mode-Command-Catalog-Architecture.zh_CN.md)。
+候选模式目录：FilmCraft、PhotoCraft、EffectCraft 实际桌面保存／重开通过；VectorCraft 为763记录／762 ID，`file.place` 参数描述重复冲突，desktop／bridge执行保持拒绝。技能源108包含此实现；新插件的固定安装验收仍待完成。[模式目录设计与证据](docs/ArtCraft-Mode-Command-Catalog-Architecture.zh_CN.md)。
 
 固定135命令检查点：十技能独立空缓存首用、40项真实原生命令探测、210项模式目标、真实Effect bridge与36项保存后故障通过。完整任务4.6继续开放。[证据及范围](docs/ArtCraft-Fixed-Command-Checkpoint-Architecture.zh_CN.md)。
 
 固定135版本绑定与单写验收完成任务5.3：64宿主身份、四领域原生创建／修订、同源串行、冻结元数据与授权复用，以及真实GUI保存后的固定安装旧计划冲突均通过。仍有12项编号任务与完整V1开放。[验收](docs/ArtCraft-Version-Single-Writer-Acceptance-Architecture.zh_CN.md)。
 
-开发技能源107固定运行时134-runtime.1，包含三模式命令校验和原生源版本冲突修复。真实EffectCraft界面证据与固定安装验收分别记录，完整V1继续开放。[源版本架构](docs/ArtCraft-Source-Revision-Architecture.zh_CN.md)。
+此前开发技能源107固定运行时134-runtime.1，包含三模式命令校验和原生源版本冲突修复。真实EffectCraft界面证据与固定安装验收分别记录，完整V1继续开放。[源版本架构](docs/ArtCraft-Source-Revision-Architecture.zh_CN.md)。
 
-未发行候选补齐独立bridge／desktop命令合同及EffectCraft附加工具身份校验。220项受控边界及526项运行时测试通过（25条件跳过）；实际GUI和新固定分发验收仍开放。[模式架构](docs/ArtCraft-Command-Modes-Architecture.zh_CN.md)。
+此前候选补齐独立bridge／desktop命令合同及EffectCraft附加工具身份校验。220项受控边界及526项运行时测试通过（25条件跳过）；实际GUI和新固定分发验收仍开放。[模式架构](docs/ArtCraft-Command-Modes-Architecture.zh_CN.md)。
 
 开发检查点134／源106／runtime133增加headless编辑前2646命令合同校验。运行时380通过／25跳过，20项原生只读探针及36项原生故障回归通过；新固定宿主／混合验收和任务4.6保持开放。[架构](docs/ArtCraft-Live-Command-Contract-Architecture.zh_CN.md)。
 
@@ -91,7 +91,7 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.107`；最近验收的开发插件：`0.1.0-dev.133`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.135`；10个独立技能；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
@@ -173,7 +173,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.107`；最近验收的开发插件：`0.1.0-dev.133`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.108`；最近验收的开发插件：`0.1.0-dev.135`；10个独立技能；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
