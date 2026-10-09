@@ -12,6 +12,7 @@ import tempfile
 from contextlib import nullcontext
 import unittest
 import wave
+from rgb_decode import decode_rgb_frames
 
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=Path(os.environ['CRAFT_INSTALLED_SEGMENTED_HD_SKILL_ROOT']).resolve() if os.environ.get('CRAFT_INSTALLED_SEGMENTED_HD_SKILL_ROOT') else ROOT/'skills/artcraft-cli-revise'
@@ -27,7 +28,9 @@ class SegmentedHdFirstUseTests(unittest.TestCase):
   if retained:Path(retained).mkdir(parents=True,exist_ok=False)
   with nullcontext(retained) if retained else tempfile.TemporaryDirectory() as temporary:
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'));skill_hashes=hashes(skill)
-   runtime=root/'empty-runtime';project=root/'project';self.assertFalse(runtime.exists())
+   warm=os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME');runtime=Path(warm).resolve(strict=True) if warm else root/'empty-runtime';project=root/'project'
+   if warm:self.assertTrue(runtime.is_dir())
+   else:self.assertFalse(runtime.exists())
    background=root/'background.png';Image.new('RGB',(1920,1080),(0,128,0)).save(background)
    voice=root/'voice.wav'
    with wave.open(str(voice),'wb') as output:
@@ -52,7 +55,9 @@ class SegmentedHdFirstUseTests(unittest.TestCase):
    for name,suffix in [('logo','vectorcraft'),('poster','pcraft'),('intro','ecproj'),('film','fcproj')]:self.assertIn('project.'+suffix,old[name])
    probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-count_frames','-select_streams','v:0','-show_entries','stream=width,height,avg_frame_rate,duration,nb_read_frames','-of','json',str(Path(film['root'])/'film.mp4')]))['streams'][0]
    self.assertEqual((probe['width'],probe['height'],probe['avg_frame_rate'],probe['nb_read_frames']),(1920,1080,'24/1','120'));self.assertAlmostEqual(float(probe['duration']),5,places=3)
-   raw=root/'decoded.rgb';subprocess.run(['ffmpeg','-v','error','-i',str(Path(film['root'])/'film.mp4'),'-f','rawvideo','-pix_fmt','rgb24',str(raw)],check=True);self.assertEqual(raw.stat().st_size,120*1920*1080*3)
+   decoded=decode_rgb_frames(['ffmpeg','-v','error','-i',str(Path(film['root'])/'film.mp4'),'-f','rawvideo','-pix_fmt','rgb24','pipe:1'],1920,1080,120,(0,60,119));self.assertEqual(decoded['byteCount'],120*1920*1080*3)
+   def pixel(index,x,y):
+    offset=(y*1920+x)*3;return decoded['samples'][index][offset:offset+3]
    sequence_root=Path(intro['root'])/'rgba-segments';descriptor=json.loads((sequence_root/'segments.json').read_text());self.assertEqual(len(descriptor['segments']),4)
    verified=0
    for segment in descriptor['segments']:
@@ -63,22 +68,21 @@ class SegmentedHdFirstUseTests(unittest.TestCase):
       image.load();self.assertEqual(image.size,(1920,1080));self.assertEqual(image.mode,'RGBA');self.assertEqual(hashlib.sha256(image.tobytes()).hexdigest(),frame['rgbaSha256']);self.assertEqual(list(image.getchannel('A').getextrema()),frame['alphaExtrema'])
      verified+=1
    self.assertEqual(verified,120)
-   with raw.open('rb') as stream:
-    for index in (0,60,119):
-     with Image.open(sequence_root/f'segment_{index//32:05d}'/f'frame_{index%32:05d}.png') as overlay:
-      expected=Image.alpha_composite(Image.new('RGBA',(1920,1080),(0,128,0,255)),overlay).convert('RGB')
-      for x,y in ((10,10),(896,476)):
-       stream.seek((index*1920*1080+y*1920+x)*3);actual=stream.read(3);self.assertLessEqual(max(abs(a-b) for a,b in zip(actual,expected.getpixel((x,y)))),20)
-    with Image.open(sequence_root/'segment_00000/frame_00000.png') as initial,Image.open(sequence_root/'segment_00001/frame_00028.png') as visible:
-     initial.load();visible.load();box=visible.getchannel('A').getbbox();self.assertIsNotNone(box);point=None
-     for y in range(box[1],box[3]):
-      for x in range(box[0],box[2]):
-       if initial.getpixel((x,y))[3]==0 and visible.getpixel((x,y))[3]==255:point=(x,y);break
-      if point:break
-     self.assertIsNotNone(point);x,y=point;actuals=[]
-     for index,image in ((0,initial),(60,visible)):
-      expected=Image.alpha_composite(Image.new('RGBA',(1920,1080),(0,128,0,255)),image).convert('RGB').getpixel((x,y));stream.seek((index*1920*1080+y*1920+x)*3);actual=stream.read(3);actuals.append(actual);self.assertLessEqual(max(abs(a-b) for a,b in zip(actual,expected)),20)
-     self.assertGreater(max(abs(a-b) for a,b in zip(*actuals)),40)
+   for index in (0,60,119):
+    with Image.open(sequence_root/f'segment_{index//32:05d}'/f'frame_{index%32:05d}.png') as overlay:
+     expected=Image.alpha_composite(Image.new('RGBA',(1920,1080),(0,128,0,255)),overlay).convert('RGB')
+     for x,y in ((10,10),(896,476)):
+      actual=pixel(index,x,y);self.assertLessEqual(max(abs(a-b) for a,b in zip(actual,expected.getpixel((x,y)))),20)
+   with Image.open(sequence_root/'segment_00000/frame_00000.png') as initial,Image.open(sequence_root/'segment_00001/frame_00028.png') as visible:
+    initial.load();visible.load();box=visible.getchannel('A').getbbox();self.assertIsNotNone(box);point=None
+    for y in range(box[1],box[3]):
+     for x in range(box[0],box[2]):
+      if initial.getpixel((x,y))[3]==0 and visible.getpixel((x,y))[3]==255:point=(x,y);break
+     if point:break
+    self.assertIsNotNone(point);x,y=point;actuals=[]
+    for index,image in ((0,initial),(60,visible)):
+     expected=Image.alpha_composite(Image.new('RGBA',(1920,1080),(0,128,0,255)),image).convert('RGB').getpixel((x,y));actual=pixel(index,x,y);actuals.append(actual);self.assertLessEqual(max(abs(a-b) for a,b in zip(actual,expected)),20)
+    self.assertGreater(max(abs(a-b) for a,b in zip(*actuals)),40)
    changed=json.loads(json.dumps(plan));changed['revision']='v2';logo=changed['nodes'][0];prior=first['nodes']['logo']['outputs'][0]
    logo['expectedRevision']=prior['nativeProjectRef']['sha256'];logo['externalInputs']=[{'root':first['nodes']['logo']['root'],'artifact':prior}];logo['payload']['sourceProject']={'assetId':'logo-png'};logo['payload']['plan']={'operations':[{'command':'paint.setFill','params':{'ids':[{'$ref':'logo.id'}],'color':'#ed3412'}}],'exports':[{'format':'png'},{'format':'svg'}]}
    second=run(changed);self.assertEqual(second['state'],'review_ready')
@@ -102,5 +106,5 @@ class SegmentedHdFirstUseTests(unittest.TestCase):
    for path in (background,voice):self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),original_assets[path.name])
    self.assertEqual(hashes(skill),skill_hashes);self.assertEqual(hashes(SOURCE),source_hashes)
    if os.environ.get('CRAFT_SEGMENTED_HD_EVIDENCE'):
-    proof={'schema':'artcraft-segmented-hd-four-domain-first-use/v1','result':'PASS','scope':'one copied skill; empty runtime; default public downloads; four-domain five-node native workflow','runtimeVersion':installation['version'],'driverSha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'width':1920,'height':1080,'seconds':5,'segmentCount':4,'independentSourceFrames':verified,'animatedLogoPixelVerified':True,'independentVideoProbe':probe,'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest(),'skillFiles':skill_hashes,'domainVersions':{n:v['runtimeIdentity']['pluginVersion'] for n,v in installation['skills'].items()},'frameCount':120,'frameRate':{'num':24,'den':1},'independentlyDecodedFrames':120,'compositePixelChecks':8,'logoReplacementConsumersRebuilt':['logo','poster','intro','film'],'independentTaskReused':True,'backgroundVoiceAndInitialFramePreserved':True,'actualLogoAndPosterPixelsChanged':True,'originalInputsDeliveriesAndSkillsPreserved':True,'sameRevisionTasksAndBudgetReused':True,'corruptFrameBlockedAndRestoredWithoutReexecution':True,'movedPackageChildren':5,'excluded':['updated fixed Art plugin host until bound to host receipt','generic Skills CLI','model dispatch','GUI','complete creative approval']}
+    proof={'schema':'artcraft-segmented-hd-four-domain-first-use/v1','result':'PASS','scope':'one copied skill; public pinned installer; four-domain five-node native workflow','warmRuntimeCache':bool(warm),'publicColdInstallation':not bool(warm),'runtimeVersion':installation['version'],'driverSha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'width':1920,'height':1080,'seconds':5,'segmentCount':4,'independentSourceFrames':verified,'animatedLogoPixelVerified':True,'independentVideoProbe':probe,'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest(),'skillFiles':skill_hashes,'domainVersions':{n:v['runtimeIdentity']['pluginVersion'] for n,v in installation['skills'].items()},'frameCount':120,'frameRate':{'num':24,'den':1},'independentlyDecodedFrames':120,'decodeByteCount':decoded['byteCount'],'decodedRgbSha256':decoded['sha256'],'compositePixelChecks':8,'logoReplacementConsumersRebuilt':['logo','poster','intro','film'],'independentTaskReused':True,'backgroundVoiceAndInitialFramePreserved':True,'actualLogoAndPosterPixelsChanged':True,'originalInputsDeliveriesAndSkillsPreserved':True,'sameRevisionTasksAndBudgetReused':True,'corruptFrameBlockedAndRestoredWithoutReexecution':True,'movedPackageChildren':5,'excluded':['updated fixed Art plugin host until bound to host receipt','generic Skills CLI','model dispatch','GUI','complete creative approval']}
     with Path(os.environ['CRAFT_SEGMENTED_HD_EVIDENCE']).open('x') as stream:json.dump(proof,stream,indent=2)
