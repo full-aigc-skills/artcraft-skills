@@ -16,7 +16,10 @@ class JpegFirstUse(unittest.TestCase):
    fixture=json.loads((ROOT/'tests/fixtures/jpeg-images.json').read_text())['images']['progressive']
    product=root/'product.bin';product.write_bytes(base64.b64decode(fixture));original=product.read_bytes()
    plan=json.loads((skill/'examples/brand-campaign.json').read_text());poster=next(n for n in plan['nodes'] if n['id']=='poster');poster['dependsOn']=[];poster['providedAssets']=['product'];poster['payload']['assetBindings']=[{'name':'logo','assetId':'product'}];plan['nodes']=[poster]
-   plan_path=root/'plan.json';plan_path.write_text(json.dumps(plan));runtime=root/'empty-runtime';project=root/'project'
+   poster['payload']['plan']['exports'].append({'format':'jpg'});poster['payload']['outputs'].append({'assetId':'poster-jpeg','location':'design.jpg','mediaType':'image/jpeg'})
+   plan_path=root/'plan.json';plan_path.write_text(json.dumps(plan));warm=os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME');runtime=Path(warm).resolve(strict=True) if warm else root/'empty-runtime';project=root/'project'
+   if warm:self.assertTrue(runtime.is_dir())
+   else:self.assertFalse(runtime.exists())
    def run(script,args):
     result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),'--runtime-home',str(runtime),*map(str,args)],env=dict(os.environ,PATH='/usr/bin:/bin'),capture_output=True,text=True,timeout=600)
     self.assertEqual(result.returncode,0,result.stdout+result.stderr);return json.loads(result.stdout)
@@ -29,8 +32,10 @@ class JpegFirstUse(unittest.TestCase):
    directory=native[0].parent
    layers=json.loads((directory/'native.json').read_text())['layers'];self.assertGreaterEqual(len(layers),3)
    self.assertTrue((directory/'psd-inspection.json').is_file())
-   for exported in [directory/'design.png',directory/'design.psd']:
+   for exported in [directory/'design.png',directory/'design.psd',directory/'design.jpg']:
     with Image.open(exported) as image:image.load();self.assertEqual(image.size,(320,400))
+   derivative=next(item for item in result['nodes']['poster']['outputs'] if item['mediaType']=='image/jpeg')
+   self.assertEqual(derivative['technicalMetadata'],{'width':320,'height':400,'bitDepth':8,'alpha':False})
    # 候选运行时的独立核验与既有固定运行时的首次安装分别取证。
    if os.environ.get('CRAFT_JPEG_CANDIDATE_CONTRACTS'):
     validator="import {verifyArtifact} from '"+Path(os.environ['CRAFT_JPEG_CANDIDATE_CONTRACTS']).resolve().as_uri()+"'; await verifyArtifact(JSON.parse(process.argv[1]),process.argv[2]);"
@@ -40,6 +45,6 @@ class JpegFirstUse(unittest.TestCase):
    package=root/'package';packed=run('package.py',['create','--project',project,'--workflow',result['runKey'],'--authorization','jpeg-first-use','--output',package]);moved=root/'moved';shutil.move(package,moved)
    verified=run('package.py',['verify','--package',moved,'--sha',packed['sha256']]);self.assertEqual(len(verified['children']),1);self.assertEqual(product.read_bytes(),original);self.assertEqual(hashes(),before)
    if os.environ.get('CRAFT_JPEG_FIRST_USE_EVIDENCE'):
-    evidence={'schema':'artcraft-jpeg-first-use-candidate/v1','result':'passed','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'mediaType':asset['mediaType'],'technicalMetadata':asset['technicalMetadata'],'movedPackageChildren':1,'nativeLayers':len(layers),'sourceAndSkillPreserved':True,'independentDecoder':'Pillow; original JPEG, exported PNG and PSD loaded','candidateRuntimeVerified':bool(os.environ.get('CRAFT_JPEG_CANDIDATE_CONTRACTS')),'runtimeMode':'default public downloads','skillFiles':before}
-    evidence['retainedRoot']=str(root) if retained else None;evidence['resultReceipt']=result;evidence['inputArtifact']=asset;evidence['movedPackageSha256']=packed['sha256'];evidence['inputSha256']=hashlib.sha256(original).hexdigest()
+    evidence={'schema':'artcraft-jpeg-first-use-candidate/v1','result':'passed','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'mediaType':asset['mediaType'],'technicalMetadata':asset['technicalMetadata'],'movedPackageChildren':1,'nativeLayers':len(layers),'sourceAndSkillPreserved':True,'independentDecoder':'Pillow; original JPEG, exported PNG and PSD loaded','candidateRuntimeVerified':bool(os.environ.get('CRAFT_JPEG_CANDIDATE_CONTRACTS')),'runtimeMode':'public pinned installer with verified cache' if warm else 'default public downloads','warmRuntimeCache':bool(warm),'publicColdInstallation':not bool(warm),'skillFiles':before}
+    evidence['jpegDerivative']=derivative;evidence['independentDecoder']='Pillow; original JPEG, exported PNG, PSD and JPEG loaded';evidence['retainedRoot']=str(root) if retained else None;evidence['resultReceipt']=result;evidence['inputArtifact']=asset;evidence['movedPackageSha256']=packed['sha256'];evidence['inputSha256']=hashlib.sha256(original).hexdigest()
     with Path(os.environ['CRAFT_JPEG_FIRST_USE_EVIDENCE']).open('x') as stream:json.dump(evidence,stream,indent=2)

@@ -24,7 +24,9 @@ class ArtifactVersionFirstUseTests(unittest.TestCase):
   else:context=tempfile.TemporaryDirectory(prefix='artcraft-artifact-version-')
   with context as temporary:
    root=Path(temporary);skill=root/'single execute skill';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'))
-   runtime=root/'empty runtime';project=root/'project';self.assertFalse(runtime.exists());calls=[]
+   warm=os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME');runtime=Path(warm).resolve(strict=True) if warm else root/'empty runtime';project=root/'project';calls=[]
+   if warm:self.assertTrue(runtime.is_dir())
+   else:self.assertFalse(runtime.exists())
    environment=dict(os.environ,PATH='/usr/bin:/bin')
    for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):environment.pop(key,None)
    def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -69,7 +71,7 @@ class ArtifactVersionFirstUseTests(unittest.TestCase):
    with sqlite3.connect(project/'tasks.sqlite') as database:
     self.assertEqual(database.execute('SELECT COUNT(*) FROM tasks').fetchone()[0],3);self.assertEqual(database.execute('SELECT COUNT(*) FROM leases').fetchone()[0],0)
    if retained:
-    proof={'schema':'craft-artifact-version-installed-first-use/v1','result':'PASS','runtimeVersion':setup['version'],'sourceSkillHashes':installed_before,'calls':calls,'nativeVersions':[{'taskId':receipt['nodes']['logo']['taskId'],'assetId':receipt['nodes']['logo']['outputs'][0]['assetId'],'version':receipt['nodes']['logo']['outputs'][0]['version'],'sha256':receipt['nodes']['logo']['outputs'][0]['sha256']} for receipt in (first,second,accepted)],'refusals':refusals,'tablesPreserved':len(before),'filesPreserved':len(files_before),'validNewVersion':True,'replayTaskAndBudgetPreserved':True,'zeroLeases':True,'publicColdInstallation':True,'skillPreserved':True,'scope':'Single copied installed execution skill, public downloads, real Vector native creation and revisions; cross-scope refusal before new budget/task; no GUI or creative acceptance'}
+    proof={'schema':'craft-artifact-version-installed-first-use/v1','result':'PASS','runtimeVersion':setup['version'],'sourceSkillHashes':installed_before,'calls':calls,'nativeVersions':[{'taskId':receipt['nodes']['logo']['taskId'],'assetId':receipt['nodes']['logo']['outputs'][0]['assetId'],'version':receipt['nodes']['logo']['outputs'][0]['version'],'sha256':receipt['nodes']['logo']['outputs'][0]['sha256']} for receipt in (first,second,accepted)],'refusals':refusals,'tablesPreserved':len(before),'filesPreserved':len(files_before),'validNewVersion':True,'replayTaskAndBudgetPreserved':True,'zeroLeases':True,'publicColdInstallation':not bool(warm),'warmRuntimeCache':bool(warm),'skillPreserved':True,'scope':'Single copied installed execution skill, public downloads, real Vector native creation and revisions; cross-scope refusal before new budget/task; no GUI or creative acceptance'}
     (root/'proof.json').write_text(json.dumps(proof,indent=2)+'\n')
 
 

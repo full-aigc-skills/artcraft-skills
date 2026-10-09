@@ -27,7 +27,9 @@ class DynamicSequenceFirstUseTests(unittest.TestCase):
   if retained:Path(retained).resolve().mkdir(parents=True,exist_ok=False)
   with (nullcontext(str(Path(retained).resolve())) if retained else tempfile.TemporaryDirectory(prefix='art-dynamic-first-use-')) as temporary:
    root=Path(temporary);skill=root/'.agents/skills/artcraft-cli-revise';shutil.copytree(SOURCE,skill,ignore=shutil.ignore_patterns('__pycache__'));skill_hashes=hashes(skill)
-   runtime=root/'empty-runtime';project=root/'project';self.assertFalse(runtime.exists())
+   warm=os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME');runtime=Path(warm).resolve(strict=True) if warm else root/'empty-runtime';project=root/'project'
+   if warm:self.assertTrue(runtime.is_dir())
+   else:self.assertFalse(runtime.exists())
    background=root/'background.png';Image.new('RGB',(320,180),(0,128,0)).save(background)
    voice=root/'voice.wav'
    with wave.open(str(voice),'wb') as output:
@@ -79,7 +81,7 @@ class DynamicSequenceFirstUseTests(unittest.TestCase):
    for path in (background,voice):self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),original_assets[path.name])
    self.assertEqual(hashes(skill),skill_hashes);self.assertEqual(hashes(SOURCE),source_hashes)
    if os.environ.get('CRAFT_DYNAMIC_SEQUENCE_EVIDENCE'):
-    proof={'schema':'artcraft-dynamic-four-domain-first-use/v1','result':'PASS','scope':'one copied skill; empty runtime; default public downloads; four-domain five-node native workflow','runtimeVersion':installation['version'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest(),'skillFiles':skill_hashes,'domainVersions':{n:v['runtimeIdentity']['pluginVersion'] for n,v in installation['skills'].items()},'frameCount':12,'frameRate':{'num':12,'den':1},'independentlyDecodedFrames':12,'compositePixelChecks':6,'logoReplacementConsumersRebuilt':['logo','poster','intro','film'],'independentTaskReused':True,'backgroundVoiceAndInitialFramePreserved':True,'actualLogoAndPosterPixelsChanged':True,'originalInputsDeliveriesAndSkillsPreserved':True,'sameRevisionTasksAndBudgetReused':True,'corruptFrameBlockedAndRestoredWithoutReexecution':True,'movedPackageChildren':5,'excluded':['updated fixed Art plugin host until bound to host receipt','generic Skills CLI','model dispatch','GUI','complete creative approval']}
+    proof={'schema':'artcraft-dynamic-four-domain-first-use/v1','result':'PASS','scope':'one copied skill; public pinned installer; four-domain five-node native workflow', 'warmRuntimeCache':bool(warm), 'publicColdInstallation':not bool(warm),'runtimeVersion':installation['version'],'distributionLockSha256':hashlib.sha256((skill/'scripts/distribution.lock.json').read_bytes()).hexdigest(),'skillFiles':skill_hashes,'domainVersions':{n:v['runtimeIdentity']['pluginVersion'] for n,v in installation['skills'].items()},'frameCount':12,'frameRate':{'num':12,'den':1},'independentlyDecodedFrames':12,'compositePixelChecks':6,'logoReplacementConsumersRebuilt':['logo','poster','intro','film'],'independentTaskReused':True,'backgroundVoiceAndInitialFramePreserved':True,'actualLogoAndPosterPixelsChanged':True,'originalInputsDeliveriesAndSkillsPreserved':True,'sameRevisionTasksAndBudgetReused':True,'corruptFrameBlockedAndRestoredWithoutReexecution':True,'movedPackageChildren':5,'excluded':['updated fixed Art plugin host until bound to host receipt','generic Skills CLI','model dispatch','GUI','complete creative approval']}
     proof['retainedRoot']=str(root) if retained else None
     proof['firstRun']=first;proof['revisedRun']=second;proof['recoveredRun']=recovered;proof['movedPackageSha256']=packed['sha256'];proof['inputSha256']=original_assets
     with Path(os.environ['CRAFT_DYNAMIC_SEQUENCE_EVIDENCE']).open('x') as stream:json.dump(proof,stream,indent=2)
