@@ -22,7 +22,9 @@ class BudgetProtocolFirstUseTests(unittest.TestCase):
         root=Path(os.environ['CRAFT_BUDGET_PROTOCOL_OUTPUT']).resolve();root.mkdir(parents=True,exist_ok=False)
         source=Path(os.environ.get('CRAFT_BUDGET_PROTOCOL_SKILL',ROOT/'skills/artcraft-cli-execute'))
         skill=root/'.agents/skills/artcraft-cli-execute';shutil.copytree(source,skill,ignore=shutil.ignore_patterns('__pycache__'))
-        runtime,project=root/'fresh-runtime',root/'project';self.assertFalse(runtime.exists())
+        warm=os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME');runtime=Path(warm).resolve(strict=True) if warm else root/'fresh-runtime';project=root/'project'
+        if warm:self.assertTrue(runtime.is_dir())
+        else:self.assertFalse(runtime.exists())
         env=dict(os.environ,PATH='/usr/bin:/bin')
         for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):env.pop(key,None)
         calls=[]
@@ -50,7 +52,7 @@ class BudgetProtocolFirstUseTests(unittest.TestCase):
             self.assertEqual(files,{str(p.relative_to(native)):sha(p) for p in native.rglob('*') if p.is_file()})
         current=run('cli.py','--runtime-home',runtime,'--','status','--database',project/'tasks.sqlite','--task',receipt['taskId'])
         self.assertEqual(current,receipt);self.assertFalse(any(skill.rglob('*.pyc')))
-        proof={'schema':'craft-budget-protocol-first-use/v1','result':'PASS','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'taskReceipt':receipt,'canonicalError':refused[0]['errorDetail'],'legacyError':refused[0]['workflowReceipt']['error'],'repeatedRefusalStable':True,'allLedgerTablesUnchanged':list(before),'originalNativeFiles':files,'calls':calls,'scope':'single copied skill cold public runtime; native Vector create, two revision-cap refusals, durable task/attempt and ledger/native preservation; not all budget/creative/full protocol acceptance'}
+        proof={'schema':'craft-budget-protocol-first-use/v1','result':'PASS','runtimeVersion':json.loads((project/'installation-receipt.json').read_text())['version'],'taskReceipt':receipt,'canonicalError':refused[0]['errorDetail'],'legacyError':refused[0]['workflowReceipt']['error'],'repeatedRefusalStable':True,'allLedgerTablesUnchanged':list(before),'originalNativeFiles':files,'calls':calls,'warmRuntimeCache':bool(warm),'publicColdInstallation':not bool(warm),'scope':'single copied skill public pinned installer; native Vector create, two revision-cap refusals, durable task/attempt and ledger/native preservation; not all budget/creative/full protocol acceptance'}
         (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
 
 if __name__=='__main__':unittest.main()

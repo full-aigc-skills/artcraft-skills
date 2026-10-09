@@ -21,7 +21,9 @@ class TaskReceiptFirstUseTests(unittest.TestCase):
         source = Path(os.environ.get('CRAFT_RECEIPT_SKILL', ROOT/'skills/artcraft-cli-execute'))
         skill = root/'.agents/skills/artcraft-cli-execute'
         shutil.copytree(source, skill, ignore=shutil.ignore_patterns('__pycache__'))
-        runtime, project = root/'fresh-runtime', root/'project'
+        warm = os.environ.get('CRAFT_FIRST_USE_RUNTIME_HOME')
+        runtime, project = (Path(warm).resolve(strict=True) if warm else root/'fresh-runtime'), root/'project'
+        if warm:self.assertTrue(runtime.is_dir())
         environment = dict(os.environ, PATH='/usr/bin:/bin')
         for key in ('CRAFT_NODE_ARCHIVE','CRAFT_BUNDLE_DIRECTORY','CRAFT_NATIVE_ARCHIVE_DIRECTORY','CRAFT_RUNTIME_HOME'):
             environment.pop(key, None)
@@ -37,7 +39,8 @@ class TaskReceiptFirstUseTests(unittest.TestCase):
         invalid = run('workflow.py',*args,code=1)
         self.assertEqual(invalid['errorDetail']['code'],'workflow_plan_invalid')
         self.assertNotIn('workflowReceipt',invalid); self.assertNotIn('taskReceipt',invalid)
-        self.assertFalse(runtime.exists()); self.assertFalse((project/'tasks.sqlite').exists())
+        if not warm:self.assertFalse(runtime.exists())
+        self.assertFalse((project/'tasks.sqlite').exists())
         plan = json.loads((skill/'examples/brand-campaign.json').read_text())
         plan['nodes'] = [n for n in plan['nodes'] if n['id']=='logo']
         path.write_text(json.dumps(plan))
@@ -77,7 +80,7 @@ class TaskReceiptFirstUseTests(unittest.TestCase):
         self.assertEqual(status(),receipt)
         self.assertFalse(any(skill.rglob('*.pyc')))
         self.assertEqual(set(json.loads((project/'installation-receipt.json').read_text())['skills']),{'vectorcraft'})
-        proof={'schema':'craft-native-task-receipt-first-use/v1','result':'PASS','receipt':receipt,'initialRunKey':first['runKey'],'reusedRunKey':repeated['runKey'],'invalidInput':invalid,'revisionConflict':rejected,'authorizationConflict':unauthorized,'oldNativeFiles':original,'calls':calls,'scope':'single copied skill; cold public runtime, Vector native creation, durable receipt query, replay without new attempt, invalid-input/same-revision/authorization refusal; not full protocol or creative acceptance'}
+        proof={'schema':'craft-native-task-receipt-first-use/v1','result':'PASS','receipt':receipt,'initialRunKey':first['runKey'],'reusedRunKey':repeated['runKey'],'invalidInput':invalid,'revisionConflict':rejected,'authorizationConflict':unauthorized,'oldNativeFiles':original,'calls':calls,'warmRuntimeCache':bool(warm),'publicColdInstallation':not bool(warm),'scope':'single copied skill; public pinned installer, Vector native creation, durable receipt query, replay without new attempt, invalid-input/same-revision/authorization refusal; not full protocol or creative acceptance'}
         (root/'proof.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
 
 if __name__ == '__main__':unittest.main()
