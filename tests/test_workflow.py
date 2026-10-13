@@ -11,7 +11,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/workflow.py'
+SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts/workflow.py'
 spec=importlib.util.spec_from_file_location('workflow',SCRIPT);workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
 
 class WorkflowTests(unittest.TestCase):

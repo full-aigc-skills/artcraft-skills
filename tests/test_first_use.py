@@ -7,7 +7,7 @@ import subprocess
 import tempfile
 import unittest
 
-SOURCE = Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts'
+SOURCE = Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts'
 
 @unittest.skipUnless(os.environ.get('CRAFT_LIVE_TEST') == '1' and os.environ.get('CRAFT_NODE_ARCHIVE'), 'requires verified official archive')
 class FirstUseTests(unittest.TestCase):

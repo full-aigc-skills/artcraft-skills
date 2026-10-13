@@ -1,7 +1,7 @@
 {
   "schema": "craft-skill-suite/v1",
   "pluginId": "artcraft",
-  "version": "0.1.0-dev.112",
+  "version": "0.1.0-dev.113",
   "source": {
     "repository": "https://github.com/storytold/artcraft",
     "commit": "3210977fb114cff7179aff2f480bf279572d5942",
@@ -13,6 +13,14 @@
       "title": "完整任务路由",
       "description": "组合多个本工具能力并保留可编辑原生交付",
       "kind": "router",
+      "commandCount": 0,
+      "commandPrefixes": []
+    },
+    {
+      "name": "artcraft-harness",
+      "title": "内置执行 harness",
+      "description": "全部领域技能共用的统一执行通道：运行时安装、workflow 编排、公开 CLI、领域命令交接、审阅、修订与打包脚本都在本技能 scripts/ 内。",
+      "kind": "harness",
       "commandCount": 0,
       "commandPrefixes": []
     },

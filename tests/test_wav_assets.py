@@ -2,7 +2,7 @@
 import importlib.util,json,struct,tempfile,unittest,wave
 from pathlib import Path
 from unittest.mock import patch
-SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/workflow.py'
+SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts/workflow.py'
 spec=importlib.util.spec_from_file_location('wav_workflow',SCRIPT);workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
 class WavAssetsTests(unittest.TestCase):
  def test_signature_not_extension_and_exact_audio_metadata(self):

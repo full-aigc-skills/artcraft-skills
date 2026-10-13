@@ -7,7 +7,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 class ModeCatalogTests(unittest.TestCase):
  def module(self):
-  spec=importlib.util.spec_from_file_location('mode_commands',ROOT/'skills/artcraft-use/scripts/domain_commands.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+  spec=importlib.util.spec_from_file_location('mode_commands',ROOT/'skills/artcraft-harness/scripts/domain_commands.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
  def test_public_mode_queries_select_complete_catalog_without_install(self):
   m=self.module()
   for mode,counts in [('headless',[666,640,755,585]),('desktop',[666,640,748,763]),('bridge',[666,640,748,763])]:

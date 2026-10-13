@@ -9,8 +9,9 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 class PublicUpgradeForwardingTests(unittest.TestCase):
  def test_all_ten_public_entries_forward_upgrade_to_their_pinned_runtime(self):
+  # 执行实现唯一收敛在 artcraft-harness；cli.py 只有一份正典副本，升级转发在 harness 上验证。
   for skill in sorted((ROOT/'skills').iterdir()):
-   if not (skill/'SKILL.md').is_file():continue
+   if skill.name != 'artcraft-harness':continue
    with self.subTest(skill=skill.name),tempfile.TemporaryDirectory() as directory:
     script=skill/'scripts/cli.py';spec=importlib.util.spec_from_file_location('upgrade_cli',script);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     root=Path(directory);home=root/'runtime';database=root/'prior.sqlite';node=root/'node';entry=root/'src/cli.ts';calls=[]

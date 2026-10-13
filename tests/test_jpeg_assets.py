@@ -3,7 +3,7 @@ import base64,importlib.util,json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('jpeg_workflow',ROOT/'skills/artcraft-use/scripts/workflow.py')
+spec=importlib.util.spec_from_file_location('jpeg_workflow',ROOT/'skills/artcraft-harness/scripts/workflow.py')
 workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
 IMAGES=json.loads((ROOT/'tests/fixtures/jpeg-images.json').read_text())['images']
 class JpegAssetsTests(unittest.TestCase):

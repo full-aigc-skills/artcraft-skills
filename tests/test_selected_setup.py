@@ -13,21 +13,36 @@ from contextlib import nullcontext
 from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPT=ROOT/'skills/artcraft-use/scripts/setup.py'
+SCRIPT=ROOT/'skills/artcraft-harness/scripts/setup.py'
 spec=importlib.util.spec_from_file_location('selected_setup',SCRIPT);setup=importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
-W=ROOT/'skills/artcraft-use/scripts/workflow.py'
+W=ROOT/'skills/artcraft-harness/scripts/workflow.py'
 spec=importlib.util.spec_from_file_location('selected_workflow',W);workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
+LOCK=json.loads(SCRIPT.with_name('distribution.lock.json').read_text())
+
+_REAL_RUN = subprocess.run
+
+def pinned_domain_bundle(name, temporary):
+    """按分发锁 pin 的 tag 提取领域 -use 技能树；不读取兄弟仓浮动工作树。
+
+    使用导入期保存的真实 subprocess.run，避免被测试内的安装器 run 桩拦截。"""
+    repo = ROOT.parent/(name+'-skills')
+    tag = 'v'+LOCK['bundles'][name+'-skills']['version']
+    target = Path(temporary)/(name+'-skills')
+    target.mkdir(parents=True, exist_ok=True)
+    archive = _REAL_RUN(['git','-C',str(repo),'archive',tag,'skills/'+name+'-use'],check=True,capture_output=True).stdout
+    _REAL_RUN(['tar','-x','-C',str(target)],input=archive,check=True)
+    return target
 
 class SelectedSetupTests(unittest.TestCase):
     def test_selected_install_receipt_contains_only_real_dependencies(self):
-        lock=json.loads(SCRIPT.with_name('distribution.lock.json').read_text())
+        lock=LOCK
         for plugins in (['vectorcraft'],[],None):
             expected=list(setup.NAMES) if plugins is None else plugins
             with self.subTest(plugins=plugins),tempfile.TemporaryDirectory() as temporary:
                 installed=[]
                 def bundle(entry,target,archive):
                     name=next(k for k,v in lock['bundles'].items() if v is entry);installed.append(name)
-                    return ROOT if name=='artcraft-runtime' else ROOT.parent/name
+                    return ROOT if name=='artcraft-runtime' else pinned_domain_bundle(name.replace('-skills',''),temporary)
                 def run(args,**kwargs):
                     if args[-1]=='--version':value=json.dumps({'name':'artcraft','version':lock['version']})
                     elif args[-2:]==['commands','--json']:value=b'[{"id":"test"}]'
@@ -58,16 +73,16 @@ class SelectedSetupTests(unittest.TestCase):
         suite=json.loads((ROOT/'skill-suite.json').read_text())
         for entry in suite['skills']:
             text=(ROOT/'skills'/entry['name']/'SKILL.md').read_text()
-            commands=[line for line in text.splitlines() if line.startswith('python3 ') and '$SKILL_DIR/scripts/bootstrap.py' in line]
+            commands=[line for line in text.splitlines() if line.startswith('python3 ') and '$HARNESS_DIR/scripts/bootstrap.py' in line]
             self.assertTrue(commands,entry['name'])
             self.assertTrue(all('--runtime-only' in line for line in commands),entry['name'])
             self.assertNotIn('Video Factory 的适配尚未接入',text)
 
     def test_domain_failure_preserves_bootstrap_error(self):
-        lock=json.loads(SCRIPT.with_name('distribution.lock.json').read_text())
+        lock=LOCK
         def bundle(entry,target,archive):
             name=next(k for k,v in lock['bundles'].items() if v is entry)
-            return ROOT if name=='artcraft-runtime' else ROOT.parent/name
+            return ROOT if name=='artcraft-runtime' else pinned_domain_bundle('vectorcraft',target.parent)
         def run(args,**kwargs):
             if args[-1]=='--version':return subprocess.CompletedProcess(args,0,stdout=json.dumps({'name':'artcraft','version':lock['version']}))
             return subprocess.CompletedProcess(args,1,stdout='{"error":"archive_digest_mismatch"}')

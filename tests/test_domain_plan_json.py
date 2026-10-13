@@ -23,8 +23,13 @@ class PublicPlanJsonTests(unittest.TestCase):
             '{"schema":"craft-command-plan/v1","operations":[{"command":"x","params":{"opacity":1,"opacity":0}}]}'
         ]
         skills = sorted((ROOT / "skills").iterdir())
-        self.assertEqual(len(skills), 10)
+        self.assertEqual(len(skills), 11)
+        # 执行实现唯一收敛在 artcraft-harness；领域技能不再自带 scripts/domain_commands.py。
+        carriers=[s.name for s in skills if (s / "scripts/domain_commands.py").is_file()]
+        self.assertEqual(carriers, ["artcraft-harness"])
         for original in skills:
+            if original.name not in carriers:
+                continue
             with tempfile.TemporaryDirectory() as temporary:
                 root = Path(temporary)
                 skill = root / ".agents" / "skills" / original.name

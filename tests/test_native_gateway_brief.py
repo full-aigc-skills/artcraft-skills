@@ -4,10 +4,12 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 class NativeGatewayBrief(unittest.TestCase):
  def test_valid_gateway_defers_native_output_but_keeps_authorization_and_ambiguity(self):
+  harness=ROOT/'skills'/'artcraft-harness'
   for skill in (ROOT/'skills').iterdir():
-   if not (skill/'SKILL.md').is_file():continue
+   if not (skill/'SKILL.md').is_file() or not (skill/'examples/brand-brief.json').is_file():continue
    with self.subTest(skill=skill.name):
-    spec=importlib.util.spec_from_file_location('actual_brief',skill/'scripts/brief.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+    # brief 正典唯一保存在 harness；计划与示例文件仍取自对应领域技能目录。
+    spec=importlib.util.spec_from_file_location('actual_brief',harness/'scripts/brief.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
     brief=json.loads((skill/'examples/brand-brief.json').read_text());brief['brand']=None;brief['subjects']=[];item=next(d for d in brief['deliverables'] if d['id']=='film');item.update(dependsOn=[],durationSeconds=1);brief['deliverables']=[item]
     plan=json.loads((skill/'examples/brand-campaign.json').read_text());node=next(n for n in plan['nodes'] if n['id']=='film');node['dependsOn']=[];plan['nodes']=[node]
     op=next(o for o in node['payload']['plan']['operations'] if o['command']=='captions.setStyle');op['params']={'command':op['command'],'params':op['params']};op['command']='native.command'

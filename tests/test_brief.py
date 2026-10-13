@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPT=ROOT/'skills/artcraft-use/scripts/brief.py'
+SCRIPT=ROOT/'skills/artcraft-harness/scripts/brief.py'
 
 class BriefTests(unittest.TestCase):
     def test_film_duration_uses_timeline_ticks_not_document_claim(self):

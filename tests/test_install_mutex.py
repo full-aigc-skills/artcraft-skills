@@ -14,7 +14,7 @@ from unittest.mock import patch
 import test_bootstrap as fixtures
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ROOT / 'skills/artcraft-use/scripts'
+SCRIPTS = ROOT / 'skills/artcraft-harness/scripts'
 
 
 @contextlib.contextmanager

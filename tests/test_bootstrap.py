@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'skills/artcraft-use/scripts/bootstrap.py'
+SCRIPT = Path(__file__).resolve().parents[1] / 'skills/artcraft-harness/scripts/bootstrap.py'
 spec = importlib.util.spec_from_file_location('bootstrap', SCRIPT)
 bootstrap = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bootstrap)

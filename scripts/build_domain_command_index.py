@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 NAMES=('filmcraft','effectcraft','photocraft','vectorcraft')
 def build(repositories,check=False):
- lock=json.loads((ROOT/'skills/artcraft-use/scripts/distribution.lock.json').read_text());domains={}
+ lock=json.loads((ROOT/'skills/artcraft-harness/scripts/distribution.lock.json').read_text());domains={}
  for domain in NAMES:
   bundle=lock['bundles'][domain+'-skills'];repo=repositories/(domain+'-skills');tag='v'+bundle['version'];commit=subprocess.check_output(['git','rev-parse',tag+'^{commit}'],cwd=repo,text=True).strip()
   if commit!=bundle['sourceCommit']:raise ValueError('source_commit_mismatch')

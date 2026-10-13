@@ -6,7 +6,7 @@ import tempfile
 import unittest
 import zipfile
 
-SCRIPT = Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/setup.py'
+SCRIPT = Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts/setup.py'
 spec = importlib.util.spec_from_file_location('setup', SCRIPT)
 setup = importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
 
@@ -37,7 +37,7 @@ class BundleTests(unittest.TestCase):
 
     def test_immutable_runtime_version_is_accepted_and_unsafe_suffixes_are_rejected(self):
         import json
-        lock=json.loads((Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/distribution.lock.json').read_text())
+        lock=json.loads((Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts/distribution.lock.json').read_text())
         setup.validate_distribution(lock)
         self.assertEqual(setup.bundle_version(lock,lock['bundles']['artcraft-runtime']),'0.1.0-dev.139-runtime.1')
         for value in ('0.1.0-dev.113-runtime.', '0.1.0-dev.122-runtime.1/escape', '0.1.0-dev.113-other.1'):

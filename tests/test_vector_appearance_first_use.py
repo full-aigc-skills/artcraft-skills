@@ -7,10 +7,10 @@ def hashes(root):return {str(p.relative_to(root)):hashlib.sha256(p.read_bytes())
 class AppearanceContract(unittest.TestCase):
  def test_each_skill_owns_vector_recipe_and_pins_new_domain(self):
   for skill in (ROOT/'skills').iterdir():
-   if not (skill/'SKILL.md').is_file():continue
+   if not (skill/'examples').is_dir():continue
    plan=json.loads((skill/'examples/vector-appearance-workflow.json').read_text());self.assertEqual(plan['nodes'][0]['pluginId'],'vectorcraft')
    self.assertTrue((skill/'references/vector-appearance.md').is_file());self.assertIn('references/vector-appearance.md',(skill/'SKILL.md').read_text())
-   lock=json.loads((skill/'scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['vectorcraft-skills']['version'],'0.1.0-dev.33');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.139-runtime.1')
+   lock=json.loads((ROOT/'skills/artcraft-harness/scripts/distribution.lock.json').read_text());self.assertEqual(lock['bundles']['vectorcraft-skills']['version'],'0.1.0-dev.33');self.assertEqual(lock['bundles']['artcraft-runtime']['version'],'0.1.0-dev.139-runtime.1')
 @unittest.skipUnless(os.environ.get('CRAFT_ART_VECTOR_APPEARANCE')=='1','explicit public native opt-in')
 class AppearancePublicFirstUse(unittest.TestCase):
  def test_cold_native_creation_source_revision_and_moved_package(self):

@@ -12,10 +12,12 @@ class FilmBriefCli(unittest.TestCase):
  def test_public_assess_accepts_precise_timeline_and_refuses_false_document_duration(self):
   with tempfile.TemporaryDirectory() as temp:
    root=Path(temp);skill=root/'only-plan';shutil.copytree(ROOT/'skills/artcraft-cli-plan',skill,ignore=shutil.ignore_patterns('__pycache__'))
+   harness=root/'only-harness';shutil.copytree(ROOT/'skills/artcraft-harness',harness,ignore=shutil.ignore_patterns('__pycache__'))
    brief=json.loads((skill/'examples/brand-brief.json').read_text());brief['brand']=None;brief['subjects']=[];item=next(d for d in brief['deliverables'] if d['id']=='film');item.update(dependsOn=[],durationSeconds=1);brief['deliverables']=[item]
    plan=json.loads((skill/'examples/brand-campaign.json').read_text());node=next(n for n in plan['nodes'] if n['id']=='film');node['dependsOn']=[];plan['nodes']=[node]
    original=root/'input.json';original.write_text(json.dumps(brief));record=root/'brief'
-   def run(args):return subprocess.run([sys.executable,'-I','-B',str(skill/'scripts/brief.py'),*map(str,args)],env={**os.environ,'PATH':'/usr/bin:/bin'},capture_output=True,text=True,timeout=30)
+   # brief 正典唯一保存在 artcraft-harness；示例与计划文件仍取自规划技能。
+   def run(args):return subprocess.run([sys.executable,'-I','-B',str(harness/'scripts/brief.py'),*map(str,args)],env={**os.environ,'PATH':'/usr/bin:/bin'},capture_output=True,text=True,timeout=30)
    result=run(['create','--input',original,'--output',record]);self.assertEqual(result.returncode,0,result.stdout+result.stderr);receipt=json.loads(result.stdout)
    file=root/'plan.json';file.write_text(json.dumps(plan));args=['assess','--brief',record,'--sha',receipt['sha256'],'--plan',file,'--owner',brief['ownerId'],'--authorization',brief['authorizationRef']]
    result=run(args);self.assertEqual(result.returncode,0,result.stdout+result.stderr);self.assertEqual(json.loads(result.stdout)['state'],'ready')

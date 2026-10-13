@@ -9,12 +9,13 @@ ROOT=Path(__file__).resolve().parents[1]
 def load(path):
  spec=importlib.util.spec_from_file_location('nested_'+path.stem,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 class NestedSetupTests(unittest.TestCase):
- def test_ten_single_skills_preserve_review_domain_and_revision_setup_failure(self):
+ def test_harness_single_copy_preserves_review_domain_and_revision_setup_failure(self):
+  # 执行实现唯一收敛在 artcraft-harness；单独复制 harness 即复制审阅／领域命令／返工入口。
   for source in sorted((ROOT/'skills').iterdir()):
-   if not (source/'SKILL.md').is_file():continue
+   if source.name != 'artcraft-harness':continue
    with self.subTest(skill=source.name),tempfile.TemporaryDirectory(prefix='nested 安装 ') as temporary:
     root=Path(temporary);skill=root/'.agents/skills'/source.name;shutil.copytree(source,skill,ignore=shutil.ignore_patterns('__pycache__'));(skill/'scripts/node.lock.json').write_text('null');runtime=root/'runtime';package=root/'package';package.mkdir()
-    commands=[('review.py',['verify','--package',str(package),'--package-sha','a'*64,'--review',str(root/'review'),'--review-sha','b'*64]),('domain_commands.py',['check','vectorcraft',str(skill/'examples/domain-vectorcraft-create.json')])]
+    commands=[('review.py',['verify','--package',str(package),'--package-sha','a'*64,'--review',str(root/'review'),'--review-sha','b'*64]),('domain_commands.py',['check','vectorcraft',str(ROOT/'skills/artcraft-use/examples/domain-vectorcraft-create.json')])]
     for script,argv in commands:
      with self.subTest(entry=script):
       result=subprocess.run([sys.executable,'-I','-B',str(skill/'scripts'/script),*argv,'--runtime-home',str(runtime)],capture_output=True,text=True,timeout=20);self.assertEqual(result.returncode,1,result.stdout+result.stderr);reply=json.loads(result.stdout)
@@ -44,24 +45,24 @@ class NestedSetupTests(unittest.TestCase):
      refused=m.step(args);self.assertEqual(refused['state'],'outcome_unknown');self.assertEqual(refused['pendingStep'],pending);self.assertIn('dependencySetup',refused)
     self.assertEqual(len(launches),1);self.assertEqual(m.read_state(args.project)['rounds'],1)
  def test_review_preserves_native_refusal_without_installation_classification(self):
-  m=load(ROOT/'skills/artcraft-use/scripts/review.py')
+  m=load(ROOT/'skills/artcraft-harness/scripts/review.py')
   with tempfile.TemporaryDirectory() as temporary:
    root=Path(temporary);result=SimpleNamespace(returncode=1,stdout=json.dumps({'error':'artifact_invalid'}),stderr='');args=Namespace(package=root,package_sha='a'*64,runtime_home=root/'runtime',node_archive=None,bundle_dir=None,native_archive_dir=None)
    with patch.object(m.subprocess,'run',return_value=result),self.assertRaises(RuntimeError) as stopped:m.verify_package(args)
    self.assertEqual(stopped.exception.diagnostic['publicCallReceipt'],{'error':'artifact_invalid'});self.assertNotIn('dependencySetup',stopped.exception.diagnostic)
  def test_direct_installer_timeout_and_nested_unknown_have_own_recovery_path(self):
-  m=load(ROOT/'skills/artcraft-use/scripts/domain_commands.py')
+  m=load(ROOT/'skills/artcraft-harness/scripts/domain_commands.py')
   with tempfile.TemporaryDirectory() as temporary:
    home=Path(temporary)/'runtime'
    with patch.object(m.P.subprocess,'run',side_effect=subprocess.TimeoutExpired('fixture',.1)) as run,self.assertRaises(RuntimeError) as stopped:m.P.run(['fixture'],'fixture: ',home,installation=True)
    self.assertEqual(stopped.exception.diagnostic['result'],'unknown');self.assertFalse(stopped.exception.diagnostic['dependencySetup']['automaticRetry']);self.assertFalse(home.exists());run.assert_called_once()
    reply={'error':'timeout','result':'unknown','dependencySetup':{'bootstrapScript':'another installation'},'installationReceipt':{'error':'timeout'}}
    error=m.P.PublicCallFailure('nested',reply,home)
-   self.assertEqual(error.diagnostic['dependencySetup']['bootstrapScript'],str((ROOT/'skills/artcraft-use/scripts/bootstrap.py').resolve()));self.assertEqual(error.diagnostic['result'],'unknown')
+   self.assertEqual(error.diagnostic['dependencySetup']['bootstrapScript'],str((ROOT/'skills/artcraft-harness/scripts/bootstrap.py').resolve()));self.assertEqual(error.diagnostic['result'],'unknown')
    self.assertEqual(error.diagnostic['publicCallReceipt'],reply)
 
  def test_direct_installer_zero_exit_invalid_identity_is_refused(self):
-  m=load(ROOT/'skills/artcraft-use/scripts/domain_commands.py')
+  m=load(ROOT/'skills/artcraft-harness/scripts/domain_commands.py')
   for value in ({},{'schema':'wrong'},{'schema':'artcraft-setup/v1','nodeExecutable':None}):
    with self.subTest(value=value),patch.object(m.P.subprocess,'run',return_value=SimpleNamespace(returncode=0,stdout=json.dumps(value),stderr='')),self.assertRaisesRegex(RuntimeError,'setup_incomplete') as stopped:m.P.run(['fixture'],'fixture: ',Path('/not-used-runtime'),installation=True)
    self.assertIn('dependencySetup',stopped.exception.diagnostic)

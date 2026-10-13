@@ -3,7 +3,7 @@ import copy,importlib.util,json,shutil,subprocess,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPTS=ROOT/'skills/artcraft-use/scripts'
+SCRIPTS=ROOT/'skills/artcraft-harness/scripts'
 class DistributionPreflightTests(unittest.TestCase):
  def cases(self):
   original=json.loads((SCRIPTS/'distribution.lock.json').read_text());cases=[None,[],{},'invalid']

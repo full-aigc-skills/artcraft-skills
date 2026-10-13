@@ -2,7 +2,7 @@
 import hashlib,importlib.util,json,stat,tempfile,unittest,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('setup_prefix',ROOT/'skills/artcraft-use/scripts/setup.py');setup=importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
+spec=importlib.util.spec_from_file_location('setup_prefix',ROOT/'skills/artcraft-harness/scripts/setup.py');setup=importlib.util.module_from_spec(spec);spec.loader.exec_module(setup)
 class PrefixTests(unittest.TestCase):
  def fixture(self,root,extra=None,prefix='photocraft-skills/'):
   archive=root/'bundle.zip'

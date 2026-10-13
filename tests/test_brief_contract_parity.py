@@ -97,7 +97,7 @@ def scenarios():
 class BriefContractParityTests(unittest.TestCase):
     def test_both_entrypoints_enforce_the_same_observable_contract(self):
         runtime = Path(os.environ['CRAFT_BRIEF_PARITY_RUNTIME']).resolve()
-        script = ROOT / 'skills/artcraft-use/scripts/brief.py'
+        script = ROOT / 'skills/artcraft-harness/scripts/brief.py'
         spec = importlib.util.spec_from_file_location('brief_parity', script)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)

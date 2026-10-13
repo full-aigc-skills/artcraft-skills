@@ -1,5 +1,7 @@
 # Version-bound release records
 
+Source dev.113 converges duplicated execution payloads into one built-in `artcraft-harness` skill: 18 canonical scripts (eight documented entries plus dynamic dependencies) and the two execution-contract JSONs live only there; the ten domain skills dropped their per-skill scripts/ copies (180 byte-identical files removed) and route by name via HARNESS_DIR in SKILL.md and references. Entry and dynamic-dependency closure is unchanged byte-for-byte; sync and index generators read the harness layout. Regression is maintained at the new layout; target-platform and host acceptance remain open.
+
 Source102 corrects the missing upgrade whitelist entry in all10 public Python launchers. Source101 help discovery was insufficient: actual installed upgrade rejected before runtime dispatch. New forwarding RED/GREEN tests and fixed-install revalidation are kept separately; runtime129 bytes are unchanged.
 
 Source101 pins runtime129 and adds self-contained public upgrade/snapshot/compatibility guides. Source150 passed/52 conditional skips. Installed distribution acceptance is recorded separately; full V1 remains open.

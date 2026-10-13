@@ -111,19 +111,19 @@ Fixed source87/plugin115 includes bounded Node/setup installation locks across a
 Fixed source86/plugin114 acceptance passes all ten Art cold installations and a retained four-domain native creation/revision/moved delivery; all64 installed identities match. Full V1 remains open. [Evidence](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json). [Architecture](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.md).
 Coordinate mixed creative work into project/workflow records, four-domain native child references and acceptance records.
 
-Current source snapshot: `0.1.0-dev.112`; most recently tested development plugin: `0.1.0-dev.140`;10 independent skills;full V1 remains in progress.
+Current source snapshot: `0.1.0-dev.113`; most recently tested development plugin: `0.1.0-dev.140`;11 independent skills (10 domain skills + 1 built-in execution harness);full V1 remains in progress.
 
 Verified first-use platform: macOS arm64 and Python 3.11+. Pinned runtimes install into the user data directory; skill files stay in their host-loaded directory. These are development releases; complete V1 acceptance and generic Skills CLI installation remain open.
 
 ## First use
 
-Invoke **`artcraft-use`** in your host. For direct CLI use, set `SKILL_DIR` to the absolute directory of the `SKILL.md` actually loaded by that host. It may be under user/project `.agents/skills`, the plugin, or a host cache; use the actual path. Each entry below installs/verifies its locked runtime before invoking it.
+Invoke **`artcraft-use`** in your host. All execution goes through the built-in **artcraft-harness** skill: set `HARNESS_DIR` to its actually loaded absolute directory (user/project `.agents/skills`, the plugin, or a host cache; use the actual path), and `SKILL_DIR` to the domain skill directory for its examples and references. Each entry below installs/verifies its locked runtime before invoking it.
 
 <!-- CRAFT_FIRST_USE_START -->
 ```bash
-: "${SKILL_DIR:?Set to the actual loaded skill directory}"
-python3 -I -B "$SKILL_DIR/scripts/cli.py" -- --version
-python3 -I -B "$SKILL_DIR/scripts/cli.py" -- --help
+: "${HARNESS_DIR:?Set to the actual loaded artcraft-harness skill directory}"
+python3 -I -B "$HARNESS_DIR/scripts/cli.py" -- --version
+python3 -I -B "$HARNESS_DIR/scripts/cli.py" -- --help
 ```
 <!-- CRAFT_FIRST_USE_END -->
 
@@ -169,10 +169,10 @@ This is a development build. Version 0 passed default online downloads and contr
 
 ## First use
 
-Requires macOS arm64 and Python 3.11+. Run `scripts/workflow.py` from the actual loaded skill directory; see the [skill entry](skills/artcraft-use/SKILL.md) and [workflow contract](skills/artcraft-use/references/workflow.md). It installs on first use and verifies reuse afterward without changing PATH.
+Requires macOS arm64 and Python 3.11+. Run `scripts/workflow.py` from the actually loaded artcraft-harness skill directory; see the [skill entry](skills/artcraft-use/SKILL.md) and [workflow contract](skills/artcraft-use/references/workflow.md). It installs on first use and verifies reuse afterward without changing PATH.
 
 ```bash
-python3 /absolute/skill/artcraft-use/scripts/workflow.py \
+python3 /absolute/skill/artcraft-harness/scripts/workflow.py \
   /absolute/skill/artcraft-use/examples/brand-campaign.json \
   --output /absolute/path/project --authorization project-authorized \
   --asset voice=/absolute/path/voice.wav

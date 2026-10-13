@@ -111,19 +111,19 @@ Vector32 分发升级候选将品牌校验模块纳入受信回执，并接受�
 固定源86／插件114通过10个Art技能独立冷安装、保留工程的四域原生创建／返工／移动交付；64个安装身份一致，完整首版仍未完成。[证据](docs/evidence/craft-art-photo34-fixed-first-use-20261008.json)。[架构](docs/ArtCraft-Photo-Integrity-Dependency-Architecture.zh_CN.md)。
 多领域创作需求进入，交付项目清单、工作流记录、四领域子工程引用及验收记录。
 
-当前技能源快照：`0.1.0-dev.112`；最近验收的开发插件：`0.1.0-dev.140`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.113`；最近验收的开发插件：`0.1.0-dev.140`；11个独立技能（10个领域技能 + 1个内置执行 harness）；完整V1仍在实施。
 
 已验证首次使用平台：macOS arm64、Python 3.11+。固定运行时安装在用户数据目录，技能文件保留在宿主加载目录。当前为开发版本；完整首版验收及通用 Skills CLI 实际安装仍未完成。
 
 ## 首次使用
 
-在宿主中调用 **`artcraft-use`**。直接使用 CLI 时，将 `SKILL_DIR` 设为宿主实际加载的 `SKILL.md` 所在绝对目录；可能位于用户／项目 `.agents/skills`、插件内部或宿主缓存，以实际路径为准。以下入口在调用前安装并核验固定运行时。
+在宿主中调用 **`artcraft-use`**。全部执行经由内置的 **artcraft-harness** 技能：将 `HARNESS_DIR` 设为该技能实际加载的绝对目录（可能位于用户／项目 `.agents/skills`、插件内部或宿主缓存，以实际路径为准），领域技能的 `SKILL_DIR` 只用于读取其示例与参考。以下入口在调用前安装并核验固定运行时。
 
 <!-- CRAFT_FIRST_USE_START -->
 ```bash
-: "${SKILL_DIR:?Set to the actual loaded skill directory}"
-python3 -I -B "$SKILL_DIR/scripts/cli.py" -- --version
-python3 -I -B "$SKILL_DIR/scripts/cli.py" -- --help
+: "${HARNESS_DIR:?Set to the actual loaded artcraft-harness skill directory}"
+python3 -I -B "$HARNESS_DIR/scripts/cli.py" -- --version
+python3 -I -B "$HARNESS_DIR/scripts/cli.py" -- --help
 ```
 <!-- CRAFT_FIRST_USE_END -->
 
@@ -169,10 +169,10 @@ Art完整领域命令组件候选已支持2639条离线查询、实际MCP schema
 
 ## 首次使用
 
-需要 macOS arm64、Python 3.11+。从实际加载的技能目录调用 `scripts/workflow.py`，参见[技能入口](skills/artcraft-use/SKILL.md)和[工作流合同](skills/artcraft-use/references/workflow.md)。首次自动安装，后续重新核验复用，不修改 PATH。
+需要 macOS arm64、Python 3.11+。从实际加载的 artcraft-harness 技能目录调用 `scripts/workflow.py`，参见[技能入口](skills/artcraft-use/SKILL.md)和[工作流合同](skills/artcraft-use/references/workflow.md)。首次自动安装，后续重新核验复用，不修改 PATH。
 
 ```bash
-python3 /absolute/skill/artcraft-use/scripts/workflow.py \
+python3 /absolute/skill/artcraft-harness/scripts/workflow.py \
   /absolute/skill/artcraft-use/examples/brand-campaign.json \
   --output /absolute/path/project --authorization project-authorized \
   --asset voice=/absolute/path/voice.wav
@@ -193,7 +193,7 @@ python3 /absolute/skill/artcraft-use/scripts/workflow.py \
 
 ## 验证与未完成项
 
-当前技能源快照：`0.1.0-dev.112`；最近验收的开发插件：`0.1.0-dev.140`；10个独立技能；完整V1仍在实施。
+当前技能源快照：`0.1.0-dev.113`；最近验收的开发插件：`0.1.0-dev.140`；11个独立技能（10个领域技能 + 1个内置执行 harness）；完整V1仍在实施。
 
 规范事实源：[ArtCraft OpenSpec](https://github.com/full-aigc-plugins/artcraft-plugin/tree/main/openspec/changes/establish-v1-plugin)。
 
@@ -242,7 +242,7 @@ dev.7 默认在线首次使用从一个复制技能与空运行时开始、无�
 
 `npx skills add full-aigc-skills/artcraft-skills --skill <skill-name>`
 
-命令统一使用 `SKILL_DIR`，其值为宿主实际加载的 `SKILL.md` 所在绝对目录。支持用户级、项目级 `.agents/skills` 及插件内部或缓存目录；CLI 运行时另外安装到用户数据目录。每个技能单独复制到三种含空格的布局后，文档中的脚本入口均可运行 `--help`。[路径验证](docs/evidence/installed-skill-paths.json)。既有宿主缓存需更新后才会收到修正文档。
+命令统一使用 `HARNESS_DIR`，其值为宿主实际加载的 artcraft-harness 技能 `SKILL.md` 所在绝对目录；领域技能的 `SKILL_DIR` 只用于读取示例与参考。支持用户级、项目级 `.agents/skills` 及插件内部或缓存目录；CLI 运行时另外安装到用户数据目录。harness 单独复制到三种含空格的布局后，文档中的脚本入口均可运行 `--help`。[路径验证](docs/evidence/installed-skill-paths.json)。既有宿主缓存需更新后才会收到修正文档。
 
 技能源 dev.10 固定 PhotoCraft/VectorCraft dev.5，新增无离线制品覆盖的默认公开下载工作流验收。单独复制 ArtCraft 技能后安装 Node 与四个原生 CLI，交付四份原生工程，复用相同任务、拒绝非法计划修订，并完成交付打包/移动/验包。回归 20 项通过、1 项 Node 专用离线制品测试跳过；在线混合流程实际安装了 Node。[证据](docs/evidence/online-domain-upgrade.json)。运行时保持 dev.7；创作与完整宿主/模型验收仍未完成。
 

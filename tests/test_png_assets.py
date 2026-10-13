@@ -2,7 +2,7 @@
 import importlib.util,json,struct,tempfile,unittest,zlib
 from pathlib import Path
 from unittest.mock import patch
-SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-use/scripts/workflow.py'
+SCRIPT=Path(__file__).resolve().parents[1]/'skills/artcraft-harness/scripts/workflow.py'
 spec=importlib.util.spec_from_file_location('png_workflow',SCRIPT);workflow=importlib.util.module_from_spec(spec);spec.loader.exec_module(workflow)
 def chunk(kind,data):
  return struct.pack('>I',len(data))+kind+data+struct.pack('>I',zlib.crc32(kind+data))

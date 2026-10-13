@@ -3,13 +3,16 @@ import importlib.util,json,hashlib,shutil,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
-SCRIPT=ROOT/'skills/artcraft-use/scripts/domain_commands.py'
+SCRIPT=ROOT/'skills/artcraft-harness/scripts/domain_commands.py'
 class DomainCommandsTests(unittest.TestCase):
  def module(self,script=SCRIPT):
   spec=importlib.util.spec_from_file_location('domain_commands',script);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
  def test_all_ten_single_skill_queries_need_no_install(self):
   expected={'filmcraft':666,'effectcraft':640,'photocraft':755,'vectorcraft':585}
-  for original in sorted((ROOT/'skills').iterdir()):
+  # 离线查询入口唯一收敛在 artcraft-harness；其余技能不再携带脚本。
+  carriers=[s for s in sorted((ROOT/'skills').iterdir()) if (s/'scripts/domain_commands.py').is_file()]
+  self.assertEqual([s.name for s in carriers],['artcraft-harness'])
+  for original in carriers:
    with tempfile.TemporaryDirectory() as temporary:
     target=Path(temporary)/'.agents/skills'/original.name;shutil.copytree(original,target);m=self.module(target/'scripts/domain_commands.py')
     with patch.object(m.subprocess,'run',side_effect=AssertionError('query installed dependencies')):
@@ -173,6 +176,7 @@ class HeadlessContractLauncherTests(unittest.TestCase):
    self.assertEqual(argv[3],str(m.ROOT/'scripts/native_contract.py'))
    self.assertEqual(argv[4:7],['/domain/scripts/mcp_session.py','/domain/scripts/'+('desktop.py' if mode=='desktop' else 'commands.py'),'run'])
  def test_contract_launcher_is_present_in_all_independent_skills(self):
-  sources=[(p/'scripts/native_contract.py').read_bytes() for p in sorted((ROOT/'skills').iterdir())]
-  self.assertEqual(len(sources),10);self.assertEqual(len(set(sources)),1)
-  compile(sources[0],'native_contract.py','exec')
+  # 执行实现唯一收敛在 artcraft-harness；领域技能不再自带 scripts/。
+  carriers=[p.name for p in sorted((ROOT/'skills').iterdir()) if (p/'scripts/native_contract.py').is_file()]
+  self.assertEqual(carriers,['artcraft-harness'])
+  compile((ROOT/'skills/artcraft-harness/scripts/native_contract.py').read_bytes(),'native_contract.py','exec')

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ConsistencyTests(unittest.TestCase):
     def module(self):
-        spec = importlib.util.spec_from_file_location('review', ROOT / 'skills/artcraft-use/scripts/review.py')
+        spec = importlib.util.spec_from_file_location('review', ROOT / 'skills/artcraft-harness/scripts/review.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         return module

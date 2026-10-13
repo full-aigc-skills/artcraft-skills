@@ -16,7 +16,7 @@ class Response:
   return b'partial' if self.fail and self.reads==1 else b'good' if self.reads==1 else b''
 class DownloadRetryTests(unittest.TestCase):
  def module(self):
-  spec=importlib.util.spec_from_file_location('download',ROOT/'skills/artcraft-use/scripts/download.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+  spec=importlib.util.spec_from_file_location('download',ROOT/'skills/artcraft-harness/scripts/download.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
  def test_interrupted_read_discards_partial_archive_and_retries(self):
   m=self.module()
   with tempfile.TemporaryDirectory() as temp,patch.object(m.urllib.request,'urlopen',side_effect=[Response(True),Response()]) as fetch,patch.object(m.time,'sleep'):

@@ -17,7 +17,7 @@ SKILLS = Path(os.environ.get('CRAFT_INSTALLED_TASK_SKILLS_ROOT', ROOT/'skills'))
 class TaskContractTests(unittest.TestCase):
     def test_current_contracts_do_not_instruct_agents_to_ignore_implemented_features(self):
         for skill in SKILLS.iterdir():
-            if not skill.is_dir():
+            if not skill.is_dir() or not (skill / 'references/workflow.md').is_file():
                 continue
             text = (skill / 'references/workflow.md').read_text()
             for stale in ('当前共享预算计数仍待实现', '当前须 null', '当前不支持崩溃监督器自动接管'):

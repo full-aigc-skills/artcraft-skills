@@ -10,8 +10,14 @@ class DistributionProtocolTests(unittest.TestCase):
   counts = {"filmcraft": 13, "effectcraft": 15, "photocraft": 13, "vectorcraft": 13}
   transport = "ad8a8fb3f84f9fbf814b5a593c96faf3cf9bb476ff32627039975d7f57c86616"
   skills = sorted((ROOT/"skills").iterdir())
-  self.assertEqual(len(skills), 10)
+  self.assertEqual(len(skills), 11)
+  # 分发锁与执行载荷唯一收敛在 artcraft-harness；领域技能不再自带 scripts/。
+  carriers=[skill.name for skill in skills if (skill/"scripts/distribution.lock.json").is_file()]
+  self.assertEqual(carriers,["artcraft-harness"])
   for skill in skills:
+   if skill.name not in carriers:
+    self.assertFalse((skill/"scripts").exists(), skill.name)
+    continue
    lock = json.loads((skill/"scripts/distribution.lock.json").read_text())
    self.assertEqual(lock["version"], "0.1.0-dev.139-runtime.1")
    self.assertEqual(lock["bundles"]["artcraft-runtime"]["version"], lock["version"])
@@ -63,8 +69,9 @@ class DistributionProtocolTests(unittest.TestCase):
       self.assertIn(prefix+resource,files)
 
  def test_all_skills_trust_gateway_export_inheritance_workflow(self):
+  # 分发锁唯一收敛在 artcraft-harness。
   for skill in sorted((ROOT/'skills').iterdir()):
-   if not (skill/'SKILL.md').is_file():continue
+   if not (skill/'scripts/distribution.lock.json').is_file():continue
    lock=json.loads((skill/'scripts/distribution.lock.json').read_text())
    bundle=lock['bundles']['vectorcraft-skills']
    workflows=[value for path,value in bundle['files'].items() if path.startswith('skills/') and path.endswith('/scripts/workflow.py')]

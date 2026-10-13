@@ -15,7 +15,7 @@ class ExternalPrerequisiteTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);plan=root/'plan.json'
             plan.write_text(json.dumps({'workflowId':'external','revision':'v1','nodes':[{'pluginId':'video-factory'}]}))
-            result=subprocess.run([sys.executable,'-I','-B',str(ROOT/'skills/artcraft-use/scripts/workflow.py'),str(plan),'--output',str(root/'project'),'--runtime-home',str(root/'runtime'),'--authorization','test'],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,'-I','-B',str(ROOT/'skills/artcraft-harness/scripts/workflow.py'),str(plan),'--output',str(root/'project'),'--runtime-home',str(root/'runtime'),'--authorization','test'],capture_output=True,text=True)
             self.assertEqual(result.returncode,1,result.stdout+result.stderr)
             self.assertIn('video_factory_registration_required',result.stdout)
             self.assertFalse((root/'runtime').exists())

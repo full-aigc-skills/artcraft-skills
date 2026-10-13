@@ -27,8 +27,9 @@ class ScenarioSetupDiagnostics(unittest.TestCase):
         return ['verify','--package',str(package),'--sha','a'*64,'--runtime-home',str(runtime)]
 
     def test_each_single_skill_scenario_preserves_failed_bootstrap_receipt(self):
+        # 执行实现唯一收敛在 artcraft-harness；单独复制 harness 即复制全部公开入口。
         for source in sorted((ROOT/'skills').iterdir()):
-            if not (source/'SKILL.md').is_file():continue
+            if source.name != 'artcraft-harness':continue
             for entry in ('workflow.py','package.py'):
                 with self.subTest(skill=source.name,entry=entry),tempfile.TemporaryDirectory(prefix='craft 场景安装 ') as temporary:
                     root=Path(temporary);skill=root/'.agents/skills'/source.name
@@ -55,7 +56,7 @@ class ScenarioSetupDiagnostics(unittest.TestCase):
             SimpleNamespace(returncode=1,stdout='',stderr='download failed'),
             SimpleNamespace(returncode=1,stdout='[]',stderr='installer diagnostic')]
         for entry in ('workflow.py','package.py'):
-            path=ROOT/'skills/artcraft-use/scripts'/entry
+            path=ROOT/'skills/artcraft-harness/scripts'/entry
             spec=importlib.util.spec_from_file_location('scenario_'+entry,path)
             module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
             for failure in cases:
@@ -72,7 +73,7 @@ class ScenarioSetupDiagnostics(unittest.TestCase):
 
     def test_success_exit_with_invalid_setup_receipt_stops_before_native_call(self):
         for entry in ('workflow.py','package.py'):
-            path=ROOT/'skills/artcraft-use/scripts'/entry
+            path=ROOT/'skills/artcraft-harness/scripts'/entry
             spec=importlib.util.spec_from_file_location('invalid_setup_'+entry,path)
             module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
             for payload in ('null','[]','{}','not json',json.dumps({'schema':'wrong','nodeExecutable':'node','entryPoint':'entry'})):
@@ -88,7 +89,7 @@ class ScenarioSetupDiagnostics(unittest.TestCase):
 
     def test_input_and_native_failure_do_not_get_installation_diagnostics(self):
         for entry in ('workflow.py','package.py'):
-            path=ROOT/'skills/artcraft-use/scripts'/entry
+            path=ROOT/'skills/artcraft-harness/scripts'/entry
             spec=importlib.util.spec_from_file_location('native_setup_'+entry,path)
             module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
             with tempfile.TemporaryDirectory() as temporary:
